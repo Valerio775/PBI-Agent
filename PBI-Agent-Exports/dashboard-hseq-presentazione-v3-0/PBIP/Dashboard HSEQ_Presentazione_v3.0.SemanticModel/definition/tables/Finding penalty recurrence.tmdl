@@ -1,0 +1,68 @@
+table 'Finding penalty recurrence'
+	lineageTag: dda8a227-9ad8-4d61-b5e5-5e165543798f
+
+	column last_occurrence
+		dataType: int64
+		formatString: 0
+		lineageTag: 2e3ee36a-e63d-44f8-8645-c63865983e37
+		summarizeBy: sum
+		sourceColumn: last_occurrence
+
+		annotation SummarizationSetBy = Automatic
+
+	column element
+		dataType: int64
+		formatString: 0
+		lineageTag: 2aaaaa88-716a-439e-8508-0e818c9e9396
+		summarizeBy: sum
+		sourceColumn: element
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_update
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 250afdc5-e186-4ed3-9212-6ebb371cc5af
+		summarizeBy: none
+		sourceColumn: last_update
+
+		variation Variation
+			isDefault
+			relationship: 3ce877a5-5ab7-4f2f-a98e-09a60a682e69
+			defaultHierarchy: LocalDateTable_6588fd42-1022-40b5-b4a6-e369359793c7.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_update
+		dataType: string
+		lineageTag: f2e0c126-e736-45a0-85bc-911395d50da4
+		summarizeBy: none
+		sourceColumn: user_update
+
+		annotation SummarizationSetBy = Automatic
+
+	column deleted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1a72c67e-dd50-4fe8-b702-6f2b35e6aee5
+		summarizeBy: none
+		sourceColumn: deleted
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Finding penalty recurrence' = m
+		mode: import
+		source = ```
+				let
+				    Origine = Databricks.Catalogs(origine, warehouses, [Catalog = "", Database = ""]),
+				    #"dpegpl-hseq-dev_Database" = Origine{[Name=database,Kind="Database"]}[Data],
+				    hseq4all_gl_gld_Schema = #"dpegpl-hseq-dev_Database"{[Name=schema,Kind="Schema"]}[Data],
+				    finding_View = hseq4all_gl_gld_Schema{[Name="finding__penalty_recurrence",Kind="View"]}[Data]
+				 
+				in finding_View
+				```
+
+	annotation PBI_NavigationStepName = Navigazione
+
+	annotation PBI_ResultType = Table
+

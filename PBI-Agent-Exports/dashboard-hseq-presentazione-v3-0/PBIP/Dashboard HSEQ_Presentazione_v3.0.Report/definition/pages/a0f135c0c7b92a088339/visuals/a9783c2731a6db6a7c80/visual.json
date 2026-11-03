@@ -1,0 +1,268 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "a9783c2731a6db6a7c80",
+  "position": {
+    "x": 40.3267211201867,
+    "y": 131.06184364060678,
+    "z": 15500,
+    "height": 464.87747957992997,
+    "width": 823.3372228704784,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Question"
+                    }
+                  },
+                  "Property": "hl_risk_activities_sub_cluster"
+                }
+              },
+              "queryRef": "Question.hl_risk_activities_sub_cluster",
+              "nativeQueryRef": "Question Cluster",
+              "active": true,
+              "displayName": "Question Cluster"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Question"
+                    }
+                  },
+                  "Property": "hl_process_first_cluster"
+                }
+              },
+              "queryRef": "Question.hl_process_first_cluster",
+              "nativeQueryRef": "First Cluster",
+              "active": false,
+              "displayName": "First Cluster"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Question"
+                    }
+                  },
+                  "Property": "Testo_tra_parentesi"
+                }
+              },
+              "queryRef": "Question.Testo_tra_parentesi",
+              "nativeQueryRef": "Item Cod",
+              "active": false,
+              "displayName": "Item Cod"
+            }
+          ],
+          "showAll": true
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Finding"
+                    }
+                  },
+                  "Property": "Totale NCO Cluster"
+                }
+              },
+              "queryRef": "Finding.Totale NCO Cluster",
+              "nativeQueryRef": "Totale NCO Cluster"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "dataPoint": [
+        {
+          "properties": {
+            "fill": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 3,
+                      "Percent": 0.4
+                    }
+                  }
+                }
+              }
+            },
+            "borderShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "borderColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#252423'"
+                    }
+                  }
+                }
+              }
+            },
+            "borderSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "preferredCategoryWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "60D"
+                }
+              }
+            },
+            "initialScrollPosition": {
+              "expr": {
+                "Literal": {
+                  "Value": "'start'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Totale NCO Cluster per Question Cluster (Safety)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "418373cf560329d68639",
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "5612d9f176a026d85c8a",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Question"
+              }
+            },
+            "Property": "hl_process_first_cluster"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "1147818014c7c4c36705",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Question"
+              }
+            },
+            "Property": "id_scope"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "40c549a17048b8276d4d",
+        "ordinal": 2,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Question"
+              }
+            },
+            "Property": "hl_risk_activities_sub_cluster"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "d0e6c97f1aa60178252b",
+        "ordinal": 3,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Finding"
+              }
+            },
+            "Property": "Totale NCO Cluster"
+          }
+        },
+        "type": "Advanced"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

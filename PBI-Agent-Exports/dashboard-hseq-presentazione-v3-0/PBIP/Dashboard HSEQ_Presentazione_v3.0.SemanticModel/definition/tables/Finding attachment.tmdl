@@ -1,0 +1,153 @@
+table 'Finding attachment'
+	lineageTag: 908b4b34-a75a-4ac3-853e-35f6e544017d
+
+	measure all_attachment = CONCATENATEX('Finding attachment', 'Finding attachment'[file_name], ", ", 'Finding attachment'[file_name], ASC)
+		lineageTag: 3737281f-25cc-4d11-8c5a-d81cdb0bc47e
+
+	column id_attachment
+		dataType: int64
+		formatString: 0
+		lineageTag: b4ce2a37-0204-4275-bce0-754627781c3f
+		summarizeBy: sum
+		sourceColumn: id_attachment
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_finding
+		dataType: int64
+		formatString: 0
+		lineageTag: 46095587-c8fb-43f7-9a90-b3ab7dc98ab6
+		summarizeBy: none
+		sourceColumn: id_finding
+
+		annotation SummarizationSetBy = Automatic
+
+	column file_name
+		dataType: string
+		lineageTag: d465413b-2055-4d10-ad12-ce1b84e055b2
+		summarizeBy: none
+		sourceColumn: file_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: e35f6b73-d6e5-4f02-820d-b0a68945781c
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column dms_type
+		dataType: string
+		lineageTag: 72192559-02e4-4257-bce0-05cf80927ce8
+		summarizeBy: none
+		sourceColumn: dms_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column object_id
+		dataType: string
+		lineageTag: 52c1a6d5-ae38-413d-820a-17130fb984f8
+		dataCategory: WebUrl
+		summarizeBy: none
+		sourceColumn: object_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column file_extension
+		dataType: string
+		lineageTag: 8cef9cdd-4f46-4418-b089-38d084741bae
+		summarizeBy: none
+		sourceColumn: file_extension
+
+		annotation SummarizationSetBy = Automatic
+
+	column file_size
+		dataType: int64
+		formatString: 0
+		lineageTag: 15e1485d-1580-4659-8411-5a513c3e8855
+		summarizeBy: sum
+		sourceColumn: file_size
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_update
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: dee1a199-8b58-4184-a529-2e855cc78982
+		summarizeBy: none
+		sourceColumn: last_update
+
+		variation Variazione
+			isDefault
+			relationship: 13a2f019-4193-40ed-9311-40dbac77268d
+			defaultHierarchy: LocalDateTable_f0404d2d-2e9f-4282-a3f0-af4a58893185.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_update
+		dataType: string
+		lineageTag: 625f004c-1dec-470f-a401-4bcd3c5ca7d9
+		summarizeBy: none
+		sourceColumn: user_update
+
+		annotation SummarizationSetBy = Automatic
+
+	column deleted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f1200a0a-5bd7-4742-b73c-95e66d881d46
+		summarizeBy: none
+		sourceColumn: deleted
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_category
+		dataType: string
+		lineageTag: beb36c07-fd4b-439e-9227-85f1f041def3
+		summarizeBy: none
+		sourceColumn: id_category
+
+		annotation SummarizationSetBy = Automatic
+
+	column node_id
+		dataType: string
+		lineageTag: c747afcc-f84f-4dad-943b-9823fc63cfa2
+		summarizeBy: none
+		sourceColumn: node_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_folder_parent
+		dataType: string
+		lineageTag: 898a3882-f220-4180-a77e-4390eec490a2
+		summarizeBy: none
+		sourceColumn: id_folder_parent
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_offline
+		dataType: string
+		lineageTag: 710d7d77-b343-407f-96cb-844f09062b9b
+		summarizeBy: none
+		sourceColumn: id_offline
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Finding attachment' = m
+		mode: import
+		source = ```
+				let
+				    Origine = Databricks.Catalogs(origine, warehouses, [Catalog = "", Database = ""]),
+				    #"dpegpl-hseq-dev_Database" = Origine{[Name=database,Kind="Database"]}[Data],
+				    hseq4all_gl_gld_Schema = #"dpegpl-hseq-dev_Database"{[Name=schema,Kind="Schema"]}[Data],
+				    finding_View = hseq4all_gl_gld_Schema{[Name="finding__attachment",Kind="View"]}[Data]
+				 
+				in finding_View
+				```
+
+	annotation PBI_NavigationStepName = Navigazione
+
+	annotation PBI_ResultType = Table
+

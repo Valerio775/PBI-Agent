@@ -1,0 +1,47 @@
+table Parametro
+	lineageTag: 36ad46a9-0e7c-4034-a438-6e089fb4150a
+
+	column Parametro
+		lineageTag: 1d300c26-86a4-4603-bf87-34b5bf902d90
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Ordine di Parametro'
+
+		relatedColumnDetails
+			groupByColumn: 'Campi di Parametro'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Campi di Parametro'
+		isHidden
+		lineageTag: abec9b2a-66c8-44e9-ae37-3a49e4f6bed9
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Ordine di Parametro'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ordine di Parametro'
+		isHidden
+		formatString: 0
+		lineageTag: 686a904f-2566-4e74-ad5a-6d39af27ec2f
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Parametro = calculated
+		mode: import
+		source =
+				{
+				    ("Inspection YTD", NAMEOF('Inspection'[Inspection YTD]), 0)
+				}
+
+	annotation PBI_Id = c5c099aac5f54d9094ef176f9082a640
+

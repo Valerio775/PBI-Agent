@@ -1,0 +1,286 @@
+table 'Finding person'
+	lineageTag: f316efdf-eee8-475f-b945-36e015cb06c0
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 347bf20f-0186-4745-af71-8bea619a18a2
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column email
+		dataType: string
+		lineageTag: 389a1805-356c-43a4-b32f-0b7f35b79ea1
+		summarizeBy: none
+		sourceColumn: email
+
+		annotation SummarizationSetBy = Automatic
+
+	column name
+		dataType: string
+		lineageTag: cd639148-3590-4d39-9da0-87b4d8125b3b
+		summarizeBy: none
+		sourceColumn: name
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_name
+		dataType: string
+		lineageTag: 08fed2e8-5119-4860-b8f4-683a5e159816
+		summarizeBy: none
+		sourceColumn: last_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_person_type
+		dataType: string
+		lineageTag: 3bc8fdb9-8a56-4b3f-bace-6ea657bcabb4
+		summarizeBy: none
+		sourceColumn: id_person_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_country
+		dataType: string
+		lineageTag: 1358eb07-b472-4f01-9e47-ba29059a8ee6
+		summarizeBy: none
+		sourceColumn: id_country
+
+		annotation SummarizationSetBy = Automatic
+
+	column employee_number
+		dataType: string
+		lineageTag: 9775e889-a822-4845-8981-427dab4a4df2
+		summarizeBy: none
+		sourceColumn: employee_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column employee_position
+		dataType: string
+		lineageTag: a32b0b14-aeec-47cd-9ad7-331cbf547e69
+		summarizeBy: none
+		sourceColumn: employee_position
+
+		annotation SummarizationSetBy = Automatic
+
+	column employee_company
+		dataType: string
+		lineageTag: 67ff0e45-8f19-4a43-afeb-dfea15771230
+		summarizeBy: none
+		sourceColumn: employee_company
+
+		annotation SummarizationSetBy = Automatic
+
+	column employee_ou
+		dataType: string
+		lineageTag: ba450471-b325-47bc-96a7-d4d692ca6d54
+		summarizeBy: none
+		sourceColumn: employee_ou
+
+		annotation SummarizationSetBy = Automatic
+
+	column employee_ou_descr
+		dataType: string
+		lineageTag: f0f549bf-67b1-4805-b099-ad564ac59c74
+		summarizeBy: none
+		sourceColumn: employee_ou_descr
+
+		annotation SummarizationSetBy = Automatic
+
+	column employee_perimeter
+		dataType: string
+		lineageTag: 2295edfc-16a7-40ee-b43d-d12bd0604813
+		summarizeBy: none
+		sourceColumn: employee_perimeter
+
+		annotation SummarizationSetBy = Automatic
+
+	column employee_perimeter_desc
+		dataType: string
+		lineageTag: dc114414-9302-4368-9f39-7a7b938c79f1
+		summarizeBy: none
+		sourceColumn: employee_perimeter_desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column employee_attr_prev_cod
+		dataType: string
+		lineageTag: 1734f4f2-b103-4482-b2bc-fefe9f3c1661
+		summarizeBy: none
+		sourceColumn: employee_attr_prev_cod
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_update
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2cd51405-8819-4556-8868-b36475e9c7fd
+		summarizeBy: none
+		sourceColumn: last_update
+
+		variation Variazione
+			isDefault
+			relationship: c13673ee-6e1e-4568-adf9-4c5cd2d5764d
+			defaultHierarchy: LocalDateTable_22d4353e-9ae5-486d-bc5c-18322b74aa04.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_update
+		dataType: string
+		lineageTag: ae9aaf25-36fc-408f-a471-a8b493ae81dc
+		summarizeBy: none
+		sourceColumn: user_update
+
+		annotation SummarizationSetBy = Automatic
+
+	column deleted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 124efefc-d460-4ddb-b955-789b6b2d6dcf
+		summarizeBy: none
+		sourceColumn: deleted
+
+		annotation SummarizationSetBy = Automatic
+
+	column identifier
+		dataType: string
+		lineageTag: e06e6b19-252b-4a9f-81e9-4303f53b847d
+		summarizeBy: none
+		sourceColumn: identifier
+
+		annotation SummarizationSetBy = Automatic
+
+	column qualified_responsible
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 13ed5c1d-9aa6-4a48-9b48-b42d01ebb96f
+		summarizeBy: none
+		sourceColumn: qualified_responsible
+
+		annotation SummarizationSetBy = Automatic
+
+	column employee_job_risk_code
+		dataType: string
+		lineageTag: 1d975e5d-f23b-4d98-a86c-b385b3486b8c
+		summarizeBy: none
+		sourceColumn: employee_job_risk_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column employee_job_risk_description
+		dataType: string
+		lineageTag: 0c64a461-fe33-4257-a29f-d3f6e37e4c3b
+		summarizeBy: none
+		sourceColumn: employee_job_risk_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column inspected_team_responsible
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 16a1ae2a-8acc-48c2-97b8-67ef6ea17998
+		summarizeBy: none
+		sourceColumn: inspected_team_responsible
+
+		annotation SummarizationSetBy = Automatic
+
+	column employee_attr_prev_desc
+		dataType: string
+		lineageTag: 86a2990d-504c-4d86-88a9-9b0d246ee357
+		summarizeBy: none
+		sourceColumn: employee_attr_prev_desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column employee_bus_line_cod_1
+		dataType: string
+		lineageTag: 5f328534-fe00-4f0f-abea-624b19e60ee2
+		summarizeBy: none
+		sourceColumn: employee_bus_line_cod_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_id
+		dataType: string
+		lineageTag: 13a3d6e6-a951-4069-b22e-789bb41d9999
+		summarizeBy: none
+		sourceColumn: user_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column phone
+		dataType: string
+		lineageTag: 3a4b6f93-cb8e-417d-b998-ecd8e5fb1ef1
+		summarizeBy: none
+		sourceColumn: phone
+
+		annotation SummarizationSetBy = Automatic
+
+	column employee_bus_line_desc_1
+		dataType: string
+		lineageTag: 5ab91d79-9f19-43ef-99f6-12a2ca193a0a
+		summarizeBy: none
+		sourceColumn: employee_bus_line_desc_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column employee_serv_cod_1
+		dataType: string
+		lineageTag: aca81247-bf62-4a0e-a4fd-26c53faff4da
+		summarizeBy: none
+		sourceColumn: employee_serv_cod_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column employee_serv_desc_1
+		dataType: string
+		lineageTag: ab09bcd3-db32-444e-b5c6-b4ae8f129102
+		summarizeBy: none
+		sourceColumn: employee_serv_desc_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column employee_staff_cod_1
+		dataType: string
+		lineageTag: 07aec8b7-07ac-4ba7-88ab-ba632a392330
+		summarizeBy: none
+		sourceColumn: employee_staff_cod_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column employee_staff_desc_1
+		dataType: string
+		lineageTag: a658899c-c60e-4892-9ea0-188a08bbabd3
+		summarizeBy: none
+		sourceColumn: employee_staff_desc_1
+
+		annotation SummarizationSetBy = Automatic
+
+	column manually_defined
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 167519b3-f63b-472d-a1da-bd4a4fd53901
+		summarizeBy: none
+		sourceColumn: manually_defined
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Finding person' = m
+		mode: import
+		source = ```
+				let
+				    Origine = Databricks.Catalogs(origine, warehouses, [Catalog = "", Database = ""]),
+				    #"dpegpl-hseq-dev_Database" = Origine{[Name=database,Kind="Database"]}[Data],
+				    hseq4all_gl_gld_Schema = #"dpegpl-hseq-dev_Database"{[Name=schema,Kind="Schema"]}[Data],
+				    finding_View = hseq4all_gl_gld_Schema{[Name="finding_person",Kind="View"]}[Data]
+				 
+				in finding_View
+				```
+
+	annotation PBI_NavigationStepName = Navigazione
+
+	annotation PBI_ResultType = Table
+

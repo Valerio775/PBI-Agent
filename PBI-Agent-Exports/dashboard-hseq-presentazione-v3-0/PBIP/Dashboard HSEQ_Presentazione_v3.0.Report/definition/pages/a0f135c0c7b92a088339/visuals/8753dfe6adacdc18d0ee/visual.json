@@ -1,0 +1,615 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "8753dfe6adacdc18d0ee",
+  "position": {
+    "x": 60.888888888888886,
+    "y": 669.333333333333,
+    "z": 9125,
+    "height": 486.66666666666669,
+    "width": 1726.6666666666667,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Question"
+                    }
+                  },
+                  "Property": "hl_process_first_cluster"
+                }
+              },
+              "queryRef": "Question.hl_process_first_cluster",
+              "nativeQueryRef": "hl_process_first_cluster",
+              "displayName": "Process Cluster"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Question"
+                    }
+                  },
+                  "Property": "hl_risk_activities_sub_cluster"
+                }
+              },
+              "queryRef": "Question.hl_risk_activities_sub_cluster",
+              "nativeQueryRef": "hl_risk_activities_sub_cluster",
+              "displayName": "Subcluster"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Finding"
+                    }
+                  },
+                  "Property": "id_finding_type"
+                }
+              },
+              "queryRef": "Finding.id_finding_type",
+              "nativeQueryRef": "Finding type",
+              "displayName": "Finding type"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Finding"
+                    }
+                  },
+                  "Property": "creation_user"
+                }
+              },
+              "queryRef": "Finding.creation_user",
+              "nativeQueryRef": "Creation User",
+              "displayName": "Creation User"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Finding"
+                    }
+                  },
+                  "Property": "id_inspection"
+                }
+              },
+              "queryRef": "Sum(Finding.id_inspection)",
+              "nativeQueryRef": "ID Inspection",
+              "displayName": "ID Inspection"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Finding"
+                    }
+                  },
+                  "Property": "id"
+                }
+              },
+              "queryRef": "Finding.id",
+              "nativeQueryRef": "id",
+              "displayName": "ID Finding"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Question"
+                    }
+                  },
+                  "Property": "id"
+                }
+              },
+              "queryRef": "Question.id",
+              "nativeQueryRef": "ID Question",
+              "displayName": "ID Question"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Inspection question"
+                    }
+                  },
+                  "Property": "id_answer"
+                }
+              },
+              "queryRef": "Inspection question.id_answer",
+              "nativeQueryRef": "ID Answer",
+              "displayName": "ID Answer"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Finding"
+                    }
+                  },
+                  "Property": "id_scope"
+                }
+              },
+              "queryRef": "Finding.id_scope",
+              "nativeQueryRef": "ID Scope",
+              "displayName": "ID Scope"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "grid": [
+        {
+          "properties": {
+            "outlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#C4C4C4'"
+                    }
+                  }
+                }
+              }
+            },
+            "gridHorizontalColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#C4C4C4'"
+                    }
+                  }
+                }
+              }
+            },
+            "rowPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "6D"
+                }
+              }
+            },
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Arial Black'''"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.6
+                    }
+                  }
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#EBEBEB'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Arial'"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "backColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F3F9FF'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "106.02668022887542D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "financials.Date"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "110.82750762874242D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(financials.Discounts)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "124.199172600133D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(financials.Gross Sales)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "131.22376180195278D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(financials.Profit)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "110.36803195599602D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(financials.Sale Price)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "114.14167514304714D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "financials.Dimension 1"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "114.45584265735185D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "financials.Dimension 2"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "115.45584265735185D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "financials.Dimension 3"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "380.1501791281201D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Question.hl_process_first_cluster"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Tabella Finding NC per Subcluster - Questions'"
+                }
+              }
+            },
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "width": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Default'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "418373cf560329d68639",
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "20df683c73d88071d0b0",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Finding"
+              }
+            },
+            "Property": "creation_user"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "d4490d5db85728c78b90",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Finding"
+              }
+            },
+            "Property": "id_finding_type"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "fd614f00b4e1cc0b8e40",
+        "ordinal": 2,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Finding"
+              }
+            },
+            "Property": "id_finding_type"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "23ed9e683e9788e78513",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Inspection question"
+              }
+            },
+            "Property": "id_answer"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "def019f8101d60d06c01",
+        "ordinal": 4,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Finding"
+              }
+            },
+            "Property": "id"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "6f29de0157d816ed8243",
+        "ordinal": 5,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Finding"
+              }
+            },
+            "Property": "id_inspection"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "12423d7b32309ed75393",
+        "ordinal": 6,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Question"
+              }
+            },
+            "Property": "id"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "891241839541009e860c",
+        "ordinal": 7,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Question"
+              }
+            },
+            "Property": "hl_process_first_cluster"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "22c0fa765d9a6ddb7e6c",
+        "ordinal": 8,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Question"
+              }
+            },
+            "Property": "hl_risk_activities_sub_cluster"
+          }
+        },
+        "type": "Categorical"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

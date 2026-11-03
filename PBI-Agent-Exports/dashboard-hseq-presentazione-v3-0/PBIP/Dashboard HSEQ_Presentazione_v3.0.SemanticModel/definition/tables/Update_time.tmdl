@@ -1,0 +1,39 @@
+table Update_time
+	lineageTag: 60603d3e-686d-461d-9be7-fb2d72dc57e9
+
+	column Name
+		dataType: string
+		lineageTag: b97e9e9d-474e-4e7a-b7d4-a6265bcabdba
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description
+		dataType: string
+		lineageTag: 5ea1597a-bbc5-4182-b662-91f4c27fa9fe
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column Kind
+		dataType: string
+		lineageTag: 2dc041fe-0f4a-49fb-b167-891289fb95e7
+		summarizeBy: none
+		sourceColumn: Kind
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Update_time = m
+		mode: import
+		source =
+				let
+				    Origine = Databricks.Catalogs(origine, warehouses, [Catalog = "", Database = ""])
+				in
+				    Origine
+
+	annotation PBI_NavigationStepName = Navigazione
+
+	annotation PBI_ResultType = Table
+

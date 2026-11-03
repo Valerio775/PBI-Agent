@@ -1,0 +1,4707 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
+  "displayName": "Clear All DownloadC",
+  "name": "9eae0022865979ae876c",
+  "options": {
+    "targetVisualNames": [],
+    "preserveNewVisualVisibility": true
+  },
+  "explorationState": {
+    "version": "1.11",
+    "activeSection": "9c82d7e0e757dc769b5b",
+    "sections": {
+      "9c82d7e0e757dc769b5b": {
+        "visualContainers": {
+          "2ee142dfa32971c202c8": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "4219363fefd8f1c86f4a": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "74eff52aa552a2d3b1ad": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "ce441dbf78e027129598",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "i",
+                        "Entity": "Inspection",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "i"
+                                      }
+                                    },
+                                    "Property": "Conteggio Inspection"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "0L"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "Conteggio Inspection"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "09cfc21520050749da78",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Country"
+                        }
+                      },
+                      "Property": "id"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "e6f2f09db1277fce16d1",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "location_description"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Country"
+                        }
+                      },
+                      "Property": "id"
+                    }
+                  }
+                ]
+              },
+              "expansionStates": [
+                {
+                  "roles": [
+                    "Values"
+                  ],
+                  "levels": [
+                    {
+                      "queryRefs": [
+                        "Country.id"
+                      ],
+                      "isCollapsed": true,
+                      "identityKeys": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "Country"
+                              }
+                            },
+                            "Property": "id"
+                          }
+                        }
+                      ],
+                      "isPinned": true
+                    },
+                    {
+                      "queryRefs": [
+                        "Inspection.location_description"
+                      ],
+                      "isCollapsed": true,
+                      "isPinned": true
+                    }
+                  ],
+                  "root": {
+                    "identityValues": []
+                  }
+                }
+              ]
+            }
+          },
+          "7f0d3b45cb374db470bb": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "cddb5573abdc7897a164",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "i",
+                        "Entity": "Inspection",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "In": {
+                                "Expressions": [
+                                  {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "i"
+                                        }
+                                      },
+                                      "Property": "scopes"
+                                    }
+                                  }
+                                ],
+                                "Values": [
+                                  [
+                                    {
+                                      "Literal": {
+                                        "Value": "null"
+                                      }
+                                    }
+                                  ]
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "scopes"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "133632430acd0489a47e",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "Formatted_scope"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "96dd73bd54a6827d345e",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "f",
+                        "Entity": "Finding person",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "f"
+                                    }
+                                  },
+                                  "Property": "id_person_type"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'PT_EXT'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'PT_INT'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person"
+                        }
+                      },
+                      "Property": "id_person_type"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person"
+                        }
+                      },
+                      "Property": "id_person_type"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "8703fa5d5bc701de5cbb": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "cddb5573abdc7897a164",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "i",
+                        "Entity": "Inspection",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "In": {
+                                "Expressions": [
+                                  {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "i"
+                                        }
+                                      },
+                                      "Property": "scopes"
+                                    }
+                                  }
+                                ],
+                                "Values": [
+                                  [
+                                    {
+                                      "Literal": {
+                                        "Value": "null"
+                                      }
+                                    }
+                                  ]
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "scopes"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "133632430acd0489a47e",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "Formatted_scope"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "6422d5149348ffce4e44",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "Formatted_state"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "Formatted_state"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "9333e48b6eb6f24f837f": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "a02eaaad6642fbe183fe",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Contract"
+                        }
+                      },
+                      "Property": "supplier_name"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "6f9b8bcc762946b16913",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Contract"
+                        }
+                      },
+                      "Property": "supplier_cui"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Contract"
+                        }
+                      },
+                      "Property": "supplier_name"
+                    }
+                  }
+                ]
+              },
+              "expansionStates": [
+                {
+                  "roles": [
+                    "Values"
+                  ],
+                  "levels": [
+                    {
+                      "queryRefs": [
+                        "Contract.supplier_name"
+                      ],
+                      "isCollapsed": true,
+                      "identityKeys": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "Contract"
+                              }
+                            },
+                            "Property": "supplier_name"
+                          }
+                        }
+                      ],
+                      "isPinned": true
+                    },
+                    {
+                      "queryRefs": [
+                        "Contract.supplier_cui"
+                      ],
+                      "isCollapsed": true,
+                      "isPinned": true
+                    }
+                  ],
+                  "root": {
+                    "identityValues": []
+                  }
+                }
+              ]
+            }
+          },
+          "b733aef2b737e57fe710": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "cddb5573abdc7897a164",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "i",
+                        "Entity": "Inspection",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "In": {
+                                "Expressions": [
+                                  {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "i"
+                                        }
+                                      },
+                                      "Property": "scopes"
+                                    }
+                                  }
+                                ],
+                                "Values": [
+                                  [
+                                    {
+                                      "Literal": {
+                                        "Value": "null"
+                                      }
+                                    }
+                                  ],
+                                  [
+                                    {
+                                      "Literal": {
+                                        "Value": "'[]'"
+                                      }
+                                    }
+                                  ]
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "scopes"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "34a0fb4454de60650143",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "Formatted_scope"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "general": [
+                    {
+                      "properties": {
+                        "filter": {
+                          "filter": {
+                            "Version": 2,
+                            "From": [
+                              {
+                                "Name": "i",
+                                "Entity": "Inspection",
+                                "Type": 0
+                              }
+                            ],
+                            "Where": [
+                              {
+                                "Condition": {
+                                  "Not": {
+                                    "Expression": {
+                                      "In": {
+                                        "Expressions": [
+                                          {
+                                            "Column": {
+                                              "Expression": {
+                                                "SourceRef": {
+                                                  "Source": "i"
+                                                }
+                                              },
+                                              "Property": "Formatted_scope"
+                                            }
+                                          }
+                                        ],
+                                        "Values": [
+                                          [
+                                            {
+                                              "Literal": {
+                                                "Value": "'GNLP'"
+                                              }
+                                            }
+                                          ]
+                                        ]
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        },
+                        "isInvertedSelectionMode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "true"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "Formatted_scope"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "c35590ad134faf31e963": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "ed397f47bbafde96c156",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "planning_date"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "a4d19fedbccaaa6d3a17",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "Data inspection"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "general": [
+                    {
+                      "properties": {
+                        "filter": {
+                          "filter": {
+                            "Version": 2,
+                            "From": [
+                              {
+                                "Name": "i",
+                                "Entity": "Inspection",
+                                "Type": 0
+                              }
+                            ],
+                            "Where": [
+                              {
+                                "Condition": {
+                                  "Comparison": {
+                                    "ComparisonKind": 2,
+                                    "Left": {
+                                      "Column": {
+                                        "Expression": {
+                                          "SourceRef": {
+                                            "Source": "i"
+                                          }
+                                        },
+                                        "Property": "Data inspection"
+                                      }
+                                    },
+                                    "Right": {
+                                      "Literal": {
+                                        "Value": "datetime'2024-07-07T00:00:00'"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "data": [
+                    {
+                      "properties": {
+                        "startDate": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "datetime'2024-07-07T00:00:00'"
+                            }
+                          }
+                        },
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Between'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "Data inspection"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "Data inspection"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "dffc9480e0e063a83321": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "3423f98ecebf85c56070": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "deada95fb68c660b90ca",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Finding"
+                            }
+                          },
+                          "Property": "id"
+                        }
+                      },
+                      "Function": 5
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "397a672fb5581d85e507",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "id_location_country"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "87fcfb8f450b3a82209c",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "creation_user"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "e9c0d6452ce60800c1db",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "description"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "1b954766b77976398404",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "id_status"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "99ab7021acba1b89e603",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "id_finding_type"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "161b4509bc671500b0ec",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "id_contract"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "3c3700744c73d02840b7",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "f",
+                        "Entity": "Finding",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "f"
+                                    }
+                                  },
+                                  "Property": "id_finding_type"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'FT_NCO'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "id_finding_type"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "63069cd13100da0c0053",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "id"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "c81b74327e54e48c20eb",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "id_inspection"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "c35ebff599531dbd01ba",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "id_question"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "66b9e462423a25600c55",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "location_description"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "536d8ae64c2a2120520a",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "note"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "605fc8515501b3584c65",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding attachment"
+                        }
+                      },
+                      "Property": "object_id"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "95a73d4f9603b13aa4cd",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Question"
+                        }
+                      },
+                      "Property": "Description_ES"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "20e287e0e720d93eb050",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "Commento Lookup"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "be5c3245955bdee5d904",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "relevance"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "dc235ace0c5cd3e6adec",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "id_scope"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "d5c3d838d25c22a04767",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "id"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "e792971d9f8d1b955c29",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "description"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "7cc2aeb5ff428cb2ac53",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "creation_date"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "7e8b37479d0ae55370f0",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "creation_user"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "ef7edc5cfdd3f6884007",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "execution_date"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "98a9018f799cf290a2c8",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "id_activity"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "5e95b6ecdf4183509bf5",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "id_contract"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "0bef5462c5a8e1a6d18c",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "id_inspection_group"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "d6b0aa04c37c77a1ef96",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "id_inspection_unit"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "26a199592cba8fbb9d74",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "id_language"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "1eac69d178b6974952b6",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "id_location"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "10baf5d61dfee6e28cf9",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "id_location_country"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "5eadb3acfe229bb83134",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "id_location_group"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "4b0a9f9b1959c74dac26",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "id_location_technology"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f0a7227c275ac4deb581",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "id_parent_scope"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "91eb3687d1539aa18115",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "id_product_line"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f6331563c4baf4671b95",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "id_status"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "7ce297398b492039555b",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "id_vendor_cui"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "de00ac489eedbafa225d",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "inspection_target"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "26f3f9552a50f29d53a8",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "last_update"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a538aa624e3e40a9cdf1",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "location_description"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "c045ea319d0d94db8e09",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "location_note"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "4e05e2e7606628d102ec",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Inspection"
+                            }
+                          },
+                          "Property": "managed_offline"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "bf044c11871edb38011c",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Inspection"
+                            }
+                          },
+                          "Property": "no_responsible_on_site"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "318a7665479821d66c37",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Inspection"
+                            }
+                          },
+                          "Property": "no_show"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "7c89eaeb8259b864c1bb",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "note"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "8f5ffa80eddf1fab8672",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "scopes"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "fd2f446bbf40afe5aec6",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "title"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "2e410fd50586970828f9",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "user_update"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "32930716486889a79a64",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "validation_errors"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "fbc2beb094b9b14a4c6d",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection activity"
+                        }
+                      },
+                      "Property": "id"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "01ba9f54dadf57cd9289",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection activity"
+                        }
+                      },
+                      "Property": "description"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "29e5d44826e621824480",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection activity"
+                        }
+                      },
+                      "Property": "deleted"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f1aaecf399c8639258c3",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection activity"
+                        }
+                      },
+                      "Property": "last_update"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f263ccbdc057d36a4d95",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection activity"
+                        }
+                      },
+                      "Property": "user_update"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "9e211de3174ccaf1b71f",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection activity"
+                        }
+                      },
+                      "Property": "valid_from"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "9f27df2e042f37ae8649",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection activity"
+                        }
+                      },
+                      "Property": "valid_to"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "32762ba7c7b48e5811d1",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection group"
+                        }
+                      },
+                      "Property": "id"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "e4a0e9ded98ade8f3aed",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection group"
+                        }
+                      },
+                      "Property": "description"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "5659a68945f02b9b082c",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection group"
+                        }
+                      },
+                      "Property": "deleted"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "9be09c1525bc37686e20",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection group"
+                        }
+                      },
+                      "Property": "last_update"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "534eab73f3ab45618b87",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection group"
+                        }
+                      },
+                      "Property": "user_update"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "2e2f957f3911501395cf",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection group"
+                        }
+                      },
+                      "Property": "valid_from"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "1e3b95948a3335a559cd",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection group"
+                        }
+                      },
+                      "Property": "valid_to"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "b58b4c8cd9d372bb32ff",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection parent scope"
+                        }
+                      },
+                      "Property": "id"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "709ebf9b802d6ca136bd",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection parent scope"
+                        }
+                      },
+                      "Property": "description"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f8c4c5ee31bc1ac8e0d3",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection parent scope"
+                        }
+                      },
+                      "Property": "last_update"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "ea32fdedba41bb051c11",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection parent scope"
+                        }
+                      },
+                      "Property": "deleted"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "20de7ddacce629fd5da4",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection parent scope"
+                        }
+                      },
+                      "Property": "priority"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "9254c7637daca18f8aad",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection parent scope"
+                        }
+                      },
+                      "Property": "user_update"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "e5267fdf4e0ce29c35b2",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection parent scope"
+                        }
+                      },
+                      "Property": "valid_from"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "8a9ed916d8f7cdcab6f5",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection parent scope"
+                        }
+                      },
+                      "Property": "valid_to"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "dc7d387b69ab28741078",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection question"
+                        }
+                      },
+                      "Property": "deleted"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f5c541785d12cab3008f",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection question"
+                        }
+                      },
+                      "Property": "id_answer"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "994fd81fefa088d13e12",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection question"
+                        }
+                      },
+                      "Property": "id_inspection"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "9f9e200137e36aad7710",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection question"
+                        }
+                      },
+                      "Property": "id_question"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "184a7e9995d932ad613a",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection question"
+                        }
+                      },
+                      "Property": "last_update"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "8a38aa6974e02b2fefd7",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection question"
+                        }
+                      },
+                      "Property": "user_update"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "26318e8d66e6694b1e2e",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection scope"
+                        }
+                      },
+                      "Property": "can_no_show"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "ba46e22bf161889b4318",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection scope"
+                        }
+                      },
+                      "Property": "deleted"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "6058f795dc9253c31aaf",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection scope"
+                        }
+                      },
+                      "Property": "description"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "0087acdc9a49478f59ac",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection scope"
+                        }
+                      },
+                      "Property": "id"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "e0c8b0c972ff8a03f4c6",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection scope"
+                        }
+                      },
+                      "Property": "kpi_enabled"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "b8de4d73cb75318d44f2",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection scope"
+                        }
+                      },
+                      "Property": "last_update"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "04eaf32c38788b8d5586",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection scope"
+                        }
+                      },
+                      "Property": "parent_reference"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a1f34e4fda86e5282e3b",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection scope"
+                        }
+                      },
+                      "Property": "priority"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "342b1ee1c877741f7359",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection scope"
+                        }
+                      },
+                      "Property": "user_update"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "464eecbdc9542356d9dc",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection scope"
+                        }
+                      },
+                      "Property": "valid_from"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f41f949776b9fedb5e15",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection scope"
+                        }
+                      },
+                      "Property": "valid_to"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "0ba5bd8c41d5956e6923",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "cause_analysis"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "77ea237c85a7c32ba4f2",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "closure_date"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "0c2fd4b60c61fdbc0f8b",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "creation_date"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "d922deb134f68a882481",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "deleted"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "76020bdce677128fe143",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "id_language"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "95f451cff8a6200b75b4",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "id_location"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "758592eb0ef8a7be9e9a",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "id_location_group"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "bb02e4b4530f104e978b",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "id_location_technology"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "2287d274f2853908ca28",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "id_offline"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "8069249244718fa96fb8",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "id_vendor_cui"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f007e8e885bdb1cd9d24",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "immediate_action"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "3508825f2dfdf898dfad",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "is_rca_mandatory"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "d8e8797c231bd8556a75",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "last_update"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "359b59854602bbcffa07",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "management_needed"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "15283e79e0d8ec5e7c5e",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "released_date"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "7d6919d3e136784e6e66",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "title"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a8b01ec81ca589257647",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "user_update"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "5b44850d077d326338fa",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "validation_errors"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "228b2be24b80bb459380",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding attachment"
+                        }
+                      },
+                      "Property": "all_attachment"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "190f5006b076cde5585f",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Finding attachment"
+                            }
+                          },
+                          "Property": "deleted"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "684605846b151e36ec7b",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding attachment"
+                        }
+                      },
+                      "Property": "description"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "7705baf36b8b82508dc3",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding attachment"
+                        }
+                      },
+                      "Property": "dms_type"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "3745896397ec34edb22b",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding attachment"
+                        }
+                      },
+                      "Property": "file_extension"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "69bf6bbb3e64bf1d65cb",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding attachment"
+                        }
+                      },
+                      "Property": "file_name"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "94684ea9b2847e31d55f",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding attachment"
+                        }
+                      },
+                      "Property": "file_size"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "c0f422dcd041673efd07",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding attachment"
+                        }
+                      },
+                      "Property": "id_attachment"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "748fcc2c5b9b10307990",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding attachment"
+                        }
+                      },
+                      "Property": "id_finding"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "21b468d465b4643bac60",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding attachment"
+                        }
+                      },
+                      "Property": "last_update"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "117d3455bf9aa2e94f9d",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding attachment"
+                        }
+                      },
+                      "Property": "user_update"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f53568077af642058956",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding finding root cause analysis node"
+                        }
+                      },
+                      "Property": "code"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "e300bb652831946f47f5",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding finding root cause analysis node"
+                        }
+                      },
+                      "Property": "comment"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "4bd0d5c43d8c2e65c0c6",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding finding root cause analysis node"
+                        }
+                      },
+                      "Property": "deleted"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a93a471b82c28fb088fc",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding finding root cause analysis node"
+                        }
+                      },
+                      "Property": "id_finding"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "5e3880e216cf8e27701f",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding finding root cause analysis node"
+                        }
+                      },
+                      "Property": "id_finding_scope"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "1a1dda4d9c125ede9661",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding finding root cause analysis node"
+                        }
+                      },
+                      "Property": "id_rca_node"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "15caebce573026c7aa67",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding finding root cause analysis node"
+                        }
+                      },
+                      "Property": "last_update"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "e89dd0a74928666bbc7e",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding finding root cause analysis node"
+                        }
+                      },
+                      "Property": "user_update"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f0c5bd7977b9ce469d31",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person"
+                        }
+                      },
+                      "Property": "deleted"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "851b5a011fff37ad7888",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person"
+                        }
+                      },
+                      "Property": "email"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "db0d720ff31768e2da4a",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person"
+                        }
+                      },
+                      "Property": "employee_attr_prev_cod"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "393a8418a32a874904d7",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person"
+                        }
+                      },
+                      "Property": "employee_attr_prev_desc"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "509465488365a43ae294",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person"
+                        }
+                      },
+                      "Property": "employee_bus_line_cod_1"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "b5a8185e3b4decf01373",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person"
+                        }
+                      },
+                      "Property": "employee_company"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f16c0f010e2140db6844",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person"
+                        }
+                      },
+                      "Property": "employee_job_risk_code"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "4206040bb610e6984e92",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person"
+                        }
+                      },
+                      "Property": "employee_job_risk_description"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "52a0081ae959a3f8e40e",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person"
+                        }
+                      },
+                      "Property": "employee_number"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "6301bfd8c64adc6c59ef",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person"
+                        }
+                      },
+                      "Property": "employee_ou"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "b9f08cdbeeb04f9a7f28",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person"
+                        }
+                      },
+                      "Property": "employee_ou_descr"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f2cd06c1d75b8fd55267",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person"
+                        }
+                      },
+                      "Property": "employee_perimeter"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "740701f22829aba153eb",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person"
+                        }
+                      },
+                      "Property": "employee_perimeter_desc"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "305f805922a57c2828f8",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person"
+                        }
+                      },
+                      "Property": "employee_position"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "4a79ba7306e29f025d7d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person"
+                        }
+                      },
+                      "Property": "id"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "3f98cf5a4a5275261f45",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person"
+                        }
+                      },
+                      "Property": "id_country"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "9a1a18208f768e543d3a",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person"
+                        }
+                      },
+                      "Property": "id_person_type"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "5415db8bde3ea32bacd0",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person"
+                        }
+                      },
+                      "Property": "identifier"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "08e95eb6c4b063ae33c8",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person"
+                        }
+                      },
+                      "Property": "inspected_team_responsible"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "ea8f96d969b870f04bc3",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person"
+                        }
+                      },
+                      "Property": "last_name"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "1d83530ed899a385956c",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person"
+                        }
+                      },
+                      "Property": "last_update"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "0a8089262a659f118af4",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person"
+                        }
+                      },
+                      "Property": "name"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f1d4e123435e6c3cc867",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person"
+                        }
+                      },
+                      "Property": "qualified_responsible"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "2c7d6d0c06488d1e8e48",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person"
+                        }
+                      },
+                      "Property": "user_update"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "183cb2758079af40e14f",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person group"
+                        }
+                      },
+                      "Property": "deleted"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "1bdad7fd61fa85e8aa7a",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person group"
+                        }
+                      },
+                      "Property": "description"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "703105acf573be95d251",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person group"
+                        }
+                      },
+                      "Property": "id"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "0acdd0275511ef2638c2",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person group"
+                        }
+                      },
+                      "Property": "id_person_type"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "2955f466c60ac2019af7",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person group"
+                        }
+                      },
+                      "Property": "last_update"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "4b099006cdd95a66ac7f",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person group"
+                        }
+                      },
+                      "Property": "priority"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f0602f3f7f57b30a093b",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person group"
+                        }
+                      },
+                      "Property": "user_update"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "27cf79a1e557a82b073c",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person group"
+                        }
+                      },
+                      "Property": "valid_from"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "34622f7532507770a997",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person group"
+                        }
+                      },
+                      "Property": "valid_to"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "fe54ed9e22387899bee0",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person role"
+                        }
+                      },
+                      "Property": "deleted"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "5e06cb8292fa2404cd95",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person role"
+                        }
+                      },
+                      "Property": "description"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "3d7d12c67bd6cf6e212d",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person role"
+                        }
+                      },
+                      "Property": "id"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "276ffb433e1b1361262a",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person role"
+                        }
+                      },
+                      "Property": "last_update"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "68a9fd64315ba38d5f61",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person role"
+                        }
+                      },
+                      "Property": "priority"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a02a2c503bac9ba32031",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person role"
+                        }
+                      },
+                      "Property": "user_update"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f7cea03a0512829c41d8",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person role"
+                        }
+                      },
+                      "Property": "valid_from"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a6bdfba08c01235843f9",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person role"
+                        }
+                      },
+                      "Property": "valid_to"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "71eb8ff01e1cdc361038",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person type"
+                        }
+                      },
+                      "Property": "deleted"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "dd7be728efdc4b0dc65e",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person type"
+                        }
+                      },
+                      "Property": "description"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "6c1c39fca33c36c13632",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person type"
+                        }
+                      },
+                      "Property": "id"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "0ede9f7a1bf2ec784cb4",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person type"
+                        }
+                      },
+                      "Property": "last_update"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "8b240e039da18a832e83",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person type"
+                        }
+                      },
+                      "Property": "priority"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "77e59ca7fe2ca9fb9faa",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person type"
+                        }
+                      },
+                      "Property": "user_update"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "46914cd37ec237ce5f9d",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person type"
+                        }
+                      },
+                      "Property": "valid_from"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "0edb0aecf3ccebbc86a4",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding person type"
+                        }
+                      },
+                      "Property": "valid_to"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "8c0fc73f126b62f60d09",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding root cause analysis node"
+                        }
+                      },
+                      "Property": "code"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "9f6193671d5d0b7fb472",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding root cause analysis node"
+                        }
+                      },
+                      "Property": "deleted"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "346e7fa8882fe2240ac2",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding root cause analysis node"
+                        }
+                      },
+                      "Property": "description"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f63525b240a5240b8b99",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding root cause analysis node"
+                        }
+                      },
+                      "Property": "help"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a79321bca807f24c7336",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding root cause analysis node"
+                        }
+                      },
+                      "Property": "id"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f178950aa07341133d97",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding root cause analysis node"
+                        }
+                      },
+                      "Property": "id_finding_scope"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "8a89422aedb524083760",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding root cause analysis node"
+                        }
+                      },
+                      "Property": "id_parent"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "36fd0ca0534432f90400",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding root cause analysis node"
+                        }
+                      },
+                      "Property": "last_update"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "295318ac3efdc81dbd19",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Finding root cause analysis node"
+                            }
+                          },
+                          "Property": "level"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a737bcf09d2c7ec75257",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding root cause analysis node"
+                        }
+                      },
+                      "Property": "user_update"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "aac7a2d1d0b1bd0e0009",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding root cause analysis node"
+                        }
+                      },
+                      "Property": "valid_from"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a3e81d4d5f31ac31a6e4",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding root cause analysis node"
+                        }
+                      },
+                      "Property": "valid_to"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "9ac830229d60a0d34b02",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Country"
+                        }
+                      },
+                      "Property": "currency"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "4f7609cb7327449339cf",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Country"
+                        }
+                      },
+                      "Property": "deleted"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "5c3cc4824915beb05d4d",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Country"
+                        }
+                      },
+                      "Property": "description"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "6d877f4052a6403b6fc5",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Country"
+                        }
+                      },
+                      "Property": "id"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "80c40e76c3a761091dd6",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Country"
+                        }
+                      },
+                      "Property": "id_language"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "97f55e1b911348c48e78",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Country"
+                        }
+                      },
+                      "Property": "last_update"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "cf9990af467a0ac20625",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Country"
+                        }
+                      },
+                      "Property": "timezone"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "95c25f77bf33d6ce4417",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Country"
+                        }
+                      },
+                      "Property": "user_update"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "e8480bf3d65eef82e220",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Country"
+                        }
+                      },
+                      "Property": "valid_from"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "be2ced01eb954f0504ae",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Country"
+                        }
+                      },
+                      "Property": "valid_to"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "b4b047410e09e1f2a69d",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Contract"
+                        }
+                      },
+                      "Property": "contract_description"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "45d4c57034c29e67b242",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Contract"
+                        }
+                      },
+                      "Property": "contract_number"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "7f482f6af7296b8c61be",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Contract"
+                        }
+                      },
+                      "Property": "country"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "bcb0ef9173ed4cc2d694",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Contract"
+                        }
+                      },
+                      "Property": "end_date"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "38a0d09f3da85a123c45",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Contract"
+                        }
+                      },
+                      "Property": "enel_company_name"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "d4067b27c9bde0a88c79",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Contract"
+                        }
+                      },
+                      "Property": "material_group"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "39996f54d2a221e5afbc",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Contract"
+                        }
+                      },
+                      "Property": "material_group_description"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "ebce92982d01670e5566",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Contract"
+                        }
+                      },
+                      "Property": "purchase_document_type"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "bc979e1a54c3c546dec0",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Contract"
+                        }
+                      },
+                      "Property": "start_date"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "70007457632df9078230",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Contract"
+                        }
+                      },
+                      "Property": "supplier_cui"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "26f9f53e73b7c398cf5a",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Contract"
+                        }
+                      },
+                      "Property": "supplier_name"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "be70b5480f6ab627c19f",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Contract"
+                        }
+                      },
+                      "Property": "technology"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {},
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "157b244714a2944d591c": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "59e9ab389ce43abc8f70": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "5e83864e7d979d55562d": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "ea76b790b0a90a01406f": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "5a88404419e18e809067": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "747084cfba159ab498bf": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "768f570dad5b3f22a92d": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "94cb716f5086414b0cbc": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "173e3a9ed47174d956bb",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Update_time"
+                            }
+                          },
+                          "Property": "last_update"
+                        }
+                      },
+                      "Function": 3
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Update_time"
+                            }
+                          },
+                          "Property": "last_update"
+                        }
+                      },
+                      "Function": 3
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "17bc294e5cb8639b5107": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "3fae175041545867b1e4": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "71858cf062a22b624c2a": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "98a6cc8cb7870f0fc6ec": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "d289fb4dce1762579549": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "88b3845e162aab098a70": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "deada95fb68c660b90ca",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Finding"
+                            }
+                          },
+                          "Property": "id"
+                        }
+                      },
+                      "Function": 5
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "397a672fb5581d85e507",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "id_location_country"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "87fcfb8f450b3a82209c",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "creation_user"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "e9c0d6452ce60800c1db",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "description"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "1b954766b77976398404",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "id_status"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "99ab7021acba1b89e603",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "f",
+                        "Entity": "Finding",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "f"
+                                    }
+                                  },
+                                  "Property": "id_finding_type"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'FT_NCO'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "id_finding_type"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "161b4509bc671500b0ec",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "id_contract"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "3c3700744c73d02840b7",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "id_finding_type"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "63069cd13100da0c0053",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "id"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "c81b74327e54e48c20eb",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "id_inspection"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "c35ebff599531dbd01ba",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "id_question"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "66b9e462423a25600c55",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "location_description"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "536d8ae64c2a2120520a",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "note"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "605fc8515501b3584c65",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding attachment"
+                        }
+                      },
+                      "Property": "object_id"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "95a73d4f9603b13aa4cd",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Question"
+                        }
+                      },
+                      "Property": "Description_ES"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "20e287e0e720d93eb050",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "Commento Lookup"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "be5c3245955bdee5d904",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "relevance"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "dc235ace0c5cd3e6adec",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Finding"
+                        }
+                      },
+                      "Property": "id_scope"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "76fbcf8b7a95729aff1d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "id"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "44b2cc26ac85a485cbf1",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "description"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "43edbd1fee8a1ba9e26e",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "id_contract"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "584f69d8bb528823ea0d",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "id_location"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {},
+              "projections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "id"
+                    }
+                  },
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "description"
+                    }
+                  },
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "id_contract"
+                    }
+                  },
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Inspection"
+                        }
+                      },
+                      "Property": "id_location"
+                    }
+                  }
+                ]
+              },
+              "parameters": {
+                "Values": [
+                  {
+                    "expr": {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Entity": "Parametro Inspection"
+                          }
+                        },
+                        "Property": "Parametro"
+                      }
+                    },
+                    "index": 0,
+                    "length": 4
+                  }
+                ]
+              }
+            }
+          },
+          "bf6297568eab8a9b303e": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "fd141e2b80251ec51e32": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

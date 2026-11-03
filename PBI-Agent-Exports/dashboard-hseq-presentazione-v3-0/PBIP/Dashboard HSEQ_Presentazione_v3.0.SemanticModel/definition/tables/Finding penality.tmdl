@@ -1,0 +1,275 @@
+table 'Finding penality'
+	lineageTag: ad26e327-6656-4aca-ba53-a051afe3ccf2
+
+	column id_finding
+		dataType: int64
+		formatString: 0
+		lineageTag: 6e48121a-ef04-4744-aeea-ec7e4b56f8e8
+		summarizeBy: sum
+		sourceColumn: id_finding
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_status
+		dataType: string
+		lineageTag: 2e8681ad-5c75-482d-9cd9-c899e47d4c2a
+		summarizeBy: none
+		sourceColumn: id_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column recurrence
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7bf385ae-069a-4897-805a-bbbc12277db4
+		summarizeBy: none
+		sourceColumn: recurrence
+
+		annotation SummarizationSetBy = Automatic
+
+	column nc_confirmation_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 198e5f11-b844-41e5-a47b-2b87b9b9fa63
+		summarizeBy: none
+		sourceColumn: nc_confirmation_date
+
+		variation Variation
+			isDefault
+			relationship: bffd3874-3f9b-4b24-97ec-e2ca51ce2a65
+			defaultHierarchy: LocalDateTable_7c6fff0e-c6e2-48d1-9694-ce3a0b677765.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column nc_confirmation_user
+		dataType: string
+		lineageTag: 290b5424-7410-4159-aec1-fcff9a03a130
+		summarizeBy: none
+		sourceColumn: nc_confirmation_user
+
+		annotation SummarizationSetBy = Automatic
+
+	column nc_exclusion_reason
+		dataType: string
+		lineageTag: e7356686-8def-468f-98bf-19e47ffa2a40
+		summarizeBy: none
+		sourceColumn: nc_exclusion_reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column contestation_letter_number
+		dataType: string
+		lineageTag: 4aaf52d9-c926-44a2-a4a2-8a0c525ebaaf
+		summarizeBy: none
+		sourceColumn: contestation_letter_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column contestation_letter_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c380e233-a89b-4130-8415-54cc9855b615
+		summarizeBy: none
+		sourceColumn: contestation_letter_date
+
+		variation Variation
+			isDefault
+			relationship: 6e035080-016c-45f1-b0e2-2ee12f07cda7
+			defaultHierarchy: LocalDateTable_28c1b31e-c830-4ccb-af2c-96b6670306a5.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column contestation_contractor_due_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 71442599-8380-493e-aae1-34ae21a979d9
+		summarizeBy: none
+		sourceColumn: contestation_contractor_due_date
+
+		variation Variation
+			isDefault
+			relationship: 02b489f8-5fcf-466b-88cd-780e32fbfcca
+			defaultHierarchy: LocalDateTable_4c796233-e11f-4794-9304-8254db791c79.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column contractor_reply
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: cb4f1cec-7b46-4a29-8b20-cbb97f6a69f1
+		summarizeBy: none
+		sourceColumn: contractor_reply
+
+		annotation SummarizationSetBy = Automatic
+
+	column contractor_reply_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 6689aa8e-6365-4b69-96fe-88ef3bd2be11
+		summarizeBy: none
+		sourceColumn: contractor_reply_date
+
+		variation Variation
+			isDefault
+			relationship: f9aacf0a-2658-4f09-bfa6-51e08cd6e675
+			defaultHierarchy: LocalDateTable_3165dd24-50fc-49b2-aa8f-5f6c93614c3e.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column penalty_confirmation_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4b3033a4-0e70-41ed-acb0-9d016ae55fb7
+		summarizeBy: none
+		sourceColumn: penalty_confirmation_date
+
+		variation Variation
+			isDefault
+			relationship: 8eb8a253-bc1d-4ee8-a350-7fe1d5ab491e
+			defaultHierarchy: LocalDateTable_e6f9b071-9e03-4c2b-9a02-b1a426f4dea1.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column penalty_confirmation_user
+		dataType: string
+		lineageTag: ffe90b1d-1660-4e90-86a5-d41f39c6cd56
+		summarizeBy: none
+		sourceColumn: penalty_confirmation_user
+
+		annotation SummarizationSetBy = Automatic
+
+	column penalty_exclusion_reason
+		dataType: string
+		lineageTag: db50a9ac-1f16-4067-8082-848fe3371063
+		summarizeBy: none
+		sourceColumn: penalty_exclusion_reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column penalty_currency
+		dataType: string
+		lineageTag: f3fb11be-ca86-46e2-a44e-ed79d1322105
+		summarizeBy: none
+		sourceColumn: penalty_currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column penalty_amount
+		dataType: string
+		lineageTag: 42c4b9fc-3e9c-4e06-b822-8d3f0951f766
+		summarizeBy: none
+		sourceColumn: penalty_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	column penalty_order_reference
+		dataType: string
+		lineageTag: 66e48343-4abc-4a14-bc51-1a2fa90e45c2
+		summarizeBy: none
+		sourceColumn: penalty_order_reference
+
+		annotation SummarizationSetBy = Automatic
+
+	column penalty_order_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7da33b8c-ec47-4998-b7c1-d6a883eeb9d4
+		summarizeBy: none
+		sourceColumn: penalty_order_date
+
+		variation Variation
+			isDefault
+			relationship: 3a9e1d9e-00c7-4004-ab2e-7b9798bc4c06
+			defaultHierarchy: LocalDateTable_e9bd793e-8c12-43bc-8b78-969b8fabea02.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column penalty_note
+		dataType: string
+		lineageTag: 766a3b9e-e77d-4d6c-9609-2f84b9e2ba47
+		summarizeBy: none
+		sourceColumn: penalty_note
+
+		annotation SummarizationSetBy = Automatic
+
+	column creation_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 41cd9774-5c96-4e21-b78d-80637001abd7
+		summarizeBy: none
+		sourceColumn: creation_date
+
+		variation Variation
+			isDefault
+			relationship: 994a1d11-967a-469b-82a0-2eb7151525c9
+			defaultHierarchy: LocalDateTable_6bb1dd8e-4d9c-4326-8cee-7c0a54cd54ab.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column creation_user
+		dataType: string
+		lineageTag: e026dff8-0893-4d2a-b2db-b2ece89fd352
+		summarizeBy: none
+		sourceColumn: creation_user
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_update
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 697d85d3-087a-4453-9566-c74c53f65700
+		summarizeBy: none
+		sourceColumn: last_update
+
+		variation Variation
+			isDefault
+			relationship: cc6fc100-7165-4856-a3d7-e0bf0cc4f096
+			defaultHierarchy: LocalDateTable_1b6522ef-cd66-4fab-bcfb-f8698f0a0895.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_update
+		dataType: string
+		lineageTag: 292acd4b-748f-4f14-b4cd-c7f89888c58a
+		summarizeBy: none
+		sourceColumn: user_update
+
+		annotation SummarizationSetBy = Automatic
+
+	column deleted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 068e9479-8442-4b39-bb92-8894dec0ed5c
+		summarizeBy: none
+		sourceColumn: deleted
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Finding penality' = m
+		mode: import
+		source = ```
+				let
+				    Origine = Databricks.Catalogs(origine, warehouses, [Catalog = "", Database = ""]),
+				    #"dpegpl-hseq-dev_Database" = Origine{[Name=database,Kind="Database"]}[Data],
+				    hseq4all_gl_gld_Schema = #"dpegpl-hseq-dev_Database"{[Name=schema,Kind="Schema"]}[Data],
+				    finding_View = hseq4all_gl_gld_Schema{[Name="finding__penalty",Kind="View"]}[Data]
+				 
+				in finding_View
+				```
+
+	annotation PBI_NavigationStepName = Navigazione
+
+	annotation PBI_ResultType = Table
+

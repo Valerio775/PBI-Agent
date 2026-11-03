@@ -1,0 +1,107 @@
+table 'Finding person role'
+	lineageTag: c4aab520-1860-43c7-a680-a7ab68abf0cd
+
+	column id
+		dataType: string
+		lineageTag: 9802365a-9428-4656-b8cb-0203ca496eee
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: 70c0fd8e-4038-4e13-b500-81cc65bd355a
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column valid_from
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d9536c44-d0a6-405d-bd8f-7b311b283b29
+		summarizeBy: none
+		sourceColumn: valid_from
+
+		variation Variazione
+			isDefault
+			relationship: 0a9fbee7-cfcf-4765-91e5-1d12c742f0c4
+			defaultHierarchy: LocalDateTable_15f4d6e4-6b73-4c6a-9152-bbf8e9c51826.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column valid_to
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9140069f-71f3-49e5-a681-2db2f029f1f4
+		summarizeBy: none
+		sourceColumn: valid_to
+
+		variation Variazione
+			isDefault
+			relationship: 3bc3d7b5-13a4-45ff-a1e5-370e425cef2b
+			defaultHierarchy: LocalDateTable_85631195-0556-4580-9a87-40de7d85f10e.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column deleted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 2482ba4e-2e36-41e6-ae6f-a23b4b40932c
+		summarizeBy: none
+		sourceColumn: deleted
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_update
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c8dcc4df-be17-4006-a021-28eb24b55f85
+		summarizeBy: none
+		sourceColumn: last_update
+
+		variation Variazione
+			isDefault
+			relationship: c0e127d0-8c4f-402d-b056-5fd5ff319625
+			defaultHierarchy: LocalDateTable_960becdc-9e4d-4639-8e2b-2ae6f17b05d3.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_update
+		dataType: string
+		lineageTag: 82d07b20-ef97-46ff-af95-1126875e339d
+		summarizeBy: none
+		sourceColumn: user_update
+
+		annotation SummarizationSetBy = Automatic
+
+	column priority
+		dataType: int64
+		formatString: 0
+		lineageTag: 9efcc6c7-1b47-4b76-aac3-519bf3ece127
+		summarizeBy: none
+		sourceColumn: priority
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Finding person role' = m
+		mode: import
+		source = ```
+				let
+				    Origine = Databricks.Catalogs(origine, warehouses, [Catalog = "", Database = ""]),
+				    #"dpegpl-hseq-dev_Database" = Origine{[Name=database,Kind="Database"]}[Data],
+				    hseq4all_gl_gld_Schema = #"dpegpl-hseq-dev_Database"{[Name=schema,Kind="Schema"]}[Data],
+				    finding_View = hseq4all_gl_gld_Schema{[Name="finding_person_role",Kind="View"]}[Data]
+				 
+				in finding_View
+				```
+
+	annotation PBI_NavigationStepName = Navigazione
+
+	annotation PBI_ResultType = Table
+

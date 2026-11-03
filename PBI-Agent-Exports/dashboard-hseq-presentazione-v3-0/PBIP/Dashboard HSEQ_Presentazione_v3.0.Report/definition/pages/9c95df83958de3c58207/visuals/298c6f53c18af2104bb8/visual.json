@@ -1,0 +1,228 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.11.0/schema.json",
+  "name": "298c6f53c18af2104bb8",
+  "position": {
+    "x": 45,
+    "y": 221.25,
+    "z": 1000,
+    "height": 512.5,
+    "width": 1825,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Inspection"
+                    }
+                  },
+                  "Property": "title"
+                }
+              },
+              "queryRef": "Inspection.title",
+              "nativeQueryRef": "title"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Inspection"
+                    }
+                  },
+                  "Property": "id_location_country"
+                }
+              },
+              "queryRef": "Inspection.id_location_country",
+              "nativeQueryRef": "id_location_country"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Inspection"
+                    }
+                  },
+                  "Property": "location_description"
+                }
+              },
+              "queryRef": "Inspection.location_description",
+              "nativeQueryRef": "location description",
+              "displayName": "location description"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Inspection"
+                    }
+                  },
+                  "Property": "id"
+                }
+              },
+              "queryRef": "Inspection.id",
+              "nativeQueryRef": "id inspection",
+              "displayName": "id inspection"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Inspection"
+                    }
+                  },
+                  "Property": "execution_date"
+                }
+              },
+              "queryRef": "Inspection.execution_date",
+              "nativeQueryRef": "execution_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Inspection"
+                    }
+                  },
+                  "Property": "Formatted_scope"
+                }
+              },
+              "queryRef": "Inspection.Formatted_scope",
+              "nativeQueryRef": "scope",
+              "displayName": "scope"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Contract"
+                    }
+                  },
+                  "Property": "supplier_cui"
+                }
+              },
+              "queryRef": "Contract.supplier_cui",
+              "nativeQueryRef": "supplier_cui"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Inspection"
+                    }
+                  },
+                  "Property": "id_status"
+                }
+              },
+              "queryRef": "Inspection.id_status",
+              "nativeQueryRef": "id status",
+              "displayName": "id status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Inspection"
+                    }
+                  },
+                  "Property": "note"
+                }
+              },
+              "queryRef": "Inspection.note",
+              "nativeQueryRef": "note"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Inspection"
+                    }
+                  },
+                  "Property": "creation_user"
+                }
+              },
+              "queryRef": "Inspection.creation_user",
+              "nativeQueryRef": "creation_user"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Inspection"
+                  }
+                },
+                "Property": "note"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "grid": [
+        {
+          "properties": {}
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "849.000129242941D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Inspection.note"
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "stylePreset": [
+        {
+          "properties": {
+            "name": {
+              "expr": {
+                "Literal": {
+                  "Value": "'BoldHeader'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

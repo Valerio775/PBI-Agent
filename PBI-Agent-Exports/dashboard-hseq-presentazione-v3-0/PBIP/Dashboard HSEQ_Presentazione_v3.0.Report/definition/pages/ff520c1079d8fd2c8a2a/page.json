@@ -1,0 +1,71 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "ff520c1079d8fd2c8a2a",
+  "displayName": "Tooltip | Totale ispezioni per mese",
+  "displayOption": "FitToPage",
+  "height": 150,
+  "width": 320,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "919381df7c4fbeba706f",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "PropertyVariationSource": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Calendario"
+                      }
+                    },
+                    "Name": "Variazione",
+                    "Property": "Inspection_GraficoA"
+                  }
+                },
+                "Hierarchy": "Gerarchia data"
+              }
+            },
+            "Level": "Mese"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      }
+    ]
+  },
+  "pageBinding": {
+    "name": "692d388af240e3bd78b7",
+    "type": "Tooltip",
+    "parameters": [
+      {
+        "name": "9e9a6d42cf4abe970639",
+        "boundFilter": "919381df7c4fbeba706f",
+        "fieldExpr": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "PropertyVariationSource": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Calendario"
+                      }
+                    },
+                    "Name": "Variazione",
+                    "Property": "Inspection_GraficoA"
+                  }
+                },
+                "Hierarchy": "Gerarchia data"
+              }
+            },
+            "Level": "Mese"
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode",
+  "type": "Tooltip"
+}

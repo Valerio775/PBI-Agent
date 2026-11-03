@@ -1,0 +1,71 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "8a59e9aacb195d61e812",
+  "displayName": "Tooltip | Ispezioni con NC",
+  "displayOption": "ActualSize",
+  "height": 150,
+  "width": 320,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "711b3d17530bfe5e7d08",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "PropertyVariationSource": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Finding"
+                      }
+                    },
+                    "Name": "Variazione",
+                    "Property": "creation_date"
+                  }
+                },
+                "Hierarchy": "Gerarchia data"
+              }
+            },
+            "Level": "Mese"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      }
+    ]
+  },
+  "pageBinding": {
+    "name": "f75312681440883ef911",
+    "type": "Tooltip",
+    "parameters": [
+      {
+        "name": "14e8fc98e2475194f15d",
+        "boundFilter": "711b3d17530bfe5e7d08",
+        "fieldExpr": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "PropertyVariationSource": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Finding"
+                      }
+                    },
+                    "Name": "Variazione",
+                    "Property": "creation_date"
+                  }
+                },
+                "Hierarchy": "Gerarchia data"
+              }
+            },
+            "Level": "Mese"
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode",
+  "type": "Tooltip"
+}

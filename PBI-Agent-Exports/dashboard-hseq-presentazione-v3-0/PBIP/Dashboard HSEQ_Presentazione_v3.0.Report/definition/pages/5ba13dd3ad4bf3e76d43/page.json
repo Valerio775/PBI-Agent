@@ -1,0 +1,71 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "5ba13dd3ad4bf3e76d43",
+  "displayName": "Tooltip | Ispezioni mensili e NC rate",
+  "displayOption": "FitToPage",
+  "height": 150,
+  "width": 320,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "342e26acacd41e636f33",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "PropertyVariationSource": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Calendario"
+                      }
+                    },
+                    "Name": "Variazione",
+                    "Property": "Inspection_GraficoB"
+                  }
+                },
+                "Hierarchy": "Gerarchia data"
+              }
+            },
+            "Level": "Mese"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "Drillthrough"
+      }
+    ]
+  },
+  "pageBinding": {
+    "name": "e75f15ae922a1302cb19",
+    "type": "Tooltip",
+    "parameters": [
+      {
+        "name": "355fed3bec48fc8aa6cd",
+        "boundFilter": "342e26acacd41e636f33",
+        "fieldExpr": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "PropertyVariationSource": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "Calendario"
+                      }
+                    },
+                    "Name": "Variazione",
+                    "Property": "Inspection_GraficoB"
+                  }
+                },
+                "Hierarchy": "Gerarchia data"
+              }
+            },
+            "Level": "Mese"
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode",
+  "type": "Tooltip"
+}

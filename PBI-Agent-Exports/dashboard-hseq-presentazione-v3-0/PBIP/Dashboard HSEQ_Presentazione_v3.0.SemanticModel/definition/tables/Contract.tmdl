@@ -1,0 +1,161 @@
+table Contract
+	lineageTag: a5f24513-d56c-4b93-9a53-26df69324ad9
+
+	column main_contract_cui_number = Contract[contract_number] & "-" & Contract[supplier_cui]
+		lineageTag: 11aa6363-88b2-4381-9c60-272b9d1a1248
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CUI name' = Contract[supplier_cui] & " " & Contract[supplier_name]
+		lineageTag: 4e6c0f6d-5aa3-4100-914c-e41a7e559c86
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column contract_number
+		dataType: string
+		lineageTag: b131f2c8-ae76-4af7-9345-4f41f1715e7f
+		summarizeBy: none
+		sourceColumn: contract_number
+
+		annotation SummarizationSetBy = Automatic
+
+	column supplier_cui
+		dataType: string
+		lineageTag: 70362f34-869e-4df1-8a0b-befd62d24c10
+		summarizeBy: none
+		sourceColumn: supplier_cui
+
+		annotation SummarizationSetBy = Automatic
+
+	column contract_description
+		dataType: string
+		lineageTag: b45fd733-68dc-40d6-a987-da5c48c4f080
+		summarizeBy: none
+		sourceColumn: contract_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column start_date
+		dataType: string
+		lineageTag: 29e75fbe-e174-4ba2-8fbe-deb720c7019e
+		summarizeBy: none
+		sourceColumn: start_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column end_date
+		dataType: string
+		lineageTag: b800e831-a391-4087-936e-faf895f45b75
+		summarizeBy: none
+		sourceColumn: end_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column supplier_name
+		dataType: string
+		lineageTag: 96839fe4-ca02-4720-8265-fd22da8a574b
+		summarizeBy: none
+		sourceColumn: supplier_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column country
+		dataType: string
+		lineageTag: 356eecd9-5073-468c-b9cb-9beea7d8cf8e
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = Automatic
+
+	column material_group
+		dataType: string
+		lineageTag: a3640e35-30b4-437a-947d-7d9552f0cb10
+		summarizeBy: none
+		sourceColumn: material_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column material_group_description
+		dataType: string
+		lineageTag: 4ed888d0-3c75-42d4-9039-821056a60666
+		summarizeBy: none
+		sourceColumn: material_group_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column technology
+		dataType: string
+		lineageTag: a7566ce0-aa16-48a8-8e9f-5d0c1c8f42f5
+		summarizeBy: none
+		sourceColumn: technology
+
+		annotation SummarizationSetBy = Automatic
+
+	column purchase_document_type
+		dataType: string
+		lineageTag: 1dffb8e5-d67b-44cb-9265-7993c15ecfd0
+		summarizeBy: none
+		sourceColumn: purchase_document_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column enel_company_name
+		dataType: string
+		lineageTag: 5b7ba509-b46f-46b4-9aa6-5db2ef1496c5
+		summarizeBy: none
+		sourceColumn: enel_company_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column company_code
+		dataType: string
+		lineageTag: ebb0b136-e0c9-4692-9ea4-8f4e971ebca1
+		summarizeBy: none
+		sourceColumn: company_code
+
+		annotation SummarizationSetBy = Automatic
+
+	column purchase_document_description
+		dataType: string
+		lineageTag: 810178ce-1790-4a10-8007-9e233a4da9cb
+		summarizeBy: none
+		sourceColumn: purchase_document_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column sap_supplier
+		dataType: string
+		lineageTag: c9100abf-244e-46c8-933a-989671703f56
+		summarizeBy: none
+		sourceColumn: sap_supplier
+
+		annotation SummarizationSetBy = Automatic
+
+	column vat_number_eu
+		dataType: string
+		lineageTag: b239829a-024d-40f8-8bcd-76d9ba8a782a
+		summarizeBy: none
+		sourceColumn: vat_number_eu
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Contract = m
+		mode: import
+		source = ```
+				let
+				    Origine = Databricks.Catalogs(origine, warehouses, [Catalog = "", Database = ""]),
+				    #"dpegpl-hseq-dev_Database" = Origine{[Name=database,Kind="Database"]}[Data],
+				    hseq4all_gl_gld_Schema = #"dpegpl-hseq-dev_Database"{[Name=schema,Kind="Schema"]}[Data],
+				    finding_View = hseq4all_gl_gld_Schema{[Name="contract",Kind="View"]}[Data]
+				 
+				in finding_View
+				```
+
+	changedProperty = IsHidden
+
+	annotation PBI_NavigationStepName = Navigazione
+
+	annotation PBI_ResultType = Table
+
