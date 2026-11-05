@@ -1,0 +1,509 @@
+table 'Jira Planning by Cost 2'
+	lineageTag: a306697e-0202-4619-9648-7393aafbe885
+	sourceLineageTag: 2aac2bfd-46d4-4d43-87d4-2e17175700dd
+
+	column issue_key
+		dataType: string
+		isNullable: false
+		lineageTag: fa61edf6-fc22-4fce-a32c-5175017a815e
+		sourceLineageTag: 92d5ecaa-38c9-4277-88a7-3e8b80a33778
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_key
+
+		annotation SummarizationSetBy = User
+
+	column summary
+		dataType: string
+		lineageTag: 28db74f0-dd30-4e6c-a3b5-49693211c460
+		sourceLineageTag: 44f53ee6-051d-48bf-9bc6-55bffdc39836
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: summary
+
+		annotation SummarizationSetBy = User
+
+	column jira_created
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: ba9b2a97-7ccd-4a51-877b-1bfbb4512083
+		sourceLineageTag: 52e6a204-4fdd-4b53-aef3-281b25605ded
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: jira_created
+
+		variation Variazione
+			isDefault
+			relationship: 343a8fb4-c587-48b0-9c85-2502f4ca71d7
+			defaultHierarchy: 'LocalDateTable_38082ea5-3e42-45c2-83fe-3237ca18f430 2'.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column jira_updated
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: a3b6fd05-dabc-4297-ba97-ad17ee7ab682
+		sourceLineageTag: 4b497ae2-a967-4224-a09f-960037077003
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: jira_updated
+
+		variation Variazione
+			isDefault
+			relationship: 1712f9d5-d72e-4af0-ab7c-ff378af5c21a
+			defaultHierarchy: 'LocalDateTable_319ff1ee-ec0c-4dd9-ae02-a4900447077a 2'.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column project_key
+		dataType: string
+		lineageTag: 49e4e8d9-7115-4bf7-9996-503d8c326dca
+		sourceLineageTag: bca16e9a-f5a1-4bef-8f8a-ad4ff828602e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: project_key
+
+		annotation SummarizationSetBy = User
+
+	column January
+		dataType: double
+		lineageTag: 7186b224-30ab-4316-8dfe-64502183298c
+		sourceLineageTag: b74f9da5-ee8d-4634-9f55-d51add21974b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: January
+
+		annotation SummarizationSetBy = User
+
+	column 'January eur'
+		dataType: double
+		formatString: "€"\ #,0.000000000;-"€"\ #,0.000000000;"€"\ #,0.000000000
+		lineageTag: e08edc59-4c6a-4864-a2dd-ce5ce32980f5
+		sourceLineageTag: 973ba375-d630-461b-9aa0-4b9c5963e7c2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: January eur
+
+		annotation SummarizationSetBy = User
+
+	column February
+		dataType: double
+		lineageTag: 79e0d0da-e295-40d8-9ec2-b5f0ef284aef
+		sourceLineageTag: 11a0a9bf-9859-465b-a751-446756d18129
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: February
+
+		annotation SummarizationSetBy = User
+
+	column 'February eur'
+		dataType: double
+		formatString: "€"\ #,0.000000000;-"€"\ #,0.000000000;"€"\ #,0.000000000
+		lineageTag: 3dfb7228-7f55-45f1-b07e-ff2d5bd0dda7
+		sourceLineageTag: fc292480-fd04-4114-b1dc-26f8236dc713
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: February eur
+
+		annotation SummarizationSetBy = User
+
+	column March
+		dataType: double
+		lineageTag: 2a57359e-3d62-4a33-8fee-51d8e8def88a
+		sourceLineageTag: dbd94e60-c338-45db-9d56-abb8b61a11d1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: March
+
+		annotation SummarizationSetBy = User
+
+	column 'March eur'
+		dataType: double
+		formatString: "€"\ #,0.000000000;-"€"\ #,0.000000000;"€"\ #,0.000000000
+		lineageTag: 6501c665-8530-4925-8b6f-d8f07e5762bd
+		sourceLineageTag: fb5ef758-a66e-4b56-8442-7ba21dabc2af
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: March eur
+
+		annotation SummarizationSetBy = User
+
+	column April
+		dataType: double
+		lineageTag: 0d69596a-6f8d-4cf5-85cf-4d700cc837ab
+		sourceLineageTag: 45d324b4-7b08-4095-b9b3-e3ff92328d1d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: April
+
+		annotation SummarizationSetBy = User
+
+	column 'April eur'
+		dataType: double
+		formatString: "€"\ #,0.000000000;-"€"\ #,0.000000000;"€"\ #,0.000000000
+		lineageTag: 10565cd2-8986-4b35-b2c3-4f1572b3dfb5
+		sourceLineageTag: 0107a8d7-509a-4161-b28e-b7cc8d27a7bb
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: April eur
+
+		annotation SummarizationSetBy = User
+
+	column May
+		dataType: double
+		lineageTag: 877d8fbe-e8df-45dd-9f9f-6814c688ac25
+		sourceLineageTag: d60931b1-0edf-4aae-9d63-83bc9b5f1600
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: May
+
+		annotation SummarizationSetBy = User
+
+	column 'May eur'
+		dataType: double
+		formatString: "€"\ #,0.000000000;-"€"\ #,0.000000000;"€"\ #,0.000000000
+		lineageTag: 30de9ae0-a446-4e83-a02b-c1dd7a938ec4
+		sourceLineageTag: 337b48dd-7e96-4cfb-ae60-86f827ab1608
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: May eur
+
+		annotation SummarizationSetBy = User
+
+	column June
+		dataType: double
+		lineageTag: 978c059f-8ced-4ea6-b8d4-5a2883649bde
+		sourceLineageTag: c5bd9a51-e095-4cf9-9bd0-572113944909
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: June
+
+		annotation SummarizationSetBy = User
+
+	column 'June eur'
+		dataType: double
+		formatString: "€"\ #,0.000000000;-"€"\ #,0.000000000;"€"\ #,0.000000000
+		lineageTag: bf4fb64d-c4e3-4490-9772-95d9cb1abd27
+		sourceLineageTag: 807dc398-ca07-493d-a433-a5004891e157
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: June eur
+
+		annotation SummarizationSetBy = User
+
+	column July
+		dataType: double
+		lineageTag: 540202be-67df-45d7-bad8-5c2720db3afc
+		sourceLineageTag: cdf364bc-d716-45fc-bc79-79204dc99cdd
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: July
+
+		annotation SummarizationSetBy = User
+
+	column 'July eur'
+		dataType: double
+		formatString: "€"\ #,0.000000000;-"€"\ #,0.000000000;"€"\ #,0.000000000
+		lineageTag: 92f5de49-4d2f-4458-b728-2062f88ac9fc
+		sourceLineageTag: 80b34225-1f4f-49fc-a306-e122fd6a2dd9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: July eur
+
+		annotation SummarizationSetBy = User
+
+	column August
+		dataType: double
+		lineageTag: 7a2d7e68-a4ec-4c65-a34d-d2cc3c3dd0eb
+		sourceLineageTag: 45947b9f-54e1-4e8a-92a2-3ae1cdd7b067
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: August
+
+		annotation SummarizationSetBy = User
+
+	column 'August eur'
+		dataType: double
+		formatString: "€"\ #,0.000000000;-"€"\ #,0.000000000;"€"\ #,0.000000000
+		lineageTag: 106a70ed-4464-4968-9258-7eaa7394b688
+		sourceLineageTag: 4e40fbae-5b05-486e-bff7-70dc4956ac47
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: August eur
+
+		annotation SummarizationSetBy = User
+
+	column September
+		dataType: double
+		lineageTag: 9e69e111-82be-4833-90b5-4957e2a646b9
+		sourceLineageTag: 2adbf730-29a8-4441-a98e-4f6b4259839b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: September
+
+		annotation SummarizationSetBy = User
+
+	column 'September eur'
+		dataType: double
+		formatString: "€"\ #,0.000000000;-"€"\ #,0.000000000;"€"\ #,0.000000000
+		lineageTag: 0ef7aaf1-0783-4f48-8228-9e7a12e7d266
+		sourceLineageTag: 8ba0f967-1b76-42d0-8005-f6c92535c237
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: September eur
+
+		annotation SummarizationSetBy = User
+
+	column October
+		dataType: double
+		lineageTag: f68c36dd-395c-4677-82d3-86a68a8d754c
+		sourceLineageTag: 14549a9b-3f04-4e5c-bae3-ffecc5c926f4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: October
+
+		annotation SummarizationSetBy = User
+
+	column 'October eur'
+		dataType: double
+		formatString: "€"\ #,0.000000000;-"€"\ #,0.000000000;"€"\ #,0.000000000
+		lineageTag: 11e35dbf-28c4-44be-9545-15db12f5462b
+		sourceLineageTag: 982d9d9f-b128-497c-9a09-560c2742a899
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: October eur
+
+		annotation SummarizationSetBy = User
+
+	column November
+		dataType: double
+		lineageTag: 59da8c19-fc94-4c65-bc92-0e944a3e8903
+		sourceLineageTag: 5345ddb0-4622-44ad-aa26-a11554e1eb46
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: November
+
+		annotation SummarizationSetBy = User
+
+	column 'November eur'
+		dataType: double
+		formatString: "€"\ #,0.000000000;-"€"\ #,0.000000000;"€"\ #,0.000000000
+		lineageTag: c0814b00-29ce-49fc-8b0b-74c723261ccc
+		sourceLineageTag: 6d10cc9b-7ed1-49ee-aa1f-9b4d32679aa4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: November eur
+
+		annotation SummarizationSetBy = User
+
+	column December
+		dataType: double
+		lineageTag: dff18627-4cce-45ca-bce6-ac5663bc36c5
+		sourceLineageTag: 3685b033-8a3e-414a-9eb0-e82f2c1879c4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: December
+
+		annotation SummarizationSetBy = User
+
+	column 'December eur'
+		dataType: double
+		formatString: "€"\ #,0.000000000;-"€"\ #,0.000000000;"€"\ #,0.000000000
+		lineageTag: d39bd1df-f108-4560-8ee1-6e387f1b4909
+		sourceLineageTag: 6bc39552-e7ec-48be-b2a3-dafaa70d2f97
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: December eur
+
+		annotation SummarizationSetBy = User
+
+	column year_total
+		dataType: double
+		lineageTag: 6e8defc5-e87b-452e-8e70-6dbdd732b74d
+		sourceLineageTag: 8a95f24d-18c3-4cb5-ad39-234f23b52edf
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: year_total
+
+		annotation SummarizationSetBy = User
+
+	column year_total_euro
+		dataType: double
+		formatString: "€"\ #,0.000000000;-"€"\ #,0.000000000;"€"\ #,0.000000000
+		lineageTag: 4c8638d3-5b34-4a49-8310-e666a072b6fa
+		sourceLineageTag: 83c6e53c-578d-49af-9f37-6a0492d7bf1a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: year_total_euro
+
+		annotation SummarizationSetBy = User
+
+	column country
+		dataType: string
+		lineageTag: de760c6b-14f6-41e4-b992-e128884cbf30
+		sourceLineageTag: 91fee4e7-cf01-45bd-902a-96b50616c3ab
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: country
+
+		annotation SummarizationSetBy = User
+
+	column check_capacity
+		dataType: string
+		lineageTag: 1b57f2cf-baa9-4dbe-ae64-6f8dca60e0bb
+		sourceLineageTag: ed746565-e050-4bb2-a1c4-a50185e4f199
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: check_capacity
+
+		annotation SummarizationSetBy = User
+
+	column cost_category
+		dataType: string
+		lineageTag: f7bf942e-608f-415c-9f3f-ac68b29db1c7
+		sourceLineageTag: db5b2183-05c6-46e0-a818-a653b0bb9dff
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: cost_category
+
+		annotation SummarizationSetBy = User
+
+	column business_legal_entity
+		dataType: string
+		lineageTag: b865e872-4fec-4e11-91f1-532fbd488ce4
+		sourceLineageTag: d6954167-3e09-4513-bfe0-763b79427c13
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: business_legal_entity
+
+		annotation SummarizationSetBy = User
+
+	column ri_re
+		dataType: string
+		lineageTag: e9e2d46c-828f-4568-a87b-346537572f37
+		sourceLineageTag: fb8656a6-2ec6-49d6-877a-58aff13d50c7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ri_re
+
+		annotation SummarizationSetBy = User
+
+	column scenario
+		dataType: string
+		lineageTag: 08fde78d-89d7-4205-a58e-5bdf2b6e6d46
+		sourceLineageTag: ed4f23f5-0685-4c3d-b95e-f51656fb64da
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: scenario
+
+		annotation SummarizationSetBy = User
+
+	column client_organization
+		dataType: string
+		lineageTag: db2ba412-088f-4500-a6c4-f47b5803ec26
+		sourceLineageTag: 727a6d51-2624-440f-a3c4-cd63cb5aca4d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: client_organization
+
+		annotation SummarizationSetBy = User
+
+	column tipology
+		dataType: string
+		lineageTag: 7c0b3536-80fb-4e71-8000-f79fb6d4da56
+		sourceLineageTag: a03ed6ee-d74b-4a65-9ec9-ab113ec2a92f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: tipology
+
+		annotation SummarizationSetBy = User
+
+	column cta
+		dataType: string
+		lineageTag: 3c8d48fa-a131-46bd-8e37-27ad4a8ed2d6
+		sourceLineageTag: a2b4d22e-fb62-4096-86e4-3a64c14f712f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: cta
+
+		annotation SummarizationSetBy = User
+
+	column sys_created_on
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 3d859cad-f851-421f-a685-33b0565339e2
+		sourceLineageTag: b8925f16-d191-4138-ad6f-5d1f3fe99956
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: sys_created_on
+
+		variation Variazione
+			isDefault
+			relationship: 1b8ee9be-5e68-4afa-8e9d-14d279816d0b
+			defaultHierarchy: 'LocalDateTable_f4056c4b-e640-45d8-8d1c-a32cc2f287a4 2'.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column sys_updated_on
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 4032f284-9d26-43b4-832f-f4769e3333cf
+		sourceLineageTag: 13280cc5-8e01-4ab0-afec-e3632da2a352
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: sys_updated_on
+
+		variation Variazione
+			isDefault
+			relationship: 51f6c54f-0529-4d6b-91ba-da1eaeb67824
+			defaultHierarchy: 'LocalDateTable_b7095d4a-df8b-4a9b-afeb-0e41903d8e53 2'.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column business_need
+		dataType: string
+		lineageTag: b545226e-71de-4f82-930e-17747134e39d
+		sourceLineageTag: 37df40c7-5979-449c-818e-7ff09fb4bdef
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: business_need
+
+		annotation SummarizationSetBy = User
+
+	column scenario_anno
+		dataType: int64
+		formatString: 0
+		lineageTag: 421f847d-047e-4ad0-956f-8b41196d8f93
+		sourceLineageTag: c8fbfdba-d4c8-4c2a-9551-5e40763f9b74
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: scenario_anno
+
+		annotation SummarizationSetBy = User
+
+	column scenario_type
+		dataType: string
+		lineageTag: 80e81a7c-bfa3-4e49-9642-9acea681c6d7
+		sourceLineageTag: 89c09882-4246-48fe-acee-49e17a7ed53b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: scenario_type
+
+		annotation SummarizationSetBy = User
+
+	column 'ow RI'
+		dataType: string
+		lineageTag: b1a4e9d1-9420-4107-b052-0295999cd8df
+		sourceLineageTag: 8c318c0a-86ef-4b55-be8b-d4168de02663
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ow RI
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira Planning by Cost 2' = entity
+		mode: directQuery
+		source
+			entityName: Jira Planning by Cost
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab 2'
+

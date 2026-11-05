@@ -1,0 +1,91 @@
+table 'Confluence Statistics'
+	lineageTag: 36044287-ab1f-4f98-a956-a87deac34420
+	sourceLineageTag: 71d08718-7b3d-411d-b841-f46fb09ef9c3
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: bd189a07-ac15-442c-8dfc-717613373f0e
+		sourceLineageTag: 3e20db52-f277-4310-85f5-30d2e13e97a7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = User
+
+	column matricola
+		dataType: string
+		lineageTag: bfe7ff90-8b1f-46dd-b756-d1f3348df1ec
+		sourceLineageTag: dd953a50-1b38-44ec-8dff-055d57939e94
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: matricola
+
+		annotation SummarizationSetBy = User
+
+	column order_month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2c39827e-6506-4ac6-905a-1c22915a7886
+		sourceLineageTag: 46466a83-cbb2-4fd4-9aa5-9d1d6eeb5492
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: order_month
+
+		variation Variazione
+			isDefault
+			relationship: 2ed3081e-ed68-43b6-a28e-356ab86b1255
+			defaultHierarchy: LocalDateTable_c6b67bce-b8a2-46a1-a48e-ca1d9fcd6f25.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column created_pages_num
+		dataType: int64
+		formatString: 0
+		lineageTag: 8d91b5c9-6538-4bbe-b175-fc9680ebac45
+		sourceLineageTag: 23395cfe-ce96-410e-b82b-67de19e79975
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: created_pages_num
+
+		annotation SummarizationSetBy = User
+
+	column modified_pages_num
+		dataType: int64
+		formatString: 0
+		lineageTag: 19a8fb35-07ef-4555-b6f8-2013b672c0d8
+		sourceLineageTag: 2009839c-b239-48f8-9b8a-dc4082363132
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: modified_pages_num
+
+		annotation SummarizationSetBy = User
+
+	column commented_pages_num
+		dataType: int64
+		formatString: 0
+		lineageTag: 2d6b933e-154b-4d73-84f8-4c65fec66099
+		sourceLineageTag: 14cbedf9-c5fe-47d0-9836-e1b53f0fcfee
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: commented_pages_num
+
+		annotation SummarizationSetBy = User
+
+	column uploaded_files_num
+		dataType: int64
+		formatString: 0
+		lineageTag: 0d747c82-bdb1-4aa5-b23c-3c78d71983cc
+		sourceLineageTag: c11da7a2-8509-4844-8158-0f9971fc1440
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: uploaded_files_num
+
+		annotation SummarizationSetBy = User
+
+	partition 'Confluence Statistics' = entity
+		mode: directQuery
+		source
+			entityName: Confluence Statistics
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

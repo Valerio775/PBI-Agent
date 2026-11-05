@@ -1,0 +1,52 @@
+table 'Workflow Fasi IE'
+	lineageTag: f82c14f8-b7e6-4984-b1de-b863ec8563b4
+
+	column Status
+		lineageTag: 0c32bac6-54d8-4016-b0c5-cde1782a73ed
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status]
+		sortByColumn: OrdineFase
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrdineFase
+		formatString: 0
+		lineageTag: 89c2e270-0965-4382-a985-820ef39ee0f7
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [OrdineFase]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status Tradotto'
+		lineageTag: 8de45c1a-b1c4-46f5-b916-8b10b9f88a30
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status Tradotto]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Workflow Fasi IE' = calculated
+		mode: import
+		source = ```
+				
+				DATATABLE (
+				    "Status", STRING,
+				    "OrdineFase", INTEGER,
+				    "Status Tradotto", STRING,
+				    {
+				        { "Open", 1, "Ingaggio Delivery Unit"},
+				
+				        { "Check Estimation", 2 , "Redazione HLD & Stime"},
+				        { "Waiting for Estimate", 2 , "Redazione HLD & Stime"},
+				        
+				        { "Estimation Approval", 3, "IC DU markup"},
+				        { "Done", 3, "IC DU markup"}
+				    }
+				)
+				
+				```
+
+	annotation PBI_Id = fb35b396e61d44b4bfdc21d066d2c537
+

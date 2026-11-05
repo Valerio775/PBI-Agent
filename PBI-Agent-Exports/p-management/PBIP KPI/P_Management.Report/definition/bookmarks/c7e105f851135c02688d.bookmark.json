@@ -1,0 +1,3181 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
+  "displayName": "Clear OP 36",
+  "name": "c7e105f851135c02688d",
+  "options": {
+    "applyOnlyToTargetVisuals": true,
+    "targetVisualNames": [
+      "39577dd0035720a1b147",
+      "2edc4c67ee3e0b1ddd2c",
+      "335f3d60903cac562700",
+      "aae84e007a95ac20905b",
+      "e9274a455a630d8ea440"
+    ],
+    "suppressActiveSection": true,
+    "suppressDisplay": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "5c4740be7873366581f8",
+    "sections": {
+      "5c4740be7873366581f8": {
+        "visualContainers": {
+          "7c93f0f97f6be173dcd8": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "2d56a7c558438c883fe5": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "cd06fa2af333981f4299": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "3d96fb1bb2f6a0bdc29e",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "DEBUG den KPI1"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "b736a35b4be1170b0176",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Demand"
+                        }
+                      },
+                      "Property": "1st Richiedente"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "c3ad4cdcb50496c4c73e",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Demand"
+                        }
+                      },
+                      "Property": "2nd Richiedente"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "selection": [
+                    {
+                      "properties": {
+                        "strictSingleSelect": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "false"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Demand"
+                        }
+                      },
+                      "Property": "1st Richiedente"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "b6024752034862986e3a": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "ddd05bf222bca07dda5d",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "j",
+                        "Entity": "Jira Investment Memo",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "In": {
+                                "Expressions": [
+                                  {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "j"
+                                        }
+                                      },
+                                      "Property": "Anno_cr"
+                                    }
+                                  }
+                                ],
+                                "Values": [
+                                  [
+                                    {
+                                      "Literal": {
+                                        "Value": "null"
+                                      }
+                                    }
+                                  ]
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Investment Memo"
+                        }
+                      },
+                      "Property": "Anno_cr"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "selection": [
+                    {
+                      "properties": {
+                        "strictSingleSelect": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "false"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Investment Memo"
+                        }
+                      },
+                      "Property": "Anno_cr"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "512bdd5af32480ea50ea": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "3015be7d8834b4cf8bbe": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "3a6faa1f04885ca03463",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Investment Memo"
+                        }
+                      },
+                      "Property": "Month_cr"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Investment Memo"
+                        }
+                      },
+                      "Property": "Month_cr"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "9ba4b6510134bce1460c": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "20d7a4f7e0204266b6be": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "5862a1a832d2edd4e06c": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "55fee08aa473c3499152": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "d28edfb95b808aad700b": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "ddd05bf222bca07dda5d",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "j",
+                        "Entity": "Jira Investment Memo",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "In": {
+                                "Expressions": [
+                                  {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "j"
+                                        }
+                                      },
+                                      "Property": "Anno_cr"
+                                    }
+                                  }
+                                ],
+                                "Values": [
+                                  [
+                                    {
+                                      "Literal": {
+                                        "Value": "null"
+                                      }
+                                    }
+                                  ]
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Investment Memo"
+                        }
+                      },
+                      "Property": "Anno_cr"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "5e4798c7d9d465000990",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Investment Memo"
+                        }
+                      },
+                      "Property": "Anno_approval"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "selection": [
+                    {
+                      "properties": {
+                        "strictSingleSelect": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "false"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Investment Memo"
+                        }
+                      },
+                      "Property": "Anno_approval"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "d9af647ea805ca5550b0": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "f474329412d40b5123e9",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Investment Memo"
+                        }
+                      },
+                      "Property": "Mese_approval"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Investment Memo"
+                        }
+                      },
+                      "Property": "Mese_approval"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "af400adb5330b4661d38": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "23df39c5368b495a757c",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "Jira Adoption KPI1"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "Jira Adoption KPI1"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "4babb583913def5182cc": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "513a8585bca880fdd1f3": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "fdd66e6e6aa4d24e998f": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "1545081f5af5186a939b": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "6881ed5af1c304d46dc8": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "666ec631f448e8605004",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Investment Memo"
+                        }
+                      },
+                      "Property": "GDS_line_prj"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "e940523d653e0ce926e5",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "DEBUG num KPI1"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "DEBUG num KPI1"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "4b034af2b18571d749c1": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "8477685ba9f4b5549437": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "05d00f400d354ae2686c",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "DEBUG den KPI1"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "DEBUG den KPI1"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "c7cc5cbe93d7a4fe5ec9": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "7371edf3bd59430c9aea": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "61fcb3f50c84fba8a6c3": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "3a2c7f9193b0d608a609",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "Commento Num KPI1"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {}
+            }
+          },
+          "57bb8e630932a9f80f97": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "76b1046bb0d84113b6b5",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "Commento Den KPI1"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {}
+            }
+          },
+          "c55b85b280e82edcc7ce": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "1728d2c06a434253c686": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "3007fce5c76a11288999",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Demand"
+                        }
+                      },
+                      "Property": "1st Richiedente"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "1b253c409b3711c10599",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "m",
+                        "Entity": "Misure",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 1,
+                            "Left": {
+                              "Measure": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Source": "m"
+                                  }
+                                },
+                                "Property": "Jira Adoption KPI1"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "0L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "Jira Adoption KPI1"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "clusteredColumnChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "Jira Adoption KPI1"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Demand"
+                        }
+                      },
+                      "Property": "1st Richiedente"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "7005630a04d00ec0d8a0": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "8cb6d6a057911c4e8eb8": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "f1ea9c42e6a34d07de85",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "m",
+                        "Entity": "Misure",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "m"
+                                      }
+                                    },
+                                    "Property": "DEBUG den KPI1"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "0L"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "DEBUG den KPI1"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "bb358c8b69a7b962e3a2",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Investment Memo"
+                        }
+                      },
+                      "Property": "Issue_key"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "7e015fcd8e359500db1e",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Investment Memo"
+                        }
+                      },
+                      "Property": "Issue_Number"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "7810cfa8111db83e019b",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Investment Memo"
+                        }
+                      },
+                      "Property": "Jira_IM_URL"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "030617ec7da1b53376c6",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "DEBUG den KPI2"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Investment Memo"
+                        }
+                      },
+                      "Property": "IM_norm"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "a0eac4f2a03d7ce20082": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "f1ea9c42e6a34d07de85",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "m",
+                        "Entity": "Misure",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "m"
+                                      }
+                                    },
+                                    "Property": "DEBUG den KPI1"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "0L"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "DEBUG den KPI1"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "e28078c507bc6c081308",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Demand"
+                        }
+                      },
+                      "Property": "Issue Investment Memo Number"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "e580d28214c70cdba41d",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Need"
+                        }
+                      },
+                      "Property": "1st richiedente"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "d38d31b9cdd2a7c26aec",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Need"
+                        }
+                      },
+                      "Property": "2nd richiedente"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "e8cdb5a09e85d445db26",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Jira Demand"
+                            }
+                          },
+                          "Property": "Total Cost"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a02c2ac320d24b57c495",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Need"
+                        }
+                      },
+                      "Property": "Issue key"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {}
+            }
+          },
+          "4c62aa217dd83c58e428": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "19ea677048886eabbeb5",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "m",
+                        "Entity": "Misure",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "Comparison": {
+                                "ComparisonKind": 0,
+                                "Left": {
+                                  "Measure": {
+                                    "Expression": {
+                                      "SourceRef": {
+                                        "Source": "m"
+                                      }
+                                    },
+                                    "Property": "DEBUG num KPI1"
+                                  }
+                                },
+                                "Right": {
+                                  "Literal": {
+                                    "Value": "0L"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "DEBUG num KPI1"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "b840116967a1b8c2063e",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "DEBUG num KPI2"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "80aeff478ed2cdc5cd70",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Macro Business Initiative"
+                        }
+                      },
+                      "Property": "IM Num"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "9911dc152c6a8e0a2592",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Macro Business Initiative"
+                        }
+                      },
+                      "Property": "URL"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "4e9af9baeab4abb9a072",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Macro Business Initiative"
+                        }
+                      },
+                      "Property": "Issue key"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "9dc2f9c400790ddd2412",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Macro Business Initiative"
+                        }
+                      },
+                      "Property": "Issue Investment Memo"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "2515fe315d4d12311804",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Macro Business Initiative"
+                        }
+                      },
+                      "Property": "Projectrak Factory - Chapter"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "caf6dc9ca3a7034bd52a",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Macro Business Initiative"
+                        }
+                      },
+                      "Property": "Projectrak GDS Line"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {}
+            }
+          },
+          "e581dcdaa4dd161002ee": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "fd5192f4c4e30c748bd0": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "d1ed56577087d759bac9": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "0adb72a33d2b1302b4d0": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "3e8357e98663e908efd1": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "49e7ecb77f64449a3303": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "5a2be3948d98ce9548d6",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "Last_data"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {}
+            }
+          },
+          "7dce9e4453dcb368af55": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "09a1c316b445fc604f2a": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "6d98f5ed01e3f11f651d": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "b3a5739032fe89b20e8e": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "fa2b64ad9cb4c990bd83": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "d0d99ac320816205b303": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "bb1a63b7eb03269b0e40": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "43e7e85b280093c07061",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Epic"
+                        }
+                      },
+                      "Property": "feature_delivery"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "b1efd2c959537c24eaac",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Feature Delivery"
+                        }
+                      },
+                      "Property": "Issue status"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "8ff50192aeee96219479",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "m",
+                        "Entity": "Misure",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 0,
+                            "Left": {
+                              "Measure": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Source": "m"
+                                  }
+                                },
+                                "Property": "DEBUG num KPI3"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "1L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "DEBUG num KPI3"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "7726aeb258dd7c364145",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Feature Delivery"
+                        }
+                      },
+                      "Property": "Jira_FD_URL"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "329ed4e410d4032157ad",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Feature Delivery"
+                        }
+                      },
+                      "Property": "Issue summary"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "d52a44494a1311d24435",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Epic"
+                        }
+                      },
+                      "Property": "apm_list"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "fd57f3f0a10042b4e8eb",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Project List"
+                        }
+                      },
+                      "Property": "GDS_Line_fixed"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "7ee242e5204c706a79b8",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Project List"
+                        }
+                      },
+                      "Property": "projectJira_Factory_Chapter"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {}
+            }
+          },
+          "7e5b2f4d8c10ddd0c726": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "5806880635924d34a078",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Feature Delivery"
+                        }
+                      },
+                      "Property": "APM_list"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "476d9b90d951ae7a4d95",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "DEBUG den KPI3"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "43e7e85b280093c07061",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Epic"
+                        }
+                      },
+                      "Property": "feature_delivery"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "d76b0e603ca388350136",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Project List"
+                        }
+                      },
+                      "Property": "GDS_Line_fixed"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "98a99c4a698e56a453a5",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Feature Delivery"
+                        }
+                      },
+                      "Property": "Issue created date"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "78ec175678b5ec7c704c",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Feature Delivery"
+                        }
+                      },
+                      "Property": "Issue Key [Issue]"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "1481c06e90f5e1365afb",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "m",
+                        "Entity": "Misure",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 1,
+                            "Left": {
+                              "Measure": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Source": "m"
+                                  }
+                                },
+                                "Property": "DEBUG den KPI3"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "0L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "DEBUG den KPI3"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "9bdb89cccbc0080b1eda",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "j",
+                        "Entity": "Jira Feature Delivery",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "j"
+                                    }
+                                  },
+                                  "Property": "Issue status"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Completed'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'In Progress'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Ready for UAT'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Release Completed'"
+                                  }
+                                }
+                              ],
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'UAT Passed'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Feature Delivery"
+                        }
+                      },
+                      "Property": "Issue status"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "7a3913a74806e6a2294c",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Feature Delivery"
+                        }
+                      },
+                      "Property": "Issue summary"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "5260b5f70288314680e0",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Feature Delivery"
+                        }
+                      },
+                      "Property": "Jira_FD_URL"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "d3098862a0c0ada43b81",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Project List"
+                        }
+                      },
+                      "Property": "projectJira_Factory_Chapter"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "aed3394d51183685e2e0",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "j",
+                        "Entity": "Jira Feature Delivery",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "In": {
+                            "Expressions": [
+                              {
+                                "Column": {
+                                  "Expression": {
+                                    "SourceRef": {
+                                      "Source": "j"
+                                    }
+                                  },
+                                  "Property": "Issue Initiative Type"
+                                }
+                              }
+                            ],
+                            "Values": [
+                              [
+                                {
+                                  "Literal": {
+                                    "Value": "'Project'"
+                                  }
+                                }
+                              ]
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Feature Delivery"
+                        }
+                      },
+                      "Property": "Issue Initiative Type"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "0e52d5bf9d5679a61774",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Epic"
+                        }
+                      },
+                      "Property": "apm_list"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Feature Delivery"
+                        }
+                      },
+                      "Property": "Issue Key [Issue]"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "7f6d81f440a027835661": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "2e14b8aa4dcb30a97520": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "1106a42c1ebca707e1d9": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "d1c549b1135151a058b4": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "a380de1379d62039b6d2",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "m",
+                        "Entity": "Misure",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 1,
+                            "Left": {
+                              "Measure": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Source": "m"
+                                  }
+                                },
+                                "Property": "Jira Adoption KPI3"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "0L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "Jira Adoption KPI3"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "92f7e5003a939c724dd1",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "APM (2)"
+                        }
+                      },
+                      "Property": "DF_LEVEL_2"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "clusteredColumnChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "Jira Adoption KPI3"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "APM (2)"
+                        }
+                      },
+                      "Property": "DF_LEVEL_2"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "cd125961b8008239470e": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "ca2657a08036c606d58e": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "e7bd4976b5232e82a49e",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "m",
+                        "Entity": "Misure",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 1,
+                            "Left": {
+                              "Measure": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Source": "m"
+                                  }
+                                },
+                                "Property": "DEBUG den KPI3"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "0L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "DEBUG den KPI3"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f872efa303d079bd283d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "DEBUG num KPI3"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "0e5dcbd6c293a11b2641",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "Jira Adoption KPI3"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "1c29bd25d880a4accab5",
+                  "type": "Advanced",
+                  "expression": {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "PropertyVariationSource": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "Jira Feature Delivery"
+                                }
+                              },
+                              "Name": "Variazione",
+                              "Property": "Issue created date"
+                            }
+                          },
+                          "Hierarchy": "Gerarchia data"
+                        }
+                      },
+                      "Level": "Anno"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "7b185266985a8b1c9522",
+                  "type": "Categorical",
+                  "expression": {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "PropertyVariationSource": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "Jira Feature Delivery"
+                                }
+                              },
+                              "Name": "Variazione",
+                              "Property": "Issue created date"
+                            }
+                          },
+                          "Hierarchy": "Gerarchia data"
+                        }
+                      },
+                      "Level": "Mese"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "lineClusteredColumnComboChart",
+              "objects": {},
+              "activeProjections": {
+                "Category": [
+                  {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "PropertyVariationSource": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "Jira Feature Delivery"
+                                }
+                              },
+                              "Name": "Variazione",
+                              "Property": "Issue created date"
+                            }
+                          },
+                          "Hierarchy": "Gerarchia data"
+                        }
+                      },
+                      "Level": "Anno"
+                    }
+                  },
+                  {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "PropertyVariationSource": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "Jira Feature Delivery"
+                                }
+                              },
+                              "Name": "Variazione",
+                              "Property": "Issue created date"
+                            }
+                          },
+                          "Hierarchy": "Gerarchia data"
+                        }
+                      },
+                      "Level": "Mese"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "449ea7f5c73e58c9a3eb": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "d922dd90c721ad209b06": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "aae84e007a95ac20905b": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "131c3641cba1463f9ba5",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "m",
+                        "Entity": "Misure",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 1,
+                            "Left": {
+                              "Measure": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Source": "m"
+                                  }
+                                },
+                                "Property": "DEBUG den KPI3"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "0L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "DEBUG den KPI3"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "61f4668c0080b3756e00",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "APM (2)"
+                        }
+                      },
+                      "Property": "DE_LEVEL_1"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a5cf3486c737dcd5b849",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "APM (2)"
+                        }
+                      },
+                      "Property": "DE_LEVEL_2"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "selection": [
+                    {
+                      "properties": {
+                        "strictSingleSelect": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "false"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "APM (2)"
+                        }
+                      },
+                      "Property": "DE_LEVEL_1"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "39577dd0035720a1b147": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "ddd05bf222bca07dda5d",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "j",
+                        "Entity": "Jira Investment Memo",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "In": {
+                                "Expressions": [
+                                  {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "j"
+                                        }
+                                      },
+                                      "Property": "Anno_cr"
+                                    }
+                                  }
+                                ],
+                                "Values": [
+                                  [
+                                    {
+                                      "Literal": {
+                                        "Value": "null"
+                                      }
+                                    }
+                                  ]
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Investment Memo"
+                        }
+                      },
+                      "Property": "Anno_cr"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "39c7a7f34807c1788806",
+                  "type": "Advanced",
+                  "expression": {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "PropertyVariationSource": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "Jira Feature Delivery"
+                                }
+                              },
+                              "Name": "Variazione",
+                              "Property": "Issue created date"
+                            }
+                          },
+                          "Hierarchy": "Gerarchia data"
+                        }
+                      },
+                      "Level": "Anno"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "general": [
+                    {
+                      "properties": {
+                        "filter": {
+                          "filter": {
+                            "Version": 2,
+                            "From": [
+                              {
+                                "Name": "l",
+                                "Entity": "LocalDateTable_b50391b8-dc41-4ca9-9790-177c0dd474e7 2",
+                                "Type": 0
+                              }
+                            ],
+                            "Where": [
+                              {
+                                "Condition": {
+                                  "In": {
+                                    "Expressions": [
+                                      {
+                                        "Column": {
+                                          "Expression": {
+                                            "SourceRef": {
+                                              "Source": "l"
+                                            }
+                                          },
+                                          "Property": "Anno"
+                                        }
+                                      }
+                                    ],
+                                    "Values": [
+                                      [
+                                        {
+                                          "Literal": {
+                                            "Value": "2026L"
+                                          }
+                                        }
+                                      ]
+                                    ]
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "selection": [
+                    {
+                      "properties": {
+                        "strictSingleSelect": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "false"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "PropertyVariationSource": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "Jira Feature Delivery"
+                                }
+                              },
+                              "Name": "Variazione",
+                              "Property": "Issue created date"
+                            }
+                          },
+                          "Hierarchy": "Gerarchia data"
+                        }
+                      },
+                      "Level": "Anno"
+                    }
+                  }
+                ]
+              },
+              "cachedFilterDisplayItems": [
+                {
+                  "id": {
+                    "scopeId": {
+                      "Comparison": {
+                        "ComparisonKind": 0,
+                        "Left": {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Entity": "LocalDateTable_b50391b8-dc41-4ca9-9790-177c0dd474e7 2"
+                              }
+                            },
+                            "Property": "Anno"
+                          }
+                        },
+                        "Right": {
+                          "Literal": {
+                            "Value": "2026L"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "displayName": "2026"
+                }
+              ]
+            }
+          },
+          "3ca5a850d9d325ec9874": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "2edc4c67ee3e0b1ddd2c": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "b5c66235d86b3b1e1eea",
+                  "type": "Categorical",
+                  "expression": {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "PropertyVariationSource": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "Jira Feature Delivery"
+                                }
+                              },
+                              "Name": "Variazione",
+                              "Property": "Issue created date"
+                            }
+                          },
+                          "Hierarchy": "Gerarchia data"
+                        }
+                      },
+                      "Level": "Mese"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "selection": [
+                    {
+                      "properties": {
+                        "strictSingleSelect": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "false"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "HierarchyLevel": {
+                      "Expression": {
+                        "Hierarchy": {
+                          "Expression": {
+                            "PropertyVariationSource": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Entity": "Jira Feature Delivery"
+                                }
+                              },
+                              "Name": "Variazione",
+                              "Property": "Issue created date"
+                            }
+                          },
+                          "Hierarchy": "Gerarchia data"
+                        }
+                      },
+                      "Level": "Mese"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "335f3d60903cac562700": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "efe475a904e4cce10e9a",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Feature Delivery"
+                        }
+                      },
+                      "Property": "Issue status"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "selection": [
+                    {
+                      "properties": {
+                        "strictSingleSelect": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "false"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Feature Delivery"
+                        }
+                      },
+                      "Property": "Issue status"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "b311e98e186ba746a11e": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "096140a0580d90ab7645": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "33b408f7453cbd660e50": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "c9446d0a25e11dc29150": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "e9274a455a630d8ea440": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "131c3641cba1463f9ba5",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "m",
+                        "Entity": "Misure",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 1,
+                            "Left": {
+                              "Measure": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Source": "m"
+                                  }
+                                },
+                                "Property": "DEBUG den KPI3"
+                              }
+                            },
+                            "Right": {
+                              "Literal": {
+                                "Value": "0L"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "DEBUG den KPI3"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "d9a5832a575e435bbd0c",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "APM (2)"
+                        }
+                      },
+                      "Property": "DF_LEVEL_1"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "764a1c1b8ae83515de09",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "APM (2)"
+                        }
+                      },
+                      "Property": "DF_LEVEL_2"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "selection": [
+                    {
+                      "properties": {
+                        "strictSingleSelect": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "false"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "APM (2)"
+                        }
+                      },
+                      "Property": "DF_LEVEL_1"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "fd231129ec71e2386739": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "e50ed0a0c0a35ceeabc1",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "Commento Den KPI3"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {}
+            }
+          },
+          "56bfae59295cbd89ee08": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "3d06b6d564985ba67ce2",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "Commento Num KPI3"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {}
+            }
+          },
+          "f14f98fee397ecdce412": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "0052bf23e4cbb59fb8fc": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "490f87365d56082c4861",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "DEBUG num KPI3"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "DEBUG num KPI3"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "54458c8c81c393e5430a": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "f2560d715a8e29834b33": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "f5d2c03ca8889a3288c0",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "DEBUG den KPI3"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "DEBUG den KPI3"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "7c1a0cdf6ec4c930a802": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "359995af467ee27c2427": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "1f46c3153a5d7d98371e": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "c69950a61541b7c8034d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "Jira Adoption KPI3"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "Jira Adoption KPI3"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "7524a208d479af9f2b4d": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "ea1d73c9ad94db38ffcf": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "22bc04809bd20b0281c9": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          }
+        },
+        "visualContainerGroups": {
+          "92a6b7c5ee4b0b04b310": {
+            "isHidden": true,
+            "children": {
+              "462cc042831491cd1937": {
+                "isHidden": false
+              },
+              "27fc58f734399966b06c": {
+                "isHidden": false
+              }
+            }
+          },
+          "58df76250a73e5628617": {
+            "children": {
+              "69e8cf7b29785209adf9": {
+                "children": {
+                  "871d4addbc5f939db17b": {
+                    "isHidden": false
+                  }
+                }
+              }
+            }
+          },
+          "8d1afd8120a42f69a2a4": {
+            "isHidden": false,
+            "children": {
+              "e9cf4d555acb6261ad81": {
+                "isHidden": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

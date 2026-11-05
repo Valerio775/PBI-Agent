@@ -1,0 +1,54 @@
+table 'Link FD'
+	lineageTag: 274a9efb-3962-43aa-bc16-b55b21ac0d7a
+
+	column pageid
+		lineageTag: 925a0dac-0859-440b-bb72-03092f86012e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Confluence Comala Issue Link[pageid]
+
+		annotation SummarizationSetBy = Automatic
+
+	column issue_key
+		lineageTag: 6b1c55ea-5c1f-4ce7-baf1-f973d4dc970d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Confluence Comala Issue Link[issue_key]
+
+		annotation SummarizationSetBy = Automatic
+
+	column issue_type
+		lineageTag: 9706b92c-57bb-4887-a8a3-9ab1b27f20c0
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Confluence Comala Issue Link[issue_type]
+
+		annotation SummarizationSetBy = Automatic
+
+	column workflow_name
+		lineageTag: 9c060cef-c2e8-40b2-a7f0-157c4cf37fb1
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Confluence Comala Issue Link[workflow_name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column confluence_labels
+		lineageTag: 4d9cd95f-c688-4a53-833b-2fc1dcb6e93a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Confluence Comala Issue Link[confluence_labels]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Link FD' = calculated
+		mode: import
+		source =
+				
+				FILTER(
+				    'Confluence Comala Issue Link',
+				    'Confluence Comala Issue Link'[issue_type] = "Feature Delivery"
+				)
+
+	annotation PBI_Id = 6a0661a379b54572bf24e8c9a2f93c5d
+

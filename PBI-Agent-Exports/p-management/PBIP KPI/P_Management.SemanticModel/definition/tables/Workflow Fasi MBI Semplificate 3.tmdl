@@ -1,0 +1,64 @@
+table 'Workflow Fasi MBI Semplificate 3'
+	lineageTag: 28b44849-df30-445c-aa65-a0715909f757
+
+	column Status
+		lineageTag: 39219a9e-afa6-4640-8c10-33a1419abb1a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status Numerato'
+		lineageTag: e24b0406-9d2f-4c07-9f90-29889aa7705c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status Numerato]
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrdineFase
+		formatString: 0
+		lineageTag: 658eee22-f29b-4821-81b8-d8b240a42805
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [OrdineFase]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status Tradotto'
+		lineageTag: b6ccc607-6d3d-4a7a-a825-d31d5c833869
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status Tradotto]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Workflow Fasi MBI Semplificate 3' = calculated
+		mode: import
+		source =
+				
+				DATATABLE (
+				    "Status", STRING,
+				    "Status Numerato", STRING,
+				    "OrdineFase", INTEGER,
+				    "Status Tradotto", STRING,
+				    {
+				        { "Open", "1. Conferma Perimetro", 1, "1. Valutazione iniziative e preparazione requisiti (DE)"},
+				        { "High-Level Functional Requirement", "2. Preparazione BR", 1, "1. Valutazione iniziative e preparazione requisiti (DE)"},
+				
+				        { "Tech Evaluation", "3. HLD e Stime", 2, "2. High-level Design, cost estimation and project plan (DF)"},
+				        { "Estimation Done", "4. Plan e Costi DE", 2, "2. High-level Design, cost estimation and project plan (DF)"},
+				
+				        { "Financial Evaluation", "5. IC DE Check e Markup", 3, "3. Predisposizione offerta e IM (DE)"},
+				
+				        { "IM Management", "6. IM Approval", 4, "4. Approvazione e firma IM (BSN + DE)"},
+				        { "Waiting for Approval", "6. IM Approval", 4, "4. Approvazione e firma IM (BSN + DE)"},
+				
+				        { "WBE Management", "7. Approvazione P&C Applicant Unit", 5, "5. Creazione wbe (IC DF)"},
+				        { "Approved", "8. IC DE Approvazione e creazione Demand", 6, "6. Approved" }
+				    }
+				)
+
+	annotation PBI_Id = f06de42e0d0d4724beecee693eb0d6e8
+

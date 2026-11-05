@@ -1,0 +1,40 @@
+table 'Jira Xray Demand Test Multi APM 2'
+	lineageTag: 7672e8fd-de15-4bb2-a741-855aca129514
+	sourceLineageTag: cc846ebe-4e83-4358-9a0c-c20f5777b14b
+
+	column test_key
+		dataType: string
+		lineageTag: 425cd5fd-576e-455f-95a7-40ccded63bd4
+		sourceLineageTag: bc305804-a349-44fc-ba71-53792aea39f7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: test_key
+
+		annotation SummarizationSetBy = User
+
+	column apm_key
+		dataType: string
+		lineageTag: ef2c1ba0-26f5-4e67-b9c8-956469567cb8
+		sourceLineageTag: 26d65a9d-79ac-42b8-9b2b-40ef92da7ed4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: apm_key
+
+		annotation SummarizationSetBy = User
+
+	column 'APM Name'
+		dataType: string
+		lineageTag: 76596f79-a587-4991-aa32-abfb45c0b6cd
+		sourceLineageTag: b12b2597-1156-45b3-a437-3d53c9d32aa6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: APM Name
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira Xray Demand Test Multi APM 2' = entity
+		mode: directQuery
+		source
+			entityName: Jira Xray Demand Test Multi APM
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab 2'
+

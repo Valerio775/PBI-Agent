@@ -1,0 +1,47 @@
+table 'Bitbucket User Last Login'
+	lineageTag: e62b0ccd-743e-4584-a4c2-c7caef242854
+	sourceLineageTag: 35796ea3-dede-4071-8725-2ab8a6acb617
+
+	column tool
+		dataType: string
+		lineageTag: e43e1332-86df-4449-8632-8d6ac8c536ea
+		sourceLineageTag: e4a1a5e7-b20d-4cf0-866b-42c76999da55
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: tool
+
+		annotation SummarizationSetBy = User
+
+	column user_name
+		dataType: string
+		isNullable: false
+		lineageTag: d4e20bd9-889b-41ef-a04d-f6e66d6d942c
+		sourceLineageTag: 4787afea-f93b-4c63-8617-cfa279059977
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: user_name
+
+		annotation SummarizationSetBy = User
+
+	column last_login
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: ed5991dc-faa5-461e-9027-edde5b849d51
+		sourceLineageTag: e1309ffe-5861-4066-9e09-567b67095c13
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: last_login
+
+		variation Variazione
+			isDefault
+			relationship: a57e435c-da16-495c-bf4b-dcd8471e06d3
+			defaultHierarchy: LocalDateTable_35c6d343-aaa3-45d3-b8fc-37293af1b53f.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	partition 'Bitbucket User Last Login' = entity
+		mode: directQuery
+		source
+			entityName: Bitbucket User Last Login
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

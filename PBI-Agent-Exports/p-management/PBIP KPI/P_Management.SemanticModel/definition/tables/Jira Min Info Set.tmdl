@@ -1,0 +1,81 @@
+table 'Jira Min Info Set'
+	lineageTag: 2f80eb4a-7823-42ec-ad27-966e3bbb31a5
+	sourceLineageTag: c204586a-1415-4e85-a0a7-be0278a62479
+
+	column issue_key
+		dataType: string
+		isNullable: false
+		lineageTag: 3fdf168d-c1c6-42bc-bf5f-acd026aaa671
+		sourceLineageTag: 8a505406-a985-4182-9d4a-fb01488ee056
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_key
+
+		annotation SummarizationSetBy = User
+
+	column confluence_page_name
+		dataType: string
+		lineageTag: 47ae17f4-26d2-4349-bfa2-0ac7fd678da3
+		sourceLineageTag: a3b2e0a2-204b-4279-9561-540c97201397
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: confluence_page_name
+
+		annotation SummarizationSetBy = User
+
+	column confluence_approved_by
+		dataType: string
+		lineageTag: 97efb343-ddd7-4477-9b08-fae951fd2c68
+		sourceLineageTag: e4e0d382-ab27-4d40-8299-5a08fbb237ab
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: confluence_approved_by
+
+		annotation SummarizationSetBy = User
+
+	column confluence_approved_in
+		dataType: string
+		lineageTag: 67b54e96-539e-427a-b1a0-7bf7f758510c
+		sourceLineageTag: 016d84cc-691c-404d-a55b-d5ba56e15440
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: confluence_approved_in
+
+		annotation SummarizationSetBy = User
+
+	column confluence_page_status
+		dataType: string
+		lineageTag: decc2d2e-0443-4c46-9322-9c3352163304
+		sourceLineageTag: 1bf63ecc-ccc1-42b0-b986-d0644312ff22
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: confluence_page_status
+
+		annotation SummarizationSetBy = User
+
+	column confluence_page_link
+		dataType: string
+		lineageTag: 61d6e4f3-49fa-47bc-9419-60280c43aa49
+		sourceLineageTag: 5403da8f-9e5a-44de-b5bd-7f102ebd4854
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: confluence_page_link
+
+		annotation SummarizationSetBy = User
+
+	column type
+		dataType: string
+		lineageTag: a7fbbeb4-17b9-4d49-b1be-c7d0667dc5c1
+		sourceLineageTag: c45c7801-d093-492e-9a94-71ab17b18ee2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: type
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira Min Info Set' = entity
+		mode: directQuery
+		source
+			entityName: Jira Min Info Set
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

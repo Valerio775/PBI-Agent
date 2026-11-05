@@ -1,0 +1,1310 @@
+table 'BF Transition Status'
+	lineageTag: e3876b05-ca67-43f4-a46e-7333ad27b512
+
+	measure 'Filtro_Tabella_Dinamica BF' = ```
+			
+			VAR _End = [ToStatus_BF]
+			
+			-- Recuperiamo l'intervallo del mese selezionato nel report
+			VAR _MinDate = MIN('BF Transition Status'[transition_date]) 
+			VAR _MaxDate = MAX('BF Transition Status'[transition_date])
+			
+			RETURN
+			IF( 
+			    -- 1. Esiste la data di fine?
+			    NOT ISBLANK(_End) 
+			    
+			    -- 2. La data di fine (Approved) è nel mese selezionato?
+			    && _End >= _MinDate 
+			    && _End <= _MaxDate, 
+			    1, 
+			    0 
+			)
+			```
+		formatString: 0
+		lineageTag: 06c3c637-d6c2-4688-b5b5-8a257f0eec5d
+
+	measure 'Media per Stato BF' =
+			
+			AVERAGEX(
+			    VALUES('BF Transition Status'[issue_key]),
+			    CALCULATE(MIN('BF Transition Status'[Giorni_In_Stato_Colonna]))
+			)
+		displayFolder: Grafico 1
+		lineageTag: 2e71569d-bd23-4ad8-8e8f-69ec5d13eb82
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Data Ingresso BF' =
+			
+			VAR IssueCorrente = SELECTEDVALUE('Jira Business Feature 2'[Issue key])
+			VAR StatoCorrente = SELECTEDVALUE('Jira Business Feature 2'[Issue status])
+			
+			VAR DataDaTransizioni =
+			    CALCULATE(
+			        MAX('BF Transition Status'[transition_date]),
+			        FILTER(
+			            ALL('BF Transition Status'),
+			            'BF Transition Status'[issue_key] = IssueCorrente
+			                && 'BF Transition Status'[to_status] = StatoCorrente
+			                && 'BF Transition Status'[from_status] <> StatoCorrente
+			        )
+			    )
+			
+			VAR DataCreazioneOpen =
+			    LOOKUPVALUE(
+			        'Jira Business Feature 2'[Issue created date],
+			        'Jira Business Feature 2'[Issue key], IssueCorrente
+			    )
+			
+			RETURN
+			IF(
+			    StatoCorrente = "Open",
+			    DataCreazioneOpen,
+			    DataDaTransizioni
+			)
+		formatString: General Date
+		displayFolder: Grafico 1
+		lineageTag: 5605e5c5-af18-408e-8a86-4ed6bc897cc9
+
+	measure 'Conteggio Pass-Through BF' =
+			
+			VAR StatusTradotto = SELECTEDVALUE('Workflow Fasi BF Journey 2'[Status Tradotto])
+			
+			VAR StatiDellaFase =
+			    CALCULATETABLE(
+			        VALUES('Workflow Fasi BF Journey 2'[Status]),
+			        FILTER(
+			            ALL('Workflow Fasi BF Journey 2'),
+			            'Workflow Fasi BF Journey 2'[Status Tradotto] = StatusTradotto
+			        )
+			    )
+			
+			VAR IsOpen = CONTAINS(StatiDellaFase, 'Workflow Fasi BF Journey 2'[Status], "Open")
+			
+			VAR TransizioniUscita =
+			    CALCULATETABLE(
+			        SELECTCOLUMNS(
+			            FILTER(
+			                ALL('BF Transition Status'),
+			                'BF Transition Status'[from_status] IN StatiDellaFase
+			                    && NOT('BF Transition Status'[to_status] IN StatiDellaFase)
+			                    && 'BF Transition Status'[from_status] <> 'BF Transition Status'[to_status]
+			            ),
+			            "iu_issue_key", 'BF Transition Status'[issue_key],
+			            "iu_data", 'BF Transition Status'[transition_date]
+			        )
+			    )
+			
+			RETURN
+			IF(
+			    IsOpen,
+			    COUNTROWS(
+			        CALCULATETABLE(
+			            VALUES('BF Transition Status'[issue_key]),
+			            FILTER(
+			                ALL('BF Transition Status'),
+			                'BF Transition Status'[from_status] IN StatiDellaFase
+			                && NOT('BF Transition Status'[to_status] IN StatiDellaFase)
+			                && 'BF Transition Status'[from_status] <> 'BF Transition Status'[to_status]
+			            )
+			        )
+			    ),
+			    VAR TransizioniEntrata =
+			        CALCULATETABLE(
+			            SELECTCOLUMNS(
+			                FILTER(
+			                    ALL('BF Transition Status'),
+			                    'BF Transition Status'[to_status] IN StatiDellaFase
+			                ),
+			                "ie_issue_key", 'BF Transition Status'[issue_key],
+			                "ie_data", 'BF Transition Status'[transition_date]
+			            )
+			        )
+			    VAR IssueUscite =
+			        CALCULATETABLE(
+			            VALUES('BF Transition Status'[issue_key]),
+			            FILTER(
+			                ADDCOLUMNS(
+			                    VALUES('BF Transition Status'[issue_key]),
+			                    "HasCoppiaCompleta",
+			                    VAR currentKey = 'BF Transition Status'[issue_key]
+			                    VAR entrateIssue = FILTER(TransizioniEntrata, [ie_issue_key] = currentKey)
+			                    VAR usciteIssue  = FILTER(TransizioniUscita,  [iu_issue_key] = currentKey)
+			                    RETURN
+			                        COUNTROWS(
+			                            FILTER(
+			                                entrateIssue,
+			                                VAR dataEntrata = [ie_data]
+			                                RETURN
+			                                    COUNTROWS(
+			                                        FILTER(usciteIssue, [iu_data] > dataEntrata)
+			                                    ) > 0
+			                            )
+			                        ) > 0
+			                ),
+			                [HasCoppiaCompleta] = TRUE()
+			            )
+			        )
+			    RETURN
+			    CALCULATE(
+			        DISTINCTCOUNT('BF Transition Status'[issue_key]),
+			        FILTER(
+			            ALL('BF Transition Status'),
+			            'BF Transition Status'[to_status] IN StatiDellaFase
+			            && 'BF Transition Status'[issue_key] IN IssueUscite
+			        )
+			    )
+			)
+		formatString: 0
+		displayFolder: Grafico 2
+		lineageTag: bfd0b81d-8320-49ff-8a2f-dedf57982617
+
+	measure 'Tempo Medio nello Stato BF' = ```
+			
+			VAR StatusTradotto = 
+			    SELECTEDVALUE('Workflow Fasi BF Journey 2'[Status Tradotto])
+			
+			VAR StatiDellaFase =
+			    CALCULATETABLE(
+			        VALUES('Workflow Fasi BF Journey 2'[Status]),
+			        FILTER(
+			            ALL('Workflow Fasi BF Journey 2'),
+			            IF(
+			                ISBLANK(StatusTradotto),
+			                TRUE(),
+			                'Workflow Fasi BF Journey 2'[Status Tradotto] = StatusTradotto
+			            )
+			        )
+			    )
+			
+			VAR IsOpen = CONTAINS(StatiDellaFase, 'Workflow Fasi BF Journey 2'[Status], "Open")
+			
+			VAR TransizioniEntrata =
+			    CALCULATETABLE(
+			        SELECTCOLUMNS(
+			            FILTER(
+			                ALL('BF Transition Status'),
+			                'BF Transition Status'[to_status] IN StatiDellaFase
+			                && NOT('BF Transition Status'[from_status] IN StatiDellaFase)
+			                && 'BF Transition Status'[from_status] <> 'BF Transition Status'[to_status]
+			            ),
+			            "ie_issue_key", 'BF Transition Status'[issue_key],
+			            "ie_data", 'BF Transition Status'[transition_date]
+			        )
+			    )
+			
+			VAR TransizioniUscita =
+			    CALCULATETABLE(
+			        SELECTCOLUMNS(
+			            FILTER(
+			                ALL('BF Transition Status'),
+			                'BF Transition Status'[from_status] IN StatiDellaFase
+			                && NOT('BF Transition Status'[to_status] IN StatiDellaFase)
+			                && 'BF Transition Status'[from_status] <> 'BF Transition Status'[to_status]
+			            ),
+			            "iu_issue_key", 'BF Transition Status'[issue_key],
+			            "iu_data", 'BF Transition Status'[transition_date]
+			        )
+			    )
+			
+			VAR IssueConSoggiorni =
+			    CALCULATETABLE(
+			        VALUES('BF Transition Status'[issue_key]),
+			        FILTER(
+			            ALL('BF Transition Status'),
+			            'BF Transition Status'[to_status] IN StatiDellaFase
+			            || 'BF Transition Status'[from_status] IN StatiDellaFase
+			        )
+			    )
+			
+			VAR tabellaGiorni =
+			    ADDCOLUMNS(
+			        IssueConSoggiorni,
+			        "giorni_totali",
+			        VAR issueKey = 'BF Transition Status'[issue_key]
+			        VAR entrateIssue = FILTER(TransizioniEntrata, [ie_issue_key] = issueKey)
+			        VAR usciteIssue  = FILTER(TransizioniUscita,  [iu_issue_key] = issueKey)
+			        VAR sommaSoggiorni =
+			            SUMX(
+			                FILTER(
+			                    entrateIssue,
+			                    VAR dataEntrata = [ie_data]
+			                    RETURN COUNTROWS(
+			                        FILTER(usciteIssue, [iu_data] > dataEntrata)
+			                    ) > 0
+			                ),
+			                VAR dataEntrata = [ie_data]
+			                VAR primaUscita =
+			                    MINX(
+			                        FILTER(usciteIssue, [iu_data] > dataEntrata),
+			                        [iu_data]
+			                    )
+			                RETURN DATEDIFF(dataEntrata, primaUscita, DAY)
+			            )
+			        RETURN 
+			            IF(
+			                ISBLANK(sommaSoggiorni) && IsOpen,
+			                0,
+			                IF(NOT ISBLANK(sommaSoggiorni), sommaSoggiorni, BLANK())
+			            )
+			    )
+			
+			RETURN
+			AVERAGEX(
+			    FILTER(tabellaGiorni, NOT ISBLANK([giorni_totali])),
+			    [giorni_totali]
+			)
+			```
+		displayFolder: Grafico 2
+		lineageTag: e5330717-68f4-423b-a492-cbae9e26aa60
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Data Ingresso Stato BF' =
+			
+			
+			VAR issueKey = SELECTEDVALUE('BF Transition Status'[issue_key])
+			
+			VAR StatusTradotto = SELECTEDVALUE('Workflow Fasi BF Journey 2'[Status Tradotto])
+			
+			
+			
+			VAR StatiDellaFase =
+			
+			    CALCULATETABLE(
+			
+			        VALUES('Workflow Fasi BF Journey 2'[Status]),
+			
+			        FILTER(
+			
+			            ALL('Workflow Fasi BF Journey 2'),
+			
+			            'Workflow Fasi BF Journey 2'[Status Tradotto] = StatusTradotto
+			
+			        )
+			
+			    )
+			
+			VAR DataDaTransizioni =
+			
+			    CALCULATE(
+			
+			        MIN('BF Transition Status'[transition_date]),
+			
+			        FILTER(
+			
+			            ALL('BF Transition Status'),
+			
+			            'BF Transition Status'[issue_key] = issueKey
+			
+			                && 'BF Transition Status'[to_status] IN StatiDellaFase
+			
+			                && NOT('BF Transition Status'[from_status] IN StatiDellaFase)
+			
+			                && 'BF Transition Status'[from_status] <> 'BF Transition Status'[to_status]
+			
+			        )
+			
+			    )
+			
+			RETURN
+			    DataDaTransizioni
+		formatString: General Date
+		displayFolder: Grafico 2
+		lineageTag: eed2da96-07f0-4b86-9184-b7a6b38da6e1
+
+	measure 'Data Uscita Stato_BF' = ```
+			
+			VAR issueKey = SELECTEDVALUE('BF Transition Status'[issue_key])
+			VAR StatusTradotto = SELECTEDVALUE('Workflow Fasi BF Journey 2'[Status Tradotto])
+			VAR StatiDellaFase =
+			    CALCULATETABLE(
+			        VALUES('Workflow Fasi BF Journey 2'[Status]),
+			        FILTER(
+			            ALL('Workflow Fasi BF Journey 2'),
+			            'Workflow Fasi BF Journey 2'[Status Tradotto] = StatusTradotto
+			        )
+			    )
+			RETURN
+			CALCULATE(
+			    MAX('BF Change Status'[transition_date]),
+			    REMOVEFILTERS('Workflow Fasi BF Journey 2'),
+			    FILTER(
+			        ALL('BF Change Status'),
+			        'BF Change Status'[issue_key] = issueKey
+			            && 'BF Change Status'[from_status] IN StatiDellaFase
+			            && NOT('BF Change Status'[to_status] IN StatiDellaFase)
+			            && 'BF Change Status'[from_status] <> 'BF Change Status'[to_status]
+			    )
+			)
+			
+			/*
+			Data Uscita Stato BF = 
+			VAR issueKey = SELECTEDVALUE('BF Transition Status'[issue_key])
+			VAR StatusTradotto = SELECTEDVALUE('Workflow Fasi BF Journey 2'[Status Tradotto])
+			VAR StatiDellaFase =
+			    CALCULATETABLE(
+			        VALUES('Workflow Fasi BF Journey 2'[Status]),
+			        FILTER(
+			            ALL('Workflow Fasi BF Journey 2'),
+			            'Workflow Fasi BF Journey 2'[Status Tradotto] = StatusTradotto
+			        )
+			    )
+			
+			VAR DataUscitaGenerica = 
+			    CALCULATE(
+			        MAX('BF Transition Status'[transition_date]),
+			        REMOVEFILTERS('Workflow Fasi BF Journey 2'),
+			        FILTER(
+			            ALL('BF Transition Status'),
+			            'BF Transition Status'[issue_key] = issueKey
+			                && 'BF Transition Status'[from_status] IN StatiDellaFase
+			                && NOT('BF Transition Status'[to_status] IN StatiDellaFase)
+			                && 'BF Transition Status'[from_status] <> 'BF Transition Status'[to_status]
+			        )
+			    )
+			
+			VAR DataUscitaUAT = 
+			    CALCULATE(
+			        MAX('BF Transition Status'[transition_date]),
+			        REMOVEFILTERS('Workflow Fasi BF Journey 2'),
+			        FILTER(
+			            ALL('BF Transition Status'),
+			            'BF Transition Status'[issue_key] = issueKey
+			                && (
+			                    'BF Transition Status'[to_status] = "Ready for UAT"
+			                    || 'BF Transition Status'[to_status] = "Waiting for UAT Approval"
+			                )
+			        )
+			    )
+			
+			RETURN
+			IF(
+			    StatusTradotto = "UAT",
+			    DataUscitaUAT,
+			    DataUscitaGenerica
+			)*/
+			```
+		formatString: General Date
+		displayFolder: Grafico 2
+		lineageTag: 73bf5000-70c5-45a2-9987-ca3c3e142793
+
+	measure 'Somma dei tempi nello stato BF' = ```
+			
+			VAR StatusTradotto = SELECTEDVALUE('Workflow Fasi BF Journey 2'[Status Tradotto])
+			VAR issueKey = SELECTEDVALUE('BF Transition Status'[issue_key])
+			
+			VAR StatiDellaFase =
+			    CALCULATETABLE(
+			        VALUES('Workflow Fasi BF Journey 2'[Status]),
+			        FILTER(
+			            ALL('Workflow Fasi BF Journey 2'),
+			            'Workflow Fasi BF Journey 2'[Status Tradotto] = StatusTradotto
+			        )
+			    )
+			
+			VAR IsOpen = CONTAINS(StatiDellaFase, 'Workflow Fasi BF Journey 2'[Status], "Open")
+			
+			VAR DataCreazioneOpen =
+			    CALCULATE(
+			        MIN('Jira Business Feature 2'[Issue created date]),
+			        REMOVEFILTERS('Jira Business Feature 2'),
+			        'Jira Business Feature 2'[Issue key] = issueKey
+			    )
+			
+			VAR entrateIssue =
+			    FILTER(
+			        ALL('BF Transition Status'),
+			        'BF Transition Status'[issue_key] = issueKey
+			        && 'BF Transition Status'[to_status] IN StatiDellaFase
+			        && NOT('BF Transition Status'[from_status] IN StatiDellaFase)
+			        && 'BF Transition Status'[from_status] <> 'BF Transition Status'[to_status]
+			    )
+			
+			VAR usciteIssue =
+			    FILTER(
+			        ALL('BF Transition Status'),
+			        'BF Transition Status'[issue_key] = issueKey
+			        && 'BF Transition Status'[from_status] IN StatiDellaFase
+			        && NOT('BF Transition Status'[to_status] IN StatiDellaFase)
+			        && 'BF Transition Status'[from_status] <> 'BF Transition Status'[to_status]
+			    )
+			
+			VAR primaUscitaOpen =
+			    MINX(usciteIssue, 'BF Transition Status'[transition_date])
+			
+			VAR giorniOpen =
+			    VAR primaEntrata = 
+			        IF(
+			            NOT ISBLANK(DataCreazioneOpen) && DataCreazioneOpen <= primaUscitaOpen,
+			            DataCreazioneOpen,
+			            primaUscitaOpen
+			        )
+			    VAR primaSoggiorno =
+			        IF(
+			            NOT ISBLANK(primaEntrata) && NOT ISBLANK(primaUscitaOpen) && primaEntrata < primaUscitaOpen,
+			            DATEDIFF(primaEntrata, primaUscitaOpen, DAY),
+			            0
+			        )
+			    VAR soggiorniSuccessivi =
+			        SUMX(
+			            FILTER(
+			                entrateIssue,
+			                VAR dataEntrata = 'BF Transition Status'[transition_date]
+			                RETURN COUNTROWS(
+			                    FILTER(usciteIssue, 'BF Transition Status'[transition_date] > dataEntrata)
+			                ) > 0
+			            ),
+			            VAR dataEntrata = 'BF Transition Status'[transition_date]
+			            VAR primaUscitaSucc =
+			                MINX(
+			                    FILTER(usciteIssue, 'BF Transition Status'[transition_date] > dataEntrata),
+			                    'BF Transition Status'[transition_date]
+			                )
+			            RETURN DATEDIFF(dataEntrata, primaUscitaSucc, DAY)
+			        )
+			    RETURN primaSoggiorno + soggiorniSuccessivi
+			
+			VAR giorniAltriStati =
+			    SUMX(
+			        FILTER(
+			            entrateIssue,
+			            VAR dataEntrata = 'BF Transition Status'[transition_date]
+			            RETURN COUNTROWS(
+			                FILTER(usciteIssue, 'BF Transition Status'[transition_date] > dataEntrata)
+			            ) > 0
+			        ),
+			        VAR dataEntrata = 'BF Transition Status'[transition_date]
+			        VAR primaUscita =
+			            MINX(
+			                FILTER(usciteIssue, 'BF Transition Status'[transition_date] > dataEntrata),
+			                'BF Transition Status'[transition_date]
+			            )
+			        RETURN DATEDIFF(dataEntrata, primaUscita, DAY)
+			    )
+			
+			RETURN
+			IF(IsOpen, giorniOpen, giorniAltriStati)
+			```
+		formatString: 0
+		displayFolder: Grafico 2
+		lineageTag: 5bf00497-524f-4cab-a6a7-d831f8a3040b
+
+	measure 'Conteggio Rework per Stato BF' = ```
+			
+			VAR StatoCorrente = MAX('Workflow Fasi BF Journey 2'[Status Tradotto])
+			VAR OrdineCorrente = 
+			    MAXX(
+			        FILTER(
+			            ALL('Workflow Fasi BF Journey 2'),
+			            'Workflow Fasi BF Journey 2'[Status Tradotto] = StatoCorrente
+			        ),
+			        'Workflow Fasi BF Journey 2'[OrdineFase]
+			    )
+			
+			RETURN
+			COUNTROWS(
+			    DISTINCT(
+			        SELECTCOLUMNS(
+			            FILTER(
+			                ALL('BF Transition Status'),
+			                VAR CurrentFromStatus = 'BF Transition Status'[from_status]
+			                VAR CurrentToStatus = 'BF Transition Status'[to_status]
+			                VAR CurrentKey = 'BF Transition Status'[issue_key]
+			                VAR CurrentDate = 'BF Transition Status'[transition_date]
+			
+			                VAR OrdineFrom =
+			                    MAXX(
+			                        FILTER(ALL('Workflow Fasi BF Journey 2'),
+			                            'Workflow Fasi BF Journey 2'[Status] = CurrentFromStatus),
+			                        'Workflow Fasi BF Journey 2'[OrdineFase]
+			                    )
+			                VAR OrdineTo =
+			                    MAXX(
+			                        FILTER(ALL('Workflow Fasi BF Journey 2'),
+			                            'Workflow Fasi BF Journey 2'[Status] = CurrentToStatus),
+			                        'Workflow Fasi BF Journey 2'[OrdineFase]
+			                    )
+			
+			                VAR DataUscita =
+			                    CALCULATE(
+			                        MIN('BF Transition Status'[transition_date]),
+			                        FILTER(
+			                            ALL('BF Transition Status'),
+			                            'BF Transition Status'[issue_key] = CurrentKey
+			                            && 'BF Transition Status'[transition_date] > CurrentDate
+			                            && 'BF Transition Status'[to_status] = CurrentFromStatus
+			                            && 'BF Transition Status'[from_status] <> 'BF Transition Status'[to_status]
+			                        )
+			                    )
+			
+			                RETURN
+			                    NOT ISBLANK(OrdineFrom)
+			                    && NOT ISBLANK(OrdineTo)
+			                    && OrdineTo < OrdineFrom
+			                    && OrdineFrom = OrdineCorrente
+			                    && NOT ISBLANK(DataUscita)
+			            ),
+			            "issue_key", 'BF Transition Status'[issue_key]
+			        )
+			    )
+			)
+			```
+		formatString: 0
+		lineageTag: 91f6b5fd-4fdd-493d-b4b2-54d603719ee8
+
+	measure 'Media Giorni Rework BF' = ```
+			
+			VAR OrdineSelezionato = 
+			    MAX('Workflow Fasi BF Journey 2'[OrdineFase])
+			
+			VAR TabellaFiltrata =
+			    FILTER(
+			        ALL('BF Transition Status'),
+			        'BF Transition Status'[IsRework] = 1
+			        && 'BF Transition Status'[OrdineFrom] = OrdineSelezionato
+			    )
+			
+			RETURN
+			IF(
+			    ISBLANK(OrdineSelezionato),
+			    BLANK(),
+			    AVERAGEX(
+			        TabellaFiltrata,
+			        VAR DataIngresso = 'BF Transition Status'[transition_date]
+			        VAR DataUscita = 
+			            CALCULATE(
+			                MIN('BF Transition Status'[transition_date]),
+			                REMOVEFILTERS('Workflow Fasi BF Journey 2'),
+			                FILTER(
+			                    ALL('BF Transition Status'),
+			                    'BF Transition Status'[issue_key] = EARLIER('BF Transition Status'[issue_key])
+			                    && 'BF Transition Status'[transition_date] > EARLIER('BF Transition Status'[transition_date])
+			                    && 'BF Transition Status'[to_status] = EARLIER('BF Transition Status'[from_status])
+			                    && 'BF Transition Status'[from_status] <> 'BF Transition Status'[to_status]
+			                )
+			            )
+			        RETURN
+			        IF(
+			            ISBLANK(DataUscita),
+			            BLANK(), 
+			            DATEDIFF(DataIngresso, DataUscita, DAY)
+			        )
+			    )
+			)
+			```
+		displayFolder: Grafico 3
+		lineageTag: 91a2b006-4b8c-45d8-9d63-fdfd040efa6d
+
+	measure 'Media Rework per Stato BF' = ```
+			
+			VAR OrdineSelezionato = MAX('Workflow Fasi BF Journey 2'[OrdineFase])
+			
+			VAR RigheRework =
+			    FILTER(
+			        ALL('BF Transition Status'),
+			        NOT ISBLANK('BF Transition Status'[OrdineFrom])
+			        && NOT ISBLANK('BF Transition Status'[OrdineTo])
+			        && 'BF Transition Status'[OrdineTo] < 'BF Transition Status'[OrdineFrom]
+			        && NOT ISBLANK(OrdineSelezionato)
+			        && 'BF Transition Status'[OrdineFrom] = OrdineSelezionato
+			        && NOT ISBLANK(
+			            CALCULATE(
+			                MIN('BF Transition Status'[transition_date]),
+			                FILTER(
+			                    ALL('BF Transition Status'),
+			                    'BF Transition Status'[issue_key] = EARLIER('BF Transition Status'[issue_key])
+			                    && 'BF Transition Status'[transition_date] > EARLIER('BF Transition Status'[transition_date])
+			                    && 'BF Transition Status'[to_status] = EARLIER('BF Transition Status'[from_status])
+			                    && 'BF Transition Status'[from_status] <> 'BF Transition Status'[to_status]
+			                )
+			            )
+			        )
+			    )
+			
+			VAR TotaleEpisodi = COUNTROWS(RigheRework)
+			
+			VAR IssueDistinte = 
+			    COUNTROWS(
+			        DISTINCT(
+			            SELECTCOLUMNS(RigheRework, "issue_key", 'BF Transition Status'[issue_key])
+			        )
+			    )
+			
+			RETURN
+			DIVIDE(TotaleEpisodi, IssueDistinte)
+			```
+		displayFolder: Grafico 3
+		lineageTag: 2854b7b3-f702-4228-8335-0c4bc43447fe
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Data Uscita Rework BF' =
+			
+			VAR CurrentKey = MAX('BF Transition Status'[issue_key])
+			VAR CurrentDate = MAX('BF Transition Status'[transition_date])
+			VAR CurrentFromStatus = MAX('BF Transition Status'[from_status])
+			
+			RETURN
+			CALCULATE(
+			    MIN('BF Transition Status'[transition_date]),
+			    FILTER(
+			        ALL('BF Transition Status'),
+			        'BF Transition Status'[issue_key] = CurrentKey
+			        && 'BF Transition Status'[transition_date] > CurrentDate
+			        && 'BF Transition Status'[to_status] = CurrentFromStatus
+			        && 'BF Transition Status'[from_status] <> 'BF Transition Status'[to_status]
+			    )
+			)
+		formatString: General Date
+		displayFolder: Grafico 3
+		lineageTag: bb311e53-01b7-4443-ac34-d6bc55cd2337
+
+	measure 'Filtro Rework BF' = ```
+			
+			VAR FaseSelezionata = 
+			    CALCULATE(
+			        SELECTEDVALUE('Workflow Fasi BF Journey 2'[Status Tradotto]),
+			        ALLSELECTED('Workflow Fasi BF Journey 2')
+			    )
+			
+			VAR OrdineSelezionato =
+			    IF(
+			        NOT ISBLANK(FaseSelezionata),
+			        MAXX(
+			            FILTER(ALL('Workflow Fasi BF Journey 2'),
+			                'Workflow Fasi BF Journey 2'[Status Tradotto] = FaseSelezionata),
+			            'Workflow Fasi BF Journey 2'[OrdineFase]
+			        ),
+			        BLANK()
+			    )
+			
+			VAR OrdineFromRiga = MAX('BF Transition Status'[OrdineFrom])
+			VAR OrdineToRiga = MAX('BF Transition Status'[OrdineTo])
+			
+			RETURN
+			IF(
+			    NOT ISBLANK(OrdineFromRiga)
+			    && NOT ISBLANK(OrdineToRiga)
+			    && OrdineToRiga < OrdineFromRiga
+			    && (ISBLANK(OrdineSelezionato) || OrdineFromRiga = OrdineSelezionato),
+			    1, 0
+			)
+			```
+		formatString: 0
+		displayFolder: Grafico 3
+		lineageTag: 7388fb0d-7556-47b9-93fe-685aa4a9257a
+
+	measure 'Destinazione Dinamica ToolTip BF' = ```
+			
+			VAR _issueKeySelezionato = SELECTEDVALUE('Jira Business Feature 2'[Issue Key [Issue]]])
+			
+			VAR _statoDaIssue = 
+			    IF(
+			        NOT ISBLANK(_issueKeySelezionato),
+			        CALCULATE(
+			            SELECTEDVALUE('Jira Business Feature 2'[Status Tradotto]),
+			            'Jira Business Feature 2'[Issue Key [Issue]]] = _issueKeySelezionato
+			        )
+			    )
+			
+			VAR _statoDaTabella = SELECTEDVALUE('Workflow Fasi BF Journey 2'[Status Tradotto])
+			
+			VAR _statoCorrente = COALESCE(_statoDaTabella, _statoDaIssue)
+			
+			VAR _uatTestType = 
+			    IF(
+			        NOT ISBLANK(_issueKeySelezionato),
+			        CALCULATE(
+			            SELECTEDVALUE('Jira Business Feature 2'[Issue UAT Test Type]),
+			            'Jira Business Feature 2'[Issue Key [Issue]]] = _issueKeySelezionato
+			        )
+			    )
+			
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        _statoCorrente = "In Progress", "Drill-through Estimation Details FD",
+			        _statoCorrente = "UAT" && _uatTestType = "Confluence OP-36", "Documento Comala UAT-TEST Confluence",
+			        _statoCorrente = "UAT" && _uatTestType = "Xray Test Management", "Documento Comala XRAY"
+			    )
+			```
+		lineageTag: a9428c14-7148-4ce7-82a0-7418770b9b3c
+
+	measure 'Destinazione Dinamica ToolTip UAT BF' = ```
+			
+			VAR _issueKeySelezionato = SELECTEDVALUE('Jira Business Feature 2'[Issue Key [Issue]]])
+			
+			VAR _statoDaIssue = 
+			    IF(
+			        NOT ISBLANK(_issueKeySelezionato),
+			        CALCULATE(
+			            SELECTEDVALUE('Jira Business Feature 2'[Status Tradotto]),
+			            'Jira Business Feature 2'[Issue Key [Issue]]] = _issueKeySelezionato
+			        )
+			    )
+			
+			VAR _statoDaTabella = SELECTEDVALUE('Workflow Fasi BF Journey 2'[Status Tradotto])
+			
+			VAR _statoCorrente = COALESCE(_statoDaTabella, _statoDaIssue)
+			
+			VAR _uatTestType = 
+			    IF(
+			        NOT ISBLANK(_issueKeySelezionato),
+			        CALCULATE(
+			            SELECTEDVALUE('Jira Business Feature 2'[Issue UAT Test Type]),
+			            'Jira Business Feature 2'[Issue Key [Issue]]] = _issueKeySelezionato
+			        )
+			    )
+			
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        _statoCorrente = "UAT" && _uatTestType = "Confluence OP-36", "Documento Comala UAT-TEST Confluence",
+			        _statoCorrente = "UAT" && _uatTestType = "Xray Test Management", "Documento Comala XRAY"
+			    )
+			```
+		lineageTag: 85e9c674-ecd7-4f22-b753-58aec6df7b16
+
+	measure 'Testo Pulsante Dettaglio BF' = ```
+			
+			VAR _issueKeySelezionato = SELECTEDVALUE('Jira Business Feature 2'[Issue Key [Issue]]])
+			
+			VAR _statoDaIssue = 
+			    IF(
+			        NOT ISBLANK(_issueKeySelezionato),
+			        CALCULATE(
+			            SELECTEDVALUE('Jira Business Feature 2'[Status Tradotto]),
+			            'Jira Business Feature 2'[Issue Key [Issue]]] = _issueKeySelezionato
+			        )
+			    )
+			
+			VAR _statoDaTabella = SELECTEDVALUE('Workflow Fasi BF Journey 2'[Status Tradotto])
+			
+			VAR _statoCorrente = COALESCE(_statoDaTabella, _statoDaIssue)
+			
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        _statoCorrente = "In Progress", "Dettaglio",
+			        _statoCorrente = "UAT", "Documento",
+			        "Dettaglio"
+			    )
+			```
+		lineageTag: b628f533-1ede-4822-b256-99e354de8fda
+
+	column issue_key
+		lineageTag: 5da674c9-757b-4e54-b152-0646d0358839
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[issue_key]
+
+		annotation SummarizationSetBy = Automatic
+
+	column issue_type
+		lineageTag: f79127db-691b-434f-a671-210b41e6be5a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[issue_type]
+
+		annotation SummarizationSetBy = Automatic
+
+	column transition_date
+		formatString: General Date
+		lineageTag: bbde5eeb-339a-43de-ac4a-5d02284eb103
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[transition_date]
+
+		variation Variazione
+			isDefault
+			relationship: e223e147-d1e7-4b82-abdb-16187b868747
+			defaultHierarchy: LocalDateTable_9341f536-f90f-4cd0-8109-141472774dc3.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_status
+		lineageTag: 7a1c2c32-23c9-4d12-9f16-dbb13cdc76a9
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[from_status]
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_status
+		lineageTag: 1da29eeb-493e-43f5-a179-a8338759d7c2
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[to_status]
+
+		annotation SummarizationSetBy = Automatic
+
+	column username
+		lineageTag: 846b2d13-b22e-4c5a-9698-2a21d1dafd7f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[username]
+
+		annotation SummarizationSetBy = Automatic
+
+	column display_name
+		lineageTag: 6d6fc319-de65-4163-8293-d4f55bbf408e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[display_name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Giorni da In Progress a Completed'
+		formatString: 0
+		lineageTag: b4cc87d6-93ad-424a-9cf3-a4bcfe2b2f45
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[Giorni da In Progress a Completed]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Lead Time - InProgress_ConfirmReleased' = ```
+			
+			
+			VAR _startDate = 
+			    CALCULATE (
+			        MIN ( 'BF Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'BF Transition Status', 'BF Transition Status'[issue_key] ),
+			        'BF Transition Status'[from_status] = "In Progress",
+			        'Jira Project List 2'[Project_Status] <> "Demo Project"
+			    )
+			
+			VAR _lastDate = 
+			    CALCULATE (
+			        MAX ( 'BF Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'BF Transition Status', 'BF Transition Status'[issue_key] ),
+			        'BF Transition Status'[to_status] = "Confirm Released",
+			        'Jira Project List 2'[Project_Status] <> "Demo Project"
+			    )
+			
+			RETURN 
+			IF ( 
+			    'BF Transition Status'[to_status] = "Confirm Released" 
+			        && 'BF Transition Status'[transition_date] = _lastDate
+			        && NOT ISBLANK ( _startDate ),
+			    'BF Transition Status'[transition_date] - _startDate,
+			    BLANK()
+			)
+			```
+		formatString: General Date
+		lineageTag: 4b676072-9f08-40ce-826e-f80597d4cf87
+		summarizeBy: none
+
+		variation Variazione
+			isDefault
+			relationship: b5e43130-ca35-4e11-9271-2a060ac94eed
+			defaultHierarchy: LocalDateTable_741377a1-55e1-4bc1-aa3b-4d1634e9005e.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Lead Time - Completed_ConfirmReleased' = ```
+			
+			
+			VAR _startDate = 
+			    CALCULATE (
+			        MIN ( 'BF Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'BF Transition Status', 'BF Transition Status'[issue_key] ),
+			        'BF Transition Status'[from_status] = "Completed",
+			        'Jira Project List 2'[Project_Status] <> "Demo Project"
+			    )
+			
+			VAR _lastDate = 
+			    CALCULATE (
+			        MAX ( 'BF Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'BF Transition Status', 'BF Transition Status'[issue_key] ),
+			        'BF Transition Status'[to_status] = "Confirm Released",
+			        'Jira Project List 2'[Project_Status] <> "Demo Project"
+			    )
+			
+			RETURN 
+			IF ( 
+			    'BF Transition Status'[to_status] = "Confirm Released" 
+			        && 'BF Transition Status'[transition_date] = _lastDate
+			        && NOT ISBLANK ( _startDate ),
+			    'BF Transition Status'[transition_date] - _startDate,
+			    BLANK()
+			)
+			```
+		formatString: General Date
+		lineageTag: 5bb310a6-932d-4070-a3b5-92dfe7abe7ba
+		summarizeBy: none
+
+		variation Variazione
+			isDefault
+			relationship: bdcebf42-a029-4fcc-ae68-4f315206ab20
+			defaultHierarchy: LocalDateTable_f235e664-50da-4f66-81ad-316274165b92.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Lead Time - UATPassed_Completed' = ```
+			
+			
+			VAR _startDate = 
+			    CALCULATE (
+			        MIN ( 'BF Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'BF Transition Status', 'BF Transition Status'[issue_key] ),
+			        'BF Transition Status'[from_status] = "UAT Passed",
+			        'Jira Project List 2'[Project_Status] <> "Demo Project"
+			    )
+			
+			VAR _lastDate = 
+			    CALCULATE (
+			        MAX ( 'BF Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'BF Transition Status', 'BF Transition Status'[issue_key] ),
+			        'BF Transition Status'[to_status] = "Completed",
+			        'Jira Project List 2'[Project_Status] <> "Demo Project"
+			    )
+			
+			RETURN 
+			IF ( 
+			    'BF Transition Status'[to_status] = "Completed" 
+			        && 'BF Transition Status'[transition_date] = _lastDate
+			        && NOT ISBLANK ( _startDate ),
+			    'BF Transition Status'[transition_date] - _startDate,
+			    BLANK()
+			)
+			```
+		formatString: General Date
+		lineageTag: 123e9a97-96d5-47e4-a4bb-677ad951e0c2
+		summarizeBy: none
+
+		variation Variazione
+			isDefault
+			relationship: 6b904f2d-8110-4fa0-b529-99df07c17e15
+			defaultHierarchy: LocalDateTable_3ee864d7-c150-4907-9ffb-dde6f1f8be1d.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Lead Time - RfUAT_UATPassed' = ```
+			
+			
+			VAR _startDate = 
+			    CALCULATE (
+			        MIN ( 'BF Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'BF Transition Status', 'BF Transition Status'[issue_key] ),
+			        'BF Transition Status'[from_status] = "Ready for UAT",
+			        'Jira Project List 2'[Project_Status] <> "Demo Project"
+			    )
+			
+			VAR _lastDate = 
+			    CALCULATE (
+			        MAX ( 'BF Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'BF Transition Status', 'BF Transition Status'[issue_key] ),
+			        'BF Transition Status'[to_status] = "UAT Passed",
+			        'Jira Project List 2'[Project_Status] <> "Demo Project"
+			    )
+			
+			RETURN 
+			IF ( 
+			    'BF Transition Status'[to_status] = "UAT Passed" 
+			        && 'BF Transition Status'[transition_date] = _lastDate
+			        && NOT ISBLANK ( _startDate ),
+			    'BF Transition Status'[transition_date] - _startDate,
+			    BLANK()
+			)
+			```
+		formatString: General Date
+		lineageTag: c18b5081-b615-40f3-bcd7-16cb1a522ddb
+		summarizeBy: none
+
+		variation Variazione
+			isDefault
+			relationship: 7f1b471b-1c5a-4ba2-8823-910d86fdc829
+			defaultHierarchy: LocalDateTable_a81772d5-7161-4048-85c9-86561412cf8f.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Lead Time - Approved_ConfirmReleased' = ```
+			
+			
+			VAR _startDate = 
+			    CALCULATE (
+			        MIN ( 'BF Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'BF Transition Status', 'BF Transition Status'[issue_key] ),
+			        'BF Transition Status'[from_status] = "Approved",
+			        'Jira Project List 2'[Project_Status] <> "Demo Project"
+			    )
+			
+			VAR _lastDate = 
+			    CALCULATE (
+			        MAX ( 'BF Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'BF Transition Status', 'BF Transition Status'[issue_key] ),
+			        'BF Transition Status'[to_status] = "Confirm Released",
+			        'Jira Project List 2'[Project_Status] <> "Demo Project"
+			    )
+			
+			RETURN 
+			IF ( 
+			    'BF Transition Status'[to_status] = "Confirm Released" 
+			        && 'BF Transition Status'[transition_date] = _lastDate
+			        && NOT ISBLANK ( _startDate ),
+			    'BF Transition Status'[transition_date] - _startDate,
+			    BLANK()
+			)
+			```
+		formatString: General Date
+		lineageTag: b07e49f7-c6c7-4d3c-a383-e59d00c2faae
+		summarizeBy: none
+
+		variation Variazione
+			isDefault
+			relationship: 10f7192f-610a-49c7-b681-ef992d8547c0
+			defaultHierarchy: LocalDateTable_c11aeb17-a773-4cee-aa7f-adb9d9156e39.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Lead Time - Approved_InProgress' = ```
+			
+			
+			VAR _startDate = 
+			    CALCULATE (
+			        MIN ( 'BF Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'BF Transition Status', 'BF Transition Status'[issue_key] ),
+			        'BF Transition Status'[from_status] = "Approved",
+			        'Jira Project List 2'[Project_Status] <> "Demo Project"
+			    )
+			
+			VAR _lastDate = 
+			    CALCULATE (
+			        MAX ( 'BF Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'BF Transition Status', 'BF Transition Status'[issue_key] ),
+			        'BF Transition Status'[to_status] = "In Progress",
+			        'Jira Project List 2'[Project_Status] <> "Demo Project"
+			    )
+			
+			RETURN 
+			IF ( 
+			    'BF Transition Status'[to_status] = "In Progress" 
+			        && 'BF Transition Status'[transition_date] = _lastDate
+			        && NOT ISBLANK ( _startDate ),
+			    'BF Transition Status'[transition_date] - _startDate,
+			    BLANK()
+			)
+			```
+		formatString: General Date
+		lineageTag: eeed4877-85fd-4a36-a0dc-62828b4d1290
+		summarizeBy: none
+
+		variation Variazione
+			isDefault
+			relationship: 7e4f9ef1-abbd-4f98-bef6-0036aea82246
+			defaultHierarchy: LocalDateTable_70d85e5d-f83c-4086-ad87-b82b5f1e3e22.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column MeseAnno_ = ```
+			
+			VAR y = CONVERT(YEAR ( 'BF Transition Status'[transition_date] ), STRING)
+			VAR m = MONTH ( 'BF Transition Status'[transition_date]  )
+			VAR mShort =
+			    SWITCH (
+			        m,
+			        1, "01", 2, "02", 3, "03", 4, "04", 5, "05", 6, "06",
+			        7, "07", 8, "08", 9, "09", 10, "10", 11, "11", 12, "12"
+			    )
+			RETURN y & "-" &  mShort 
+			
+			
+			```
+		lineageTag: 618036c7-7835-4127-bf93-b3b16934a6e7
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Lead Time - InProgress_RfUAT' = ```
+			
+			
+			VAR _startDate = 
+			    CALCULATE (
+			        MIN ( 'BF Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'BF Transition Status', 'BF Transition Status'[issue_key] ),
+			        'BF Transition Status'[from_status] = "In Progress",'AD Objects'[Email],
+			        'Jira Project List 2'[Project_Status] <> "Demo Project"
+			    )
+			
+			VAR _lastDate = 
+			    CALCULATE (
+			        MAX ( 'BF Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'BF Transition Status', 'BF Transition Status'[issue_key] ),
+			        'BF Transition Status'[to_status] = "Ready for UAT",
+			        'Jira Project List 2'[Project_Status] <> "Demo Project"
+			    )
+			
+			RETURN 
+			IF ( 
+			    'BF Transition Status'[to_status] = "Ready for UAT" 
+			        && 'BF Transition Status'[transition_date] = _lastDate
+			        && NOT ISBLANK ( _startDate ),
+			    'BF Transition Status'[transition_date] - _startDate,
+			    BLANK()
+			)
+			```
+		formatString: General Date
+		lineageTag: 0802c5bf-02f6-4bc7-bed5-6ce2a0b10629
+		summarizeBy: none
+
+		variation Variazione
+			isDefault
+			relationship: 4e228d5c-6efd-4ed0-b72b-273d99c219fe
+			defaultHierarchy: LocalDateTable_68027f3e-0126-423f-9df3-30e2501c1aca.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Giorni_In_Stato_Colonna =
+			
+			VAR currentIssue = 'BF Transition Status'[issue_key]
+			VAR currentStatus = 'BF Transition Status'[to_status]
+			
+			VAR startDate =
+			    CALCULATE(
+			        MIN('BF Transition Status'[transition_date]),
+			        ALLEXCEPT('BF Transition Status', 'BF Transition Status'[issue_key], 'BF Transition Status'[to_status])
+			    )
+			
+			RETURN
+			IF(
+			    NOT ISBLANK(startDate),
+			    DATEDIFF(startDate, TODAY(), DAY)
+			)
+		formatString: 0
+		displayFolder: Grafico 1
+		lineageTag: 23e2f49d-1320-4607-bda1-b3def460a336
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Giorni in Stato BF' = ```
+			
+			VAR issueKey = 'BF Transition Status'[issue_key]
+			VAR currentStatus = 
+			    LOOKUPVALUE(
+			        'Jira Business Feature 2'[Issue status],
+			        'Jira Business Feature 2'[Issue key], issueKey
+			    )
+			
+			VAR startDate =
+			    CALCULATE(
+			        MIN('BF Transition Status'[transition_date]),
+			        FILTER(
+			            ALL('BF Transition Status'),
+			            'BF Transition Status'[issue_key] = issueKey
+			                && 'BF Transition Status'[to_status] = currentStatus
+			        )
+			    )
+			
+			VAR DataCreazioneOpen = 
+			    LOOKUPVALUE(
+			        'Jira Business Feature 2'[Issue created date],
+			        'Jira Business Feature 2'[Issue key], issueKey
+			    )
+			
+			VAR startDateFinale =
+			    IF(
+			        currentStatus = "Open" && ISBLANK(startDate),
+			        DataCreazioneOpen,
+			        startDate
+			    )
+			
+			RETURN
+			IF(
+			    NOT ISBLANK(startDateFinale),
+			    DATEDIFF(startDateFinale, TODAY(), DAY),
+			    BLANK()
+			)
+			```
+		formatString: 0
+		displayFolder: Grafico 1
+		lineageTag: 55f091d2-740f-4471-8d70-7c8275a0dfcb
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Issue name' =
+			
+			LOOKUPVALUE(
+			    'Jira Business Feature 2'[Issue Name],
+			    'Jira Business Feature 2'[Issue key], 'BF Transition Status'[issue_key]
+			)
+		lineageTag: c67ea424-c7f6-4a90-b9f1-0bbe193edd2c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Journey Status' = IF ([Somma dei tempi nello stato BF], [Somma dei tempi nello stato BF], 0)
+		formatString: 0
+		displayFolder: Grafico 2
+		lineageTag: d4c28a08-d609-4457-a2da-49adbe18e9b8
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrdineFrom =
+			
+			LOOKUPVALUE(
+			    'Workflow Fasi BF Journey 2'[OrdineFase],
+			    'Workflow Fasi BF Journey 2'[Status], 'BF Transition Status'[from_status]
+			)
+		formatString: 0
+		displayFolder: Grafico 3
+		lineageTag: 35f5f316-7caf-49d1-ad0a-2688e7a588fc
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsRework =
+			
+			IF(
+			    NOT ISBLANK('BF Transition Status'[OrdineFrom])
+			    && NOT ISBLANK('BF Transition Status'[OrdineTo])
+			    && 'BF Transition Status'[OrdineTo] < 'BF Transition Status'[OrdineFrom],
+			    1, 0
+			)
+		displayFolder: Grafico 3
+		lineageTag: 2256a2e5-b9e8-4887-b78b-9b38751efdc7
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrdineTo =
+			
+			LOOKUPVALUE(
+			    'Workflow Fasi BF Journey 2'[OrdineFase],
+			    'Workflow Fasi BF Journey 2'[Status], 'BF Transition Status'[to_status]
+			)
+		formatString: 0
+		displayFolder: Grafico 3
+		lineageTag: 3b7cea4a-6d5e-4d17-80d4-d49f4154083f
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Giorni Rework' =
+			
+			VAR DataUscita = [Data Uscita Rework BF]
+			VAR DataIngresso = 'BF Transition Status'[transition_date]
+			RETURN
+			IF(
+			    ISBLANK(DataUscita),
+			    BLANK(),
+			    DATEDIFF(DataIngresso, DataUscita, DAY)
+			)
+		formatString: 0
+		displayFolder: Grafico 3
+		lineageTag: 2726fc56-f0c5-4663-aa59-c5824f48184f
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'BF Transition Status' = calculated
+		mode: import
+		source = FILTER('Jira Change Status IE FD MBI BF', 'Jira Change Status IE FD MBI BF'[issue_type] = "Business Feature")
+
+	annotation PBI_Id = 42bde855f8de4fb09b95199d68d42de4
+

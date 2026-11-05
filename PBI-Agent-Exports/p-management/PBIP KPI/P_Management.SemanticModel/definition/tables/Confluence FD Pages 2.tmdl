@@ -1,0 +1,31 @@
+table 'Confluence FD Pages 2'
+	lineageTag: f074292f-8aed-44cc-bfb3-a0727d4ce5e1
+	sourceLineageTag: d56e2221-f35c-4211-b75d-f4bcdef20d89
+
+	column pageid
+		dataType: int64
+		formatString: 0
+		lineageTag: 1fcd02d4-3d1c-48f1-895b-19af3d1f983c
+		sourceLineageTag: 9eaef8ac-cad2-4d8c-948c-cd6bc25d41d8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: pageid
+
+		annotation SummarizationSetBy = User
+
+	column issue_key
+		dataType: string
+		lineageTag: 6b1e9b6a-f614-4b9d-b83a-714f7e8e142f
+		sourceLineageTag: cf039584-1c44-405b-9371-8b8d36779e56
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_key
+
+		annotation SummarizationSetBy = User
+
+	partition 'Confluence FD Pages 2' = entity
+		mode: directQuery
+		source
+			entityName: Confluence FD Pages
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab 2'
+

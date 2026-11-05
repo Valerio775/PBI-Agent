@@ -1,0 +1,171 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "770ede04055d188a16a2",
+  "position": {
+    "x": 1195.3596287703017,
+    "y": 215.31322505800463,
+    "z": 11000,
+    "height": 470.71925754060322,
+    "width": 619.21113689095125,
+    "tabOrder": 9000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "TEST Issue MBI"
+                        }
+                      },
+                      "Property": "issue_key"
+                    }
+                  },
+                  "Function": 2
+                }
+              },
+              "queryRef": "Count(Verifica Soggiorni Tech Evaluation.issue_key)",
+              "nativeQueryRef": "Conteggio di issue_key"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "TEST Issue MBI"
+                    }
+                  },
+                  "Property": "issue_key"
+                }
+              },
+              "queryRef": "Verifica Soggiorni Tech Evaluation.issue_key",
+              "nativeQueryRef": "issue_key"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "TEST Issue MBI"
+                    }
+                  },
+                  "Property": "data_entrata"
+                }
+              },
+              "queryRef": "Verifica Finale Soggiorni.data_entrata",
+              "nativeQueryRef": "data_entrata"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "TEST Issue MBI"
+                    }
+                  },
+                  "Property": "giorni_soggiorno"
+                }
+              },
+              "queryRef": "Sum(Verifica Soggiorni Tech Evaluation.giorni_soggiorno)",
+              "nativeQueryRef": "giorni_soggiorno"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Test'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "b08163926067d506644e",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "TEST Issue MBI"
+              }
+            },
+            "Property": "data_entrata"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "20d51b71bc5e45a8f45a",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "TEST Issue MBI"
+              }
+            },
+            "Property": "giorni_soggiorno"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b0c4d192737e35ecf3f8",
+        "ordinal": 2,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "TEST Issue MBI"
+              }
+            },
+            "Property": "issue_key"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "2b74195d5f64c2a0850b",
+        "ordinal": 3,
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "TEST Issue MBI"
+                  }
+                },
+                "Property": "issue_key"
+              }
+            },
+            "Function": 2
+          }
+        },
+        "type": "Advanced"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  },
+  "isHidden": true
+}

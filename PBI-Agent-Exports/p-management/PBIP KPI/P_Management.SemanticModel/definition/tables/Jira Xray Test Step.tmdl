@@ -1,0 +1,74 @@
+table 'Jira Xray Test Step'
+	lineageTag: 4acb4483-3ed7-4d5b-9841-986823af6c73
+	sourceLineageTag: d8c8c926-4a2b-428d-849a-355456f17626
+
+	column test_step_id
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: cfd510e7-d610-490d-8441-af9226568304
+		sourceLineageTag: 5927c6f9-0984-4941-aa7e-7fd22df3b6e3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: test_step_id
+
+		annotation SummarizationSetBy = User
+
+	column test_version_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 677174a7-0e15-4491-a462-3a62b5b786da
+		sourceLineageTag: 8cf2026c-940d-4fd2-b13b-ae43493aa88b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: test_version_id
+
+		annotation SummarizationSetBy = User
+
+	column step_index
+		dataType: int64
+		formatString: 0
+		lineageTag: 794c9bb3-b773-4e4a-94a4-5938ed52d4c9
+		sourceLineageTag: 38633a9a-1050-4ff8-86b0-826843574f99
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: step_index
+
+		annotation SummarizationSetBy = User
+
+	column step
+		dataType: string
+		lineageTag: 8162b606-0183-48bf-b8d4-46211e54d2f5
+		sourceLineageTag: 865c3fcb-9703-468f-8b83-eb8a88e3e9d3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: step
+
+		annotation SummarizationSetBy = User
+
+	column data
+		dataType: string
+		lineageTag: 2482436e-c618-466e-bf73-2160955910c2
+		sourceLineageTag: 880f6837-72d6-42d4-b722-29bb6bf4b62f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: data
+
+		annotation SummarizationSetBy = User
+
+	column expected_result
+		dataType: string
+		lineageTag: 45f4c1d7-9e5b-4750-b4f4-a20d91554205
+		sourceLineageTag: 9477c09e-8a06-40fd-a17f-96f3f50c94be
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: expected_result
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira Xray Test Step' = entity
+		mode: directQuery
+		source
+			entityName: Jira Xray Test Step
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

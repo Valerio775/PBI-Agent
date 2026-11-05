@@ -1,0 +1,71 @@
+table 'Workflow Fasi IE Semplificate'
+	lineageTag: 82987663-feed-4898-9465-15f7c1caca69
+
+	column Status
+		lineageTag: afc67532-77c4-428b-87b4-971e502835fe
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status]
+		sortByColumn: OrdineBarra
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status Numerato'
+		lineageTag: 31a90d01-9bb9-4d8b-8f0f-34c9abcd42dc
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status Numerato]
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrdineFase
+		formatString: 0
+		lineageTag: 4f3e9b93-07f9-411d-838d-1144d16fd779
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [OrdineFase]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status Tradotto'
+		lineageTag: 2cc9c10d-b752-4e04-a243-571a0ec1fa93
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status Tradotto]
+		sortByColumn: 'Status Numerato'
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrdineBarra
+		formatString: 0
+		lineageTag: 02e03574-7bf4-4248-8caf-ff0512a2702d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [OrdineBarra]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Workflow Fasi IE Semplificate' = calculated
+		mode: import
+		source = ```
+				
+				DATATABLE (
+				    "Status", STRING,
+				    "Status Numerato", STRING,
+				    "OrdineFase", INTEGER,
+				    "Status Tradotto", STRING,
+				    "OrdineBarra", INTEGER,
+				    {
+				        { "Open", "1. Ingaggio Delivery Unit", 1, "1. Ingaggio Delivery Unit", 1},
+				
+				        { "Check Estimation", "2. Redazione HLD & Stime", 2 , "2. Redazione HLD & Stime", 2},
+				        { "Waiting for Estimate", "2. Redazione HLD & Stime", 2 , "2. Redazione HLD & Stime", 3},
+				        
+				        { "Estimation Approval", "3. IC DU markup", 3, "3. IC DU markup", 4},
+				        { "Done", "3. IC DU markup", 3, "3. IC DU markup", 5}
+				    }
+				)
+				```
+
+	annotation PBI_Id = 76809675331c42a0b4d0a2d4ecab2e3c
+

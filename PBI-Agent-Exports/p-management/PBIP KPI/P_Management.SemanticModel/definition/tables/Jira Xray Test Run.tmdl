@@ -1,0 +1,143 @@
+table 'Jira Xray Test Run'
+	lineageTag: 2047e1e7-d4b8-4173-9bf0-fd19e15320c3
+	sourceLineageTag: 03550863-ce3e-4644-8c7e-6470b16ffeb8
+
+	column test_run_id
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: bdf2e322-d18b-474d-9b2b-d2c54916bea1
+		sourceLineageTag: 528b6da8-735d-4dac-9a50-f8c78688933e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: test_run_id
+
+		annotation SummarizationSetBy = User
+
+	column test_issue_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 79c111d2-4a05-4ab4-a3d0-560ec271404a
+		sourceLineageTag: 221e20af-83e6-4174-94ff-cc14b658aee4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: test_issue_id
+
+		annotation SummarizationSetBy = User
+
+	column test_execution_id
+		dataType: int64
+		formatString: 0
+		lineageTag: d6868979-5a02-4867-87f8-cf6ae42db119
+		sourceLineageTag: 39b62bf2-37f1-4f33-ad61-6519ca5eeec0
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: test_execution_id
+
+		annotation SummarizationSetBy = User
+
+	column test_version_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 85f66cab-5af6-45be-b487-5072d1884d50
+		sourceLineageTag: 9f52644f-76d7-4b70-883b-ccb0ba62bd18
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: test_version_id
+
+		annotation SummarizationSetBy = User
+
+	column run_status
+		dataType: string
+		lineageTag: 5d6fafb1-052a-483d-8f4d-88e1575f6239
+		sourceLineageTag: fb60a2e5-84ba-4239-9cac-f9fdfaec0a68
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: run_status
+
+		annotation SummarizationSetBy = User
+
+	column created_date
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 1f8fe37f-1105-4fca-840e-c78391d235ab
+		sourceLineageTag: 6b6fa334-9713-4804-9273-869776319363
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: created_date
+
+		variation Variazione
+			isDefault
+			relationship: b9690fda-a0dd-4ccf-82c6-ffd723368611
+			defaultHierarchy: LocalDateTable_ab5859fb-9601-4b45-b69a-a64ffc72ba73.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column start_date
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 6f327d21-53e6-4140-b02f-369945068891
+		sourceLineageTag: 690c4803-ecb2-4acb-a7e2-671a63542eab
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: start_date
+
+		variation Variazione
+			isDefault
+			relationship: 63450b30-5a80-47de-a1b2-5cddeec4450e
+			defaultHierarchy: LocalDateTable_0e9c0176-bada-4904-893c-83692b490b34.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column finish_date
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 54b65383-458b-41e6-b7f1-99f23854d665
+		sourceLineageTag: 73f5bbfb-be1f-4795-aafc-936c7061c8ed
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: finish_date
+
+		variation Variazione
+			isDefault
+			relationship: 4ceabec4-c493-4879-bae1-ed44f5221bc6
+			defaultHierarchy: LocalDateTable_258ec1fe-8518-43da-97fd-54152c5c601e.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column assignee
+		dataType: string
+		lineageTag: 574451ab-848f-4277-a309-a4d88c6999b2
+		sourceLineageTag: 6e943727-a703-4274-aec7-b6167d0aec24
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: assignee
+
+		annotation SummarizationSetBy = User
+
+	column user_name
+		dataType: string
+		lineageTag: 3cf8d5e6-64ae-433d-a91d-cb3fbab0f722
+		sourceLineageTag: 095f33d6-920f-42fe-8236-5dd713136cde
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: user_name
+
+		annotation SummarizationSetBy = User
+
+	column final_status
+		dataType: string
+		lineageTag: c303c6ae-b233-4558-be78-09e85615b0ef
+		sourceLineageTag: 20ee11a7-2d6f-421f-872b-796ed92bdfd5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: final_status
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira Xray Test Run' = entity
+		mode: directQuery
+		source
+			entityName: Jira Xray Test Run
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

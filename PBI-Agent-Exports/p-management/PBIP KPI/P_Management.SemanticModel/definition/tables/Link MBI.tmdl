@@ -1,0 +1,54 @@
+table 'Link MBI'
+	lineageTag: a3daf479-113e-42a6-b8dd-e823c49fdd17
+
+	column pageid
+		lineageTag: 75550699-650d-4f72-88c1-a08f14c3842f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Confluence Comala Issue Link[pageid]
+
+		annotation SummarizationSetBy = Automatic
+
+	column issue_key
+		lineageTag: 4fd0e4fc-7344-4124-9936-09719fc029c9
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Confluence Comala Issue Link[issue_key]
+
+		annotation SummarizationSetBy = Automatic
+
+	column issue_type
+		lineageTag: 5efba861-9321-4ffa-a050-af51cccab425
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Confluence Comala Issue Link[issue_type]
+
+		annotation SummarizationSetBy = Automatic
+
+	column workflow_name
+		lineageTag: a257d721-1b9e-4dfc-b061-38c46f4329cb
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Confluence Comala Issue Link[workflow_name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column confluence_labels
+		lineageTag: ba0db2d3-05ab-49bd-9769-f1ee6ac99b79
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Confluence Comala Issue Link[confluence_labels]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Link MBI' = calculated
+		mode: import
+		source =
+				
+				FILTER(
+				    'Confluence Comala Issue Link',
+				    'Confluence Comala Issue Link'[issue_type] = "Macro Business Initiative"
+				)
+
+	annotation PBI_Id = 39f1c86a251a4bea85e283236e4bfeaa
+

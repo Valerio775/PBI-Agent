@@ -1,0 +1,50 @@
+table 'Jira Xray JOIN BF APM TESTUAT DEFECT NEW 4'
+	lineageTag: 95a1a93f-8e8f-44bf-b143-f801e5d3bc87
+	sourceLineageTag: 6279f1e7-a408-40f4-a536-6d5e906de18e
+
+	column APM
+		dataType: string
+		lineageTag: a5ea0112-1b03-4c63-82bd-9b97b39f490c
+		sourceLineageTag: 604dfc07-1ac9-46df-b405-05e4e29c847a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: APM
+
+		annotation SummarizationSetBy = User
+
+	column 'Business Feature'
+		dataType: string
+		lineageTag: 75056658-0a1a-45cf-8cd3-748a7e82328b
+		sourceLineageTag: 94f93810-37ca-4790-88de-c25494e1902d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Business Feature
+
+		annotation SummarizationSetBy = User
+
+	column Test
+		dataType: string
+		lineageTag: 936d5ca3-1088-4277-92b5-07f225008b3d
+		sourceLineageTag: 8771fcfa-5393-4151-a71b-5432dd6b2f66
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Test
+
+		annotation SummarizationSetBy = User
+
+	column Defect
+		dataType: string
+		lineageTag: 96ddb430-9db8-43a2-979d-b965f961f875
+		sourceLineageTag: 910f68e7-e4d2-4534-a82e-8e511c153209
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Defect
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira Xray JOIN BF APM TESTUAT DEFECT NEW 4' = entity
+		mode: directQuery
+		source
+			entityName: Jira Xray JOIN BF APM TESTUAT DEFECT NEW
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab 3'
+

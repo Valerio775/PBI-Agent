@@ -1,0 +1,120 @@
+table 'Jira Change Status IE FD MBI BF'
+	lineageTag: 318861a0-91c1-462d-8349-3fa316076ff2
+	sourceLineageTag: e2fd9f14-b8e0-465a-a8bb-7e03d6e39f99
+
+	column issue_key
+		dataType: string
+		lineageTag: 5a8d745b-d25f-4e8b-907e-b302d1df3de5
+		sourceLineageTag: bb287f20-da4d-4a3a-95e4-7adc04990b27
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_key
+
+		annotation SummarizationSetBy = User
+
+	column issue_type
+		dataType: string
+		lineageTag: cb0db22a-2386-4050-a7c4-e28bfb76ca26
+		sourceLineageTag: dff9386a-535f-435b-ab53-3ccf39b7ee18
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_type
+
+		annotation SummarizationSetBy = User
+
+	column transition_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 644b4112-99ae-43b6-92ab-6d309a9a515e
+		sourceLineageTag: c4d7299d-ea0c-4238-9fcc-69e6a857e769
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: transition_date
+
+		variation Variazione
+			isDefault
+			relationship: 01cec6f3-51f8-408c-b06f-db196dd7d28d
+			defaultHierarchy: LocalDateTable_2fa499d7-3c9d-42b8-a2f0-29161f2306f8.'Gerarchia data'
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = User
+
+	column from_status
+		dataType: string
+		lineageTag: ddc8d732-3816-4e2c-ba49-891b15650b00
+		sourceLineageTag: 138a796f-1c42-4d02-96a9-d32c19f935cc
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: from_status
+
+		annotation SummarizationSetBy = User
+
+	column to_status
+		dataType: string
+		lineageTag: 969dc32d-4c2f-4852-9c63-ca1460dc56c0
+		sourceLineageTag: 47b32366-3356-4c24-909e-64b9f1210d70
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: to_status
+
+		annotation SummarizationSetBy = User
+
+	column username
+		dataType: string
+		lineageTag: c02a908f-c731-4478-b7e6-ce3b24ff40a7
+		sourceLineageTag: 23f6e8f3-010a-459a-a6ae-50aa1c28dcd5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: username
+
+		annotation SummarizationSetBy = User
+
+	column display_name
+		dataType: string
+		lineageTag: 3aed23bb-3b20-4d1f-8f0c-7a18be5024bf
+		sourceLineageTag: 7e40f27b-eb0f-4c05-9aa3-c15e442ed5d5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: display_name
+
+		annotation SummarizationSetBy = User
+
+	column 'Giorni da In Progress a Completed' = ```
+			
+			VAR StartDate =
+			    CALCULATE (
+			        MAX ( 'Jira Change Status IE FD MBI BF'[transition_date] ),
+			        ALLEXCEPT (
+			            'Jira Change Status IE FD MBI BF',
+			            'Jira Change Status IE FD MBI BF'[issue_key]
+			        ),
+			        'Jira Change Status IE FD MBI BF'[to_status] = "Open"
+			    )
+			 
+			RETURN
+			IF (
+			    'Jira Change Status IE FD MBI BF'[to_status] = "High-Level Functional Requirement"
+			        && NOT ISBLANK ( StartDate ),
+			    'Jira Change Status IE FD MBI BF'[transition_date] - StartDate,
+			    BLANK ()
+			)
+			```
+		dataType: int64
+		lineageTag: 75eb1427-9c94-48c1-8cd4-bd11f84607c0
+		summarizeBy: sum
+
+		changedProperty = Name
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Jira Change Status IE FD MBI BF' = entity
+		mode: directQuery
+		source
+			entityName: Jira Change Status IE FD MBI BF
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

@@ -1,0 +1,47 @@
+table 'Workflow Fasi Epic Journey'
+	lineageTag: fbb4b44c-d7ed-45a7-9c34-e5216054d44d
+
+	column Status
+		lineageTag: 40c088f0-1731-4684-9f0c-ebf4e1988a5c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status]
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrdineFase
+		formatString: 0
+		lineageTag: c2951726-99e6-4563-82cb-2e19c8adc504
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [OrdineFase]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status Tradotto'
+		lineageTag: 75e56c52-9b64-4a30-bf43-900da73b2df7
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status Tradotto]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Workflow Fasi Epic Journey' = calculated
+		mode: import
+		source = ```
+				
+				DATATABLE (
+				    "Status", STRING,
+				    "OrdineFase", INTEGER,
+				    "Status Tradotto", STRING,
+				    {
+				        { "To Do", 1, "To Do" },
+				        { "In Progress", 2, "In Progress" },
+				        { "Done", 3, "Done" }
+				    }
+				)
+				
+				```
+
+	annotation PBI_Id = b35fec1853c049619c607eac6928ade1
+

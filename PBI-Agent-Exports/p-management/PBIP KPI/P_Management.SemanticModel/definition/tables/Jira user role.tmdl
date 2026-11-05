@@ -1,0 +1,46 @@
+table 'Jira user role'
+	lineageTag: fa99b3a4-b1a7-4d49-97f5-d13c26f7755e
+	sourceLineageTag: cee0e063-64f7-4db0-aa0b-71b3775d2f7b
+
+	measure 'Conteggio utenti ruolo valido' = EXTERNALMEASURE("Conteggio utenti ruolo valido", INTEGER, "DirectQuery in Analysis Services - SpringLab")
+		formatString: 0
+		lineageTag: 165858f9-ae64-44f8-8e68-c8a2a19f5c82
+		sourceLineageTag: c7b94383-5e85-46fb-892a-8cbe2eb4d838
+		dataCategory: Uncategorized
+
+	column project_key
+		dataType: string
+		lineageTag: 2a061385-b9b0-41f2-87f3-0698fcacdd9a
+		sourceLineageTag: 846714c8-7cef-4982-b9c1-4f64a4472c59
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: project_key
+
+		annotation SummarizationSetBy = User
+
+	column role_name
+		dataType: string
+		lineageTag: 77fd2b98-3511-417d-b12a-4c087927483b
+		sourceLineageTag: cb4de194-902e-404c-8098-d851906b9742
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: role_name
+
+		annotation SummarizationSetBy = User
+
+	column username
+		dataType: string
+		lineageTag: 3f6b0e67-ffb5-49a1-8f8d-8a5dcd6e2730
+		sourceLineageTag: 86529c63-6442-4782-8f30-f9bf6e207deb
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: username
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira user role' = entity
+		mode: directQuery
+		source
+			entityName: Jira user role
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

@@ -1,0 +1,66 @@
+table 'Last Data Sync'
+	lineageTag: d39c806f-cf53-492d-88ff-dd9c57e1bc14
+	sourceLineageTag: eecc94e1-f957-40bf-a893-75aa93be7044
+
+	column script_name
+		dataType: string
+		lineageTag: 26a78b1b-4706-47d2-9d6f-c88f43bbcf26
+		sourceLineageTag: c84f2b2f-4f61-4e43-a0a9-ba3b0b8570c4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: script_name
+
+		annotation SummarizationSetBy = User
+
+	column Last_data = LEFT('Last Data Sync'[finished_at], 10)
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: ef2ba1f6-c4b9-4e10-a211-1f578e2fca93
+		summarizeBy: none
+
+		changedProperty = Name
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+	column started_at
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: ea393a39-2fa7-45e1-957d-c386ec3a1214
+		sourceLineageTag: 447ddf8d-816a-47e1-ae83-3f3108768685
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: started_at
+
+		variation Variazione
+			isDefault
+			relationship: b464db9e-e57e-47bb-8799-bda748cfc246
+			defaultHierarchy: LocalDateTable_9bf91a9f-b7a4-4bb6-8e77-f47597ff8348.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column finished_at
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: d6b5c29c-68fe-459a-bd9a-ed88d715b4e2
+		sourceLineageTag: 417e9041-5641-4c9d-a978-a1757fff1629
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: finished_at
+
+		variation Variazione
+			isDefault
+			relationship: 8b85a639-1072-419d-8843-5f5ee1ced6f8
+			defaultHierarchy: LocalDateTable_9a4ce45a-a444-4a01-ae2a-6ed26f6e2dc6.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	partition 'Last Data Sync' = entity
+		mode: directQuery
+		source
+			entityName: Last Data Sync
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

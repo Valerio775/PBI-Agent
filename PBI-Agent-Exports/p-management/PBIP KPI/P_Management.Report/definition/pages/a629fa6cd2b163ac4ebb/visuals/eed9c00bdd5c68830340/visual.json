@@ -1,0 +1,456 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "eed9c00bdd5c68830340",
+  "position": {
+    "x": 19.5,
+    "y": 1001.75,
+    "z": 3000,
+    "height": 443.75,
+    "width": 1121.25,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "lineStackedColumnComboChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Workflow Fasi BF Journey Confluence 2"
+                    }
+                  },
+                  "Property": "Status Tradotto"
+                }
+              },
+              "queryRef": "Workflow Fasi BF Journey Confluence 2.Status Tradotto",
+              "nativeQueryRef": "Status Tradotto",
+              "active": true
+            }
+          ],
+          "showAll": true
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "BF Transition Status Confluence"
+                    }
+                  },
+                  "Property": "Conteggio Pass-Through BF Journey"
+                }
+              },
+              "queryRef": "BF Transition Status Confluence.Conteggio Pass-Through BF Journey",
+              "nativeQueryRef": "Volume",
+              "displayName": "Volume"
+            }
+          ]
+        },
+        "Y2": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "BF Transition Status Confluence"
+                    }
+                  },
+                  "Property": "Tempo Medio nello Stato BF Journey"
+                }
+              },
+              "queryRef": "BF Transition Status Confluence.Tempo Medio nello Stato BF Journey",
+              "nativeQueryRef": "Tempo Medio",
+              "displayName": "Tempo Medio"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "BF Transition Status"
+                  }
+                },
+                "Property": "Conteggio Pass-Through BF"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableValueDataLabel": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        },
+        {
+          "properties": {
+            "dynamicLabelValue": {
+              "expr": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Macro Business Initiative"
+                        }
+                      },
+                      "Property": "Issue key"
+                    }
+                  },
+                  "Function": 5
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "highlightMatching": 1
+          }
+        },
+        {
+          "properties": {
+            "dynamicLabelValue": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "BF Transition Status Confluence"
+                    }
+                  },
+                  "Property": "Conteggio Pass-Through BF Journey"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "BF Transition Status Confluence.Conteggio Pass-Through BF Journey",
+            "highlightMatching": 1
+          }
+        },
+        {
+          "properties": {
+            "dynamicLabelValue": {
+              "expr": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "BF Transition Status Confluence"
+                    }
+                  },
+                  "Property": "Tempo Medio nello Stato BF Journey"
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "BF Transition Status Confluence.Tempo Medio nello Stato BF Journey",
+            "highlightMatching": 1
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "secShow": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "secLogAxisScale": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "alignZeros": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "415e7dc413ac70c9f148",
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f6fea157d2bb19e8305d",
+        "ordinal": 0,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MBI Transition Status"
+              }
+            },
+            "Property": "Tempo Medio nello Stato"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "ffcab61d50431611ad40",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Business Feature"
+              }
+            },
+            "Property": "Issue Initiative Type"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "74be8b6b106743c477c6",
+        "ordinal": 2,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MBI Transition Status"
+              }
+            },
+            "Property": "Conteggio Pass-Through"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "27d755d0862ae52ee1ed",
+        "ordinal": 3,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "BF Transition Status Confluence"
+              }
+            },
+            "Property": "Tempo Medio nello Stato BF Journey"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "f195d2e37b042796837c",
+        "ordinal": 4,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Business Feature"
+              }
+            },
+            "Property": "Projectrak Project Status"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "1187d86c279f3d343919",
+        "ordinal": 5,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "BF Transition Status Confluence"
+              }
+            },
+            "Property": "Conteggio Pass-Through BF Journey"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "3b28648da5869fa9f702",
+        "ordinal": 6,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Workflow Fasi BF Journey Confluence 2"
+              }
+            },
+            "Property": "Status Tradotto"
+          }
+        },
+        "type": "Categorical",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

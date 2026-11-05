@@ -1,0 +1,47 @@
+table 'SD User Last Login'
+	lineageTag: 4778d43a-ca2b-4be6-a32e-709f1fcf5dda
+	sourceLineageTag: a0e067b4-efc0-4831-89bc-7026fa392c21
+
+	column tool
+		dataType: string
+		lineageTag: 734b470d-f342-44a1-a8c9-724c4e531982
+		sourceLineageTag: 02718011-3284-4f21-90ec-f2ed7387c3ad
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: tool
+
+		annotation SummarizationSetBy = User
+
+	column lower_user_name
+		dataType: string
+		isNullable: false
+		lineageTag: 4a15d071-9510-4361-b572-19fff8c1f32b
+		sourceLineageTag: fdc34f75-9583-45a1-9af9-aa7db704b715
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: lower_user_name
+
+		annotation SummarizationSetBy = User
+
+	column last_login
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 77ae9cb3-bf1c-4898-8e84-f17949588e32
+		sourceLineageTag: 72dc473a-04d1-40b3-8f80-8a99ab459fdd
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: last_login
+
+		variation Variazione
+			isDefault
+			relationship: 26083168-786f-4ba4-ae43-43da6c13780d
+			defaultHierarchy: LocalDateTable_5d25d181-5aed-4c36-a65f-4ce18867d4fb.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	partition 'SD User Last Login' = entity
+		mode: directQuery
+		source
+			entityName: SD User Last Login
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

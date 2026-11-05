@@ -1,0 +1,30 @@
+table 'Jira Xray Relation Internal Bug - Internal Test 2'
+	lineageTag: 94eba424-352a-4c39-8bf2-21aa555fe338
+	sourceLineageTag: 72daacad-26fb-4f98-939c-b4dfc17454d6
+
+	column internal_bug_key
+		dataType: string
+		lineageTag: 4e3443d0-8285-4d97-8469-8516ff779b06
+		sourceLineageTag: da259733-2ca1-40c2-9dd2-4faaac6d4591
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: internal_bug_key
+
+		annotation SummarizationSetBy = User
+
+	column internal_test_key
+		dataType: string
+		lineageTag: 894a7c7c-1f95-4f49-a399-35d59d0f12cc
+		sourceLineageTag: 9f8e565c-bdcd-4df8-b8f4-ce8fb9cf00aa
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: internal_test_key
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira Xray Relation Internal Bug - Internal Test 2' = entity
+		mode: directQuery
+		source
+			entityName: Jira Xray Relation Internal Bug - Internal Test
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab 2'
+

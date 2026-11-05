@@ -1,0 +1,41 @@
+table 'Bamboo Plan APM'
+	lineageTag: 3c46593b-f1fa-4efc-9262-7fef9076ae11
+	sourceLineageTag: 7907c1ac-f895-4e89-a3bf-f7c1c256bb8f
+
+	column plan_key
+		dataType: string
+		isNullable: false
+		lineageTag: a749093c-1bd2-4782-b2c6-5ba76f132a65
+		sourceLineageTag: 00916053-ca7e-4303-9f65-e30a990e8a91
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: plan_key
+
+		annotation SummarizationSetBy = User
+
+	column apm_name
+		dataType: string
+		lineageTag: d86cd8fa-03fe-48d1-9158-7564c90defcd
+		sourceLineageTag: 298f6b1b-ab4f-4e9a-ac8e-047d1115b414
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: apm_name
+
+		annotation SummarizationSetBy = User
+
+	column apm_code
+		dataType: string
+		lineageTag: 0214ca83-4d54-467d-9dbf-6d91c6acaf17
+		sourceLineageTag: 431e453a-ac99-4853-b96c-e2e14bc634aa
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: apm_code
+
+		annotation SummarizationSetBy = User
+
+	partition 'Bamboo Plan APM' = entity
+		mode: directQuery
+		source
+			entityName: Bamboo Plan APM
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

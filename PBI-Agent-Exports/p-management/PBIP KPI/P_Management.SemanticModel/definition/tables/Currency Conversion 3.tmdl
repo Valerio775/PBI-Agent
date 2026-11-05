@@ -1,0 +1,30 @@
+table 'Currency Conversion 3'
+	lineageTag: 3995bcdc-f6eb-493d-8cb3-84247cb31a0c
+	sourceLineageTag: ca665776-31df-493b-b50b-e9d7d895fa87
+
+	column Currency
+		dataType: string
+		lineageTag: 4678edb6-bf22-42f7-9e8f-8caae40f3a40
+		sourceLineageTag: e1fb2b12-e2e3-4d26-8104-342aa962a48f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = User
+
+	column RateToEUR
+		dataType: double
+		lineageTag: 6c99ee16-2b4d-4c7a-87cd-1a4d99a8e6de
+		sourceLineageTag: 330c12a0-0156-4d68-a104-88b65dcc9749
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: RateToEUR
+
+		annotation SummarizationSetBy = User
+
+	partition 'Currency Conversion 3' = entity
+		mode: directQuery
+		source
+			entityName: Currency Conversion
+			expressionSource: 'DirectQuery to AS - SpringLab'
+

@@ -1,0 +1,502 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "8aa1d076d0154a3266c1",
+  "position": {
+    "x": 1183.8971703355649,
+    "y": 104.39493611638864,
+    "z": 3000,
+    "height": 364.89795918367349,
+    "width": 641.63265306122446,
+    "tabOrder": 10000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MBI Transition Status"
+                    }
+                  },
+                  "Property": "Issue name"
+                }
+              },
+              "queryRef": "MBI Transition Status.Issue name",
+              "nativeQueryRef": "Issue name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MBI Transition Status"
+                    }
+                  },
+                  "Property": "issue_key"
+                }
+              },
+              "queryRef": "MBI Transition Status.issue_key",
+              "nativeQueryRef": "MBI Key",
+              "displayName": "MBI Key"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MBI Transition Status"
+                    }
+                  },
+                  "Property": "Data Ingresso Stato"
+                }
+              },
+              "queryRef": "MBI Transition Status.Data Ingresso Stato",
+              "nativeQueryRef": "Data Ingresso Stato"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MBI Transition Status"
+                    }
+                  },
+                  "Property": "Data Uscita Stato"
+                }
+              },
+              "queryRef": "MBI Transition Status.Data Uscita Stato",
+              "nativeQueryRef": "Data Uscita Stato"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "MBI Transition Status"
+                    }
+                  },
+                  "Property": "Journey Status"
+                }
+              },
+              "queryRef": "Sum(MBI Transition Status.Colonna 2)",
+              "nativeQueryRef": "(gg) Transazione",
+              "displayName": "(gg) Transazione"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Workflow Fasi MBI 2"
+                    }
+                  },
+                  "Property": "Status Tradotto"
+                }
+              },
+              "queryRef": "Workflow Fasi MBI 2.Status Tradotto",
+              "nativeQueryRef": "Current Status Jira IE",
+              "displayName": "Current Status Jira IE"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "MBI Transition Status"
+                  }
+                },
+                "Property": "Data Uscita Stato"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Arial'"
+                }
+              }
+            },
+            "backColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F3F9FF'"
+                    }
+                  }
+                }
+              }
+            },
+            "urlIcon": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Arial Black'''"
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#EBEBEB'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.6
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            },
+            "rowPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "6D"
+                }
+              }
+            },
+            "outlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#C4C4C4'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(MBI Transition Status.Colonna 2)"
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "155.0270154020885D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Sum(MBI Transition Status.Colonna 2)"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "468.7696849839266D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "MBI Transition Status.Issue name"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "ea989e0907bb817562c4",
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "df25f030c76210684cae",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MBI Transition Status"
+              }
+            },
+            "Property": "issue_key"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "5f6ba4a4c6b4e63cd50b",
+        "ordinal": 1,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MBI Transition Status"
+              }
+            },
+            "Property": "Data Ingresso Stato"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4b927abc2c7491ba373d",
+        "ordinal": 2,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MBI Transition Status"
+              }
+            },
+            "Property": "Data Uscita Stato"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "m",
+              "Entity": "MBI Transition Status",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "Comparison": {
+                      "ComparisonKind": 0,
+                      "Left": {
+                        "Measure": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "m"
+                            }
+                          },
+                          "Property": "Data Uscita Stato"
+                        }
+                      },
+                      "Right": {
+                        "Literal": {
+                          "Value": "null"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "2581d882d96723e79cb0",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Workflow Fasi MBI 2"
+              }
+            },
+            "Property": "Status Tradotto"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "748a6132d95d905414bb",
+        "ordinal": 4,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Macro Business Initiative"
+              }
+            },
+            "Property": "Projectrak Project Status"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "j",
+              "Entity": "Jira Macro Business Initiative",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "j"
+                              }
+                            },
+                            "Property": "Projectrak Project Status"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Demo Project'"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "50e4f1dc13707ec63731",
+        "ordinal": 5,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MBI Transition Status"
+              }
+            },
+            "Property": "Journey Status"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "d25c1c7d6252518c822d",
+        "ordinal": 6,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "MBI Transition Status"
+              }
+            },
+            "Property": "Issue name"
+          }
+        },
+        "type": "Categorical"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

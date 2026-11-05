@@ -1,0 +1,77 @@
+table 'Jira MBI Document State Transition 3'
+	lineageTag: a0472466-aa10-4776-a71d-ead87b3e413a
+	sourceLineageTag: 4f681b0e-10ad-4b9f-880e-2302ea50de74
+
+	column issue_key
+		dataType: string
+		lineageTag: aef377b8-ab50-4f7e-b2ab-4b93ab5a42ba
+		sourceLineageTag: fd56d799-9671-476c-bfab-192028d23cc1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_key
+
+		annotation SummarizationSetBy = User
+
+	column pageid
+		dataType: int64
+		formatString: 0
+		lineageTag: 61b1035d-9872-49af-a554-2effddc5fe6b
+		sourceLineageTag: a84a7464-09b4-4afc-9f26-4f99dca44fb5
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: pageid
+
+		annotation SummarizationSetBy = User
+
+	column username
+		dataType: string
+		lineageTag: cf4695e9-6d91-4fa5-8994-165a23275e2d
+		sourceLineageTag: 7fdeb83a-24b6-4ea5-ba0b-f3e3e59be074
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: username
+
+		annotation SummarizationSetBy = User
+
+	column action_subtype
+		dataType: string
+		lineageTag: 3f38c35b-671a-4860-8a4c-7601d1c74efb
+		sourceLineageTag: 2757c09d-41dd-48c3-aee4-83ac22235c54
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: action_subtype
+
+		annotation SummarizationSetBy = User
+
+	column state_name
+		dataType: string
+		lineageTag: 7b34bc24-31ae-4290-a959-067adf75230f
+		sourceLineageTag: 7a767525-6380-471b-9ae9-7b18919f991d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: state_name
+
+		annotation SummarizationSetBy = User
+
+	column real_date
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: fca21eb9-6bd8-43d1-b2d5-220c5d8c6f9e
+		sourceLineageTag: 6c3298ba-d7c3-4c82-9457-e248046d4184
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: real_date
+
+		variation Variazione
+			isDefault
+			relationship: 30995a0c-9aa0-4885-91ee-b1864d3b04f6
+			defaultHierarchy: 'LocalDateTable_74bf8db7-c0c4-4703-a5e9-07febd1c7452 3'.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira MBI Document State Transition 3' = entity
+		mode: directQuery
+		source
+			entityName: Jira MBI Document State Transition
+			expressionSource: 'DirectQuery to AS - SpringLab'
+

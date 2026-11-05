@@ -1,0 +1,748 @@
+table APM
+	lineageTag: 950e2b03-2e48-43a5-9e7e-ed4f7abacefd
+	sourceLineageTag: 8287ddf2-6da6-41ca-b3cd-8147eb82c11b
+
+	measure APM_Exist_Count = EXTERNALMEASURE("APM_Exist_Count", INTEGER, "DirectQuery in Analysis Services - SpringLab")
+		formatString: 0
+		lineageTag: f0316967-495d-4561-9ebf-9953584f9702
+		sourceLineageTag: 34d99474-d63c-4d89-b8f7-7fb19979b6ca
+		dataCategory: Uncategorized
+
+	measure 'Media Smartflow Code' = EXTERNALMEASURE("Media Smartflow Code", DOUBLE, "DirectQuery in Analysis Services - SpringLab")
+		lineageTag: 13a8a368-630e-4d51-ae13-25a68b72fef3
+		sourceLineageTag: f3c3ff49-770e-47cd-ae2a-7274c63846df
+		dataCategory: Uncategorized
+
+	column Key
+		dataType: string
+		lineageTag: bf30b042-056b-49a7-b198-17baf9c36932
+		sourceLineageTag: 70155290-b0d5-4dbb-8d92-2c4692d36cf3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Key
+
+		annotation SummarizationSetBy = User
+
+	column 'APM Code'
+		dataType: string
+		isNullable: false
+		lineageTag: a4f6616f-2ee9-43d5-bce1-df576c1ab55c
+		sourceLineageTag: a109efaf-8a45-4693-9276-299d632b8986
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: APM Code
+
+		annotation SummarizationSetBy = User
+
+	column Created
+		dataType: string
+		lineageTag: da365102-28b4-44a0-a1db-789dedc9514b
+		sourceLineageTag: 8a4603fa-a425-4a32-a051-ce069bd49488
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Created
+
+		annotation SummarizationSetBy = User
+
+	column Updated
+		dataType: string
+		lineageTag: eeacefa0-93dd-46eb-9a64-e1326f026e20
+		sourceLineageTag: 06037fe1-776e-42f8-aa2e-24b145ad8108
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Updated
+
+		annotation SummarizationSetBy = User
+
+	column CHECK_STATUS
+		dataType: string
+		lineageTag: 9e62210a-6246-4b3f-b87f-c301e25df421
+		sourceLineageTag: 93c83963-c66f-481d-b351-43a53cb5e137
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CHECK_STATUS
+
+		annotation SummarizationSetBy = User
+
+	column STATUS
+		dataType: string
+		lineageTag: 5dae4f48-4621-43fb-939d-4eed6f94c728
+		sourceLineageTag: 733d30d8-bfaa-4ae6-9db8-b93a291bf74f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: STATUS
+
+		annotation SummarizationSetBy = User
+
+	column ICT_ONE
+		dataType: string
+		lineageTag: ff547d02-6f09-4573-bf7a-58d33147f988
+		sourceLineageTag: ceeb7c16-5626-4eee-b8e9-d0393132d792
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ICT_ONE
+
+		annotation SummarizationSetBy = User
+
+	column 'APM Name'
+		dataType: string
+		lineageTag: 094da325-3847-4ec5-a411-a9a24ef7fc75
+		sourceLineageTag: 8f51a183-6be4-4bae-8a8a-8e9505d7327e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: APM Name
+
+		annotation SummarizationSetBy = User
+
+	column TECH_MANAGER
+		dataType: string
+		lineageTag: 56e8419b-c551-4db6-8607-608bcafe1084
+		sourceLineageTag: 3d939f29-d12d-478b-9f47-f614ba5fb1a3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TECH_MANAGER
+
+		annotation SummarizationSetBy = User
+
+	column LIFECYCLE_STATUS
+		dataType: string
+		lineageTag: 8777eed4-94d0-4030-886c-cc19758264c6
+		sourceLineageTag: 9a561a87-f417-4175-bd2b-f4ab6559422e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: LIFECYCLE_STATUS
+
+		annotation SummarizationSetBy = User
+
+	column COUNTRY
+		dataType: string
+		lineageTag: 2c13eb68-7fc8-4454-9e6c-40f792704109
+		sourceLineageTag: 9eb6569f-8640-48b2-9cd4-6c8489af6d70
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: COUNTRY
+
+		annotation SummarizationSetBy = User
+
+	column GDPR_RELEVANT
+		dataType: string
+		lineageTag: 705dd9bd-4648-4a77-ba25-f5f9789bf972
+		sourceLineageTag: e2b668f3-532b-4275-9ab2-8bbf81e74788
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GDPR_RELEVANT
+
+		annotation SummarizationSetBy = User
+
+	column GOLD_STATUS
+		dataType: string
+		lineageTag: 38025cb9-a596-474e-8e54-7922ba225390
+		sourceLineageTag: ef8a006d-9f0f-42f2-aa37-9e6764d3f26a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GOLD_STATUS
+
+		annotation SummarizationSetBy = User
+
+	column ICFR_RELEVANT
+		dataType: string
+		lineageTag: f21d1344-4402-4480-b4f7-afdc449ac305
+		sourceLineageTag: a6ebc75e-d97c-44fb-a6c0-bcc92a54c0ec
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ICFR_RELEVANT
+
+		annotation SummarizationSetBy = User
+
+	column RESPONDENT
+		dataType: string
+		lineageTag: d7e53e50-5ec0-482b-b39f-99987b30d5df
+		sourceLineageTag: 517f7839-0067-4b4b-b755-d397f4ed7434
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: RESPONDENT
+
+		annotation SummarizationSetBy = User
+
+	column REPL_OR_NEW
+		dataType: string
+		lineageTag: f5a3da74-eef9-44e5-aab4-928f9abff160
+		sourceLineageTag: d33edcb2-9c0c-44db-8bcf-2bed2a473017
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: REPL_OR_NEW
+
+		annotation SummarizationSetBy = User
+
+	column SHORT_DESCR
+		dataType: string
+		lineageTag: f158e941-61d4-4d94-8300-e0b175690477
+		sourceLineageTag: fde7b77c-345f-46ee-a173-48f7c78714d5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: SHORT_DESCR
+
+		annotation SummarizationSetBy = User
+
+	column APM_LOCATION
+		dataType: string
+		lineageTag: eb4858c7-12df-484c-a8ad-bff1a4cfc0a2
+		sourceLineageTag: 9fcc5614-624f-4194-9c79-fcc330660ba8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: APM_LOCATION
+
+		annotation SummarizationSetBy = User
+
+	column APM_MANAGED_BY
+		dataType: string
+		lineageTag: ca168106-241f-426b-bcc6-0e13299eacd7
+		sourceLineageTag: 16a99165-dc75-46c9-a463-15328b62087a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: APM_MANAGED_BY
+
+		annotation SummarizationSetBy = User
+
+	column APPL_MODE
+		dataType: string
+		lineageTag: 9fd4845e-bd8c-42f1-9c49-60b08bc9f9a6
+		sourceLineageTag: 132ea99c-cc95-4144-b711-018b4e4325a2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: APPL_MODE
+
+		annotation SummarizationSetBy = User
+
+	column FAKE_MODULE
+		dataType: string
+		lineageTag: ec2fba43-6900-4cd5-85ad-973b44283632
+		sourceLineageTag: ee80f600-17af-4cee-a750-4649e1da2bf7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: FAKE_MODULE
+
+		annotation SummarizationSetBy = User
+
+	column 'GDS Line'
+		dataType: string
+		lineageTag: 1cc32555-8184-4e0f-ae0b-8528847ebeb1
+		sourceLineageTag: dd2c5042-a0d3-48e0-8132-8f822eefd478
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GDS Line
+
+		annotation SummarizationSetBy = User
+
+	column TECHNICAL_MODULE
+		dataType: string
+		lineageTag: 71dc5f95-082d-4785-b9e1-56cd6271a172
+		sourceLineageTag: 0abfe5e1-4e77-4588-bb98-339cc1b74491
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TECHNICAL_MODULE
+
+		annotation SummarizationSetBy = User
+
+	column 'Last Job Execution'
+		dataType: string
+		lineageTag: 517270ef-655f-4afa-81bd-e6d6d4ac5774
+		sourceLineageTag: 1e0adfe6-2b03-43e8-8ad4-b2dd907a31a7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Last Job Execution
+
+		annotation SummarizationSetBy = User
+
+	column MANAGED_BY_DF
+		dataType: string
+		lineageTag: 9f0b0fb1-b2cb-465c-9610-6d3a5f44d4ab
+		sourceLineageTag: bf043889-f605-4523-8594-a3533bfa277c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: MANAGED_BY_DF
+
+		annotation SummarizationSetBy = User
+
+	column DE_LEVEL_1
+		dataType: string
+		lineageTag: 0c7e7997-0f6d-4834-ae66-7b956b4c9419
+		sourceLineageTag: d786f550-685b-43f7-a5fc-077ad3b0fd09
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DE_LEVEL_1
+
+		annotation SummarizationSetBy = User
+
+	column DE_LEVEL_2
+		dataType: string
+		lineageTag: 124db468-5b68-4224-b11d-841fd9d2cd4b
+		sourceLineageTag: 103dcaba-d422-4de1-a795-1fb282b90600
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DE_LEVEL_2
+
+		annotation SummarizationSetBy = User
+
+	column SYSTEM_MANAGER
+		dataType: string
+		lineageTag: cd442388-7599-477f-9098-df30d44e96a5
+		sourceLineageTag: 0357c768-6a0c-4704-b13c-3426e958b84b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: SYSTEM_MANAGER
+
+		annotation SummarizationSetBy = User
+
+	column ICT_DEVELOPMENT
+		dataType: string
+		lineageTag: 4033568c-6ced-4739-89e6-6f410ead9d4d
+		sourceLineageTag: 94cbb3b3-a449-4fae-9e79-b3178142f6db
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ICT_DEVELOPMENT
+
+		annotation SummarizationSetBy = User
+
+	column DE_LEVEL_1_STRING
+		dataType: string
+		lineageTag: dbf67519-a4cf-47f9-9f01-c7447f74c795
+		sourceLineageTag: 7d73f06c-a6be-4340-ae09-7db44659ec18
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DE_LEVEL_1_STRING
+
+		annotation SummarizationSetBy = User
+
+	column DE_LEVEL_2_STRING
+		dataType: string
+		lineageTag: 4cb2f6d3-d318-46b2-96ba-2baf83f0123c
+		sourceLineageTag: 71fd6cab-ed96-4e0e-b3c0-d20a29776632
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DE_LEVEL_2_STRING
+
+		annotation SummarizationSetBy = User
+
+	column ICT_DEVELOPMENT_STRING
+		dataType: string
+		lineageTag: 4ac05115-c18d-48b1-8cab-85238f0a80ee
+		sourceLineageTag: 3a56f56d-b0b1-4491-ab56-72a6fe629ddf
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ICT_DEVELOPMENT_STRING
+
+		annotation SummarizationSetBy = User
+
+	column DISP_APM
+		dataType: string
+		lineageTag: 3b86b1d6-52f2-4d9a-a3df-2441ba82dfb0
+		sourceLineageTag: 006c7a9a-50a8-4c6e-8801-61c5f31efd6b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DISP_APM
+
+		annotation SummarizationSetBy = User
+
+	column DISP_COMPLETE_DATE
+		dataType: string
+		lineageTag: 66af2fe4-8bb1-48fc-be4b-d7f2d1353340
+		sourceLineageTag: 4af63efd-c37e-4041-a771-286f38bd0e22
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DISP_COMPLETE_DATE
+
+		annotation SummarizationSetBy = User
+
+	column DATA_OWNER_DEP
+		dataType: string
+		lineageTag: e7ec22f2-b7be-4114-bdb7-1e9bf7fced2f
+		sourceLineageTag: efcb86b9-9f36-4686-8268-b899d7adcf40
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DATA_OWNER_DEP
+
+		annotation SummarizationSetBy = User
+
+	column EXPECTED_END_LIFE2
+		dataType: string
+		lineageTag: cf778050-de95-4838-a24c-362d2d140ef8
+		sourceLineageTag: 92768fbe-2699-40f6-9e89-084bb17a309a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: EXPECTED_END_LIFE2
+
+		annotation SummarizationSetBy = User
+
+	column APM_CLASS
+		dataType: string
+		lineageTag: d71c524d-1c1e-49f4-b98c-1e6e4801fe4c
+		sourceLineageTag: 3ab17c08-d72a-4149-beeb-8d8e6ab51dd8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: APM_CLASS
+
+		annotation SummarizationSetBy = User
+
+	column Type
+		dataType: string
+		lineageTag: 2180b4f0-0afb-4316-a3be-efb057c32b4a
+		sourceLineageTag: 9ff56e04-958b-4ebe-8947-caf2f4a6853b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Type
+
+		annotation SummarizationSetBy = User
+
+	column 'Application Type'
+		dataType: string
+		lineageTag: 845f4f2f-48f1-4f43-995a-e7ff7222a42a
+		sourceLineageTag: d3b0216c-4faa-4e6c-be2f-6cfd867f311d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Application Type
+
+		annotation SummarizationSetBy = User
+
+	column BIA_EXPECTED_DATE
+		dataType: string
+		lineageTag: 460c16b2-d48b-4c1a-865d-8f50e69ccba8
+		sourceLineageTag: 480463c6-8378-4432-a433-8fb7756b1c73
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: BIA_EXPECTED_DATE
+
+		annotation SummarizationSetBy = User
+
+	column RA_EXPECTED_DATE
+		dataType: string
+		lineageTag: 6f64e231-c82a-4e15-9ec5-de65dfc5dffd
+		sourceLineageTag: dd8790ad-6629-434b-8814-1202c56af743
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: RA_EXPECTED_DATE
+
+		annotation SummarizationSetBy = User
+
+	column ICT_TWO
+		dataType: string
+		lineageTag: 3ce422fa-2f25-4d3f-a418-86f02891e694
+		sourceLineageTag: 53a50786-d32e-4b30-a8e8-800eb6bb5def
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ICT_TWO
+
+		annotation SummarizationSetBy = User
+
+	column APM_MAN_BY_DESCR
+		dataType: string
+		lineageTag: 1727f04b-39f3-4a97-8798-8dd8cedb3a28
+		sourceLineageTag: fe3a8d91-5adf-4549-8d7d-0f3dcb2c9231
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: APM_MAN_BY_DESCR
+
+		annotation SummarizationSetBy = User
+
+	column ICT_THREE
+		dataType: string
+		lineageTag: 798b9166-526a-412e-8b91-98b479e1377e
+		sourceLineageTag: 63a32ceb-49cb-43d4-85e1-8b4106723ce7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ICT_THREE
+
+		annotation SummarizationSetBy = User
+
+	column DISP_STATUS
+		dataType: string
+		lineageTag: 88b1c997-13fa-401c-a521-4785afb1f969
+		sourceLineageTag: 5b6aa55e-fb33-46bd-aa08-5dc9246f2096
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DISP_STATUS
+
+		annotation SummarizationSetBy = User
+
+	column DF_LEVEL_1
+		dataType: string
+		lineageTag: db6eff4c-099c-4196-b997-6ca941017441
+		sourceLineageTag: 8fe0ffcd-7a5b-4280-8727-e4b3e9b0b738
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DF_LEVEL_1
+
+		annotation SummarizationSetBy = User
+
+	column DF_LEVEL_2
+		dataType: string
+		lineageTag: a210cead-6474-40b9-8da3-230bfd2b2417
+		sourceLineageTag: d1aacff3-5f86-4212-9d86-cdbb6061470a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DF_LEVEL_2
+
+		annotation SummarizationSetBy = User
+
+	column DF_LEVEL_1_STRING
+		dataType: string
+		lineageTag: f2e01f67-b062-4033-9021-c0eb9ae31e3f
+		sourceLineageTag: 9335dec7-fa5e-49b6-bd8b-be5a6251a270
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DF_LEVEL_1_STRING
+
+		annotation SummarizationSetBy = User
+
+	column DF_LEVEL_2_STRING
+		dataType: string
+		lineageTag: 97c26754-19ec-4373-a53d-647bd8961125
+		sourceLineageTag: b89717ee-c74a-4ec2-b407-f9bfbfdb507d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DF_LEVEL_2_STRING
+
+		annotation SummarizationSetBy = User
+
+	column DE_REFERENT
+		dataType: string
+		lineageTag: 078afc6d-ae08-4f5d-99a3-edf8010bccbf
+		sourceLineageTag: 2662d43b-490f-4825-a72d-e8d8cce60582
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DE_REFERENT
+
+		annotation SummarizationSetBy = User
+
+	column APM_Corrective_Exists
+		dataType: int64
+		formatString: 0
+		lineageTag: 4529443e-bae6-4d8f-b41f-817b11aa7fef
+		sourceLineageTag: 96fa3314-15b8-4ece-9786-5d48892209d4
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: APM_Corrective_Exists
+
+		annotation SummarizationSetBy = User
+
+	column APM_Development_Exists
+		dataType: int64
+		formatString: 0
+		lineageTag: 2e12a1d2-62af-48c6-af0c-c236a25ae42a
+		sourceLineageTag: 351e0b92-1182-4b1d-8657-51ff4aaa8afa
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: APM_Development_Exists
+
+		annotation SummarizationSetBy = User
+
+	column APM_Release_Exists
+		dataType: int64
+		formatString: 0
+		lineageTag: 0fa0168c-8eba-4efe-a01f-1bdfe37591f2
+		sourceLineageTag: 8e25b9eb-51f8-44c7-ba7e-cdf8c880fe89
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: APM_Release_Exists
+
+		annotation SummarizationSetBy = User
+
+	column id
+		dataType: string
+		lineageTag: b28c1096-519f-4c0f-b6fc-1159d9a02492
+		sourceLineageTag: 541eecce-1af8-44b6-a9de-e98140b4ab2c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = User
+
+	column 'APM Deploy Strategy'
+		dataType: string
+		lineageTag: b6a102e9-30c4-4787-81e4-40eef772744f
+		sourceLineageTag: 46d6f207-020c-4075-bc1c-90afe7da1e4f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: APM Deploy Strategy
+
+		annotation SummarizationSetBy = User
+
+	column CATEGORY_PLATFORM
+		dataType: string
+		lineageTag: bc7ff3ed-1df3-43ee-84f0-bda4ae055478
+		sourceLineageTag: 248d7582-c991-478c-b804-7298308de20b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CATEGORY_PLATFORM
+
+		annotation SummarizationSetBy = User
+
+	column GLOBAL_APPLICATION_PRODUCT_DEVELOPMENT
+		dataType: string
+		lineageTag: 416b4bc5-f07e-4bee-bf83-a359b9fdb043
+		sourceLineageTag: 987f286e-8127-4755-8d23-0aac75197c5e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GLOBAL_APPLICATION_PRODUCT_DEVELOPMENT
+
+		annotation SummarizationSetBy = User
+
+	column INHERIT_ENVIRONMENTS_WITHOUT_URL
+		dataType: string
+		lineageTag: c60ab515-e48d-4c7a-b932-bd930b6c9736
+		sourceLineageTag: 9f3875d9-1c6a-4198-aa31-ad889a289dd3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: INHERIT_ENVIRONMENTS_WITHOUT_URL
+
+		annotation SummarizationSetBy = User
+
+	column INHERIT_ENVIRONMENTS
+		dataType: string
+		lineageTag: 6f60c576-4585-4b97-b471-8dbd451a94fa
+		sourceLineageTag: d03d1833-8962-4697-9cdf-0e23ddd44e32
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: INHERIT_ENVIRONMENTS
+
+		annotation SummarizationSetBy = User
+
+	column 'RFC Done per APM'
+		dataType: int64
+		formatString: 0
+		lineageTag: 67ac5dd6-e98c-4b4e-b6b0-b3b9612192ad
+		sourceLineageTag: aa93e055-2568-4aa2-bb61-56d5aabe7b25
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: RFC Done per APM
+
+		annotation SummarizationSetBy = User
+
+	column 'Fasce RFC Done'
+		dataType: string
+		lineageTag: 9f04deda-8c5b-443b-bce4-c50041f9165b
+		sourceLineageTag: 48f28d80-3981-4fb0-9cb0-73efdb40e147
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Fasce RFC Done
+
+		annotation SummarizationSetBy = User
+
+	column 'Smartflow Code'
+		dataType: string
+		lineageTag: 57de6a04-8874-4da6-891b-b6c0570f4ea3
+		sourceLineageTag: 9e7d8edd-2444-4b9b-a374-a84314aeede4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Smartflow Code
+
+		annotation SummarizationSetBy = User
+
+	column 'Has Project'
+		dataType: string
+		lineageTag: 6e58188b-b319-459c-8037-543a6f2c5889
+		sourceLineageTag: 4ce03159-24f8-4d80-8125-2f5062f3be61
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Has Project
+
+		annotation SummarizationSetBy = User
+
+	column JIRA_MANDATORY
+		dataType: string
+		lineageTag: 389afc36-9d2c-445b-b913-95d6c92436b4
+		sourceLineageTag: 2c21e261-3f0f-48f9-9913-930863122864
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: JIRA_MANDATORY
+
+		annotation SummarizationSetBy = User
+
+	column DEMAND_REFERENT
+		dataType: string
+		lineageTag: 44b33af2-57b6-4fd1-b253-d1c4a6fb5790
+		sourceLineageTag: 2bd651c3-5697-47a2-9608-19b056aad882
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DEMAND_REFERENT
+
+		annotation SummarizationSetBy = User
+
+	column DEMAND_REFERENT_EMAIL
+		dataType: string
+		lineageTag: e7956ad2-90e5-49bb-9e98-d6533f456b8b
+		sourceLineageTag: 3ca4b2d2-1e26-4daa-ab76-4e65914d7531
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DEMAND_REFERENT_EMAIL
+
+		annotation SummarizationSetBy = User
+
+	column DE_LEVEL_3
+		dataType: string
+		lineageTag: 61753bce-6978-4197-abb3-4abe24623503
+		sourceLineageTag: f440c42d-8a0f-4c35-8d15-002971811e3a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DE_LEVEL_3
+
+		annotation SummarizationSetBy = User
+
+	column DE_LEVEL_3_STRING
+		dataType: string
+		lineageTag: 28cd2bff-e308-4329-ae6d-607180eff317
+		sourceLineageTag: 6a2b6209-d877-4734-a4d0-bfd34360a6f6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DE_LEVEL_3_STRING
+
+		annotation SummarizationSetBy = User
+
+	column DF_LEVEL_3
+		dataType: string
+		lineageTag: fd32d5a4-b764-4903-a112-fbcbc0d85553
+		sourceLineageTag: c3e01dd0-7701-40a4-a3ba-0e1ea9269280
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DF_LEVEL_3
+
+		annotation SummarizationSetBy = User
+
+	column DF_LEVEL_3_STRING
+		dataType: string
+		lineageTag: 36d84704-3527-444f-a4ae-d6814ae78353
+		sourceLineageTag: e7e47436-0ae6-4141-bddb-2aac00ac716b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: DF_LEVEL_3_STRING
+
+		annotation SummarizationSetBy = User
+
+	column PROGRAMMING_TECHNOLOGIES
+		dataType: string
+		lineageTag: 26bdcca0-38be-4c97-a516-67a261ea553d
+		sourceLineageTag: cdd57089-2a8f-49a9-b98d-ba5a34eb57df
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: PROGRAMMING_TECHNOLOGIES
+
+		annotation SummarizationSetBy = User
+
+	column 'APM formatted' =
+			
+			APM[APM Code]
+			    & " - " &
+			APM[APM Name]
+		lineageTag: 0aaf2699-7aa5-4171-9fd4-815601f24081
+		summarizeBy: none
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition APM = entity
+		mode: directQuery
+		source
+			entityName: APM
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

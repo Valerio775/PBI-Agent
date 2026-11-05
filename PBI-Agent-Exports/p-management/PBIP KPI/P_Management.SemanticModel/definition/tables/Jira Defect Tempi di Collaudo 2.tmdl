@@ -1,0 +1,64 @@
+table 'Jira Defect Tempi di Collaudo 2'
+	lineageTag: e7917763-7913-40ea-8a79-c0a544686dec
+	sourceLineageTag: 36faae09-5987-4332-a04e-14ee2ad1f3d1
+
+	column issue_key
+		dataType: string
+		isNullable: false
+		lineageTag: a1815f67-2840-4a53-8e4e-92f65b0215b5
+		sourceLineageTag: ec4696ba-b4af-4030-8a6b-4bd330d634b3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_key
+
+		annotation SummarizationSetBy = User
+
+	column 'Data Apertura'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 9ab6bc1d-ada4-4d8c-a0c8-2b3d4ab9faa8
+		sourceLineageTag: 08bb9e9b-e887-45e9-8a3e-40a5d99c3b57
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Data Apertura
+
+		variation Variazione
+			isDefault
+			relationship: ab1461a6-ba55-42a6-acf6-dda6366ca75b
+			defaultHierarchy: 'LocalDateTable_2a8b4d79-cd4a-4785-8478-7755834bc9ff 2'.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column 'Data Chiusura'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: b2e83a44-9d1b-43c1-b362-763477fa9094
+		sourceLineageTag: 5745d04b-81b7-4e58-a388-e9f216573d83
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Data Chiusura
+
+		variation Variazione
+			isDefault
+			relationship: adcc7207-7139-48aa-90db-3239e2818287
+			defaultHierarchy: 'LocalDateTable_1b5eb833-9e13-4a04-880c-4ee2c74cbf3c 2'.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column 'Durata (secondi)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 3a8161f7-5a32-41e1-a9e4-133c7ec4ebfc
+		sourceLineageTag: 2fdb099a-2d02-43c8-869f-47c93b00fca6
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Durata (secondi)
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira Defect Tempi di Collaudo 2' = entity
+		mode: directQuery
+		source
+			entityName: Jira Defect Tempi di Collaudo
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab 2'
+

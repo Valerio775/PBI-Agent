@@ -1,0 +1,63 @@
+table 'Workflow Fasi MBI'
+	lineageTag: 82a253d0-583f-458b-99f0-7d5eb8e233cc
+
+	column Status
+		lineageTag: 971eced1-fe34-4c51-900f-a8780419cf6b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status]
+		sortByColumn: OrdineFase
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrdineFase
+		formatString: 0
+		lineageTag: f41b47c8-a89f-4908-b3de-247857eae5a9
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [OrdineFase]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status Tradotto'
+		lineageTag: e8d3c579-da36-4d03-a73f-08a3efac819c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status Tradotto]
+		sortByColumn: OrdineFase
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Workflow Fasi MBI' = calculated
+		mode: import
+		source = ```
+				
+				DATATABLE (
+				    "Status", STRING,
+				    "OrdineFase", INTEGER,
+				    "Status Tradotto", STRING,
+				    {
+				        { "Rejected", 0 , "Rejected"},
+				
+				        { "Open", 1, "Conferma Perimetro"},
+				
+				        { "High-Level Functional Requirement", 2 , "Preparazione BR"},
+				
+				        { "Tech Evaluation", 3, "HLD e stime"},
+				
+				        { "Estimation Done", 4, "PJPlan e costi DE"},
+				
+				        { "Financial Evaluation", 5, "IC DE Check e Markup"},
+				        { "IM Management", 5, "IC DE Check e Markup"},
+				        { "Waiting for Approval", 5, "IC DE Check e Markup"},
+				
+				        { "WBE Management", 6, "Approvazione P&C Applicant Unit"},
+				        
+				        { "Approved", 7, "IC DE approvazione e creazione Demand" }
+				    }
+				)
+				
+				```
+
+	annotation PBI_Id = b8f459d86e94438c88ade0f77cab511b
+

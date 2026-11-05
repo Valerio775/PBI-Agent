@@ -1,0 +1,41 @@
+table 'Crowd Groups'
+	lineageTag: 5dbe40fc-250f-47fa-b932-e43ebaa575d8
+	sourceLineageTag: 3c037f10-a7c0-40bf-a727-3fec1e1a607b
+
+	column group_name
+		dataType: string
+		lineageTag: 64b5cd85-8d75-473b-b489-17131cb5c7b5
+		sourceLineageTag: 731c5876-fc6a-4524-b4ab-aba804ec7d7e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: group_name
+
+		annotation SummarizationSetBy = User
+
+	column user_name
+		dataType: string
+		lineageTag: f3ddc8ae-4063-4f2a-bf71-0016c3ef3607
+		sourceLineageTag: 8f9c89ba-e588-4df8-852e-1cfe59bde44e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: user_name
+
+		annotation SummarizationSetBy = User
+
+	column active
+		dataType: int64
+		formatString: 0
+		lineageTag: 8aa643f5-1f66-468c-a198-df45174023a7
+		sourceLineageTag: c15b79a9-062b-44b8-b829-c7e3828ffd68
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: active
+
+		annotation SummarizationSetBy = User
+
+	partition 'Crowd Groups' = entity
+		mode: directQuery
+		source
+			entityName: Crowd Groups
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

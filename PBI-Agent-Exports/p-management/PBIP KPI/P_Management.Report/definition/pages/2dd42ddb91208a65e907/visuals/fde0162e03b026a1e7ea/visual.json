@@ -1,0 +1,314 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "fde0162e03b026a1e7ea",
+  "position": {
+    "x": 88.75,
+    "y": 480,
+    "z": 5,
+    "height": 266.25,
+    "width": 1496.25,
+    "tabOrder": 5
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Jira Initiative Estimation"
+                    }
+                  },
+                  "Property": "issue_key"
+                }
+              },
+              "queryRef": "Jira Initiative Estimation.issue_key",
+              "nativeQueryRef": "issue_key"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Jira Initiative Estimation"
+                    }
+                  },
+                  "Property": "issue"
+                }
+              },
+              "queryRef": "Jira Initiative Estimation.issue",
+              "nativeQueryRef": "issue"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Jira Initiative Estimation"
+                    }
+                  },
+                  "Property": "issue_baseline_end_date"
+                }
+              },
+              "queryRef": "Jira Initiative Estimation.issue_baseline_end_date",
+              "nativeQueryRef": "issue_baseline_end_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Jira Initiative Estimation"
+                    }
+                  },
+                  "Property": "issue_baseline_start_date"
+                }
+              },
+              "queryRef": "Jira Initiative Estimation.issue_baseline_start_date",
+              "nativeQueryRef": "issue_baseline_start_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Jira Initiative Estimation"
+                    }
+                  },
+                  "Property": "issue_created_date"
+                }
+              },
+              "queryRef": "Jira Initiative Estimation.issue_created_date",
+              "nativeQueryRef": "issue_created_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Jira Initiative Estimation"
+                    }
+                  },
+                  "Property": "issue_end_date"
+                }
+              },
+              "queryRef": "Jira Initiative Estimation.issue_end_date",
+              "nativeQueryRef": "issue_end_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Jira Initiative Estimation"
+                    }
+                  },
+                  "Property": "issue_resolution_date"
+                }
+              },
+              "queryRef": "Jira Initiative Estimation.issue_resolution_date",
+              "nativeQueryRef": "issue_resolution_date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Jira Initiative Estimation"
+                    }
+                  },
+                  "Property": "issue_start_date"
+                }
+              },
+              "queryRef": "Jira Initiative Estimation.issue_start_date",
+              "nativeQueryRef": "issue_start_date"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Initiative Estimation'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "87cb2ff8ab16b0ed6e00",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Macro Business Initiative"
+              }
+            },
+            "Property": "Data Approvazione"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "359d3ad01081910d0b95",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "APM (2)"
+              }
+            },
+            "Property": "APM Code"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "a",
+              "Entity": "APM (2)",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "a"
+                          }
+                        },
+                        "Property": "APM Code"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'SO00105'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "6c31c8a48175e71d28a4",
+        "ordinal": 2,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Macro Business Initiative"
+              }
+            },
+            "Property": "Issue created date"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "f24982c23a3866a4a79a",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Macro Business Initiative"
+              }
+            },
+            "Property": "Issue End date"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "15ebbe5cba97bd95a2d3",
+        "ordinal": 4,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Macro Business Initiative"
+              }
+            },
+            "Property": "Issue key"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "664384344c6b2e51825c",
+        "ordinal": 5,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Macro Business Initiative"
+              }
+            },
+            "Property": "Issue Name"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "e4f4e64c98adb8eb0881",
+        "ordinal": 6,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Macro Business Initiative"
+              }
+            },
+            "Property": "Issue Start date"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

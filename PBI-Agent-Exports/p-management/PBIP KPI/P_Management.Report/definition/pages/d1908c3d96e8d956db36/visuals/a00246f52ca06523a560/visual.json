@@ -1,0 +1,60 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "a00246f52ca06523a560",
+  "position": {
+    "x": 370.32836321946115,
+    "y": 6.7196678809982586,
+    "z": 4000,
+    "height": 85.613546335681875,
+    "width": 270,
+    "tabOrder": 13000
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Jira ICR"
+                    }
+                  },
+                  "Property": "Issue priority"
+                }
+              },
+              "queryRef": "Jira ICR.Issue priority",
+              "nativeQueryRef": "Issue priority",
+              "active": true
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "data": [
+        {
+          "properties": {
+            "mode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Dropdown'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "general": [
+        {
+          "properties": {}
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "2c3299ebdd436a4bed29"
+}

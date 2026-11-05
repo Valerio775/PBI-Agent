@@ -1,0 +1,42 @@
+table 'Confluence Comala Pages 4'
+	lineageTag: 7d13e37a-905d-4a7c-b8be-ffc48c176c7b
+	sourceLineageTag: c3f1cfdd-3668-4cf5-9067-53851c9886d3
+
+	column pageid
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 33b72ff8-6eaa-4c16-a260-ef47c8452a5c
+		sourceLineageTag: 02434aec-bf0f-443e-8ea1-31f04918b4a1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: pageid
+
+		annotation SummarizationSetBy = User
+
+	column workflow_name
+		dataType: string
+		lineageTag: 8cdba18b-b208-49f5-9fdd-4c37ba8a6f27
+		sourceLineageTag: bf9f1ec2-3abc-4f6b-a976-573f556379b4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: workflow_name
+
+		annotation SummarizationSetBy = User
+
+	column confluence_labels
+		dataType: string
+		lineageTag: 3ecbba27-cfd0-43a7-8279-6c62a8d6995b
+		sourceLineageTag: 6fc3a98b-4fcb-4fe0-b019-54659fe1dd83
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: confluence_labels
+
+		annotation SummarizationSetBy = User
+
+	partition 'Confluence Comala Pages 4' = entity
+		mode: directQuery
+		source
+			entityName: Confluence Comala Pages
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab 3'
+

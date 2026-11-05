@@ -1,0 +1,40 @@
+table 'Jira Project APM'
+	lineageTag: 2d31e87a-a2b2-44ad-966b-2c8b6a48466f
+	sourceLineageTag: 99ee7150-d611-471a-8d0a-43e313ed14dd
+
+	column Project_Key
+		dataType: string
+		lineageTag: 4f5db23e-bd17-4e73-9573-0c425eb0a3e0
+		sourceLineageTag: a9bf1ef7-be44-48a7-8fa9-0e001e9b4d82
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Project_Key
+
+		annotation SummarizationSetBy = User
+
+	column 'APM Type'
+		dataType: string
+		lineageTag: 1a5fc12c-d656-49d9-bab2-90eae59da486
+		sourceLineageTag: 3d838c09-c89f-4f0f-b8f5-52a58612639f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: APM Type
+
+		annotation SummarizationSetBy = User
+
+	column APM
+		dataType: string
+		lineageTag: 71a2e35f-cdef-41fe-a408-0f0740007df2
+		sourceLineageTag: 408e6bf3-90a9-4393-a16a-6b386302f3c8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: APM
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira Project APM' = entity
+		mode: directQuery
+		source
+			entityName: Jira Project APM
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

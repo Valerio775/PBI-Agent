@@ -1,0 +1,765 @@
+table 'FD Transition Status'
+	lineageTag: cdc0b25b-8f21-4f97-a011-364aa8aecee7
+
+	measure 'Filtro_Tabella_Dinamica FD' = ```
+			
+			VAR _End = [ToStatus_FD]
+			
+			-- Recuperiamo l'intervallo del mese selezionato nel report
+			VAR _MinDate = MIN('FD Transition Status'[transition_date]) 
+			VAR _MaxDate = MAX('FD Transition Status'[transition_date])
+			
+			RETURN
+			IF( 
+			    -- 1. Esiste la data di fine?
+			    NOT ISBLANK(_End) 
+			    
+			    -- 2. La data di fine (Approved) è nel mese selezionato?
+			    && _End >= _MinDate 
+			    && _End <= _MaxDate, 
+			    1, 
+			    0 
+			)
+			```
+		lineageTag: e967f466-d63d-4f67-a8dc-aad3c40c3119
+
+	measure 'FD conteggio giorni' =
+			
+			
+			VAR issueKey = SELECTEDVALUE('Jira Feature Delivery 2'[Issue Key [Issue]]])
+			VAR currentStatus = SELECTEDVALUE('Jira Feature Delivery 2'[Issue status])
+			
+			VAR startDate =
+			    CALCULATE(
+			        MIN('FD Transition Status'[transition_date]),
+			        FILTER(
+			            ALL('FD Transition Status'),
+			            'FD Transition Status'[issue_key] = issueKey
+			                && 'FD Transition Status'[to_status] = currentStatus
+			        )
+			    )
+			
+			VAR DataCreazioneOpen =
+			    CALCULATE(
+			        MAX('Jira Feature Delivery 2'[Issue created date]),
+			        REMOVEFILTERS('Jira Feature Delivery 2'),
+			        'Jira Feature Delivery 2'[Issue Key [Issue]]] = issueKey
+			    )
+			
+			VAR startDateFinale =
+			    IF(
+			        currentStatus = "Open",// && ISBLANK(startDate),
+			        DataCreazioneOpen,
+			        startDate
+			    )
+			
+			RETURN
+			IF(
+			    NOT ISBLANK(startDateFinale),
+			    DATEDIFF(startDateFinale, TODAY(), DAY),
+			    BLANK()
+			)
+		formatString: 0
+		displayFolder: OP36 Journey
+		lineageTag: 5a6311cc-3b2d-42f3-b069-7edee2d64a0f
+
+	measure 'FD Data Ingresso' =
+			
+			VAR IssueCorrente = SELECTEDVALUE('Jira Feature Delivery 2'[Issue Key [Issue]]])
+			VAR StatoCorrente = SELECTEDVALUE('Jira Feature Delivery 2'[Issue status])
+			
+			VAR DataDaTransizioni =
+			    CALCULATE(
+			        MAX('FD Transition Status'[transition_date]),
+			        FILTER(
+			            ALL('FD Transition Status'),
+			            'FD Transition Status'[issue_key] = IssueCorrente
+			                && 'FD Transition Status'[to_status] = StatoCorrente
+			                && 'FD Transition Status'[from_status] <> StatoCorrente
+			        )
+			    )
+			
+			VAR DataCreazioneOpen =
+			    CALCULATE(
+			        MAX('Jira Feature Delivery 2'[Issue created date]),
+			        'Jira Feature Delivery 2'[Issue Key [Issue]]] = IssueCorrente
+			    )
+			
+			RETURN
+			IF(
+			    StatoCorrente = "Open",// && ISBLANK(DataDaTransizioni),
+			    DataCreazioneOpen,
+			    DataDaTransizioni
+			)
+		formatString: General Date
+		displayFolder: OP36 Journey
+		lineageTag: 238a7617-6cd3-4c68-b458-bd0a33a4b021
+
+	measure 'FD Media giorni in stato' =
+			
+			AVERAGEX(
+			    VALUES('Jira Feature Delivery 2'[Issue Key [Issue]]]),
+			    CALCULATE(MIN('FD Transition Status'[FD Giorni nello stato]))
+			)
+		displayFolder: OP36 Journey
+		lineageTag: b2335f91-cd28-4c96-8085-767919aa1394
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Destinazione Dinamica ToolTip FD' = ```
+			
+			VAR _issueKeySelezionato = SELECTEDVALUE('Jira Feature Delivery'[Issue Key [Issue]]])
+			
+			
+			VAR _statoDaIssue = 
+			    IF(
+			        NOT ISBLANK(_issueKeySelezionato),
+			        CALCULATE(
+			            SELECTEDVALUE('Jira Feature Delivery'[Issue status]),
+			            'Jira Feature Delivery'[Issue Key [Issue]]] = _issueKeySelezionato
+			        )
+			    )
+			
+			VAR _statoDaTabella = SELECTEDVALUE('Workflow Fasi FD Journey Confluence'[Status Tradotto])
+			
+			
+			VAR _statoCorrente = COALESCE(_statoDaTabella, _statoDaIssue)
+			
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        _statoCorrente = "In Progress", "Documento Comala FD",
+			        _statoCorrente = "UAT ENV Preparation", "Documento Comala FD",
+			        _statoCorrente = "UAT", "Documento Comala FD",
+			        _statoCorrente = "Release", "Documento Comala FD"
+			    )
+			```
+		lineageTag: 06aa4220-dd58-49ff-9056-9cdea58754df
+
+	measure 'COUNT FD Backlog Semplificato' =
+			
+			VAR StatiDellaFase =
+			    VALUES (
+			        'Workflow Fasi FD Semplificate'[Status]
+			    )
+			
+			RETURN
+			CALCULATE (
+			    DISTINCTCOUNT (
+			        'Jira Feature Delivery'[Issue Key [Issue]]]
+			    ),
+			    TREATAS (
+			        StatiDellaFase,
+			        'Jira Feature Delivery'[Issue status]
+			    )
+			)
+		formatString: 0
+		displayFolder: Executive Journey
+		lineageTag: f77be9f8-7a6c-43fb-a645-ff36b7f65129
+
+	measure 'FD Tempo Storico Medio nello Stato Semplificato' =
+			
+			VAR OrdineFaseCorrente =
+			    SELECTEDVALUE (
+			        'Workflow Fasi FD Semplificate'[OrdineFase]
+			    )
+			
+			VAR TransizioniEntrata =
+			    SELECTCOLUMNS (
+			        FILTER (
+			            ALL ( 'FD Transition Status' ),
+			            'FD Transition Status'[To OrdineFase Semplificate] = OrdineFaseCorrente
+			                &&
+			            'FD Transition Status'[From OrdineFase Semplificate] <> OrdineFaseCorrente
+			        ),
+			        "ie_issue_key", 'FD Transition Status'[issue_key],
+			        "ie_data", 'FD Transition Status'[transition_date]
+			    )
+			
+			VAR TransizioniUscita =
+			    SELECTCOLUMNS (
+			        FILTER (
+			            'FD Transition Status',
+			            'FD Transition Status'[From OrdineFase Semplificate] = OrdineFaseCorrente
+			                &&
+			            'FD Transition Status'[To OrdineFase Semplificate] <> OrdineFaseCorrente
+			        ),
+			        "iu_issue_key", 'FD Transition Status'[issue_key],
+			        "iu_data", 'FD Transition Status'[transition_date]
+			    )
+			
+			VAR IssueConSoggiorni =
+			    CALCULATETABLE (
+			        VALUES ( 'FD Transition Status'[issue_key] ),
+			        FILTER (
+			            ALL ( 'FD Transition Status' ),
+			            'FD Transition Status'[To OrdineFase Semplificate] = OrdineFaseCorrente
+			                ||
+			            'FD Transition Status'[From OrdineFase Semplificate] = OrdineFaseCorrente
+			        )
+			    )
+			
+			VAR tabellaGiorni =
+			    ADDCOLUMNS (
+			        IssueConSoggiorni,
+			        "giorni_totali",
+			        VAR issueKey = 'FD Transition Status'[issue_key]
+			        VAR entrateIssue =
+			            FILTER ( TransizioniEntrata, [ie_issue_key] = issueKey )
+			        VAR usciteIssue =
+			            FILTER ( TransizioniUscita, [iu_issue_key] = issueKey )
+			
+			        RETURN
+			            SUMX (
+			                FILTER (
+			                    entrateIssue,
+			                    VAR dataEntrata = [ie_data]
+			                    RETURN
+			                        COUNTROWS (
+			                            FILTER (
+			                                usciteIssue,
+			                                [iu_data] > dataEntrata
+			                            )
+			                        ) > 0
+			                ),
+			                VAR dataEntrata = [ie_data]
+			                VAR primaUscita =
+			                    MINX (
+			                        FILTER (
+			                            usciteIssue,
+			                            [iu_data] > dataEntrata
+			                        ),
+			                        [iu_data]
+			                    )
+			                RETURN
+			                    DATEDIFF (
+			                        dataEntrata,
+			                        primaUscita,
+			                        DAY
+			                    )
+			            )
+			    )
+			
+			RETURN
+			AVERAGEX (
+			    FILTER (
+			        tabellaGiorni,
+			        NOT ISBLANK ( [giorni_totali] )
+			    ),
+			    [giorni_totali]
+			)
+		displayFolder: Executive Journey
+		lineageTag: 823039c1-2570-427f-94b7-21f0d29a44d4
+
+	measure 'FD Aging Medio Corrente nello Stato Semplificato' =
+			
+			VAR OrdineFaseCorrente =
+			    SELECTEDVALUE (
+			        'Workflow Fasi FD Semplificate'[OrdineFase]
+			    )
+			
+			VAR StatiDellaFase =
+			    CALCULATETABLE (
+			        VALUES ( 'Workflow Fasi FD Semplificate'[Status] ),
+			        FILTER (
+			            ALL ( 'Workflow Fasi FD Semplificate' ),
+			            'Workflow Fasi FD Semplificate'[OrdineFase]
+			                = OrdineFaseCorrente
+			        )
+			    )
+			
+			VAR IssueAttualmenteInFase =
+			    CALCULATETABLE (
+			        VALUES ( 'Jira Feature Delivery'[Issue Key [Issue]]] ),
+			        TREATAS (
+			            StatiDellaFase,
+			            'Jira Feature Delivery'[Issue status]
+			        )
+			    )
+			
+			VAR TabellaAging =
+			    ADDCOLUMNS (
+			        IssueAttualmenteInFase,
+			
+			        "DataEntrataFase",
+			
+			        VAR CurrentIssue =
+			            'Jira Feature Delivery'[Issue Key [Issue]]]
+			
+			        VAR UltimaEntrata =
+			            CALCULATE (
+			                MAX ( 'FD Transition Status'[transition_date] ),
+			
+			                FILTER (
+			                    ALL ( 'FD Transition Status' ),
+			                    'FD Transition Status'[issue_key] = CurrentIssue
+			                        &&
+			                    'FD Transition Status'[To OrdineFase Semplificate]
+			                        = OrdineFaseCorrente
+			                        &&
+			                    'FD Transition Status'[From OrdineFase Semplificate]
+			                        <> OrdineFaseCorrente
+			                )
+			            )
+			
+			        VAR CreatedDate =
+			            CALCULATE (
+			                MAX ( 'Jira Feature Delivery'[Issue created date] )
+			            )
+			
+			        RETURN
+			            IF (
+			                OrdineFaseCorrente = 1,
+			                COALESCE ( UltimaEntrata, CreatedDate ),
+			                UltimaEntrata
+			            )
+			    )
+			
+			RETURN
+			AVERAGEX (
+			    FILTER (
+			        TabellaAging,
+			        NOT ISBLANK ( [DataEntrataFase] )
+			    ),
+			    DATEDIFF (
+			        [DataEntrataFase],
+			        TODAY (),
+			        DAY
+			    )
+			)
+		displayFolder: Executive Journey
+		lineageTag: 15025c7b-8786-4da3-a119-eeefc4a02407
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'COUNT FD Dinamico Tempo' =
+			
+			VAR NumeroFasiVisibili =
+			    COUNTROWS (
+			        VALUES (
+			            'Workflow Fasi FD Semplificate'[OrdineFase]
+			        )
+			    )
+			
+			RETURN
+			IF (
+			    NumeroFasiVisibili = 1,
+			    [Conteggio Pass-Through FD Semplificato],
+			    [FD Throughput Totale Mensile]
+			)
+		displayFolder: Executive Journey
+		lineageTag: d61d352f-9930-4710-be3e-cece1bc4af59
+
+	measure 'FD Throughput Totale Mensile' =
+			
+			CALCULATE (
+			    DISTINCTCOUNT (
+			        'FD Transition Status'[issue_key]
+			    )
+			)
+		formatString: 0
+		displayFolder: Executive Journey
+		lineageTag: 8de458d3-1b12-4c5c-91e1-126b369c1ad8
+
+	measure 'Lead Time Teorico Processo FD' =
+			
+			SUMX (
+			    VALUES (
+			        'Workflow Fasi FD Semplificate'[OrdineFase]
+			    ),
+			    CALCULATE (
+			        [FD Tempo Storico Medio nello Stato Semplificato]
+			    )
+			)
+		displayFolder: Executive Journey
+		lineageTag: 4457ce00-6ca4-4b67-b5c2-19e1729f34ae
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Conteggio Pass-Through FD Semplificato' =
+			
+			VAR OrdineFaseCorrente =
+			    MAX (
+			        'Workflow Fasi FD Semplificate'[OrdineFase]
+			    )
+			
+			RETURN
+			IF (
+			    ISBLANK ( OrdineFaseCorrente ),
+			    BLANK (),
+			    CALCULATE (
+			        DISTINCTCOUNT ( 'FD Transition Status'[issue_key] ),
+			        FILTER (
+			            'FD Transition Status',
+			            'FD Transition Status'[From OrdineFase Semplificate] = OrdineFaseCorrente
+			                &&
+			            'FD Transition Status'[To OrdineFase Semplificate] <> OrdineFaseCorrente
+			                &&
+			            NOT ISBLANK ( 'FD Transition Status'[From OrdineFase Semplificate] )
+			                &&
+			            NOT ISBLANK ( 'FD Transition Status'[To OrdineFase Semplificate] )
+			        )
+			    )
+			)
+		formatString: 0
+		displayFolder: Executive Journey
+		lineageTag: cd3211bc-524b-4ad7-a409-d5662685f887
+
+	column issue_key
+		lineageTag: f99cdb34-1df9-4099-bedc-54193646838e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[issue_key]
+
+		annotation SummarizationSetBy = Automatic
+
+	column issue_type
+		lineageTag: 82931a01-7acb-4fae-963b-cf1ec11ab004
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[issue_type]
+
+		annotation SummarizationSetBy = Automatic
+
+	column transition_date
+		formatString: Short Date
+		lineageTag: 69aee732-e1b8-4388-97f1-b2a430e2ab04
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[transition_date]
+
+		variation Variation
+			isDefault
+			relationship: d421f2de-8317-4531-baf5-2c307fa4f226
+			defaultHierarchy: LocalDateTable_653a78f9-66bc-4170-956f-dc8a6f898992.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_status
+		lineageTag: 27bbd2a4-6d72-422e-a4a8-75e94cad2247
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[from_status]
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_status
+		lineageTag: cb76ff27-4362-461b-8966-12a45a97ab5d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[to_status]
+
+		annotation SummarizationSetBy = Automatic
+
+	column username
+		lineageTag: 393d0213-300a-48bf-a74f-b37d9521691d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[username]
+
+		annotation SummarizationSetBy = Automatic
+
+	column display_name
+		lineageTag: 4e3f7619-de87-4e35-8231-072f45d073e0
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[display_name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Giorni da In Progress a Completed'
+		formatString: 0
+		lineageTag: 7d1f6636-e2d7-459e-93ff-c2a0055d4937
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[Giorni da In Progress a Completed]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Lead Time - Authorized_ReadyForUAT' = ```
+			
+			
+			VAR _startDate = 
+			    CALCULATE (
+			        MIN ( 'FD Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'FD Transition Status', 'FD Transition Status'[issue_key] ),
+			        'FD Transition Status'[from_status] = "Authorized",
+			        'Jira Project List 2'[Project_Status] <> "Demo Project"
+			    )
+			
+			VAR _lastDate = 
+			    CALCULATE (
+			        MAX ( 'FD Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'FD Transition Status', 'FD Transition Status'[issue_key] ),
+			        'FD Transition Status'[to_status] = "Ready for UAT",
+			        'FD Transition Status'[from_status] <> "Ready for UAT",
+			        'Jira Project List 2'[Project_Status] <> "Demo Project"
+			    )
+			
+			RETURN 
+			IF ( 
+			    'FD Transition Status'[to_status] = "Ready for UAT" 
+			        && 'FD Transition Status'[transition_date] = _lastDate
+			        && NOT ISBLANK ( _startDate ),
+			    'FD Transition Status'[transition_date] - _startDate,
+			    BLANK()
+			)
+			```
+		formatString: General Date
+		lineageTag: 2b0c127a-d820-466c-9ba1-dde6a2c6f081
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: fe54a778-6c36-473d-8766-c9327b52eb10
+			defaultHierarchy: LocalDateTable_4377c693-0c4c-4cee-95fd-780fdcf2db7f.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Lead Time - InProgress_ReadyForUAT' = ```
+			
+			
+			VAR _startDate = 
+			    CALCULATE (
+			        MIN ( 'FD Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'FD Transition Status', 'FD Transition Status'[issue_key] ),
+			        'FD Transition Status'[from_status] = "In Progress",
+			        'Jira Project List 2'[Project_Status] <> "Demo Project"
+			    )
+			
+			VAR _lastDate = 
+			    CALCULATE (
+			        MAX ( 'FD Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'FD Transition Status', 'FD Transition Status'[issue_key] ),
+			        'FD Transition Status'[to_status] = "Ready for UAT",
+			        //'FD Transition Status'[from_status] <> "Ready for UAT",
+			        'Jira Project List 2'[Project_Status] <> "Demo Project"
+			    )
+			
+			RETURN 
+			IF ( 
+			    'FD Transition Status'[to_status] = "Ready for UAT" 
+			        && 'FD Transition Status'[transition_date] = _lastDate
+			        && NOT ISBLANK ( _startDate ),
+			    'FD Transition Status'[transition_date] - _startDate,
+			    BLANK()
+			)
+			```
+		formatString: General Date
+		lineageTag: f653f6bc-b0b7-47ac-a87b-a0cea5869673
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: df9772dd-3afb-48e7-ae4a-7d7fcb6da0a7
+			defaultHierarchy: LocalDateTable_cdf7269c-a544-4c15-a876-02a55651daa6.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column MeseAnno_ = ```
+			
+			VAR y = CONVERT(YEAR ( 'FD Transition Status'[transition_date] ), STRING)
+			VAR m = MONTH ( 'FD Transition Status'[transition_date]  )
+			VAR mShort =
+			    SWITCH (
+			        m,
+			        1, "01", 2, "02", 3, "03", 4, "04", 5, "05", 6, "06",
+			        7, "07", 8, "08", 9, "09", 10, "10", 11, "11", 12, "12"
+			    )
+			RETURN y & "-" &  mShort 
+			
+			
+			```
+		lineageTag: 8e906ead-a209-4a72-a3d3-faa73112ab29
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Lead Time - Completed_ReadyForUAT' = ```
+			
+			
+			VAR _startDate = 
+			    CALCULATE (
+			        MIN ( 'FD Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'FD Transition Status', 'FD Transition Status'[issue_key] ),
+			        'FD Transition Status'[from_status] = "Completed",
+			        'Jira Project List 2'[Project_Status] <> "Demo Project"
+			    )
+			
+			VAR _lastDate = 
+			    CALCULATE (
+			        MAX ( 'FD Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'FD Transition Status', 'FD Transition Status'[issue_key] ),
+			        'FD Transition Status'[to_status] = "Ready for UAT",
+			        'Jira Project List 2'[Project_Status] <> "Demo Project"
+			    )
+			
+			RETURN 
+			IF ( 
+			    'FD Transition Status'[to_status] = "Ready for UAT" 
+			        && 'FD Transition Status'[transition_date] = _lastDate
+			        && NOT ISBLANK ( _startDate ),
+			    'FD Transition Status'[transition_date] - _startDate,
+			    BLANK()
+			)
+			```
+		formatString: General Date
+		lineageTag: c810b31b-5a5c-4c35-8d42-5f92227f6ea9
+		summarizeBy: none
+
+		variation Variazione
+			isDefault
+			relationship: 5fb488e3-5a02-44e6-a9cf-65bb2bc1217f
+			defaultHierarchy: LocalDateTable_d309828d-f699-417a-85ad-24e12d764b7d.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Lead Time - Progress_Completed' = ```
+			
+			
+			VAR _startDate = 
+			    CALCULATE (
+			        MIN ( 'FD Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'FD Transition Status', 'FD Transition Status'[issue_key] ),
+			        'FD Transition Status'[from_status] = "In Progress",
+			        'Jira Project List 2'[Project_Status] <> "Demo Project"
+			    )
+			
+			VAR _lastDate = 
+			    CALCULATE (
+			        MAX ( 'FD Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'FD Transition Status', 'FD Transition Status'[issue_key] ),
+			        'FD Transition Status'[to_status] = "Completed",
+			        'Jira Project List 2'[Project_Status] <> "Demo Project"
+			    )
+			
+			RETURN 
+			IF ( 
+			    'FD Transition Status'[to_status] = "Completed" 
+			        && 'FD Transition Status'[transition_date] = _lastDate
+			        && NOT ISBLANK ( _startDate ),
+			    'FD Transition Status'[transition_date] - _startDate,
+			    BLANK()
+			)
+			```
+		formatString: General Date
+		lineageTag: fb8ffd08-644b-4125-b29e-d579354585a9
+		summarizeBy: none
+
+		variation Variazione
+			isDefault
+			relationship: 855d947d-7003-4a8f-804e-ddd2c3e29f3c
+			defaultHierarchy: LocalDateTable_dd419685-9bfe-4795-a0d2-ced29c5294ee.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Lead Time - Authorized_Progress' = ```
+			
+			
+			VAR _startDate = 
+			    CALCULATE (
+			        MIN ( 'FD Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'FD Transition Status', 'FD Transition Status'[issue_key] ),
+			        'FD Transition Status'[from_status] = "Authorized",
+			        'Jira Project List 2'[Project_Status] <> "Demo Project"
+			    )
+			
+			VAR _lastDate = 
+			    CALCULATE (
+			        MAX ( 'FD Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'FD Transition Status', 'FD Transition Status'[issue_key] ),
+			        'FD Transition Status'[to_status] = "In Progress",
+			        'Jira Project List 2'[Project_Status] <> "Demo Project"
+			    )
+			
+			RETURN 
+			IF ( 
+			    'FD Transition Status'[to_status] = "In Progress" 
+			        && 'FD Transition Status'[transition_date] = _lastDate
+			        && NOT ISBLANK ( _startDate ),
+			    'FD Transition Status'[transition_date] - _startDate,
+			    BLANK()
+			)
+			```
+		formatString: General Date
+		lineageTag: 49fc52ff-7a24-471d-9693-c104ebf78381
+		summarizeBy: none
+
+		variation Variazione
+			isDefault
+			relationship: 4825c2eb-a55a-41d0-9f2c-afc2d0822801
+			defaultHierarchy: LocalDateTable_0514b22c-2cab-44b3-8953-42ca305f2e50.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FD Giorni nello stato' =
+			
+			VAR currentIssue = 'FD Transition Status'[issue_key]
+			VAR currentStatus = 'FD Transition Status'[to_status]
+			
+			VAR startDate =
+			    CALCULATE(
+			        MIN('FD Transition Status'[transition_date]),
+			        ALLEXCEPT('FD Transition Status', 'FD Transition Status'[issue_key], 'FD Transition Status'[to_status])
+			    )
+			
+			VAR DataCreazioneOpen =
+			    LOOKUPVALUE(
+			        'Jira Feature Delivery 2'[Issue created date],
+			        'Jira Feature Delivery 2'[Issue Key [Issue]]], currentIssue
+			    )
+			
+			VAR startDateFinale =
+			    IF(
+			        currentStatus = "Open",// && ISBLANK(startDate),
+			        DataCreazioneOpen,
+			        startDate
+			    )
+			
+			RETURN
+			IF(
+			    NOT ISBLANK(startDateFinale),
+			    DATEDIFF(startDateFinale, TODAY(), DAY),
+			    BLANK()
+			)
+		formatString: 0
+		displayFolder: OP36 Journey
+		lineageTag: 73f52248-4f02-4e2a-b1df-2b02f55f09f3
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'To OrdineFase Semplificate' =
+			
+			LOOKUPVALUE (
+			    'Workflow Fasi FD Semplificate'[OrdineFase],
+			    'Workflow Fasi FD Semplificate'[Status],
+			    'FD Transition Status'[to_status]
+			)
+		formatString: 0
+		displayFolder: Executive Journey
+		lineageTag: ffe825d7-4ca3-4283-aa30-b56cd2cb14a7
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'From OrdineFase Semplificate' =
+			
+			LOOKUPVALUE (
+			    'Workflow Fasi FD Semplificate'[OrdineFase],
+			    'Workflow Fasi FD Semplificate'[Status],
+			    'FD Transition Status'[from_status]
+			)
+		formatString: 0
+		displayFolder: Executive Journey
+		lineageTag: 72545cb4-ce7c-4d50-ac2c-32a7c2d94609
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'FD Transition Status' = calculated
+		mode: import
+		source = FILTER('Jira Change Status IE FD MBI BF', 'Jira Change Status IE FD MBI BF'[issue_type] = "Feature Delivery")
+
+	annotation PBI_Id = db9f16b3d60947208f19673e5c9ac83c
+

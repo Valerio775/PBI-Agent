@@ -1,0 +1,668 @@
+table 'Jira Project List'
+	lineageTag: 5659b6d7-43cf-404f-9cc4-38cd9a726e5b
+	sourceLineageTag: ffdef488-c17f-4f01-ac3b-a870614511cf
+
+	measure Total_Issues = EXTERNALMEASURE("Total_Issues", INTEGER, "DirectQuery in Analysis Services - SpringLab")
+		formatString: 0
+		lineageTag: d0ea8d5e-e172-4f86-a7e6-1dbfd5aedae2
+		sourceLineageTag: ec7270d3-6d66-438a-921d-a9eed4a0d70c
+		dataCategory: Uncategorized
+
+	column Project_Key
+		dataType: string
+		isNullable: false
+		lineageTag: a536548c-465b-4a1b-a04d-fcb3aa673999
+		sourceLineageTag: 8d0b6f0d-4b76-4f37-ae65-b4011bc0384a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Project_Key
+
+		annotation SummarizationSetBy = User
+
+	column JIRA_Project_Name
+		dataType: string
+		lineageTag: a8e65e3d-c644-4fe8-8d02-2fb7993fdbbd
+		sourceLineageTag: 1d99d3e9-bf66-475e-a4bb-9cf16b937367
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: JIRA_Project_Name
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_Project_Category
+		dataType: string
+		lineageTag: 3c5f44f4-419d-4c94-8df6-57f623a8c7c5
+		sourceLineageTag: e8936ebe-a129-48f0-a0f9-6b645769ef2f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_Project_Category
+
+		annotation SummarizationSetBy = User
+
+	column GDS_Line_HUB
+		dataType: string
+		lineageTag: b971d65a-42e7-407a-9729-502884535d53
+		sourceLineageTag: a0d12f60-5206-47fa-a524-3936a7e64fbc
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GDS_Line_HUB
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_Factory_Chapter
+		dataType: string
+		lineageTag: 735f76dd-0b1d-4b98-8c42-2c65f91b1174
+		sourceLineageTag: ce8f2520-2783-414f-9c5c-fea2bff318db
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_Factory_Chapter
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_Lead_Name
+		dataType: string
+		lineageTag: b815bb39-a2e7-4c1f-a53f-f4538e0d0bbc
+		sourceLineageTag: 4ef548ed-ded9-4bef-b48e-e5b19d9fcce0
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_Lead_Name
+
+		annotation SummarizationSetBy = User
+
+	column Project_Status
+		dataType: string
+		lineageTag: cbf25a72-7700-44fb-8235-1c48135ed8c9
+		sourceLineageTag: ea24182c-b2c1-4aa6-995b-6e4cecfacb8e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Project_Status
+
+		annotation SummarizationSetBy = User
+
+	column APM_Correttiva
+		dataType: string
+		lineageTag: 5f7deae6-5aa8-4496-9a19-311455ba8115
+		sourceLineageTag: 4962fb67-a115-4297-a79d-ae0f8e12f9d9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: APM_Correttiva
+
+		annotation SummarizationSetBy = User
+
+	column APM_Release
+		dataType: string
+		lineageTag: 554e6137-8224-466d-b1c2-0f5793af2e58
+		sourceLineageTag: bd89db16-90e8-4b78-82d7-970f83eb08a4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: APM_Release
+
+		annotation SummarizationSetBy = User
+
+	column APM_Development
+		dataType: string
+		lineageTag: 75475a8e-c20d-4960-b6f6-fa46f1fe0d36
+		sourceLineageTag: d5272865-1a92-40d9-a42e-dda58ef5c159
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: APM_Development
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_ProviderContract_Corrective
+		dataType: string
+		lineageTag: 383d1a3b-ee30-4e18-ba28-c0de235459b2
+		sourceLineageTag: 817828ff-7c55-4967-996e-992b48e84d8f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_ProviderContract_Corrective
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_ProviderContract_Development
+		dataType: string
+		lineageTag: b3d36df6-4067-4750-b3bb-87a07e54d50b
+		sourceLineageTag: d29bb716-ca45-498c-94b5-aade27f6fb6d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_ProviderContract_Development
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_ProviderContract_Release
+		dataType: string
+		lineageTag: 93ebd980-1d60-4da3-bf1c-77640e4e4650
+		sourceLineageTag: 9edcee47-7db0-4c96-9986-9b8e8300a253
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_ProviderContract_Release
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_Analytics_Visibility
+		dataType: string
+		lineageTag: ba887b86-52b1-4a0b-8f03-51395b74d60a
+		sourceLineageTag: 9cdd557b-cbae-4f6e-bfad-8c9a5f8f7419
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_Analytics_Visibility
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_Agile_Confirmed
+		dataType: string
+		lineageTag: 52615fd7-026a-4d4e-9a00-8745824289d8
+		sourceLineageTag: ae7bca17-7e4a-4080-95b6-de6bec6c96d6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_Agile_Confirmed
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_Num_Issues
+		dataType: string
+		lineageTag: 1bff6c25-2ed4-4f89-a3be-ec0cca41652a
+		sourceLineageTag: d5bcb153-b8c8-4813-bcca-a2e0eaf57ef4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_Num_Issues
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_Issues_last_7_days_updated
+		dataType: int64
+		formatString: 0
+		lineageTag: 078da273-1da5-47a7-8304-dd2e610e8c39
+		sourceLineageTag: 4fd24d73-734d-4e66-ac5e-df03de16ad42
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_Issues_last_7_days_updated
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_Issue_last_14_days_updated
+		dataType: int64
+		formatString: 0
+		lineageTag: f99b9475-6524-4aca-8e48-9ebd440b04ed
+		sourceLineageTag: 213c9644-7ebb-4326-9047-72f5c32bda42
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_Issue_last_14_days_updated
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_Issues_last_30_days_updated
+		dataType: int64
+		formatString: 0
+		lineageTag: db6b0441-6af1-44f5-b70f-6cd14d30899f
+		sourceLineageTag: 52e11f12-3ee5-42dd-b34d-73aa5d32810f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_Issues_last_30_days_updated
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_Issues_last_60_days_updated
+		dataType: int64
+		formatString: 0
+		lineageTag: 5bc803f0-6408-4858-8779-3d1243f81028
+		sourceLineageTag: de132df2-d746-4485-a49d-ff5e915c28d2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_Issues_last_60_days_updated
+
+		annotation SummarizationSetBy = User
+
+	column Num_Correctives_issue
+		dataType: string
+		lineageTag: 2ced094f-1a1e-4d5b-82d6-192d295878ce
+		sourceLineageTag: da96caef-38a2-47e5-abf6-9c28f2bb26db
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Num_Correctives_issue
+
+		annotation SummarizationSetBy = User
+
+	column Num_Requirements_Issue
+		dataType: string
+		lineageTag: cae13dc6-9a24-4d39-a9c7-d94ff20063cc
+		sourceLineageTag: 94681390-ae55-4d34-9b97-c150054dce4e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Num_Requirements_Issue
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_Num_RFC
+		dataType: string
+		lineageTag: 9d84c1df-77ed-4864-82ac-1ac33c90f68f
+		sourceLineageTag: a5cc13f5-d2f8-44cf-96d9-f9af37684e3b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_Num_RFC
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_Num_Test
+		dataType: string
+		lineageTag: dbfbd347-b4bc-42b4-baec-94b8825a3cd0
+		sourceLineageTag: 7b891d11-0dae-424f-b0a2-fa241b379fb2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_Num_Test
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_Methodology
+		dataType: string
+		lineageTag: 2f0b94f9-475a-42a4-b176-dd0687b3bc3c
+		sourceLineageTag: 808a1f58-d4d8-48cc-9171-4f245a5aaec2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_Methodology
+
+		annotation SummarizationSetBy = User
+
+	column Owner_Country
+		dataType: string
+		lineageTag: f2019bf2-0812-45dc-97a2-03165b27b3f4
+		sourceLineageTag: f9d9f73f-9ce3-4da7-ba15-6f4465321890
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Owner_Country
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_Critical_for_SLA
+		dataType: string
+		lineageTag: bd467069-025d-4dcc-9846-374caa63e2be
+		sourceLineageTag: dfc58059-e01e-43d1-89dc-26e7cf31f024
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_Critical_for_SLA
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_Product_Area
+		dataType: string
+		lineageTag: c06a58b6-3b94-4d53-ba16-9ffbd2db7375
+		sourceLineageTag: 63d5fdda-7528-47c9-9ed6-b410799ba2e6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_Product_Area
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_EnelInt_Product_Area
+		dataType: string
+		lineageTag: 9f4499ae-50ab-48ca-bdae-cb0cc297572e
+		sourceLineageTag: 18013558-910d-4fc0-8840-836fb5c568a8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_EnelInt_Product_Area
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_APM_Code_Corrective
+		dataType: string
+		lineageTag: e5aa5636-3108-4c25-8bae-0da0730704d3
+		sourceLineageTag: 1499eb8d-5768-48ee-8ac7-4d9e50787d2d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_APM_Code_Corrective
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_APM_Code_Release
+		dataType: string
+		lineageTag: c940ba5e-cd32-4764-a2da-3021209ec947
+		sourceLineageTag: 4a5cc71e-320b-44f1-aec2-bb01e11fb69a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_APM_Code_Release
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_APM_Code_Development
+		dataType: string
+		lineageTag: d5b199fa-9fbf-4372-bd34-79ecbbf8cad3
+		sourceLineageTag: d115021f-bf69-4cc1-be7a-472de169d793
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_APM_Code_Development
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_Smartflow_Value
+		dataType: string
+		lineageTag: c04968be-5122-488f-95a2-42e256accf6f
+		sourceLineageTag: c50b1b3e-4d17-4ae6-a9c9-ff378dfcf209
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_Smartflow_Value
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_Project_Key
+		dataType: string
+		lineageTag: 40551250-208c-4a14-8481-725c328f108f
+		sourceLineageTag: 9bcdea45-2bc9-4afe-bd21-5bd8dc45ed82
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_Project_Key
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_Creation_Date
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: e1ef2b99-ec79-417c-8bf3-c1c2f17a5306
+		sourceLineageTag: 5863ba8f-3856-46a1-9304-8c625fb18d54
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_Creation_Date
+
+		variation Variazione
+			isDefault
+			relationship: 3d38e822-074c-44ad-b73b-f2944704254d
+			defaultHierarchy: LocalDateTable_51168826-4623-4808-bf41-626e29c2df47.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column projectJira_start_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ea0cc0f5-5dc3-426b-a8b3-31c3d8a76673
+		sourceLineageTag: acde4681-2abc-4c19-a824-d8651058bba3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_start_date
+
+		variation Variazione
+			isDefault
+			relationship: b2ed1eae-2faf-419f-9058-48f5f7f5bbda
+			defaultHierarchy: LocalDateTable_188609cc-187b-4a88-8ce6-0374c82d6370.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column projectJira_end_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d98cbb29-edb0-4c6f-b916-f25ef4e986d3
+		sourceLineageTag: 39fd6f40-39cd-401d-8bf7-7fc49fc46bbe
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_end_date
+
+		variation Variazione
+			isDefault
+			relationship: 0141b08b-1a14-46db-ac2d-3677a98e9c16
+			defaultHierarchy: LocalDateTable_7fffbb98-cd35-4419-a6a2-8e720df2d650.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column projectJira_expected_end_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f9f97c90-d416-4c90-b33e-711f86e6d266
+		sourceLineageTag: e6313232-f7cd-42fc-822a-449d8e8966d4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_expected_end_date
+
+		variation Variazione
+			isDefault
+			relationship: 7457a420-07f8-4902-a7f0-a36c579b33c7
+			defaultHierarchy: LocalDateTable_3e7ba5b4-bb37-43bf-907c-3acf1ab06098.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column projectJira_Last_Update
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 4b9a76ff-df08-4685-98c4-fa2868bb696d
+		sourceLineageTag: 38be0da6-392b-4b70-aca4-aa895513d6fa
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_Last_Update
+
+		variation Variazione
+			isDefault
+			relationship: b1c2524c-290e-41d1-915d-45ce59b574e6
+			defaultHierarchy: LocalDateTable_88477167-8a78-4914-bc88-251f08d642e8.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column projectJira_Issue_Type_Scheme
+		dataType: string
+		lineageTag: b2519648-0dc8-4100-8f7e-26385bcb7476
+		sourceLineageTag: 0e53d07b-dc77-4874-9d58-8c358ea11398
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_Issue_Type_Scheme
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_IssueTypeScreen_Scheme
+		dataType: string
+		lineageTag: 32fe10fc-8c55-4248-86c9-9b3e52063d2f
+		sourceLineageTag: 97d527c9-0471-48b7-a0c1-28f53cc305b3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_IssueTypeScreen_Scheme
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_Permission_Scheme
+		dataType: string
+		lineageTag: 37fd8e9e-387a-446b-aa59-78e1b9991bf5
+		sourceLineageTag: b6123672-7206-4f2e-93a3-652910b32d43
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_Permission_Scheme
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_FieldConfiguration_Scheme
+		dataType: string
+		lineageTag: dc808c86-d3dc-4a75-99ab-814c8d695cf4
+		sourceLineageTag: 9eaf01b1-22ba-4906-9d1e-a59397ca603f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_FieldConfiguration_Scheme
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_Workflow_Scheme
+		dataType: string
+		lineageTag: ea412596-3373-4f2d-adfb-9ce8bdfe124d
+		sourceLineageTag: cdd212e1-96a9-448c-8546-ee6c3f08766b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_Workflow_Scheme
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_Notification_scheme
+		dataType: string
+		lineageTag: 077eb7a6-faf1-4ca9-b62b-324304633d2e
+		sourceLineageTag: 88c4c747-b700-4564-8ddb-c7cc527b3654
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_Notification_scheme
+
+		annotation SummarizationSetBy = User
+
+	column Conta_APM_Development
+		dataType: string
+		lineageTag: 5adee4ff-fb05-40e7-b3b1-f997b7a5cfd2
+		sourceLineageTag: 2b3ff45a-b903-423f-a796-efeb27f53bcc
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Conta_APM_Development
+
+		annotation SummarizationSetBy = User
+
+	column Conta_APM_Release
+		dataType: string
+		lineageTag: 0b9ad40a-f018-4d60-802e-574c3d9de762
+		sourceLineageTag: 8aa52021-da7a-47e4-b9c4-6a8f11c537a5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Conta_APM_Release
+
+		annotation SummarizationSetBy = User
+
+	column Conta_APM_Corrective
+		dataType: string
+		lineageTag: 4ed5b663-c553-4946-a8d4-99f220d01b35
+		sourceLineageTag: d59f6dbe-cd5a-4070-b142-08505f882ba9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Conta_APM_Corrective
+
+		annotation SummarizationSetBy = User
+
+	column col_unnamed
+		dataType: string
+		lineageTag: 31e29b3e-b6c1-4658-80c4-b01481910890
+		sourceLineageTag: 659ab0c0-de21-4573-a350-483aaed12742
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: col_unnamed
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_project_goal
+		dataType: string
+		lineageTag: ad47bfc0-af05-449d-bbbf-1ae43c2565fa
+		sourceLineageTag: fe5eea76-c4f9-4258-978e-ac594c562e38
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_project_goal
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_other_information
+		dataType: string
+		lineageTag: de0b1583-2394-4b70-849d-582a974683cf
+		sourceLineageTag: f8ed603f-7235-4340-9d2f-763ea627d5d6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_other_information
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_projectrack_category
+		dataType: string
+		lineageTag: d732ceb6-cd1c-4edb-a315-d080584ce37c
+		sourceLineageTag: b66de2f9-0632-42a7-aa62-c15aa3dc3bcd
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_projectrack_category
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_Archived
+		dataType: string
+		lineageTag: 4101eb7a-7229-48db-99d4-77c78cf0e88d
+		sourceLineageTag: 03f3bf7f-9c75-49b2-9a87-9132a5a04d37
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_Archived
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_Issue_last_30_days_updated_fasce
+		dataType: string
+		lineageTag: 5f614b44-1e53-4111-8573-6eb9b7a5bc33
+		sourceLineageTag: 2ba45423-7f74-4189-809c-603fd75fb985
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_Issue_last_30_days_updated_fasce
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_Issue_last_60_days_updated_fasce
+		dataType: string
+		lineageTag: 767103eb-efde-4de5-aca2-8a4739bee8a3
+		sourceLineageTag: 19df9d6b-df24-453c-841f-090cf0e3a3a6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_Issue_last_60_days_updated_fasce
+
+		annotation SummarizationSetBy = User
+
+	column Jira_Project_URL
+		dataType: string
+		lineageTag: e0aab48b-b2e9-40ee-8d25-4a08aaca7ffd
+		sourceLineageTag: cf868065-72ed-436d-8e7f-46c5f244ffc1
+		dataCategory: WebUrl
+		summarizeBy: none
+		sourceColumn: Jira_Project_URL
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_Lead_Username
+		dataType: string
+		lineageTag: 01ee264c-6af2-4727-859e-c5be1576ea0f
+		sourceLineageTag: 9d2558f6-cdf0-411c-a58c-84c9b58b5f6e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_Lead_Username
+
+		annotation SummarizationSetBy = User
+
+	column projectJira_Project_Lead_Email
+		dataType: string
+		lineageTag: f3c4d3dd-68b0-4441-8d99-daec44cd5af3
+		sourceLineageTag: 9fa27802-e3fa-4846-ad05-6d8324dbfbfd
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_Project_Lead_Email
+
+		annotation SummarizationSetBy = User
+
+	column 'Smartflow Code'
+		dataType: int64
+		formatString: 0
+		lineageTag: a356e13a-e579-4f0c-b8c0-e467a4269bfd
+		sourceLineageTag: d4cd4347-bd96-45b6-bcf9-2f18d1290c16
+		dataCategory: Uncategorized
+		summarizeBy: count
+		sourceColumn: Smartflow Code
+
+		annotation SummarizationSetBy = User
+
+	column GDS_Line_fixed = IF('Jira Project List'[GDS_Line_HUB] = "" || ISBLANK('Jira Project List'[GDS_Line_HUB]) , "NaN" , [GDS_Line_HUB])
+		lineageTag: 0359fc3d-5a5a-4b38-951a-2fbe8446ef4f
+		summarizeBy: none
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Factory_Chapter_fixed = IF('Jira Project List'[projectJira_Factory_Chapter] = "" || ISBLANK('Jira Project List'[projectJira_Factory_Chapter]) , "NaN" , [projectJira_Factory_Chapter])
+		lineageTag: 1ac3c261-6337-4c98-8e2b-6ea29dffda2e
+		summarizeBy: none
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column projectJira_area_type
+		dataType: string
+		lineageTag: 836897b6-1bdd-4f66-94a4-091c2a3c1122
+		sourceLineageTag: 01a7d341-ce95-483b-8671-b4c4004d1f85
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: projectJira_area_type
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira Project List' = entity
+		mode: directQuery
+		source
+			entityName: Jira Project List
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

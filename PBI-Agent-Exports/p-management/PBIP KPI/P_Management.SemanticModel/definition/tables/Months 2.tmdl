@@ -1,0 +1,32 @@
+table 'Months 2'
+	lineageTag: cc1acf8c-049a-4665-866a-96f65e7b956d
+	sourceLineageTag: 26776e92-86e7-471a-a4a6-cb65e4183d16
+
+	column Month
+		dataType: string
+		lineageTag: 0ce0eff6-d892-47ab-babd-83464b68f950
+		sourceLineageTag: ddc288ee-7035-4803-9cf0-78f0ffeb5c37
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Month
+		sortByColumn: MonthNumber
+
+		annotation SummarizationSetBy = User
+
+	column MonthNumber
+		dataType: int64
+		formatString: 0
+		lineageTag: dc5bc106-fba8-44b6-aed9-0ec34b47540d
+		sourceLineageTag: ef394976-6cc9-4618-8db1-e1fe9ff6d84b
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: MonthNumber
+
+		annotation SummarizationSetBy = User
+
+	partition 'Months 2' = entity
+		mode: directQuery
+		source
+			entityName: Months
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab 2'
+

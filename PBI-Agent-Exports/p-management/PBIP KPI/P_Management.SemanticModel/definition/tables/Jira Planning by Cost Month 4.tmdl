@@ -1,0 +1,51 @@
+table 'Jira Planning by Cost Month 4'
+	lineageTag: 026976e6-70d7-4b36-8500-1a02deab2edb
+	sourceLineageTag: 19ec00b8-7767-48d5-941f-f7e3c8ecf1f3
+
+	column 'Planning By Cost'
+		dataType: string
+		lineageTag: 2bd25891-f51c-4f2e-ae4c-cccf90989ca4
+		sourceLineageTag: ae925393-f62f-486b-bf65-8347ba0d1801
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Planning By Cost
+
+		annotation SummarizationSetBy = User
+
+	column Mese
+		dataType: string
+		lineageTag: f4817809-d7ff-45d9-939c-aa316f76217a
+		sourceLineageTag: b0dd0d88-1b50-4675-84b6-3ea0ac29b98e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Mese
+
+		annotation SummarizationSetBy = User
+
+	column 'Numero Mese'
+		dataType: int64
+		formatString: 0
+		lineageTag: 2276678a-899c-4d8e-90cb-ac786b8dd679
+		sourceLineageTag: 05a4f2a7-67d4-430c-83a9-41a4c2754581
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Numero Mese
+
+		annotation SummarizationSetBy = User
+
+	column Valore
+		dataType: double
+		lineageTag: 95398c68-04d6-4f56-a48f-ff055141d963
+		sourceLineageTag: e5d5c91d-bd4b-407f-a803-05a2e3418c25
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Valore
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira Planning by Cost Month 4' = entity
+		mode: directQuery
+		source
+			entityName: Jira Planning by Cost Month
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab 3'
+

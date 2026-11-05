@@ -1,0 +1,92 @@
+table 'TEST Issue MBI'
+	lineageTag: e87ee6e2-9ff0-436e-8128-cda3d8e9e7d2
+
+	column issue_key
+		lineageTag: 8bc05176-8f13-42ae-b76b-54f0f38d4909
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [issue_key]
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_entrata
+		formatString: General Date
+		lineageTag: 3edaaf74-056a-436c-a196-2921a2ee54e5
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [data_entrata]
+
+		variation Variazione
+			isDefault
+			relationship: f2409a3a-122d-48ce-8d20-afa8faff8d11
+			defaultHierarchy: LocalDateTable_c9051086-e1c6-4662-acb6-57735b4137b8.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column giorni_soggiorno
+		formatString: 0
+		lineageTag: 692d43c8-1c78-4890-9880-f7438f2f3ace
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [giorni_soggiorno]
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_prima_uscita
+		formatString: General Date
+		lineageTag: 254a5a69-df5a-4f77-ab7e-36160937dbb0
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [data_prima_uscita]
+
+		variation Variazione
+			isDefault
+			relationship: 65a5ae4b-cda6-4476-8466-592383a470c1
+			defaultHierarchy: LocalDateTable_83e1fee1-769d-4acb-9bef-d854802b53fb.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'TEST Issue MBI' = calculated
+		mode: import
+		source =
+				
+				VAR OrdineBarraCorrente = 8   -- Tech Evaluation
+				
+				VAR TransizioniEntrata =
+				    SELECTCOLUMNS (
+				        FILTER (
+				            ALL ( 'MBI Transition Status' ),
+				            'MBI Transition Status'[To OrdineBarra Semplificato] = OrdineBarraCorrente
+				                && 'MBI Transition Status'[From OrdineBarra Semplificato] <> OrdineBarraCorrente
+				        ),
+				        "issue_key", 'MBI Transition Status'[issue_key],
+				        "data_entrata", 'MBI Transition Status'[transition_date]
+				    )
+				
+				VAR TransizioniUscita =
+				    SELECTCOLUMNS (
+				        FILTER (
+				            ALL ( 'MBI Transition Status' ),
+				            'MBI Transition Status'[From OrdineBarra Semplificato] = OrdineBarraCorrente
+				                && 'MBI Transition Status'[To OrdineBarra Semplificato] <> OrdineBarraCorrente
+				        ),
+				        "issue_key_u", 'MBI Transition Status'[issue_key],
+				        "data_uscita", 'MBI Transition Status'[transition_date]
+				    )
+				
+				RETURN
+				ADDCOLUMNS (
+				    TransizioniEntrata,
+				    "data_prima_uscita",
+				        VAR k = [issue_key]
+				        VAR d = [data_entrata]
+				        RETURN MINX ( FILTER ( TransizioniUscita, [issue_key_u] = k && [data_uscita] > d ), [data_uscita] ),
+				    "giorni_soggiorno",
+				        VAR k = [issue_key]
+				        VAR d = [data_entrata]
+				        VAR pu = MINX ( FILTER ( TransizioniUscita, [issue_key_u] = k && [data_uscita] > d ), [data_uscita] )
+				        RETURN IF ( NOT ISBLANK ( pu ), DATEDIFF ( d, pu, DAY ) )
+				)
+
+	annotation PBI_Id = 17187eaebf494ed095d8c7834013b150
+

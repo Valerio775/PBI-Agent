@@ -1,0 +1,32 @@
+table 'Jira Xray Test Release'
+	lineageTag: c795726a-1700-4afe-984e-d0994f6d2a39
+	sourceLineageTag: d56a54b9-0c25-4113-9ea7-b46cf1605870
+
+	column test_issue_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 89adacc6-1546-42c3-a674-16654d41d778
+		sourceLineageTag: 158e2c90-ab72-4374-a0f7-9a539521d9fc
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: test_issue_id
+
+		annotation SummarizationSetBy = User
+
+	column release_test_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 791acc12-1b57-4487-b5b9-928352ac111f
+		sourceLineageTag: 7058e1fa-1d61-48b5-938a-a0268d1fc259
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: release_test_id
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira Xray Test Release' = entity
+		mode: directQuery
+		source
+			entityName: Jira Xray Test Release
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

@@ -1,0 +1,56 @@
+table 'Jira Workload'
+	lineageTag: 5805a153-57d4-482e-a3c6-96d0ba07b4e1
+	sourceLineageTag: 679560f4-894a-4597-b2de-5da6fe19621e
+
+	column logged_by
+		dataType: string
+		lineageTag: 0bcc94ee-2cca-4b2e-9fe6-acb9e250b1af
+		sourceLineageTag: cae7e503-1d1a-42ac-9b54-347e4d450f15
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: logged_by
+
+		annotation SummarizationSetBy = User
+
+	column issue
+		dataType: string
+		lineageTag: 96b98f9e-b6bf-4395-affa-542bcdc4d666
+		sourceLineageTag: 5c8562f2-0103-499c-a16b-2b6a9a5e30e9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue
+
+		annotation SummarizationSetBy = User
+
+	column time
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7ea1f0bf-9adc-4e4c-a138-1369da9792a9
+		sourceLineageTag: 81e4d8a6-aa0c-4a60-8427-44f562c76e76
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: time
+
+		variation Variazione
+			isDefault
+			relationship: 0f392fdd-9ce2-4daa-b8fe-e1bbd47bc876
+			defaultHierarchy: LocalDateTable_e295453c-6519-4168-8adc-4544d7e78760.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column hours_spent
+		dataType: string
+		lineageTag: 9894baf5-09eb-4512-a20b-784844e8da3e
+		sourceLineageTag: 8b4b9e90-fed4-4ec6-9f2d-4a4b078ae8b8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: hours_spent
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira Workload' = entity
+		mode: directQuery
+		source
+			entityName: Jira Workload
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

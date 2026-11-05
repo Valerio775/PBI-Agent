@@ -1,0 +1,44 @@
+table GDS_Line
+	lineageTag: d7059f3f-3e04-43ac-b477-27387364b58f
+
+	column ICT_lvl_1
+		lineageTag: 9940a731-7f5f-4e69-9b63-34c254d40c66
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [ICT_lvl_1]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ICT_lvl_2
+		lineageTag: 4b653d3c-f552-4498-881e-8d21336b5bc4
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [ICT_lvl_2]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ICT_lvl_3
+		lineageTag: e8f6f18b-2165-4f9e-ba04-d0807de7e986
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [ICT_lvl_3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition GDS_Line = calculated
+		mode: import
+		source = ```
+				--escludere NAN
+				DISTINCT(SELECTCOLUMNS(
+				    FILTER('HR OU Relations', 
+				    ('HR OU Relations'[Level 5 Y01 desc] = "Global ICT" || 'HR OU Relations'[Level 5 Y01 desc] = "ICT Iberia") &&
+				    'HR OU Relations'[Level 6 Y01 desc] <> "Digital Solutions Factory"),
+				        "ICT_lvl_1" , 'HR OU Relations'[Level 6 Y01 desc], 
+				        "ICT_lvl_2" , 'HR OU Relations'[Level 7 Y01 desc],
+				        "ICT_lvl_3" , 'HR OU Relations'[Level 8 Y01 desc]
+				    )
+				)
+				```
+
+	annotation PBI_Id = 18fc1d5ed6934289b2c9f577df73ce4a
+

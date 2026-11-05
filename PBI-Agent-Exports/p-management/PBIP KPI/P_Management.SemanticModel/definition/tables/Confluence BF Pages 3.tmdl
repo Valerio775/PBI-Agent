@@ -1,0 +1,31 @@
+table 'Confluence BF Pages 3'
+	lineageTag: b357d5c5-7d69-47a9-a377-01cc61d836f5
+	sourceLineageTag: 3bf9ebda-d390-4384-a232-f3ca8707b177
+
+	column pageid
+		dataType: int64
+		formatString: 0
+		lineageTag: 16e9334c-c183-423c-a11e-cf32ec16596e
+		sourceLineageTag: d0e53b89-c1c0-4067-a5fc-d3cdd3ab29c8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: pageid
+
+		annotation SummarizationSetBy = User
+
+	column issue_key
+		dataType: string
+		lineageTag: 01d94e99-1e3e-4584-b90e-58bc5f529283
+		sourceLineageTag: 36f7c79c-4780-463e-a6a1-1378f005441c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_key
+
+		annotation SummarizationSetBy = User
+
+	partition 'Confluence BF Pages 3' = entity
+		mode: directQuery
+		source
+			entityName: Confluence BF Pages
+			expressionSource: 'DirectQuery to AS - SpringLab'
+

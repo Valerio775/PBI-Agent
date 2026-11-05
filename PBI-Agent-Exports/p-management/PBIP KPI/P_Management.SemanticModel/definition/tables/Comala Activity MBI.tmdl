@@ -1,0 +1,132 @@
+table 'Comala Activity MBI'
+	lineageTag: 61ab0473-4d96-45f8-be32-ecd4c6f8892f
+
+	column pageid
+		formatString: 0
+		lineageTag: 78f47092-09b6-4444-a823-16a685b0f013
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: Confluence Comala Activity[pageid]
+
+		annotation SummarizationSetBy = Automatic
+
+	column workflow
+		lineageTag: f8f88cd1-eb11-4af0-96c9-37b07384db0c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Confluence Comala Activity[workflow]
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		lineageTag: 1281ddcf-5817-48b2-845a-93a79e62a92f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Confluence Comala Activity[date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column username
+		lineageTag: aa3990e4-1a17-4444-b5c6-49de1a96e2fe
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Confluence Comala Activity[username]
+
+		annotation SummarizationSetBy = Automatic
+
+	column contributors
+		lineageTag: b88e6a6c-5323-4947-a376-9213ab2efeaf
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Confluence Comala Activity[contributors]
+
+		annotation SummarizationSetBy = Automatic
+
+	column activity
+		lineageTag: 0c8c0396-6df8-4055-bb7f-911247c85e68
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Confluence Comala Activity[activity]
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		lineageTag: bc23bef0-ad8f-48fe-b9a2-da363ea0c97a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Confluence Comala Activity[description]
+
+		annotation SummarizationSetBy = Automatic
+
+	column page_version
+		lineageTag: 0f1bd8a3-f47b-42c4-b8ff-53acae348e74
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Confluence Comala Activity[page_version]
+
+		annotation SummarizationSetBy = Automatic
+
+	column page_id
+		formatString: 0
+		lineageTag: 62aa1af0-b784-4f07-9840-88b6b10c672e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Confluence Comala Activity[page_id]
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_comment
+		lineageTag: d7676972-7f9e-4db6-b236-6a6fa6cea8f6
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Confluence Comala Activity[user_comment]
+
+		annotation SummarizationSetBy = Automatic
+
+	column loaded_at
+		formatString: General Date
+		lineageTag: 843e2861-4804-437d-99ad-ff966c4ad4ed
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Confluence Comala Activity[loaded_at]
+
+		variation Variazione
+			isDefault
+			relationship: 4d0947ee-8ed1-4a0b-add0-297ba347c0f8
+			defaultHierarchy: LocalDateTable_d44c5a46-62bf-4a4b-b1d7-5eafa8335493.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Comala Stato Documento'
+		lineageTag: 7e96a281-18fd-4dfd-becb-2d8f996f28cd
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Confluence Comala Activity[Comala Stato Documento]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date Convertita'
+		formatString: General Date
+		lineageTag: 61d5ddb0-2e32-4634-a774-6e9aa668e697
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Confluence Comala Activity[Date Convertita]
+
+		variation Variazione
+			isDefault
+			relationship: 8016e22f-38d7-4924-ac1b-b4a46b27f305
+			defaultHierarchy: LocalDateTable_67b16a1f-4472-4160-a5b3-c1f7161933cd.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Comala Activity MBI' = calculated
+		mode: import
+		source =
+				
+				FILTER(
+				    'Confluence Comala Activity',
+				    'Confluence Comala Activity'[activity] = "state"
+				)
+
+	annotation PBI_Id = ee1dd67f07e04b5b8ae3a94fd5eca906
+

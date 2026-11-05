@@ -1,0 +1,101 @@
+table 'Jira MBI Split 3'
+	lineageTag: 1eba8729-771c-4fcc-aa04-d2bc1b0a372e
+	sourceLineageTag: 6ca0577b-5e70-481e-985f-edd7ed79ffb7
+
+	column 'MBI Issue key'
+		dataType: string
+		lineageTag: a1d28935-5f1d-43a0-a5da-0695e83c42ea
+		sourceLineageTag: 51487940-4c32-4191-9b5b-db87af452848
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: MBI Issue key
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Investment Memo'
+		dataType: string
+		lineageTag: 4c847515-e37d-488e-9583-39512abb2786
+		sourceLineageTag: ae05055a-cef8-4c00-b332-6030b14b01b8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Investment Memo
+
+		annotation SummarizationSetBy = User
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 2aa1f1f0-fe85-4805-8863-cad9ff4440fc
+		sourceLineageTag: 7ab7a7fc-cdab-4272-bc55-63310d871e4d
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = User
+
+	column CapexRE
+		dataType: double
+		lineageTag: c5c581bf-1aa8-41b8-a023-2fc9286de5c4
+		sourceLineageTag: 7ae4fde5-9056-4b1b-9fe8-fe95ef8d4566
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: CapexRE
+
+		annotation SummarizationSetBy = User
+
+	column CapexRI
+		dataType: double
+		lineageTag: 70cd3c44-5216-4adc-b85a-6f9ac63b673e
+		sourceLineageTag: 80ac227f-e713-4428-8b1f-1d84c8d4814f
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: CapexRI
+
+		annotation SummarizationSetBy = User
+
+	column CapexLicenses
+		dataType: double
+		lineageTag: 050479c5-c289-4a1b-a814-71651f710335
+		sourceLineageTag: 344661a3-4fba-413f-8c2b-1a8a61cedc5b
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: CapexLicenses
+
+		annotation SummarizationSetBy = User
+
+	column OpexRI
+		dataType: double
+		lineageTag: df441bc4-13ea-40c2-acce-62aba5d52191
+		sourceLineageTag: 55789872-a274-4925-9739-d5e6914e3a58
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: OpexRI
+
+		annotation SummarizationSetBy = User
+
+	column OpexRE
+		dataType: double
+		lineageTag: c13d33ca-3e3e-4c96-a924-cbc03baf127f
+		sourceLineageTag: 07885fc9-e992-4e44-ae5f-09507f4e0244
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: OpexRE
+
+		annotation SummarizationSetBy = User
+
+	column OpexLicenses
+		dataType: double
+		lineageTag: a372ed28-98ee-413f-bdf7-a086f0882e6a
+		sourceLineageTag: 7188b4d8-947a-4869-b421-6ba3ede96d77
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: OpexLicenses
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira MBI Split 3' = entity
+		mode: directQuery
+		source
+			entityName: Jira MBI Split
+			expressionSource: 'DirectQuery to AS - SpringLab'
+

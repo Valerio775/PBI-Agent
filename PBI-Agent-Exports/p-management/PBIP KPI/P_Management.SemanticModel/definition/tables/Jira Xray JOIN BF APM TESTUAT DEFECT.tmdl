@@ -1,0 +1,60 @@
+table 'Jira Xray JOIN BF APM TESTUAT DEFECT'
+	lineageTag: 5c812690-9b31-4a53-ae75-bed02a70cc3a
+	sourceLineageTag: 7a441947-109d-4824-a509-2f4d4faf5ab7
+
+	column APM
+		dataType: string
+		lineageTag: df74b0f6-077b-49c4-a0d7-18051472ee8b
+		sourceLineageTag: 1280c658-f46a-4e22-a118-68ead62fc53f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: APM
+
+		annotation SummarizationSetBy = User
+
+	column 'Business Feature'
+		dataType: string
+		lineageTag: 456d280b-1248-4e6f-9fa6-8a6a692a688d
+		sourceLineageTag: fa10d8fd-bee7-4201-9b55-37e11b4912d5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Business Feature
+
+		annotation SummarizationSetBy = User
+
+	column Test
+		dataType: string
+		lineageTag: 05f34f53-2027-4442-8f02-430a105b2df9
+		sourceLineageTag: 074cd845-3fae-4d8c-8e83-fb94997f8dd4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Test
+
+		annotation SummarizationSetBy = User
+
+	column Defect
+		dataType: string
+		lineageTag: e25c021e-3f0a-4efb-b1ad-5e04e12d8754
+		sourceLineageTag: 2e517fbf-3a5f-467b-b338-a7c6df68c4ea
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Defect
+
+		annotation SummarizationSetBy = User
+
+	column 'Bug UAT'
+		dataType: string
+		lineageTag: 11453a7e-b64e-460c-9596-babca6dbc4a4
+		sourceLineageTag: 80b73758-9ad6-4c70-b4a3-979fe597f819
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Bug UAT
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira Xray JOIN BF APM TESTUAT DEFECT' = entity
+		mode: directQuery
+		source
+			entityName: Jira Xray JOIN BF APM TESTUAT DEFECT
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

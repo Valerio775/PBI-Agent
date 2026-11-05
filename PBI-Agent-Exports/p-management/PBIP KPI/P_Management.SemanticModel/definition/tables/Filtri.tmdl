@@ -1,0 +1,98 @@
+table Filtri
+	lineageTag: aa308d3b-ba15-4a2e-bfa3-5653e8067662
+
+	column Date
+		formatString: General Date
+		lineageTag: 5f42420d-89b5-454e-a505-eb80e3937214
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variazione
+			isDefault
+			relationship: 28213124-a2d4-4b24-a7cd-617911da8b3f
+			defaultHierarchy: LocalDateTable_dd1b29df-11c1-4ebc-91d9-781367348ca8.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Anno
+		formatString: 0
+		lineageTag: d73e2946-d333-4fdd-920d-c131eda4caff
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Anno]
+
+		annotation SummarizationSetBy = Automatic
+
+	column NumeroMese
+		formatString: 0
+		lineageTag: 1729563e-9bb9-4f71-8d6e-2cdc36ebab8f
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [NumeroMese]
+
+		annotation SummarizationSetBy = Automatic
+
+	column AnnoMese
+		lineageTag: 5658f1d6-b40d-428c-a1de-db43f044ced9
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [AnnoMese]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mese
+		lineageTag: 8764b761-4a3c-487f-b3bc-b6957cf34087
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Mese]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mese_No
+		formatString: 0
+		lineageTag: c3f5f411-05a8-46b9-a97b-a9da1e5470b5
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Mese_No]
+
+		annotation SummarizationSetBy = Automatic
+
+	column GDS_Line_HUB
+		lineageTag: b7d0d296-8f47-4dfb-9ebe-858cbe8ccaac
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Project List[GDS_Line_HUB]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Filtri = calculated
+		mode: import
+		source =
+				
+				VAR DataInizio = DATE(2025, 1, 1)
+				VAR DataFine =
+				    MAXX(ALL('Jira Issue Detail'), 'Jira Issue Detail'[created_date])
+				VAR CalendarioBase =
+				    ADDCOLUMNS(
+				        CALENDAR(DataInizio, DataFine),
+				        "Anno", YEAR([Date]),
+				        "NumeroMese", MONTH([Date]),
+				        "AnnoMese", FORMAT([Date], "YYYY-MM"),
+				        "Mese", FORMAT([Date], "MMM", "en-US"),
+				        "Mese_No", MONTH([Date])
+				    )
+				VAR GDS =
+				    SUMMARIZE(
+				        'Jira Project List',
+				        'Jira Project List'[GDS_Line_HUB]
+				    )
+				
+				RETURN
+				CROSSJOIN(
+				    CalendarioBase,
+				    GDS
+				)
+
+	annotation PBI_Id = 89b8c9b1a8c141dda9928e3d02c7bd60
+

@@ -1,0 +1,718 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "c3caafb1a8363da8b89c",
+  "position": {
+    "x": 26.3033461972221,
+    "y": 923.2132350317288,
+    "z": 1437,
+    "height": 447.89022298456263,
+    "width": 1821.2006861063467,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Jira Initiative Estimation"
+                    }
+                  },
+                  "Property": "Jira_IE_URL"
+                }
+              },
+              "queryRef": "Jira Initiative Estimation.Jira_IE_URL",
+              "nativeQueryRef": "URL IE",
+              "displayName": "URL IE"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Jira Initiative Estimation"
+                    }
+                  },
+                  "Property": "issue"
+                }
+              },
+              "queryRef": "Jira Initiative Estimation.issue",
+              "nativeQueryRef": "Iniziativa",
+              "displayName": "Iniziativa"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "IE Transition Status"
+                    }
+                  },
+                  "Property": "Giorni in Stato IE"
+                }
+              },
+              "queryRef": "IE Transition Status.Giorni in Stato IE",
+              "nativeQueryRef": "#gg nello stato corrente",
+              "displayName": "#gg nello stato corrente"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APM (2)"
+                    }
+                  },
+                  "Property": "DF_LEVEL_1"
+                }
+              },
+              "queryRef": "APM (2).DF_LEVEL_1",
+              "nativeQueryRef": "DF Level 1",
+              "displayName": "DF Level 1"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APM (2)"
+                    }
+                  },
+                  "Property": "DF_LEVEL_2"
+                }
+              },
+              "queryRef": "APM (2).DF_LEVEL_2",
+              "nativeQueryRef": "DF Level 2",
+              "displayName": "DF Level 2"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Jira Initiative Estimation"
+                    }
+                  },
+                  "Property": "issue_key"
+                }
+              },
+              "queryRef": "Jira Initiative Estimation.issue_key",
+              "nativeQueryRef": "IE Key",
+              "displayName": "IE Key"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Jira Initiative Estimation"
+                    }
+                  },
+                  "Property": "issue_technical_leader"
+                }
+              },
+              "queryRef": "Jira Initiative Estimation.issue_technical_leader",
+              "nativeQueryRef": "Technical Leader",
+              "displayName": "Technical Leader"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Jira Initiative Estimation"
+                    }
+                  },
+                  "Property": "issue_status"
+                }
+              },
+              "queryRef": "Jira Initiative Estimation.issue_status",
+              "nativeQueryRef": "Current Jira Stas",
+              "displayName": "Current Jira Stas"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Jira Initiative Estimation"
+                    }
+                  },
+                  "Property": "issue_macro_business_initiative"
+                }
+              },
+              "queryRef": "Jira Initiative Estimation.issue_macro_business_initiative",
+              "nativeQueryRef": "MBI Key",
+              "displayName": "MBI Key"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Jira Initiative Estimation"
+                    }
+                  },
+                  "Property": "URL MBI"
+                }
+              },
+              "queryRef": "Jira Initiative Estimation.URL MBI",
+              "nativeQueryRef": "URL MBI"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "IE Transition Status"
+                  }
+                },
+                "Property": "Giorni in Stato IE"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Arial'"
+                }
+              }
+            },
+            "backColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F3F9FF'"
+                    }
+                  }
+                }
+              }
+            },
+            "urlIcon": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Arial Black'''"
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#EBEBEB'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.6
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            },
+            "rowPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "6D"
+                }
+              }
+            },
+            "outlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#C4C4C4'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "626.1428155663917D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Jira Initiative Estimation.issue"
+          }
+        },
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "205.4286063705346D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "Jira Initiative Estimation.issue_status"
+          }
+        }
+      ],
+      "columnFormatting": [
+        {
+          "properties": {
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Center'"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "IE Transition Status.Giorni in Stato IE"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Jira Change Status IE FD MBI BF'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "d0632cd87df58baea22e",
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "c19d42a9b9db42ea71eb",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Initiative Estimation"
+              }
+            },
+            "Property": "Jira_IE_URL"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "8ddfb6f9e959db1100ce",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Initiative Estimation"
+              }
+            },
+            "Property": "issue_technical_leader"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e7e7a7143a2347e8638b",
+        "ordinal": 2,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Macro Business Initiative"
+              }
+            },
+            "Property": "Projectrak Project Status"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "j",
+              "Entity": "Jira Macro Business Initiative",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "j"
+                              }
+                            },
+                            "Property": "Projectrak Project Status"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Demo Project'"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "2dd71edc15be085aadd0",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Initiative Estimation"
+              }
+            },
+            "Property": "issue_apm_list"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "36bc87ff38f5e44aef3b",
+        "ordinal": 4,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "IE Transition Status"
+              }
+            },
+            "Property": "Giorni in Stato IE"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "73cd24124610748c2cc1",
+        "ordinal": 5,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Workflow Fasi IE Semplificate 2"
+              }
+            },
+            "Property": "Status"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "e257fd37bffe07f0f0f8",
+        "ordinal": 6,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Initiative Estimation"
+              }
+            },
+            "Property": "issue_status"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "j",
+              "Entity": "Jira Initiative Estimation",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "j"
+                              }
+                            },
+                            "Property": "issue_status"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Done'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Rejected'"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "c06c14231bc1e5a8ff70",
+        "ordinal": 7,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Initiative Estimation"
+              }
+            },
+            "Property": "issue_key"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "a24e894f1b21fc909e7f",
+        "ordinal": 8,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Initiative Estimation"
+              }
+            },
+            "Property": "issue"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "afecf804a839a4524f13",
+        "ordinal": 9,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "APM (2)"
+              }
+            },
+            "Property": "DF_LEVEL_2"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "58dfa35348b6ed7b9b8e",
+        "ordinal": 10,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Initiative Estimation"
+              }
+            },
+            "Property": "issue_macro_business_initiative"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "cfd78041052c89023990",
+        "ordinal": 11,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Initiative Estimation"
+              }
+            },
+            "Property": "URL MBI"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "43864ce0e811dade527d",
+        "ordinal": 12,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "APM (2)"
+              }
+            },
+            "Property": "DF_LEVEL_1"
+          }
+        },
+        "type": "Categorical"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

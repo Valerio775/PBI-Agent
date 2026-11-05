@@ -1,0 +1,3208 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/2.1.0/schema.json",
+  "displayName": "Focus HLD e Stime",
+  "name": "6c58bbfc05b8298cee51",
+  "options": {
+    "targetVisualNames": [],
+    "suppressActiveSection": true,
+    "suppressData": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "7fa74fc189a815006a5b",
+    "sections": {
+      "7fa74fc189a815006a5b": {
+        "visualContainers": {
+          "76260797d6ea29b97e2e": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "c14ae56b82600089e00c",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "Last_data"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "card",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "Last_data"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          "0ba9c0944e8c7beb3912": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "2410cf65b9a7c1694149": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "5522df67e3e99bc80907": {
+            "singleVisual": {
+              "visualType": "image",
+              "objects": {}
+            }
+          },
+          "40d141b7bc4d7440104c": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "c6085d8f104d68097a6e": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "371f1fe1b8909067c7a8": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "389083ad7a7ac5571650",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Macro Business Initiative"
+                        }
+                      },
+                      "Property": "MBI Created Date"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "119d4e597a21046a1b54",
+                  "type": "Advanced",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "j",
+                        "Entity": "Jira Macro Business Initiative",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Comparison": {
+                            "ComparisonKind": 2,
+                            "Left": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Source": "j"
+                                  }
+                                },
+                                "Property": "Issue created date"
+                              }
+                            },
+                            "Right": {
+                              "DateSpan": {
+                                "Expression": {
+                                  "Literal": {
+                                    "Value": "datetime'2026-01-01T00:00:00'"
+                                  }
+                                },
+                                "TimeUnit": 5
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Macro Business Initiative"
+                        }
+                      },
+                      "Property": "Issue created date"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "general": [
+                    {
+                      "properties": {
+                        "filter": {
+                          "filter": {
+                            "Version": 2,
+                            "From": [
+                              {
+                                "Name": "j",
+                                "Entity": "Jira Macro Business Initiative",
+                                "Type": 0
+                              }
+                            ],
+                            "Where": [
+                              {
+                                "Condition": {
+                                  "Comparison": {
+                                    "ComparisonKind": 2,
+                                    "Left": {
+                                      "Column": {
+                                        "Expression": {
+                                          "SourceRef": {
+                                            "Source": "j"
+                                          }
+                                        },
+                                        "Property": "Issue created date"
+                                      }
+                                    },
+                                    "Right": {
+                                      "Literal": {
+                                        "Value": "datetime'2026-01-07T00:00:00'"
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "data": [
+                    {
+                      "properties": {
+                        "startDate": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "datetime'2026-01-07T00:00:00'"
+                            }
+                          }
+                        },
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Between'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "orderBy": [
+                {
+                  "Direction": 1,
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Macro Business Initiative"
+                        }
+                      },
+                      "Property": "MBI Created Date"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Macro Business Initiative"
+                        }
+                      },
+                      "Property": "Issue created date"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "f125e940b8ca162a2029": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "607273bf80c843372634",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Feature Delivery 2"
+                        }
+                      },
+                      "Property": "Conteggio FD"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "85dbe27fbfb226279953",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "Conteggio MBI"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "f2370fd500be666c1151",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Macro Business Initiative"
+                        }
+                      },
+                      "Property": "Projectrak GDS Line"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a0adb6000e9072eb5304",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Macro Business Initiative"
+                        }
+                      },
+                      "Property": "Projectrak Factory - Chapter"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Macro Business Initiative"
+                        }
+                      },
+                      "Property": "Projectrak GDS Line"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "a7d3e16a00a0c504bd55": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "fe3be6e2cc79d6035662",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "j",
+                        "Entity": "Jira Macro Business Initiative",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "In": {
+                                "Expressions": [
+                                  {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "j"
+                                        }
+                                      },
+                                      "Property": "IM Num formatted"
+                                    }
+                                  }
+                                ],
+                                "Values": [
+                                  [
+                                    {
+                                      "Literal": {
+                                        "Value": "' – '"
+                                      }
+                                    }
+                                  ],
+                                  [
+                                    {
+                                      "Literal": {
+                                        "Value": "'0123456789 – test'"
+                                      }
+                                    }
+                                  ]
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Macro Business Initiative"
+                        }
+                      },
+                      "Property": "IM Num formatted"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Macro Business Initiative"
+                        }
+                      },
+                      "Property": "IM Num formatted"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "da031730d88212ec0490": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "607273bf80c843372634",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Feature Delivery 2"
+                        }
+                      },
+                      "Property": "Conteggio FD"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "85dbe27fbfb226279953",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "Conteggio MBI"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "3238fd1f797c3d7eca3b",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Macro Business Initiative"
+                        }
+                      },
+                      "Property": "Issue key"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Macro Business Initiative"
+                        }
+                      },
+                      "Property": "Issue key"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "8d59ae9aa964106826bc": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "865031bbd003a1050c89": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "92a2892240bd00200928": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "57650807a84c430c74b0": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "b0ce07fe4700125591ad": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "21a77210707686c02509": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "a47543b069e252552680": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "179dcd70ab59a060b977": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "a367e87119e6d624e627": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "30b9deec1a03892e2cb0": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "61cc781bee0a58ea513c": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "2a37a1be25c50ce83957": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "872913196cd062ae898b": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "c2ce452875ead2613860": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "53f0ca055205204a825c",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "j",
+                        "Entity": "Jira Macro Business Initiative",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "In": {
+                                "Expressions": [
+                                  {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "j"
+                                        }
+                                      },
+                                      "Property": "Projectrak Project Status"
+                                    }
+                                  }
+                                ],
+                                "Values": [
+                                  [
+                                    {
+                                      "Literal": {
+                                        "Value": "'Demo Project'"
+                                      }
+                                    }
+                                  ]
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Macro Business Initiative"
+                        }
+                      },
+                      "Property": "Projectrak Project Status"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "ffb53e1bc5a6018606b8",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "w",
+                        "Entity": "Workflow Fasi MBI Semplificate",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "In": {
+                                "Expressions": [
+                                  {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "w"
+                                        }
+                                      },
+                                      "Property": "Status Tradotto"
+                                    }
+                                  }
+                                ],
+                                "Values": [
+                                  [
+                                    {
+                                      "Literal": {
+                                        "Value": "null"
+                                      }
+                                    }
+                                  ],
+                                  [
+                                    {
+                                      "Literal": {
+                                        "Value": "'0. Aborted'"
+                                      }
+                                    }
+                                  ]
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Workflow Fasi MBI Semplificate"
+                        }
+                      },
+                      "Property": "Status Tradotto"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "1f9cd034e081892b4020",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "MBI Transition Status"
+                        }
+                      },
+                      "Property": "COUNT Backlog Semplificato"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "3c81004507e952500ed4",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "MBI Transition Status"
+                        }
+                      },
+                      "Property": "MBI Aging Medio Corrente nello Stato Semplificato"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "d92f4e3cc30d02acca49",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "MBI Transition Status"
+                        }
+                      },
+                      "Property": "MBI Tempo Storico Medio nello Stato Semplificato"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "d55d53173429ce5cb2e9",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Workflow Fasi MBI Semplificate"
+                        }
+                      },
+                      "Property": "Status Numerato"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "b75c28e57c05d204d2d9",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "MBI Transition Status"
+                        }
+                      },
+                      "Property": "Conteggio Pass-Through Semplificato"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "lineClusteredColumnComboChart",
+              "objects": {},
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Workflow Fasi MBI Semplificate"
+                        }
+                      },
+                      "Property": "Status Tradotto"
+                    }
+                  },
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Workflow Fasi MBI Semplificate"
+                        }
+                      },
+                      "Property": "Status Numerato"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "16c966200beedb483053": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "330999699c40bc5e774b",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Macro Business Initiative"
+                        }
+                      },
+                      "Property": "Issue key"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a076d38434e2e295bc70",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "MBI Transition Status"
+                        }
+                      },
+                      "Property": "Data Ingresso"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "2b1d00be4e442411aea8",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "MBI Transition Status"
+                        }
+                      },
+                      "Property": "Giorni in Stato"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "c76383760f8865245162",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "j",
+                        "Entity": "Jira Macro Business Initiative",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "In": {
+                                "Expressions": [
+                                  {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "j"
+                                        }
+                                      },
+                                      "Property": "Issue status"
+                                    }
+                                  }
+                                ],
+                                "Values": [
+                                  [
+                                    {
+                                      "Literal": {
+                                        "Value": "null"
+                                      }
+                                    }
+                                  ],
+                                  [
+                                    {
+                                      "Literal": {
+                                        "Value": "'Canceled'"
+                                      }
+                                    }
+                                  ]
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Macro Business Initiative"
+                        }
+                      },
+                      "Property": "Issue status"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "81ccaff177a135002425",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "j",
+                        "Entity": "Jira Macro Business Initiative",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "In": {
+                                "Expressions": [
+                                  {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "j"
+                                        }
+                                      },
+                                      "Property": "Projectrak Project Status"
+                                    }
+                                  }
+                                ],
+                                "Values": [
+                                  [
+                                    {
+                                      "Literal": {
+                                        "Value": "'Demo Project'"
+                                      }
+                                    }
+                                  ]
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Macro Business Initiative"
+                        }
+                      },
+                      "Property": "Projectrak Project Status"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "87a80c5d800eded0baac",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Macro Business Initiative"
+                        }
+                      },
+                      "Property": "URL"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "e440546134b299e2eba2",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Macro Business Initiative"
+                        }
+                      },
+                      "Property": "Status Tradotto"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "0dc4bd50282ecdddc26c",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Macro Business Initiative"
+                        }
+                      },
+                      "Property": "Issue ICT Line Level 1"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "78baa152732554e7489e",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Macro Business Initiative"
+                        }
+                      },
+                      "Property": "Issue ICT Line Level 2"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "c0ac140f108802dc603c",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Macro Business Initiative"
+                        }
+                      },
+                      "Property": "Issue Name"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "b9c2412f81c40c725148",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Workflow Fasi MBI"
+                        }
+                      },
+                      "Property": "Status Tradotto"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {}
+            }
+          },
+          "38703b5fb064b1a08b83": {
+            "singleVisual": {
+              "visualType": "textbox",
+              "objects": {}
+            }
+          },
+          "84a4dc9ba05ae0d0a7e1": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "f6fea157d2bb19e8305d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "MBI Transition Status"
+                        }
+                      },
+                      "Property": "Tempo Medio nello Stato"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "ffcab61d50431611ad40",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Feature"
+                        }
+                      },
+                      "Property": "Issue Initiative Type"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "74be8b6b106743c477c6",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "MBI Transition Status"
+                        }
+                      },
+                      "Property": "Conteggio Pass-Through"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "27d755d0862ae52ee1ed",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "BF Transition Status Confluence"
+                        }
+                      },
+                      "Property": "Tempo Medio nello Stato BF Journey"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f195d2e37b042796837c",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Feature"
+                        }
+                      },
+                      "Property": "Projectrak Project Status"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "1187d86c279f3d343919",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "BF Transition Status Confluence"
+                        }
+                      },
+                      "Property": "Conteggio Pass-Through BF Journey"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "3b28648da5869fa9f702",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Workflow Fasi BF Journey Confluence 2"
+                        }
+                      },
+                      "Property": "Status Tradotto"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "lineStackedColumnComboChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "BF Transition Status"
+                        }
+                      },
+                      "Property": "Conteggio Pass-Through BF"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Workflow Fasi BF Journey Confluence 2"
+                        }
+                      },
+                      "Property": "Status Tradotto"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "1e4b2011b9b880a08a0b": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "dfa093ac0c7aa600c504": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "b3c7d5aa1b535a0bad2c": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "e8de0c495ac569830dd7": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "3564d34aabeaa29b030d": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "d3caaf0c610308b7ec7c",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Feature"
+                        }
+                      },
+                      "Property": "MBI name"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Feature"
+                        }
+                      },
+                      "Property": "MBI name"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "015ece7e08110c400ac0": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "718134f319014b12c300": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "eea8c98b2674a80cb659",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Feature"
+                        }
+                      },
+                      "Property": "Issue Technical Leader"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Feature"
+                        }
+                      },
+                      "Property": "Issue Technical Leader"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "7af61883e293bdea990e": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "83dc0c8cbe4932600735",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Feature"
+                        }
+                      },
+                      "Property": "Issue Initiative Leader Delegate"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Feature"
+                        }
+                      },
+                      "Property": "Issue Initiative Leader Delegate"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "d231ca1e643e6d30eab7": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "dd217877bca93807ea51",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Feature"
+                        }
+                      },
+                      "Property": "Issue Sponsor Delegate"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Feature"
+                        }
+                      },
+                      "Property": "Issue Sponsor Delegate"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "dce5784096e85634a297": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "607273bf80c843372634",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Feature Delivery 2"
+                        }
+                      },
+                      "Property": "Conteggio FD"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "f9c516ea6ca5ad12557c",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Feature for APM"
+                        }
+                      },
+                      "Property": "DE LEVEL 1"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "e1a1f553b2a39acbd687",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Feature for APM"
+                        }
+                      },
+                      "Property": "DE LEVEL 2"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Feature for APM"
+                        }
+                      },
+                      "Property": "DE LEVEL 1"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "92599bc65bc7d1d804de": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "607273bf80c843372634",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Feature Delivery 2"
+                        }
+                      },
+                      "Property": "Conteggio FD"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "418058bf3b5c18b1207c",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Feature for APM"
+                        }
+                      },
+                      "Property": "DF LEVEL 1"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "b936eed87417843044e4",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Feature for APM"
+                        }
+                      },
+                      "Property": "DF LEVEL 2"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Feature for APM"
+                        }
+                      },
+                      "Property": "DF LEVEL 1"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "8de25d2353804c14846a": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "00acdc86698162017a19",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Macro Business Initiative"
+                        }
+                      },
+                      "Property": "MBI Created Date"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "04940fa10285868d4309",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Feature"
+                        }
+                      },
+                      "Property": "Issue created date"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Between'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Feature"
+                        }
+                      },
+                      "Property": "Issue created date"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "e5cea7d1cd2e42d86084": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "607273bf80c843372634",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Feature Delivery 2"
+                        }
+                      },
+                      "Property": "Conteggio FD"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "85dbe27fbfb226279953",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "Conteggio MBI"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "65f5901040db96670d0a",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Feature"
+                        }
+                      },
+                      "Property": "Projectrak GDS Line"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "eb0983ab64d806624424",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Feature"
+                        }
+                      },
+                      "Property": "Projectrak Factory"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "slicer",
+              "objects": {
+                "merge": {
+                  "data": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "expr": {
+                            "Literal": {
+                              "Value": "'Dropdown'"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "activeProjections": {
+                "Values": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Feature"
+                        }
+                      },
+                      "Property": "Projectrak GDS Line"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "e1b618d40895d4005448": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "f14aa431076e54511bbf",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "BF Transition Status Confluence"
+                        }
+                      },
+                      "Property": "issue_key"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "075efd85c6cb82aaf578",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "BF Transition Status Confluence"
+                        }
+                      },
+                      "Property": "Data Ingresso BF Confluence"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "29fad59f0024b847be07",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Feature"
+                        }
+                      },
+                      "Property": "Issue Initiative Type"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "db5b07a6d36223b9b394",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "BF Transition Status Confluence"
+                        }
+                      },
+                      "Property": "Giorni in Stato BF Journey"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "3521ba21907dcde45e35",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Feature"
+                        }
+                      },
+                      "Property": "Projectrak Project Status"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "63ecaacb948a67501349",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Workflow Fasi BF Journey Confluence"
+                        }
+                      },
+                      "Property": "Status Tradotto"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "1c7a219b38ceb465957e",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "BF Transition Status Confluence"
+                        }
+                      },
+                      "Property": "Issue name"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {}
+            }
+          },
+          "02ef84eb800bba508929": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "3bb434986094037d60c0": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "70e04e61271eddb9cf35",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "w",
+                        "Entity": "Workflow Fasi MBI 2",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "In": {
+                                "Expressions": [
+                                  {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "w"
+                                        }
+                                      },
+                                      "Property": "Status Tradotto"
+                                    }
+                                  }
+                                ],
+                                "Values": [
+                                  [
+                                    {
+                                      "Literal": {
+                                        "Value": "null"
+                                      }
+                                    }
+                                  ]
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Workflow Fasi MBI 2"
+                        }
+                      },
+                      "Property": "Status Tradotto"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "1ad46e666a6bd7a7e980",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Feature"
+                        }
+                      },
+                      "Property": "Issue Initiative Type"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "f6fea157d2bb19e8305d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "MBI Transition Status"
+                        }
+                      },
+                      "Property": "Tempo Medio nello Stato"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "4113a84eadb85b4d0d0c",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Feature"
+                        }
+                      },
+                      "Property": "Projectrak Project Status"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "74be8b6b106743c477c6",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "MBI Transition Status"
+                        }
+                      },
+                      "Property": "Conteggio Pass-Through"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "e7208be52816ab0449b4",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Workflow Fasi BF Journey Confluence"
+                        }
+                      },
+                      "Property": "Status Tradotto"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "822cea30484ec1a500e5",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Jira Business Feature"
+                            }
+                          },
+                          "Property": "Issue Key [Issue]"
+                        }
+                      },
+                      "Function": 5
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "0a0096bc550d0c5c3552",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "BF Transition Status Confluence"
+                        }
+                      },
+                      "Property": "Media per Stato BF Journey"
+                    }
+                  },
+                  "howCreated": 1
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "lineStackedColumnComboChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Jira Business Feature 2"
+                            }
+                          },
+                          "Property": "Issue Key [Issue]"
+                        }
+                      },
+                      "Function": 5
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Workflow Fasi BF Journey Confluence"
+                        }
+                      },
+                      "Property": "Status Tradotto"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "e4f7e4ffbc06b2913488": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "17da850f0c4a88a018cd": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "a1819c6bd7c5824790d2": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "49187236ee23691025c5": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "fabbcce596ed06fcfae2",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "BF Transition Status Confluence"
+                        }
+                      },
+                      "Property": "issue_key"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "6fb5836ba065008b6828",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Feature"
+                        }
+                      },
+                      "Property": "Issue Initiative Type"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "9d44f7b32db2c24162a1",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "BF Transition Status Confluence"
+                        }
+                      },
+                      "Property": "Data Ingresso Stato BF Journey"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "aa00e733eac853a47eb7",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "BF Transition Status Confluence"
+                        }
+                      },
+                      "Property": "Data Uscita Stato BF Journey"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a5a87e6179907c99e43c",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Workflow Fasi BF Journey Confluence 2"
+                        }
+                      },
+                      "Property": "Status Tradotto"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "b1c32c40c43acae513c7",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Feature"
+                        }
+                      },
+                      "Property": "Projectrak Project Status"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "4121fd762320a0662e28",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "BF Transition Status Confluence"
+                        }
+                      },
+                      "Property": "Journey Status BF"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "b240b7735cc79c6ae04e",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "BF Transition Status Confluence"
+                        }
+                      },
+                      "Property": "Issue name"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "313026d03eac357e0b00",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "BF Transition Status Confluence"
+                        }
+                      },
+                      "Property": "(gg) Transazione BF Journey"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {}
+            }
+          },
+          "edc7d8e7d03a8b022568": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "854b59eb8e8b66981b92": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "fe1247c18078e60c6b02": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "1f5b554070bbb0cb7016",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "BF Transition Status Confluence"
+                        }
+                      },
+                      "Property": "Media Giorni Rework BF Journey"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "1d2f582ed003e661ec4a",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Feature"
+                        }
+                      },
+                      "Property": "Issue Initiative Type"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "83e301af67c881ed047e",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "BF Transition Status Confluence"
+                        }
+                      },
+                      "Property": "Media Rework per Stato BF Journey"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "19fa7a7ccc86030f5a38",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Workflow Fasi BF Journey Confluence 2"
+                        }
+                      },
+                      "Property": "Status Tradotto"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "0d95bb13d11311aaa223",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "BF Transition Status Confluence"
+                        }
+                      },
+                      "Property": "Conteggio Rework per Stato BF Journey"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "a830d383609d09400a96",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Feature"
+                        }
+                      },
+                      "Property": "Projectrak Project Status"
+                    }
+                  },
+                  "howCreated": 1
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "lineStackedColumnComboChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "BF Transition Status"
+                        }
+                      },
+                      "Property": "Conteggio Rework per Stato BF"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Workflow Fasi BF Journey Confluence 2"
+                        }
+                      },
+                      "Property": "Status Tradotto"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "b22ecacee0e05c716ae9": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "ea133aebe2b5cf45b127",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "BF Transition Status Confluence"
+                        }
+                      },
+                      "Property": "Issue name"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "f4a153bd61d76b631b59",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Feature"
+                        }
+                      },
+                      "Property": "Issue Initiative Type"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "706a8a0e00d8099547d4",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "BF Transition Status Confluence"
+                        }
+                      },
+                      "Property": "Filtro Rework BF Journey"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "d19d134b54bcf6bdb3b6",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "BF Transition Status Confluence"
+                        }
+                      },
+                      "Property": "Filtro Rework BF Journey"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "1ace82e902810cac1345",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "BF Transition Status Confluence"
+                        }
+                      },
+                      "Property": "Filtro Rework BF Journey"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "fe14de128cb095f7b378",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "BF Transition Status Confluence"
+                        }
+                      },
+                      "Property": "issue_key"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "12c05b3176eabecc582b",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "BF Transition Status Confluence"
+                        }
+                      },
+                      "Property": "transition_date"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "cca32a8993685c587e3e",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Business Feature"
+                        }
+                      },
+                      "Property": "Projectrak Project Status"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "00942743b0afa96d8eb9",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "BF Transition Status Confluence"
+                        }
+                      },
+                      "Property": "Data Uscita Rework BF Journey"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "866eb2f9cfd6317b924c",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "BF Transition Status Confluence"
+                            }
+                          },
+                          "Property": "Giorni Rework Journey"
+                        }
+                      },
+                      "Function": 0
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "78aa9ce631a4a9f7e69b",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Workflow Fasi BF Journey Confluence 2"
+                        }
+                      },
+                      "Property": "Status Tradotto"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "57d9cc174046e510ca6d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "BF Transition Status Confluence"
+                        }
+                      },
+                      "Property": "Giorni Rework Journey"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "tableEx",
+              "objects": {}
+            }
+          },
+          "38f196454a2706427ade": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "4238f8cec99579ade386": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "df13c200863957dc2e00": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "b786652646b05b9c6026": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "10e25692c0e06a44c084": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "1fa7870be5d55bc3d07c": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "dc66553a1bb78068b94a": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "6a88161753a4e010e963": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "446e932e8983b980501b": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "8544253028760972b0bb",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Misure"
+                        }
+                      },
+                      "Property": "Icona Info"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "cardVisual",
+              "objects": {}
+            }
+          },
+          "83ec73fbd91a113e7d02": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "38c0dcd4b50ccc100dc1": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "30e20680370be78e1306": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "5a1110f581128d3a706c": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "c7d8466946cd7c1916e8": {
+            "singleVisual": {
+              "visualType": "actionButton",
+              "objects": {}
+            }
+          },
+          "26b3f41e069e93456146": {
+            "singleVisual": {
+              "visualType": "shape",
+              "objects": {}
+            }
+          },
+          "047593130967ba893b0b": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "dae39458e3e38a2baa24",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "IE Transition Status"
+                        }
+                      },
+                      "Property": "IE Media giorni in stato"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "17e6a610102a8a98a5bc",
+                  "type": "Advanced",
+                  "expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Jira Initiative Estimation"
+                            }
+                          },
+                          "Property": "issue_key"
+                        }
+                      },
+                      "Function": 5
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "7fc097e325c2e3c878d9",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Initiative Estimation"
+                        }
+                      },
+                      "Property": "issue_ict_line_level_1"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "lineStackedColumnComboChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Aggregation": {
+                      "Expression": {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "Jira Initiative Estimation"
+                            }
+                          },
+                          "Property": "issue_key"
+                        }
+                      },
+                      "Function": 5
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Initiative Estimation"
+                        }
+                      },
+                      "Property": "issue_ict_line_level_1"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "ee850c77a840aaa00085": {
+            "filters": {
+              "byExpr": [
+                {
+                  "name": "53f0ca055205204a825c",
+                  "type": "Categorical",
+                  "filter": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "j",
+                        "Entity": "Jira Macro Business Initiative",
+                        "Type": 0
+                      }
+                    ],
+                    "Where": [
+                      {
+                        "Condition": {
+                          "Not": {
+                            "Expression": {
+                              "In": {
+                                "Expressions": [
+                                  {
+                                    "Column": {
+                                      "Expression": {
+                                        "SourceRef": {
+                                          "Source": "j"
+                                        }
+                                      },
+                                      "Property": "Projectrak Project Status"
+                                    }
+                                  }
+                                ],
+                                "Values": [
+                                  [
+                                    {
+                                      "Literal": {
+                                        "Value": "'Demo Project'"
+                                      }
+                                    }
+                                  ]
+                                ]
+                              }
+                            }
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Jira Macro Business Initiative"
+                        }
+                      },
+                      "Property": "Projectrak Project Status"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "1f9cd034e081892b4020",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "MBI Transition Status"
+                        }
+                      },
+                      "Property": "COUNT Backlog Semplificato"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "3c81004507e952500ed4",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "MBI Transition Status"
+                        }
+                      },
+                      "Property": "MBI Aging Medio Corrente nello Stato Semplificato"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "d92f4e3cc30d02acca49",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "MBI Transition Status"
+                        }
+                      },
+                      "Property": "MBI Tempo Storico Medio nello Stato Semplificato"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "d55d53173429ce5cb2e9",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Workflow Fasi MBI Semplificate"
+                        }
+                      },
+                      "Property": "Status Numerato"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "b75c28e57c05d204d2d9",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "MBI Transition Status"
+                        }
+                      },
+                      "Property": "Conteggio Pass-Through Semplificato"
+                    }
+                  },
+                  "howCreated": 1
+                },
+                {
+                  "name": "d32cc85a2ec0ed239b30",
+                  "type": "Categorical",
+                  "expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Workflow Fasi IE Semplificate"
+                        }
+                      },
+                      "Property": "Status Tradotto"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "e3ff609605945ba95bb5",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "IE Transition Status"
+                        }
+                      },
+                      "Property": "Conteggio Pass-Through Semplificato IE"
+                    }
+                  },
+                  "howCreated": 0
+                },
+                {
+                  "name": "ddefd6f14327be1cee4d",
+                  "type": "Advanced",
+                  "expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "IE Transition Status"
+                        }
+                      },
+                      "Property": "COUNT Backlog Semplificato IE"
+                    }
+                  },
+                  "howCreated": 0
+                }
+              ]
+            },
+            "singleVisual": {
+              "visualType": "lineClusteredColumnComboChart",
+              "objects": {},
+              "orderBy": [
+                {
+                  "Direction": 2,
+                  "Expression": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "IE Transition Status"
+                        }
+                      },
+                      "Property": "Conteggio Pass-Through Semplificato IE"
+                    }
+                  }
+                }
+              ],
+              "activeProjections": {
+                "Category": [
+                  {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Workflow Fasi IE Semplificate"
+                        }
+                      },
+                      "Property": "Status Tradotto"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "visualContainerGroups": {
+          "5066da50e4e544950469": {
+            "isHidden": false,
+            "children": {
+              "0ce5dff503622191c405": {
+                "isHidden": false
+              },
+              "2922f8eed60b7d7505cb": {
+                "isHidden": true
+              },
+              "82b5b6c19b0dc3388f5c": {
+                "isHidden": false,
+                "children": {
+                  "125e58902c9532c70ccd": {
+                    "isHidden": false
+                  }
+                }
+              },
+              "8102ace4e1007412a02e": {
+                "isHidden": true,
+                "children": {
+                  "114c2bc5b47ce01cdc1b": {
+                    "isHidden": false,
+                    "children": {
+                      "015dc90e068080a8183e": {
+                        "isHidden": false
+                      }
+                    }
+                  },
+                  "eb4ea3201d06605275e4": {
+                    "isHidden": false
+                  },
+                  "b2b36e9373620aa7b1c0": {
+                    "isHidden": false
+                  }
+                }
+              }
+            }
+          },
+          "8891eaee1e00e2e8ce8a": {
+            "isHidden": true,
+            "children": {
+              "b26f6fb855a2d6952a29": {
+                "isHidden": false
+              },
+              "4aff32d0145ead87289c": {
+                "isHidden": false
+              },
+              "7022ddbe43602b720ea0": {
+                "isHidden": false
+              },
+              "6f0f2d89d1236ee1e05c": {
+                "isHidden": false
+              },
+              "be2ed2e09e3778e71105": {
+                "isHidden": false
+              }
+            }
+          },
+          "f07d9de04e43049162e7": {
+            "isHidden": false,
+            "children": {
+              "758b43454750a660bc70": {
+                "isHidden": false
+              }
+            }
+          }
+        }
+      }
+    },
+    "objects": {
+      "merge": {
+        "outspacePane": [
+          {
+            "properties": {
+              "expanded": {
+                "expr": {
+                  "Literal": {
+                    "Value": "false"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

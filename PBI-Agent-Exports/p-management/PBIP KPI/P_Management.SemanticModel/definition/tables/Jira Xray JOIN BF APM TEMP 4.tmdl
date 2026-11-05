@@ -1,0 +1,52 @@
+table 'Jira Xray JOIN BF APM TEMP 4'
+	lineageTag: 5c209e6e-d511-44b4-a8bd-ebb6c1e360d8
+	sourceLineageTag: 66d96ce6-496f-4a51-aa5a-5a27f5333ee9
+
+	column 'Business Feature'
+		dataType: string
+		lineageTag: 7fc95d98-d89d-4fb4-b5af-3ac9025ce7db
+		sourceLineageTag: b8baf6e2-4a02-41a2-ba29-97e7ea01c80a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Business Feature
+
+		annotation SummarizationSetBy = User
+
+	column APM
+		dataType: string
+		lineageTag: 1b86ee8b-89ee-474e-b979-e012f43af41c
+		sourceLineageTag: 00d4e4a9-d361-4feb-a518-cc47ca15afa3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: APM
+
+		annotation SummarizationSetBy = User
+
+	column 'Test count'
+		dataType: int64
+		formatString: 0
+		lineageTag: a3376549-1d54-4a8d-827f-3d12bdd7ab1e
+		sourceLineageTag: e11ad90c-9c4a-4bca-bf0d-6fdd1c6204fa
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Test count
+
+		annotation SummarizationSetBy = User
+
+	column 'Defect count'
+		dataType: int64
+		formatString: 0
+		lineageTag: 7a1acd8c-4308-47e3-abaf-000e94809343
+		sourceLineageTag: 9007c7c8-10c3-4e4c-99f1-5028bfba2b4c
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Defect count
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira Xray JOIN BF APM TEMP 4' = entity
+		mode: directQuery
+		source
+			entityName: Jira Xray JOIN BF APM TEMP
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab 3'
+

@@ -1,0 +1,253 @@
+table 'FD Transition Status Confluence'
+	lineageTag: 8c4bc0f3-0207-4407-a286-347e267d21c3
+
+	measure 'FD Data Ingresso Journey' =
+			
+			VAR IssueCorrente = SELECTEDVALUE('Jira Feature Delivery'[Issue Key [Issue]]])
+			VAR StatoCorrente = SELECTEDVALUE('Jira Feature Delivery'[Issue status])
+			
+			VAR DataDaTransizioni =
+			    CALCULATE(
+			        MAX('FD Transition Status Confluence'[transition_date]),
+			        FILTER(
+			            ALL('FD Transition Status Confluence'),
+			            'FD Transition Status Confluence'[issue_key] = IssueCorrente
+			                && 'FD Transition Status Confluence'[to_status] = StatoCorrente
+			                && 'FD Transition Status Confluence'[from_status] <> StatoCorrente
+			        )
+			    )
+			
+			VAR DataCreazioneOpen =
+			    CALCULATE(
+			        MAX('Jira Feature Delivery'[Issue created date]),
+			        'Jira Feature Delivery'[Issue Key [Issue]]] = IssueCorrente
+			    )
+			
+			RETURN
+			IF(
+			    StatoCorrente = "Open",// && ISBLANK(DataDaTransizioni),
+			    DataCreazioneOpen,
+			    DataDaTransizioni
+			)
+		formatString: General Date
+		displayFolder: Journey
+		lineageTag: 8014db45-679a-4018-a3ac-63ef8327a63f
+
+	measure 'FD conteggio giorni Journey' =
+			
+			
+			VAR issueKey = SELECTEDVALUE('Jira Feature Delivery'[Issue Key [Issue]]])
+			VAR currentStatus = SELECTEDVALUE('Jira Feature Delivery'[Issue status])
+			
+			VAR startDate =
+			    CALCULATE(
+			        MIN('FD Transition Status Confluence'[transition_date]),
+			        FILTER(
+			            ALL('FD Transition Status Confluence'),
+			            'FD Transition Status Confluence'[issue_key] = issueKey
+			                && 'FD Transition Status Confluence'[to_status] = currentStatus
+			        )
+			    )
+			
+			VAR DataCreazioneOpen =
+			    CALCULATE(
+			        MAX('Jira Feature Delivery'[Issue created date]),
+			        REMOVEFILTERS('Jira Feature Delivery'),
+			        'Jira Feature Delivery'[Issue Key [Issue]]] = issueKey
+			    )
+			
+			VAR startDateFinale =
+			    IF(
+			        currentStatus = "Open",
+			        DataCreazioneOpen,
+			        startDate
+			    )
+			
+			VAR endDateFinale =
+			    IF(
+			        currentStatus = "Release Completed",
+			        startDate,   // data di ingresso in Released = fine conteggio
+			        TODAY()
+			    )
+			
+			RETURN
+			IF(
+			    NOT ISBLANK(startDateFinale),
+			    DATEDIFF(startDateFinale, endDateFinale, DAY),
+			    BLANK()
+			)
+		formatString: 0
+		displayFolder: Journey
+		lineageTag: 3ae8af21-fa14-4bda-ab43-13e341434d14
+
+	measure 'FD Media giorni in stato Journey' =
+			
+			AVERAGEX(
+			    VALUES('Jira Feature Delivery'[Issue Key [Issue]]]),
+			    CALCULATE(MIN('FD Transition Status Confluence'[FD Giorni nello stato Journey]))
+			)
+		displayFolder: Journey
+		lineageTag: d8d32e5b-e56f-434e-af36-3cbb91d32338
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column issue_key
+		lineageTag: b61ab45d-99d2-4d42-a6a3-1064252e63cf
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[issue_key]
+
+		annotation SummarizationSetBy = Automatic
+
+	column issue_type
+		lineageTag: 66804052-11ae-451c-bf0b-e22082ed5781
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[issue_type]
+
+		annotation SummarizationSetBy = Automatic
+
+	column transition_date
+		formatString: General Date
+		lineageTag: 1d75257f-6374-4c57-8e46-986cf642649f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[transition_date]
+
+		variation Variazione
+			isDefault
+			relationship: b8386d92-87be-46f1-8fcb-d77c037538bf
+			defaultHierarchy: LocalDateTable_47ea5b06-a213-4b15-bfb6-b2d6d56ee741.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_status
+		lineageTag: ab88eac9-b04f-495a-b352-70ef5c96183c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[from_status]
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_status
+		lineageTag: aba45671-cfe5-4ef6-ba11-96c7b84aeaee
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[to_status]
+
+		annotation SummarizationSetBy = Automatic
+
+	column username
+		lineageTag: 5c75285d-12f9-4e30-afe2-fce2b7d2eaf2
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[username]
+
+		annotation SummarizationSetBy = Automatic
+
+	column display_name
+		lineageTag: bf90b147-fadf-411d-914d-84cf509db049
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[display_name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Giorni da In Progress a Completed'
+		formatString: 0
+		displayFolder: Journey
+		lineageTag: 85e1d571-1efa-41c7-86ae-c6fc553cf54b
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[Giorni da In Progress a Completed]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Giorni in Stato BF Journey' = ```
+			
+			VAR issueKey = 'BF Transition Status Confluence'[issue_key] //[Data Ingresso BF Confluence]
+			VAR currentStatus = 
+			    LOOKUPVALUE(
+			        'Jira Business Feature'[Issue status],
+			        'Jira Business Feature'[Issue key], issueKey
+			    )
+			
+			VAR startDate =
+			    CALCULATE(
+			        MIN('BF Transition Status Confluence'[transition_date]),
+			        FILTER(
+			            ALL('BF Transition Status Confluence'),
+			            'BF Transition Status Confluence'[issue_key] = issueKey
+			                && 'BF Transition Status Confluence'[to_status] = currentStatus
+			        )
+			    )
+			
+			VAR DataCreazioneOpen = 
+			    LOOKUPVALUE(
+			        'Jira Business Feature'[Issue created date],
+			        'Jira Business Feature'[Issue key], issueKey
+			    )
+			
+			VAR startDateFinale =
+			    IF(
+			        currentStatus = "Open" && ISBLANK(startDate),
+			        DataCreazioneOpen,
+			        startDate
+			    )
+			
+			RETURN
+			IF(
+			    NOT ISBLANK(startDateFinale),
+			    DATEDIFF(startDateFinale, TODAY(), DAY),
+			    BLANK()
+			)
+			```
+		displayFolder: Journey
+		lineageTag: a0f6c358-7000-4ec5-a52d-a969d763f417
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FD Giorni nello stato Journey' =
+			
+			VAR currentIssue = 'FD Transition Status Confluence'[issue_key]
+			VAR currentStatus = 'FD Transition Status Confluence'[to_status]
+			
+			VAR startDate =
+			    CALCULATE(
+			        MIN('FD Transition Status Confluence'[transition_date]),
+			        ALLEXCEPT('FD Transition Status Confluence', 'FD Transition Status Confluence'[issue_key], 'FD Transition Status Confluence'[to_status])
+			    )
+			
+			VAR DataCreazioneOpen =
+			    LOOKUPVALUE(
+			        'Jira Feature Delivery'[Issue created date],
+			        'Jira Feature Delivery'[Issue Key [Issue]]], currentIssue
+			    )
+			
+			VAR startDateFinale =
+			    IF(
+			        currentStatus = "Open",// && ISBLANK(startDate),
+			        DataCreazioneOpen,
+			        startDate
+			    )
+			
+			RETURN
+			IF(
+			    NOT ISBLANK(startDateFinale),
+			    DATEDIFF(startDateFinale, TODAY(), DAY),
+			    BLANK()
+			)
+		formatString: 0
+		displayFolder: Journey
+		lineageTag: 88e40fa1-867f-4f07-bd52-18fec4df5063
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'FD Transition Status Confluence' = calculated
+		mode: import
+		source = FILTER('Jira Change Status IE FD MBI BF', 'Jira Change Status IE FD MBI BF'[issue_type] = "Feature Delivery")
+
+	annotation PBI_Id = d04a6969cc3547868000a92bf42b7caf
+

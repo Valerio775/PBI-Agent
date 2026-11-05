@@ -1,0 +1,52 @@
+table 'Workflow Fasi FD Journey Confluence'
+	lineageTag: 6b06ddf9-dfd7-4bf0-8939-20199a32da8d
+
+	column Status
+		lineageTag: 3de131b2-2efc-4a55-95f3-24400731ae17
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status]
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrdineFase
+		formatString: 0
+		lineageTag: ceed8099-5b37-4bc2-a59c-0adce48293f4
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [OrdineFase]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status Tradotto'
+		lineageTag: acdec8e4-abe4-4ff1-9352-7bd062b6975a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status Tradotto]
+		sortByColumn: OrdineFase
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Workflow Fasi FD Journey Confluence' = calculated
+		mode: import
+		source = ```
+				
+				DATATABLE (
+				    "Status", STRING,
+				    "OrdineFase", INTEGER,
+				    "Status Tradotto", STRING,
+				    {
+				        { "Rejected", 0, "Rejected" },
+				        { "Authorized", 1, "Pianificazione Intervento" },
+				        { "In Progress", 2, "In Progress" },
+				        { "Completed", 4, "UAT ENV Preparation" },
+				        { "Ready for UAT", 4, "UAT" },
+				        { "UAT Passed", 5, "Release" },
+				        { "Release Completed", 5, "Release" }
+				    }
+				)
+				
+				```
+
+	annotation PBI_Id = 12139a3932104a01afba7a9a01c0cc19
+

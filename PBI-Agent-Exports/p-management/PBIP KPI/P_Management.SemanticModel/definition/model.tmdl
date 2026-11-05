@@ -1,0 +1,781 @@
+model Model
+	culture: it-IT
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: it-IT
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["Misure","DirectQuery in Analysis Services - SpringLab","DirectQuery in Analysis Services - SpringLab 2","DirectQuery to AS - SpringLab","DirectQuery in Analysis Services - SpringLab 3"]
+
+annotation PBI_ProTooling = ["MCP-PBIModeling","CopilotTooling","DevMode"]
+
+ref table Misure
+ref table Filtri
+ref table GDS_Line
+ref table APM
+ref table 'APM Attribute'
+ref table 'Jira Project List'
+ref table 'Jira Project APM'
+ref table 'Jira user role'
+ref table 'AD Objects'
+ref table 'Bitbucket Push Request'
+ref table 'Bamboo Build Error'
+ref table 'Jira Issue Detail'
+ref table 'Bitbucket User Last Login'
+ref table 'Confluence User Last Login'
+ref table 'Jira User Last Login'
+ref table 'SD User Last Login'
+ref table 'SD Issue Detail'
+ref table 'Bitbucket Project List'
+ref table 'Bitbucket Project APM'
+ref table 'Bitbucket Repo APM'
+ref table 'Bitbucket Repo List'
+ref table 'Bamboo Plan APM'
+ref table 'Bamboo Plan List'
+ref table 'Bamboo Project APM'
+ref table 'Bamboo Project List'
+ref table 'Crowd Groups'
+ref table 'Jira Efficiency'
+ref table Tassi_Cambio
+ref table 'Bamboo Failed Software Plan'
+ref table 'Jira Min Info Set'
+ref table 'HR OU Relations'
+ref table 'Confluence Statistics'
+ref table 'HR Masterdata'
+ref table 'Jira Workload'
+ref table 'Last Data Sync'
+ref table 'Jira Business Need'
+ref table 'Jira Investment Memo'
+ref table 'Jira Demand Cost Year'
+ref table 'Jira Demand'
+ref table 'Jira Demand for APM'
+ref table 'Jira Business Feature'
+ref table 'Jira Business Feature for APM'
+ref table 'Jira Feature Delivery'
+ref table 'Jira Feature Delivery Progress'
+ref table 'Jira Business Feature Progress'
+ref table 'Jira RFC'
+ref table 'Jira Component'
+ref table 'Bamboo Build Details'
+ref table 'Jira Xray Test Execution'
+ref table 'Jira Xray Test Run'
+ref table 'Jira Xray Test Step'
+ref table 'Jira Xray Test Step Execution'
+ref table 'Jira ICT Estimation'
+ref table 'Jira Initiative Estimation'
+ref table 'Jira Initiative for APM'
+ref table 'Jira Macro Business Initiative'
+ref table 'Jira Business Initiative'
+ref table DateTableTemplate_dec9639f-a029-4001-a960-8b566d8d4b97
+ref table LocalDateTable_dd1b29df-11c1-4ebc-91d9-781367348ca8
+ref table 'Jira Issue Detail 2'
+ref table 'Jira Relation Investment Memo Business Need'
+ref table 'APM (2)'
+ref table 'APM (2) 2'
+ref table LocalDateTable_ff2ae514-73cb-4356-8cfd-b41f11019eb6
+ref table LocalDateTable_839a5965-0dd4-465b-9543-0e0dce9e6dde
+ref table LocalDateTable_badc388b-94eb-470c-aa1d-1842f8654d70
+ref table LocalDateTable_517cc8a7-e109-46a4-a824-2064806d84b9
+ref table LocalDateTable_d87b82b6-f5b7-4495-88af-9f4a7955f527
+ref table LocalDateTable_9b51729a-e7ff-4e69-bc6d-28cf25a0ac6f
+ref table LocalDateTable_8e057d4f-dea9-40b7-91b3-3b95fa5fbd3f
+ref table LocalDateTable_f70a0bc4-f6c5-4105-a91e-092f1d810dbf
+ref table LocalDateTable_9e4c02de-2ce0-4799-8c56-7057d4abf970
+ref table LocalDateTable_59271f88-f253-4cd9-869f-afcc84340603
+ref table LocalDateTable_2e3daf26-530b-4b5a-9989-bfca93d1478f
+ref table LocalDateTable_35c6d343-aaa3-45d3-b8fc-37293af1b53f
+ref table LocalDateTable_3f3c9c4c-ca1b-4404-bff3-41b2b20d9baf
+ref table LocalDateTable_6e594ab5-0f39-44c4-be21-e0cb847dce20
+ref table LocalDateTable_5d25d181-5aed-4c36-a65f-4ce18867d4fb
+ref table LocalDateTable_fd8401da-2ee0-4f18-928d-dc517c2cac60
+ref table LocalDateTable_4a131257-6ff5-41ec-b93e-f1f8b5554c49
+ref table LocalDateTable_2e1afdbc-0b7f-4f8b-aca1-be6ad2bffe1a
+ref table LocalDateTable_f7d8b005-0675-4802-b036-1b14f90bc42d
+ref table LocalDateTable_ea32bd5c-1bd5-4e02-b9c3-e60b8e856bcf
+ref table LocalDateTable_b858a703-d8f5-46c0-95d7-cbb036718ae4
+ref table LocalDateTable_1c550cc4-2176-46aa-9ff8-c7876908bbf1
+ref table LocalDateTable_39b9e131-0835-408a-badc-447657819f11
+ref table LocalDateTable_0b63390a-387f-4b76-abd2-d6ef9a362b80
+ref table LocalDateTable_e1b79ae2-cd5f-4b81-87b3-25dffc01e255
+ref table LocalDateTable_c540403a-8c5d-4e45-9c85-7166a38c6454
+ref table LocalDateTable_16270837-a5e8-4aef-89f2-0fca94afbd57
+ref table LocalDateTable_2955e911-2ec2-4c7e-86cd-c8bb2f7814f2
+ref table LocalDateTable_c6b67bce-b8a2-46a1-a48e-ca1d9fcd6f25
+ref table LocalDateTable_bb72121e-df42-4aa2-8a01-b7359de0be97
+ref table LocalDateTable_237b42eb-893c-423b-bd05-6cee84303569
+ref table LocalDateTable_677721c7-f4cc-4afa-b4f1-772300d36676
+ref table LocalDateTable_e295453c-6519-4168-8adc-4544d7e78760
+ref table LocalDateTable_b84bed92-d8f0-4d96-b0b3-c9384443aaa6
+ref table LocalDateTable_6fcbbb8e-ece8-48d2-ad9a-bb37e29cf573
+ref table LocalDateTable_0ac5c064-e23b-4441-9591-357dab2c4a9b
+ref table LocalDateTable_999466e9-5c89-4d1a-99c8-4b89f6c49d00
+ref table LocalDateTable_e73b0cf3-5e1b-4fe1-89a0-8cbaa0972c15
+ref table LocalDateTable_6ddd4564-6f1e-499a-b46d-60a9007669da
+ref table LocalDateTable_a26b7197-01e3-4d1b-907a-2e9ee364e0a9
+ref table LocalDateTable_8559bbdd-0e24-409b-9d0d-45ebfd618359
+ref table LocalDateTable_25b62229-a77a-4a28-9950-00771096f3ad
+ref table LocalDateTable_2c2464de-0073-4d93-8619-957124c3143e
+ref table LocalDateTable_01f5cdf4-9586-45ed-abc0-eadd41a9830e
+ref table LocalDateTable_653b6166-783a-472b-a25e-c2d1151b9f59
+ref table LocalDateTable_4cdc6d9d-04bc-48d1-91da-bc4c1c0e95cd
+ref table LocalDateTable_0de680ba-1de1-4657-9f70-a086d58ca53f
+ref table LocalDateTable_2dbddc82-f10f-4f8c-8f89-36d770530657
+ref table LocalDateTable_c30d781f-0c57-48c1-b6de-3ded1fbb1e21
+ref table LocalDateTable_ab5859fb-9601-4b45-b69a-a64ffc72ba73
+ref table LocalDateTable_0e9c0176-bada-4904-893c-83692b490b34
+ref table LocalDateTable_258ec1fe-8518-43da-97fd-54152c5c601e
+ref table 'LocalDateTable_d87b82b6-f5b7-4495-88af-9f4a7955f527 2'
+ref table 'LocalDateTable_9b51729a-e7ff-4e69-bc6d-28cf25a0ac6f 2'
+ref table 'LocalDateTable_8e057d4f-dea9-40b7-91b3-3b95fa5fbd3f 2'
+ref table 'LocalDateTable_f70a0bc4-f6c5-4105-a91e-092f1d810dbf 2'
+ref table 'LocalDateTable_9e4c02de-2ce0-4799-8c56-7057d4abf970 2'
+ref table 'LocalDateTable_59271f88-f253-4cd9-869f-afcc84340603 2'
+ref table 'LocalDateTable_2e3daf26-530b-4b5a-9989-bfca93d1478f 2'
+ref table Filtri_grafici_KPI3
+ref table 'Jira Release'
+ref table 'Jira Xray Test Release'
+ref table 'Jira Xray Execution Release'
+ref table 'Jira Release 2'
+ref table 'Jira Xray Test Release 2'
+ref table 'Jira Xray Execution Release 2'
+ref table 'Jira Release 3'
+ref table 'Jira Xray Test Release 3'
+ref table 'Jira Xray Execution Release 3'
+ref table 'Jira Sprint Story Points - Last 12 Month'
+ref table LocalDateTable_97f988a4-b7b1-46ee-9e1c-5e20b13bf855
+ref table 'Jira Sprint Story Points - Last 12 Month 2'
+ref table 'LocalDateTable_97f988a4-b7b1-46ee-9e1c-5e20b13bf855 2'
+ref table 'Jira Sprint Story Points - Last 12 Month 3'
+ref table 'LocalDateTable_97f988a4-b7b1-46ee-9e1c-5e20b13bf855 3'
+ref table 'Jira ICR'
+ref table 'Jira ICR 2'
+ref table 'Jira ICR 3'
+ref table 'Jira Project List 2'
+ref table 'Jira Issue Detail 3'
+ref table 'Jira Business Feature 2'
+ref table 'Jira Business Feature for APM 2'
+ref table 'Jira Feature Delivery 2'
+ref table 'LocalDateTable_d87b82b6-f5b7-4495-88af-9f4a7955f527 3'
+ref table 'LocalDateTable_9b51729a-e7ff-4e69-bc6d-28cf25a0ac6f 3'
+ref table 'LocalDateTable_8e057d4f-dea9-40b7-91b3-3b95fa5fbd3f 3'
+ref table 'LocalDateTable_f70a0bc4-f6c5-4105-a91e-092f1d810dbf 3'
+ref table 'LocalDateTable_9e4c02de-2ce0-4799-8c56-7057d4abf970 3'
+ref table 'LocalDateTable_59271f88-f253-4cd9-869f-afcc84340603 3'
+ref table 'LocalDateTable_2e3daf26-530b-4b5a-9989-bfca93d1478f 3'
+ref table LocalDateTable_d8e9216a-cdf6-4b4f-96b8-dd476b129770
+ref table LocalDateTable_b6907f52-cbc1-476d-b8ef-62503bf4f5cf
+ref table LocalDateTable_b50391b8-dc41-4ca9-9790-177c0dd474e7
+ref table 'Jira Change Status IE FD MBI BF'
+ref table LocalDateTable_1341cd8a-23a3-40db-9a43-9c9e743f64a2
+ref table LocalDateTable_e44aaab4-97d3-464f-b061-bd8871f6656f
+ref table LocalDateTable_95856358-19d9-455e-9688-9093c6765635
+ref table LocalDateTable_37b3f42a-0342-464c-86c9-a2eecd361c10
+ref table LocalDateTable_dfa796c3-f09a-4378-99cc-674313347acf
+ref table LocalDateTable_706d211a-97e3-4242-b09e-b76887ff60b6
+ref table LocalDateTable_46111e18-14bf-4329-830a-090322e550a7
+ref table LocalDateTable_4812fe57-5d72-404a-a109-44200526e8f6
+ref table LocalDateTable_513c4398-fec3-49b7-b2f0-09114c9e343f
+ref table LocalDateTable_25c8d051-557b-4c5f-8de6-c51d11a0b8e5
+ref table LocalDateTable_96a9eef9-3be4-4e1f-a51d-21ec6ea1ad6f
+ref table LocalDateTable_36cf59c5-5344-4c35-9cf9-c4598657e970
+ref table LocalDateTable_0b8f0ade-f9f7-410c-a372-fcd293e56c04
+ref table LocalDateTable_538a0ebd-dba2-4612-aba0-196cf6ca8bdd
+ref table LocalDateTable_5a5fd50c-1cdc-4e45-afc2-91f26bbbc9ac
+ref table LocalDateTable_58d23ccc-ccf7-49ab-a1b0-7dca07542207
+ref table LocalDateTable_917f9925-f483-4092-9140-06e7f5d85a41
+ref table 'LocalDateTable_d8e9216a-cdf6-4b4f-96b8-dd476b129770 2'
+ref table 'LocalDateTable_b6907f52-cbc1-476d-b8ef-62503bf4f5cf 2'
+ref table 'LocalDateTable_b50391b8-dc41-4ca9-9790-177c0dd474e7 2'
+ref table LocalDateTable_2fa499d7-3c9d-42b8-a2f0-29161f2306f8
+ref table 'Jira Change Status IE FD MBI BF 2'
+ref table 'LocalDateTable_2fa499d7-3c9d-42b8-a2f0-29161f2306f8 2'
+ref table 'Jira Change Status IE FD MBI BF 3'
+ref table 'LocalDateTable_2fa499d7-3c9d-42b8-a2f0-29161f2306f8 3'
+ref table 'Jira Xray Relation Business Feature Test'
+ref table 'Jira Xray Relation Business Feature Test 2'
+ref table 'Jira Xray Relation Business Feature Test 3'
+ref table 'Jira Xray Relation Business Feature Test 4'
+ref table 'FD Change Status'
+ref table LocalDateTable_81ae3dad-70df-4db9-ac0a-fa97bbd54aa0
+ref table 'BF Change Status'
+ref table LocalDateTable_cf107f66-bee2-48d6-b171-a0cb78dd2f82
+ref table 'IE Transition Status'
+ref table LocalDateTable_c7694065-792d-428f-8358-8041d00288b9
+ref table 'MBI Transition Status'
+ref table LocalDateTable_88048d5a-5b82-4c90-9877-df10709653b9
+ref table Trend_MBI_IE
+ref table Quantità_MBI_IE
+ref table Assex_MBI_IE
+ref table Filtri_grafici_MBI_IE
+ref table Tabella_MBI_IE
+ref table 'Workflow Fasi FD'
+ref table Data_cr_IE
+ref table LocalDateTable_d3176ff9-b2c2-4277-b567-686d89ead6d9
+ref table 'Workflow Fasi IE'
+ref table 'Workflow Fasi MBI'
+ref table LocalDateTable_ceaecc8f-5213-4403-8781-2c7395a19b28
+ref table 'Workflow Fasi BF'
+ref table LocalDateTable_c49258e8-f34f-45b2-9e22-c2db5285e24b
+ref table LocalDateTable_648c548b-f8c3-40ea-a9a5-bf4e4bd3f672
+ref table LocalDateTable_dbeeb177-38e3-4255-9b99-876a3c7eb817
+ref table LocalDateTable_194ef549-acbd-47f1-8cc1-f1b38295c284
+ref table 'LocalDateTable_c49258e8-f34f-45b2-9e22-c2db5285e24b 2'
+ref table 'LocalDateTable_648c548b-f8c3-40ea-a9a5-bf4e4bd3f672 2'
+ref table 'LocalDateTable_dbeeb177-38e3-4255-9b99-876a3c7eb817 2'
+ref table 'LocalDateTable_194ef549-acbd-47f1-8cc1-f1b38295c284 2'
+ref table 'TESTMBI Transition Status'
+ref table LocalDateTable_37c3a860-b52e-419a-bddb-8f1f4336094e
+ref table 'WF MBI Order Status'
+ref table LocalDateTable_91c10202-021e-4531-95f1-1af9b65c8ce1
+ref table LocalDateTable_a7bc82ad-8b06-459b-9513-8211034d4970
+ref table LocalDateTable_bb977e70-176d-4d4a-9a2a-af931ae11f92
+ref table LocalDateTable_ef8f6428-78b6-4b19-a397-96f83c20a347
+ref table LocalDateTable_a5300cb5-7c0c-453e-877e-016ecfb62fcc
+ref table LocalDateTable_358704e0-a699-47ca-acd9-350e3c18afbb
+ref table LocalDateTable_e60e5bb5-6468-495f-a406-c805761555ef
+ref table LocalDateTable_04889144-9978-4fb9-8180-70e057cb2c88
+ref table LocalDateTable_c232a322-bbd7-4ce5-af0b-1efab60d15fa
+ref table LocalDateTable_21e22022-cad8-47a6-ad37-a4f1679b387a
+ref table LocalDateTable_e1f594ba-a167-4b70-9b6b-d4a33b97b7e7
+ref table 'WF MBI Order Status 2'
+ref table 'WF MBI Order Status 3'
+ref table 'WF MBI Order Status 4'
+ref table 'LocalDateTable_91c10202-021e-4531-95f1-1af9b65c8ce1 2'
+ref table 'LocalDateTable_a7bc82ad-8b06-459b-9513-8211034d4970 2'
+ref table 'LocalDateTable_bb977e70-176d-4d4a-9a2a-af931ae11f92 2'
+ref table 'LocalDateTable_ef8f6428-78b6-4b19-a397-96f83c20a347 2'
+ref table 'LocalDateTable_a5300cb5-7c0c-453e-877e-016ecfb62fcc 2'
+ref table 'LocalDateTable_358704e0-a699-47ca-acd9-350e3c18afbb 2'
+ref table 'LocalDateTable_e60e5bb5-6468-495f-a406-c805761555ef 2'
+ref table 'LocalDateTable_04889144-9978-4fb9-8180-70e057cb2c88 2'
+ref table 'LocalDateTable_c232a322-bbd7-4ce5-af0b-1efab60d15fa 2'
+ref table 'FD Transition Status'
+ref table LocalDateTable_653a78f9-66bc-4170-956f-dc8a6f898992
+ref table LocalDateTable_4377c693-0c4c-4cee-95fd-780fdcf2db7f
+ref table LocalDateTable_cdf7269c-a544-4c15-a876-02a55651daa6
+ref table 'Jira Xray Demand Test Multi APM'
+ref table 'Jira Xray Demand Test Multi APM 2'
+ref table 'Jira Xray Demand Test Multi APM 3'
+ref table 'Jira Xray Demand Test Multi APM 4'
+ref table LocalDateTable_d309828d-f699-417a-85ad-24e12d764b7d
+ref table LocalDateTable_dd419685-9bfe-4795-a0d2-ced29c5294ee
+ref table LocalDateTable_0514b22c-2cab-44b3-8953-42ca305f2e50
+ref table 'BF Transition Status'
+ref table LocalDateTable_9341f536-f90f-4cd0-8109-141472774dc3
+ref table LocalDateTable_741377a1-55e1-4bc1-aa3b-4d1634e9005e
+ref table LocalDateTable_f235e664-50da-4f66-81ad-316274165b92
+ref table LocalDateTable_3ee864d7-c150-4907-9ffb-dde6f1f8be1d
+ref table LocalDateTable_a81772d5-7161-4048-85c9-86561412cf8f
+ref table LocalDateTable_c11aeb17-a773-4cee-aa7f-adb9d9156e39
+ref table LocalDateTable_70d85e5d-f83c-4086-ad87-b82b5f1e3e22
+ref table 'Workflow Fasi MBI 2'
+ref table LocalDateTable_68027f3e-0126-423f-9df3-30e2501c1aca
+ref table Country
+ref table 'Business Legal Entity'
+ref table 'Jira Defect Tempi di Collaudo'
+ref table LocalDateTable_67781bb5-d818-4b3d-86de-c08d3a940c94
+ref table LocalDateTable_7220c40e-021b-403a-85df-ab9e801cc625
+ref table LocalDateTable_748fa7ae-9c4c-48df-aea5-4b1e80e88ac5
+ref table LocalDateTable_353dc340-2a19-4d32-ba3f-0a6e39e69401
+ref table LocalDateTable_a039fd8b-8c1e-4a0b-a633-7c579a6a5248
+ref table LocalDateTable_e7c2e7ea-598c-49e0-b6ee-ba368df0e030
+ref table LocalDateTable_bd9c5ee2-d38b-4acd-ab0f-422b536a2cf9
+ref table LocalDateTable_2a8b4d79-cd4a-4785-8478-7755834bc9ff
+ref table LocalDateTable_1b5eb833-9e13-4a04-880c-4ee2c74cbf3c
+ref table 'Country 2'
+ref table 'Business Legal Entity 2'
+ref table 'Jira Defect Tempi di Collaudo 2'
+ref table 'LocalDateTable_7220c40e-021b-403a-85df-ab9e801cc625 2'
+ref table 'LocalDateTable_748fa7ae-9c4c-48df-aea5-4b1e80e88ac5 2'
+ref table 'LocalDateTable_353dc340-2a19-4d32-ba3f-0a6e39e69401 2'
+ref table 'LocalDateTable_a039fd8b-8c1e-4a0b-a633-7c579a6a5248 2'
+ref table 'LocalDateTable_e7c2e7ea-598c-49e0-b6ee-ba368df0e030 2'
+ref table 'LocalDateTable_bd9c5ee2-d38b-4acd-ab0f-422b536a2cf9 2'
+ref table 'LocalDateTable_2a8b4d79-cd4a-4785-8478-7755834bc9ff 2'
+ref table 'LocalDateTable_1b5eb833-9e13-4a04-880c-4ee2c74cbf3c 2'
+ref table 'Country 3'
+ref table 'Business Legal Entity 3'
+ref table 'Jira Defect Tempi di Collaudo 3'
+ref table 'LocalDateTable_7220c40e-021b-403a-85df-ab9e801cc625 3'
+ref table 'LocalDateTable_748fa7ae-9c4c-48df-aea5-4b1e80e88ac5 3'
+ref table 'LocalDateTable_353dc340-2a19-4d32-ba3f-0a6e39e69401 3'
+ref table 'LocalDateTable_a039fd8b-8c1e-4a0b-a633-7c579a6a5248 3'
+ref table 'LocalDateTable_e7c2e7ea-598c-49e0-b6ee-ba368df0e030 3'
+ref table 'LocalDateTable_bd9c5ee2-d38b-4acd-ab0f-422b536a2cf9 3'
+ref table 'LocalDateTable_2a8b4d79-cd4a-4785-8478-7755834bc9ff 3'
+ref table 'LocalDateTable_1b5eb833-9e13-4a04-880c-4ee2c74cbf3c 3'
+ref table 'Country 4'
+ref table 'Business Legal Entity 4'
+ref table 'Jira Defect Tempi di Collaudo 4'
+ref table 'LocalDateTable_7220c40e-021b-403a-85df-ab9e801cc625 4'
+ref table 'LocalDateTable_748fa7ae-9c4c-48df-aea5-4b1e80e88ac5 4'
+ref table 'LocalDateTable_353dc340-2a19-4d32-ba3f-0a6e39e69401 4'
+ref table 'LocalDateTable_a039fd8b-8c1e-4a0b-a633-7c579a6a5248 4'
+ref table 'LocalDateTable_e7c2e7ea-598c-49e0-b6ee-ba368df0e030 4'
+ref table 'LocalDateTable_bd9c5ee2-d38b-4acd-ab0f-422b536a2cf9 4'
+ref table 'LocalDateTable_2a8b4d79-cd4a-4785-8478-7755834bc9ff 4'
+ref table 'LocalDateTable_1b5eb833-9e13-4a04-880c-4ee2c74cbf3c 4'
+ref table 'Jira MBI Document State Transition'
+ref table 'Jira Macro Business Request'
+ref table 'Jira Planning by Cost'
+ref table LocalDateTable_74bf8db7-c0c4-4703-a5e9-07febd1c7452
+ref table LocalDateTable_38082ea5-3e42-45c2-83fe-3237ca18f430
+ref table LocalDateTable_319ff1ee-ec0c-4dd9-ae02-a4900447077a
+ref table LocalDateTable_f4056c4b-e640-45d8-8d1c-a32cc2f287a4
+ref table LocalDateTable_b7095d4a-df8b-4a9b-afeb-0e41903d8e53
+ref table 'Jira MBI Document State Transition 2'
+ref table 'Jira Macro Business Request 2'
+ref table 'Jira Planning by Cost 2'
+ref table 'LocalDateTable_74bf8db7-c0c4-4703-a5e9-07febd1c7452 2'
+ref table 'LocalDateTable_38082ea5-3e42-45c2-83fe-3237ca18f430 2'
+ref table 'LocalDateTable_319ff1ee-ec0c-4dd9-ae02-a4900447077a 2'
+ref table 'LocalDateTable_f4056c4b-e640-45d8-8d1c-a32cc2f287a4 2'
+ref table 'LocalDateTable_b7095d4a-df8b-4a9b-afeb-0e41903d8e53 2'
+ref table 'Jira MBI Document State Transition 3'
+ref table 'Jira Macro Business Request 3'
+ref table 'Jira Planning by Cost 3'
+ref table 'LocalDateTable_74bf8db7-c0c4-4703-a5e9-07febd1c7452 3'
+ref table 'LocalDateTable_38082ea5-3e42-45c2-83fe-3237ca18f430 3'
+ref table 'LocalDateTable_319ff1ee-ec0c-4dd9-ae02-a4900447077a 3'
+ref table 'LocalDateTable_f4056c4b-e640-45d8-8d1c-a32cc2f287a4 3'
+ref table 'LocalDateTable_b7095d4a-df8b-4a9b-afeb-0e41903d8e53 3'
+ref table 'Jira MBI Document State Transition 4'
+ref table 'Jira Macro Business Request 4'
+ref table 'Jira Planning by Cost 4'
+ref table 'LocalDateTable_74bf8db7-c0c4-4703-a5e9-07febd1c7452 4'
+ref table 'LocalDateTable_38082ea5-3e42-45c2-83fe-3237ca18f430 4'
+ref table 'LocalDateTable_319ff1ee-ec0c-4dd9-ae02-a4900447077a 4'
+ref table 'LocalDateTable_f4056c4b-e640-45d8-8d1c-a32cc2f287a4 4'
+ref table 'LocalDateTable_b7095d4a-df8b-4a9b-afeb-0e41903d8e53 4'
+ref table 'Workflow Fasi IE 2'
+ref table 'Jira Xray JOIN BF - APM'
+ref table 'Jira Xray Defect'
+ref table 'Jira Xray Bug Delivery'
+ref table LocalDateTable_05743166-a1c5-4fad-9eca-00de4b956403
+ref table LocalDateTable_3698b417-5ac5-4684-bd0b-e0f3c94836bf
+ref table LocalDateTable_7522cab3-cb66-4b84-aae1-fbf6a7f1635d
+ref table LocalDateTable_84a33511-ffdc-4fb5-aa05-135eecda9d96
+ref table LocalDateTable_07882c7e-44ad-4e60-94f7-2d6d2587cf75
+ref table LocalDateTable_941784f5-7f71-4027-bf60-a880d4fc9a67
+ref table 'Jira Xray JOIN BF - APM 2'
+ref table 'Jira Xray Defect 2'
+ref table 'Jira Xray Bug Delivery 2'
+ref table 'LocalDateTable_3698b417-5ac5-4684-bd0b-e0f3c94836bf 2'
+ref table 'LocalDateTable_7522cab3-cb66-4b84-aae1-fbf6a7f1635d 2'
+ref table 'LocalDateTable_84a33511-ffdc-4fb5-aa05-135eecda9d96 2'
+ref table 'LocalDateTable_07882c7e-44ad-4e60-94f7-2d6d2587cf75 2'
+ref table 'LocalDateTable_941784f5-7f71-4027-bf60-a880d4fc9a67 2'
+ref table 'Jira Xray JOIN BF - APM 3'
+ref table 'Jira Xray Defect 3'
+ref table 'Jira Xray Bug Delivery 3'
+ref table 'LocalDateTable_3698b417-5ac5-4684-bd0b-e0f3c94836bf 3'
+ref table 'LocalDateTable_7522cab3-cb66-4b84-aae1-fbf6a7f1635d 3'
+ref table 'LocalDateTable_84a33511-ffdc-4fb5-aa05-135eecda9d96 3'
+ref table 'LocalDateTable_07882c7e-44ad-4e60-94f7-2d6d2587cf75 3'
+ref table 'LocalDateTable_941784f5-7f71-4027-bf60-a880d4fc9a67 3'
+ref table 'Jira Xray JOIN BF - APM 4'
+ref table 'Jira Xray Defect 4'
+ref table 'Jira Xray Bug Delivery 4'
+ref table 'LocalDateTable_7522cab3-cb66-4b84-aae1-fbf6a7f1635d 4'
+ref table 'LocalDateTable_84a33511-ffdc-4fb5-aa05-135eecda9d96 4'
+ref table 'LocalDateTable_07882c7e-44ad-4e60-94f7-2d6d2587cf75 4'
+ref table 'LocalDateTable_941784f5-7f71-4027-bf60-a880d4fc9a67 4'
+ref table 'Jira Xray BF APM Test UAT Status'
+ref table 'Jira Xray JOIN BF APM TEMP'
+ref table 'Jira Xray BF APM Defect Status'
+ref table 'Jira Xray Internal Test'
+ref table 'Jira Xray Bug UAT'
+ref table 'Jira Xray Bug Internal Test'
+ref table 'Jira Xray Test UAT'
+ref table 'Jira Xray Relation Internal Bug - Internal Test'
+ref table LocalDateTable_51168826-4623-4808-bf41-626e29c2df47
+ref table LocalDateTable_188609cc-187b-4a88-8ce6-0374c82d6370
+ref table LocalDateTable_7fffbb98-cd35-4419-a6a2-8e720df2d650
+ref table LocalDateTable_3e7ba5b4-bb37-43bf-907c-3acf1ab06098
+ref table LocalDateTable_88477167-8a78-4914-bc88-251f08d642e8
+ref table LocalDateTable_0fbf1e6b-83ac-4daf-9dea-42ae1cc2f421
+ref table LocalDateTable_a0474e68-5f7b-412e-976d-548d17bd65cb
+ref table LocalDateTable_c170ef42-a55c-453a-a92e-d387fd1eb95a
+ref table LocalDateTable_47ef6a94-a8d4-450c-bd1d-64dda0a06572
+ref table LocalDateTable_05c59a21-5f6e-40f0-bce2-449d4d39eb4f
+ref table LocalDateTable_d8ed95f5-9929-4b29-816c-86ec5cb51528
+ref table LocalDateTable_71da992a-b0da-4168-affd-7d61e9e057f2
+ref table LocalDateTable_21745949-8425-461c-9b4c-e1aa978bd41d
+ref table LocalDateTable_2b80e1d4-1d51-46a9-a209-6378348c82eb
+ref table LocalDateTable_080b534e-9258-4654-a949-82cd2ea83062
+ref table LocalDateTable_026c9358-3b0e-4165-a917-caf0c0c57bba
+ref table LocalDateTable_505e0f60-bd2a-4220-88b2-659c06f8519b
+ref table 'Jira Xray BF APM Test UAT Status 2'
+ref table 'Jira Xray JOIN BF APM TEMP 2'
+ref table 'Jira Xray BF APM Defect Status 2'
+ref table 'Jira Xray Internal Test 2'
+ref table 'Jira Xray Bug UAT 2'
+ref table 'Jira Xray Bug Internal Test 2'
+ref table 'Jira Xray Test UAT 2'
+ref table 'Jira Xray Relation Internal Bug - Internal Test 2'
+ref table 'LocalDateTable_05c59a21-5f6e-40f0-bce2-449d4d39eb4f 2'
+ref table 'LocalDateTable_d8ed95f5-9929-4b29-816c-86ec5cb51528 2'
+ref table 'LocalDateTable_71da992a-b0da-4168-affd-7d61e9e057f2 2'
+ref table 'LocalDateTable_21745949-8425-461c-9b4c-e1aa978bd41d 2'
+ref table 'LocalDateTable_2b80e1d4-1d51-46a9-a209-6378348c82eb 2'
+ref table 'LocalDateTable_080b534e-9258-4654-a949-82cd2ea83062 2'
+ref table 'LocalDateTable_026c9358-3b0e-4165-a917-caf0c0c57bba 2'
+ref table 'LocalDateTable_505e0f60-bd2a-4220-88b2-659c06f8519b 2'
+ref table 'Jira Xray BF APM Test UAT Status 3'
+ref table 'Jira Xray JOIN BF APM TEMP 3'
+ref table 'Jira Xray BF APM Defect Status 3'
+ref table 'Jira Xray Internal Test 3'
+ref table 'Jira Xray Bug UAT 3'
+ref table 'Jira Xray Bug Internal Test 3'
+ref table 'Jira Xray Test UAT 3'
+ref table 'Jira Xray Relation Internal Bug - Internal Test 3'
+ref table 'LocalDateTable_05c59a21-5f6e-40f0-bce2-449d4d39eb4f 3'
+ref table 'LocalDateTable_d8ed95f5-9929-4b29-816c-86ec5cb51528 3'
+ref table 'LocalDateTable_71da992a-b0da-4168-affd-7d61e9e057f2 3'
+ref table 'LocalDateTable_21745949-8425-461c-9b4c-e1aa978bd41d 3'
+ref table 'LocalDateTable_2b80e1d4-1d51-46a9-a209-6378348c82eb 3'
+ref table 'LocalDateTable_080b534e-9258-4654-a949-82cd2ea83062 3'
+ref table 'LocalDateTable_026c9358-3b0e-4165-a917-caf0c0c57bba 3'
+ref table 'LocalDateTable_505e0f60-bd2a-4220-88b2-659c06f8519b 3'
+ref table 'Jira Xray BF APM Test UAT Status 4'
+ref table 'Jira Xray JOIN BF APM TEMP 4'
+ref table 'Jira Xray BF APM Defect Status 4'
+ref table 'Jira Xray Internal Test 4'
+ref table 'Jira Xray Bug UAT 4'
+ref table 'Jira Xray Bug Internal Test 4'
+ref table 'Jira Xray Test UAT 4'
+ref table 'Jira Xray Relation Internal Bug - Internal Test 4'
+ref table 'LocalDateTable_51168826-4623-4808-bf41-626e29c2df47 2'
+ref table 'LocalDateTable_188609cc-187b-4a88-8ce6-0374c82d6370 2'
+ref table 'LocalDateTable_7fffbb98-cd35-4419-a6a2-8e720df2d650 2'
+ref table 'LocalDateTable_3e7ba5b4-bb37-43bf-907c-3acf1ab06098 2'
+ref table 'LocalDateTable_88477167-8a78-4914-bc88-251f08d642e8 2'
+ref table 'LocalDateTable_0fbf1e6b-83ac-4daf-9dea-42ae1cc2f421 2'
+ref table 'LocalDateTable_a0474e68-5f7b-412e-976d-548d17bd65cb 2'
+ref table 'LocalDateTable_c170ef42-a55c-453a-a92e-d387fd1eb95a 2'
+ref table 'LocalDateTable_47ef6a94-a8d4-450c-bd1d-64dda0a06572 2'
+ref table 'LocalDateTable_05c59a21-5f6e-40f0-bce2-449d4d39eb4f 4'
+ref table 'LocalDateTable_d8ed95f5-9929-4b29-816c-86ec5cb51528 4'
+ref table 'LocalDateTable_71da992a-b0da-4168-affd-7d61e9e057f2 4'
+ref table 'LocalDateTable_21745949-8425-461c-9b4c-e1aa978bd41d 4'
+ref table 'LocalDateTable_2b80e1d4-1d51-46a9-a209-6378348c82eb 4'
+ref table 'LocalDateTable_080b534e-9258-4654-a949-82cd2ea83062 4'
+ref table 'LocalDateTable_026c9358-3b0e-4165-a917-caf0c0c57bba 4'
+ref table 'LocalDateTable_505e0f60-bd2a-4220-88b2-659c06f8519b 4'
+ref table 'Jira Xray JOIN BF APM TEST UAT'
+ref table 'Jira Xray JOIN BF APM TESTUAT DEFECT'
+ref table 'Jira Business Request'
+ref table LocalDateTable_a686cc91-02ab-4d7c-8f94-77f876fe29cf
+ref table LocalDateTable_071499f2-2548-4eb7-83b2-8159bdd5bbe7
+ref table LocalDateTable_799a860b-4a3f-4f40-9940-e50c0c375e81
+ref table LocalDateTable_656f7b45-e5ef-4ef0-a6d9-a2be46ea48d1
+ref table LocalDateTable_d605c5e6-499d-4459-bf2d-ce358137394c
+ref table LocalDateTable_afde5906-b17a-4dc8-9e07-e1e4b344209b
+ref table LocalDateTable_54251152-b6d8-499c-b8ea-023bbc9af7a9
+ref table LocalDateTable_c51aaf8e-5b56-48c6-be3f-091317827fc3
+ref table LocalDateTable_ad5e9ae8-1f11-4aad-a093-c5204b56c687
+ref table LocalDateTable_408c973b-3403-4377-82a9-5898c8850b2c
+ref table LocalDateTable_c1b37b66-bd9e-4a80-896d-f63134c59009
+ref table LocalDateTable_086782c6-21ce-4681-ac54-1067d5013f25
+ref table LocalDateTable_81a019db-9901-4f5b-9bea-26ea00dbc535
+ref table LocalDateTable_f22a5f9c-4b6a-44b7-872c-3fd3e8105ff6
+ref table LocalDateTable_57ced55d-1cf4-4484-aa2f-a96244cde5e8
+ref table LocalDateTable_63d5e009-0467-47fd-8703-9c43850bd89c
+ref table LocalDateTable_156475ee-b7de-451e-a8d5-9f521a92fcf7
+ref table LocalDateTable_27d8ed4a-857d-406c-9593-9771512ade83
+ref table LocalDateTable_9b5bf1a7-ba3f-4d90-b66b-d6e16b846689
+ref table LocalDateTable_4317723d-fdd5-413d-9e30-0f56b9279285
+ref table LocalDateTable_a16be343-c5d8-4e28-bb00-f63bab3fd8dc
+ref table LocalDateTable_52bde889-4a80-46fd-a248-920b75f1d232
+ref table LocalDateTable_8b52b111-da2e-4331-8f58-9cc734e02762
+ref table LocalDateTable_da2f115b-8254-4640-9307-b6d929b47816
+ref table LocalDateTable_e96ba5eb-b265-4dcd-9c2c-c096907809d7
+ref table LocalDateTable_c1f5e5d7-714b-4d9d-9ec8-0b601a2a9d08
+ref table LocalDateTable_eb43f3f5-66e9-4459-b3b5-e9bbc8c8a215
+ref table LocalDateTable_bd2e82e2-01b9-48aa-9ff4-0b2f1dd9741b
+ref table LocalDateTable_047f57d5-a49a-4c6b-ba7f-9c927a2e33c2
+ref table LocalDateTable_038fbf63-465c-4661-b127-b687976c46b7
+ref table 'Jira Xray JOIN BF APM TEST UAT 2'
+ref table 'Jira Xray JOIN BF APM TESTUAT DEFECT 2'
+ref table 'Jira Business Request 2'
+ref table 'LocalDateTable_4317723d-fdd5-413d-9e30-0f56b9279285 2'
+ref table 'LocalDateTable_a16be343-c5d8-4e28-bb00-f63bab3fd8dc 2'
+ref table 'LocalDateTable_52bde889-4a80-46fd-a248-920b75f1d232 2'
+ref table 'LocalDateTable_8b52b111-da2e-4331-8f58-9cc734e02762 2'
+ref table 'LocalDateTable_da2f115b-8254-4640-9307-b6d929b47816 2'
+ref table 'LocalDateTable_e96ba5eb-b265-4dcd-9c2c-c096907809d7 2'
+ref table 'LocalDateTable_c1f5e5d7-714b-4d9d-9ec8-0b601a2a9d08 2'
+ref table 'LocalDateTable_eb43f3f5-66e9-4459-b3b5-e9bbc8c8a215 2'
+ref table 'LocalDateTable_bd2e82e2-01b9-48aa-9ff4-0b2f1dd9741b 2'
+ref table 'LocalDateTable_047f57d5-a49a-4c6b-ba7f-9c927a2e33c2 2'
+ref table 'LocalDateTable_038fbf63-465c-4661-b127-b687976c46b7 2'
+ref table 'Jira Xray JOIN BF APM TEST UAT 3'
+ref table 'Jira Xray JOIN BF APM TESTUAT DEFECT 3'
+ref table 'Jira Business Request 3'
+ref table 'LocalDateTable_4317723d-fdd5-413d-9e30-0f56b9279285 3'
+ref table 'LocalDateTable_a16be343-c5d8-4e28-bb00-f63bab3fd8dc 3'
+ref table 'LocalDateTable_52bde889-4a80-46fd-a248-920b75f1d232 3'
+ref table 'LocalDateTable_8b52b111-da2e-4331-8f58-9cc734e02762 3'
+ref table 'LocalDateTable_da2f115b-8254-4640-9307-b6d929b47816 3'
+ref table 'LocalDateTable_e96ba5eb-b265-4dcd-9c2c-c096907809d7 3'
+ref table 'LocalDateTable_c1f5e5d7-714b-4d9d-9ec8-0b601a2a9d08 3'
+ref table 'LocalDateTable_eb43f3f5-66e9-4459-b3b5-e9bbc8c8a215 3'
+ref table 'LocalDateTable_bd2e82e2-01b9-48aa-9ff4-0b2f1dd9741b 3'
+ref table 'LocalDateTable_047f57d5-a49a-4c6b-ba7f-9c927a2e33c2 3'
+ref table 'LocalDateTable_038fbf63-465c-4661-b127-b687976c46b7 3'
+ref table 'Jira Xray JOIN BF APM TEST UAT 4'
+ref table 'Jira Xray JOIN BF APM TESTUAT DEFECT 4'
+ref table 'Jira Business Request 4'
+ref table 'LocalDateTable_408c973b-3403-4377-82a9-5898c8850b2c 2'
+ref table 'LocalDateTable_c1b37b66-bd9e-4a80-896d-f63134c59009 2'
+ref table 'LocalDateTable_086782c6-21ce-4681-ac54-1067d5013f25 2'
+ref table 'LocalDateTable_4317723d-fdd5-413d-9e30-0f56b9279285 4'
+ref table 'LocalDateTable_a16be343-c5d8-4e28-bb00-f63bab3fd8dc 4'
+ref table 'LocalDateTable_52bde889-4a80-46fd-a248-920b75f1d232 4'
+ref table 'LocalDateTable_8b52b111-da2e-4331-8f58-9cc734e02762 4'
+ref table 'LocalDateTable_da2f115b-8254-4640-9307-b6d929b47816 4'
+ref table 'LocalDateTable_e96ba5eb-b265-4dcd-9c2c-c096907809d7 4'
+ref table 'LocalDateTable_c1f5e5d7-714b-4d9d-9ec8-0b601a2a9d08 4'
+ref table 'LocalDateTable_eb43f3f5-66e9-4459-b3b5-e9bbc8c8a215 4'
+ref table 'LocalDateTable_bd2e82e2-01b9-48aa-9ff4-0b2f1dd9741b 4'
+ref table 'LocalDateTable_047f57d5-a49a-4c6b-ba7f-9c927a2e33c2 4'
+ref table 'LocalDateTable_038fbf63-465c-4661-b127-b687976c46b7 4'
+ref table LocalDateTable_7284efee-8543-4fc7-92e6-975948d999aa
+ref table LocalDateTable_a6085e72-29ba-4536-b8ac-5fa443fe245d
+ref table 'Jira Xray JOIN BF APM TESTUAT DEFECT NEW'
+ref table 'Jira Xray JOIN BF APM TESTUAT DEFECT NEW 2'
+ref table 'Jira Xray JOIN BF APM TESTUAT DEFECT NEW 3'
+ref table 'Jira Xray JOIN BF APM TESTUAT DEFECT NEW 4'
+ref table 'Workflow Fasi BF Journey'
+ref table 'Jira Story Task'
+ref table LocalDateTable_a70f2671-c171-4255-9776-3e660f0fc545
+ref table LocalDateTable_0ab3ba1a-faa8-416f-a713-1f6e921238ce
+ref table LocalDateTable_6a950f9d-2d04-440d-86f9-2db7f456f126
+ref table LocalDateTable_e5c3a9c9-75fa-42f3-acd2-0b57c3290240
+ref table LocalDateTable_cfa1cd90-5ec1-45ae-90a8-8e0338465f39
+ref table LocalDateTable_58a43364-bcce-43c3-874f-0ab016fe777b
+ref table LocalDateTable_3e82ade7-74e4-4826-bf57-0771082c5779
+ref table 'Jira Story Task 2'
+ref table 'LocalDateTable_a70f2671-c171-4255-9776-3e660f0fc545 2'
+ref table 'LocalDateTable_0ab3ba1a-faa8-416f-a713-1f6e921238ce 2'
+ref table 'LocalDateTable_6a950f9d-2d04-440d-86f9-2db7f456f126 2'
+ref table 'LocalDateTable_e5c3a9c9-75fa-42f3-acd2-0b57c3290240 2'
+ref table 'LocalDateTable_cfa1cd90-5ec1-45ae-90a8-8e0338465f39 2'
+ref table 'LocalDateTable_58a43364-bcce-43c3-874f-0ab016fe777b 2'
+ref table 'LocalDateTable_3e82ade7-74e4-4826-bf57-0771082c5779 2'
+ref table 'Jira Story Task 3'
+ref table 'LocalDateTable_a70f2671-c171-4255-9776-3e660f0fc545 3'
+ref table 'LocalDateTable_0ab3ba1a-faa8-416f-a713-1f6e921238ce 3'
+ref table 'LocalDateTable_6a950f9d-2d04-440d-86f9-2db7f456f126 3'
+ref table 'LocalDateTable_e5c3a9c9-75fa-42f3-acd2-0b57c3290240 3'
+ref table 'LocalDateTable_cfa1cd90-5ec1-45ae-90a8-8e0338465f39 3'
+ref table 'LocalDateTable_58a43364-bcce-43c3-874f-0ab016fe777b 3'
+ref table 'LocalDateTable_3e82ade7-74e4-4826-bf57-0771082c5779 3'
+ref table 'Jira Story Task 4'
+ref table 'LocalDateTable_a70f2671-c171-4255-9776-3e660f0fc545 4'
+ref table 'LocalDateTable_0ab3ba1a-faa8-416f-a713-1f6e921238ce 4'
+ref table 'LocalDateTable_6a950f9d-2d04-440d-86f9-2db7f456f126 4'
+ref table 'LocalDateTable_e5c3a9c9-75fa-42f3-acd2-0b57c3290240 4'
+ref table 'LocalDateTable_cfa1cd90-5ec1-45ae-90a8-8e0338465f39 4'
+ref table 'LocalDateTable_58a43364-bcce-43c3-874f-0ab016fe777b 4'
+ref table 'LocalDateTable_3e82ade7-74e4-4826-bf57-0771082c5779 4'
+ref table TabellaTestMarco
+ref table 'Jira Epic'
+ref table LocalDateTable_c0c8e703-af2f-404b-8315-72066200071c
+ref table LocalDateTable_715caeb9-63d6-4273-bb92-2a350c7330fe
+ref table LocalDateTable_f43693cb-3ecf-4c4a-a170-a399b8615f3d
+ref table LocalDateTable_27519f20-6093-4704-9f91-cde9e56c0abe
+ref table LocalDateTable_f2fe12a6-cc61-4c73-9b98-1bd5931f7439
+ref table LocalDateTable_9a55fbb6-be09-4a42-a109-021f8e3405d6
+ref table LocalDateTable_1c2057f0-b5e8-45fd-b7f1-96e4867733f1
+ref table LocalDateTable_cd1990fc-554d-482e-93ee-f5f9a04cf2e8
+ref table LocalDateTable_bea6c0b1-7f3e-421f-83f8-a7b760461ba9
+ref table LocalDateTable_1c25362b-6bda-48b7-ae05-4dc8fdc0d665
+ref table LocalDateTable_1b075f5a-8ff5-4288-b4e0-9412717911f7
+ref table LocalDateTable_061d91b7-93b3-48a5-ba36-839fdd693e68
+ref table LocalDateTable_6d81de72-ebd1-4641-a609-3ac56a20e693
+ref table LocalDateTable_d99cbf0b-64b9-4e0a-ab8a-5d6f7605362e
+ref table 'TabellaTestMarco 2'
+ref table 'Jira Epic 2'
+ref table 'LocalDateTable_c0c8e703-af2f-404b-8315-72066200071c 2'
+ref table 'LocalDateTable_715caeb9-63d6-4273-bb92-2a350c7330fe 2'
+ref table 'LocalDateTable_f43693cb-3ecf-4c4a-a170-a399b8615f3d 2'
+ref table 'LocalDateTable_27519f20-6093-4704-9f91-cde9e56c0abe 2'
+ref table 'LocalDateTable_f2fe12a6-cc61-4c73-9b98-1bd5931f7439 2'
+ref table 'LocalDateTable_9a55fbb6-be09-4a42-a109-021f8e3405d6 2'
+ref table 'LocalDateTable_1c2057f0-b5e8-45fd-b7f1-96e4867733f1 2'
+ref table 'LocalDateTable_cd1990fc-554d-482e-93ee-f5f9a04cf2e8 2'
+ref table 'LocalDateTable_bea6c0b1-7f3e-421f-83f8-a7b760461ba9 2'
+ref table 'LocalDateTable_1c25362b-6bda-48b7-ae05-4dc8fdc0d665 2'
+ref table 'LocalDateTable_1b075f5a-8ff5-4288-b4e0-9412717911f7 2'
+ref table 'LocalDateTable_061d91b7-93b3-48a5-ba36-839fdd693e68 2'
+ref table 'LocalDateTable_6d81de72-ebd1-4641-a609-3ac56a20e693 2'
+ref table 'LocalDateTable_d99cbf0b-64b9-4e0a-ab8a-5d6f7605362e 2'
+ref table 'TabellaTestMarco 3'
+ref table 'Jira Epic 3'
+ref table 'LocalDateTable_c0c8e703-af2f-404b-8315-72066200071c 3'
+ref table 'LocalDateTable_715caeb9-63d6-4273-bb92-2a350c7330fe 3'
+ref table 'LocalDateTable_f43693cb-3ecf-4c4a-a170-a399b8615f3d 3'
+ref table 'LocalDateTable_27519f20-6093-4704-9f91-cde9e56c0abe 3'
+ref table 'LocalDateTable_f2fe12a6-cc61-4c73-9b98-1bd5931f7439 3'
+ref table 'LocalDateTable_9a55fbb6-be09-4a42-a109-021f8e3405d6 3'
+ref table 'LocalDateTable_1c2057f0-b5e8-45fd-b7f1-96e4867733f1 3'
+ref table 'LocalDateTable_cd1990fc-554d-482e-93ee-f5f9a04cf2e8 3'
+ref table 'LocalDateTable_bea6c0b1-7f3e-421f-83f8-a7b760461ba9 3'
+ref table 'LocalDateTable_1c25362b-6bda-48b7-ae05-4dc8fdc0d665 3'
+ref table 'LocalDateTable_1b075f5a-8ff5-4288-b4e0-9412717911f7 3'
+ref table 'LocalDateTable_061d91b7-93b3-48a5-ba36-839fdd693e68 3'
+ref table 'LocalDateTable_6d81de72-ebd1-4641-a609-3ac56a20e693 3'
+ref table 'LocalDateTable_d99cbf0b-64b9-4e0a-ab8a-5d6f7605362e 3'
+ref table 'TabellaTestMarco 4'
+ref table 'Jira Epic 4'
+ref table 'LocalDateTable_cd1990fc-554d-482e-93ee-f5f9a04cf2e8 4'
+ref table 'LocalDateTable_bea6c0b1-7f3e-421f-83f8-a7b760461ba9 4'
+ref table 'LocalDateTable_1c25362b-6bda-48b7-ae05-4dc8fdc0d665 4'
+ref table 'LocalDateTable_1b075f5a-8ff5-4288-b4e0-9412717911f7 4'
+ref table 'LocalDateTable_061d91b7-93b3-48a5-ba36-839fdd693e68 4'
+ref table 'LocalDateTable_6d81de72-ebd1-4641-a609-3ac56a20e693 4'
+ref table 'LocalDateTable_d99cbf0b-64b9-4e0a-ab8a-5d6f7605362e 4'
+ref table 'Workflow Fasi IE 3'
+ref table LocalDateTable_930c31e7-3e31-447a-a9de-fc9851e5db88
+ref table LocalDateTable_84c9d01a-7cc4-49f1-b922-ce01cb3beb04
+ref table LocalDateTable_5506efa8-e422-49b3-ad0a-6f9b65e810f3
+ref table LocalDateTable_e690ca00-ae2c-42ab-bdff-f10d3d7eb499
+ref table LocalDateTable_abfbeff5-253c-42e1-8c40-d8c23ce2fa2c
+ref table LocalDateTable_e26bd9b7-df9f-4868-8fd7-7cbfcc359ed6
+ref table LocalDateTable_00b73f72-d65b-475c-a114-aee11c4940b1
+ref table LocalDateTable_59f94ef1-cbe3-4dc4-9aa8-70f7f9681cc9
+ref table LocalDateTable_50ae0311-eea1-4f2b-aa3e-fa2193471a30
+ref table LocalDateTable_22e55bc8-bcb4-43ad-86f1-508aa9936b85
+ref table LocalDateTable_61ba3f99-9521-4e25-999f-72593eafc999
+ref table LocalDateTable_169b54b8-41b7-4b75-b839-cee3f90c3459
+ref table 'LocalDateTable_abfbeff5-253c-42e1-8c40-d8c23ce2fa2c 2'
+ref table 'LocalDateTable_e26bd9b7-df9f-4868-8fd7-7cbfcc359ed6 2'
+ref table 'LocalDateTable_00b73f72-d65b-475c-a114-aee11c4940b1 2'
+ref table 'LocalDateTable_59f94ef1-cbe3-4dc4-9aa8-70f7f9681cc9 2'
+ref table 'LocalDateTable_50ae0311-eea1-4f2b-aa3e-fa2193471a30 2'
+ref table 'LocalDateTable_22e55bc8-bcb4-43ad-86f1-508aa9936b85 2'
+ref table 'LocalDateTable_61ba3f99-9521-4e25-999f-72593eafc999 2'
+ref table 'LocalDateTable_169b54b8-41b7-4b75-b839-cee3f90c3459 2'
+ref table 'LocalDateTable_abfbeff5-253c-42e1-8c40-d8c23ce2fa2c 3'
+ref table 'LocalDateTable_e26bd9b7-df9f-4868-8fd7-7cbfcc359ed6 3'
+ref table 'LocalDateTable_00b73f72-d65b-475c-a114-aee11c4940b1 3'
+ref table 'LocalDateTable_59f94ef1-cbe3-4dc4-9aa8-70f7f9681cc9 3'
+ref table 'LocalDateTable_50ae0311-eea1-4f2b-aa3e-fa2193471a30 3'
+ref table 'LocalDateTable_22e55bc8-bcb4-43ad-86f1-508aa9936b85 3'
+ref table 'LocalDateTable_61ba3f99-9521-4e25-999f-72593eafc999 3'
+ref table 'LocalDateTable_169b54b8-41b7-4b75-b839-cee3f90c3459 3'
+ref table 'LocalDateTable_abfbeff5-253c-42e1-8c40-d8c23ce2fa2c 4'
+ref table 'LocalDateTable_e26bd9b7-df9f-4868-8fd7-7cbfcc359ed6 4'
+ref table 'LocalDateTable_00b73f72-d65b-475c-a114-aee11c4940b1 4'
+ref table 'LocalDateTable_59f94ef1-cbe3-4dc4-9aa8-70f7f9681cc9 4'
+ref table 'LocalDateTable_50ae0311-eea1-4f2b-aa3e-fa2193471a30 4'
+ref table 'LocalDateTable_22e55bc8-bcb4-43ad-86f1-508aa9936b85 4'
+ref table 'LocalDateTable_61ba3f99-9521-4e25-999f-72593eafc999 4'
+ref table 'LocalDateTable_169b54b8-41b7-4b75-b839-cee3f90c3459 4'
+ref table 'Jira ICR FD relation'
+ref table 'Confluence Comala Activity'
+ref table 'Confluence Comala Issue Link'
+ref table LocalDateTable_fd743789-b238-4569-b1ff-5a81a285d479
+ref table LocalDateTable_12998bb6-5704-4e8f-ba6b-b1584b9b2d03
+ref table LocalDateTable_ef09b6cd-4fad-4cbc-856e-5129a040fa19
+ref table LocalDateTable_1dab56a6-9134-4bed-b792-a6dc50ba07f9
+ref table LocalDateTable_598ac48d-42b2-4918-9a97-edddb2529c92
+ref table LocalDateTable_647975a0-05be-449a-9570-ce093d0ca43a
+ref table 'Jira ICR FD relation 2'
+ref table 'Confluence Comala Activity 2'
+ref table 'Confluence Comala Issue Link 2'
+ref table 'LocalDateTable_647975a0-05be-449a-9570-ce093d0ca43a 2'
+ref table 'Jira ICR FD relation 3'
+ref table 'Confluence Comala Activity 3'
+ref table 'Confluence Comala Issue Link 3'
+ref table 'LocalDateTable_647975a0-05be-449a-9570-ce093d0ca43a 3'
+ref table 'Jira ICR FD relation 4'
+ref table 'Confluence Comala Activity 4'
+ref table 'Confluence Comala Issue Link 4'
+ref table 'LocalDateTable_647975a0-05be-449a-9570-ce093d0ca43a 4'
+ref table 'Link MBI'
+ref table 'Comala Activity MBI'
+ref table LocalDateTable_d44c5a46-62bf-4a4b-b1d7-5eafa8335493
+ref table LocalDateTable_67b16a1f-4472-4160-a5b3-c1f7161933cd
+ref table 'Workflow Fasi BF Journey 2'
+ref table 'Workflow Fasi FD Journey'
+ref table LocalDateTable_9bf91a9f-b7a4-4bb6-8e77-f47597ff8348
+ref table LocalDateTable_9a4ce45a-a444-4a01-ae2a-6ed26f6e2dc6
+ref table 'Workflow Fasi Epic Journey'
+ref table 'Workflow Fasi BF Journey Confluence'
+ref table 'BF Transition Status Confluence'
+ref table LocalDateTable_fa85684d-ae3b-4e56-9d37-13afb1ff6301
+ref table 'Workflow Fasi FD Journey Confluence'
+ref table 'FD Transition Status Confluence'
+ref table LocalDateTable_47ea5b06-a213-4b15-bfb6-b2d6d56ee741
+ref table 'Workflow Fasi BF Journey Confluence 2'
+ref table 'Link FD'
+ref table 'Comala Activity FD'
+ref table LocalDateTable_18c39cb2-4099-4f8c-9f88-a67a543b2ebe
+ref table LocalDateTable_0716b164-ad0d-4bc7-bb07-344e18c49409
+ref table 'Confluence BF Pages'
+ref table 'Confluence Comala Pages'
+ref table 'Confluence FD Pages'
+ref table 'Confluence MBI Pages'
+ref table 'Confluence IE Pages'
+ref table 'Confluence BF Pages 2'
+ref table 'Confluence Comala Pages 2'
+ref table 'Confluence FD Pages 2'
+ref table 'Confluence MBI Pages 2'
+ref table 'Confluence IE Pages 2'
+ref table 'Confluence BF Pages 3'
+ref table 'Confluence Comala Pages 3'
+ref table 'Confluence FD Pages 3'
+ref table 'Confluence MBI Pages 3'
+ref table 'Confluence IE Pages 3'
+ref table 'Confluence BF Pages 4'
+ref table 'Confluence Comala Pages 4'
+ref table 'Confluence FD Pages 4'
+ref table 'Confluence MBI Pages 4'
+ref table 'Confluence IE Pages 4'
+ref table 'Workflow Fasi MBI Semplificate'
+ref table 'Workflow Fasi FD Semplificate'
+ref table 'Workflow Fasi MBI Semplificate 2'
+ref table 'Workflow Fasi IE Semplificate'
+ref table 'Workflow Fasi IE Semplificate 2'
+ref table 'Jira Planning by Cost Month'
+ref table 'Jira Planning by Cost Month 2'
+ref table 'Jira Planning by Cost Month 3'
+ref table 'Jira Planning by Cost Month 4'
+ref table 'Workflow Fasi MBI Semplificate 3'
+ref table 'Jira MBI Split'
+ref table 'Currency Conversion'
+ref table Scenario
+ref table 'Jira MBI Split 2'
+ref table 'Currency Conversion 2'
+ref table 'Scenario 2'
+ref table 'Jira MBI Split 3'
+ref table 'Currency Conversion 3'
+ref table 'Scenario 3'
+ref table 'Jira MBI Split 4'
+ref table 'Currency Conversion 4'
+ref table 'Scenario 4'
+ref table 'TEST Issue MBI'
+ref table LocalDateTable_c9051086-e1c6-4662-acb6-57735b4137b8
+ref table LocalDateTable_83e1fee1-769d-4acb-9bef-d854802b53fb
+ref table 'TEST Issue IE'
+ref table LocalDateTable_e0da2244-6847-44fd-9598-4e2c2cef520d
+ref table LocalDateTable_6de0b87d-180c-4121-8aff-c4ff57e4c60a
+ref table Months
+ref table 'Months 2'
+ref table 'Months 3'
+ref table 'Months 4'
+ref table 'Tabella Tempi Unpivot'
+ref table LocalDateTable_d44898f1-9c8d-47d7-8d45-f02dc74d6b7e
+ref table LocalDateTable_4a1c7a41-8f26-46f6-8fd5-33f0f9dd6148
+ref table LocalDateTable_fb46ce27-e87f-4b41-b112-e091fbedde8c
+ref table LocalDateTable_0e4b768d-548d-4d2c-8b07-366c998b1322
+ref table LocalDateTable_5028c737-587c-4244-9bd7-1a353bcb139d
+ref table LocalDateTable_9730504e-adbb-4f6d-8f2a-031bda9951db
+
+ref cultureInfo it-IT
+

@@ -1,0 +1,194 @@
+table 'Jira ICR'
+	lineageTag: af45b68d-ec0d-4ca5-8d6e-33066c5c067c
+	sourceLineageTag: df703df4-17a2-413f-855c-5b912dce9311
+
+	measure Conteggio_ICR = DISTINCTCOUNT('Jira ICR'[Issue])
+		formatString: #,0
+		lineageTag: bc83e00e-f1c4-4e34-90c3-767c5d95271d
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure Conteggio_FD =
+			
+			COALESCE(DISTINCTCOUNT('Jira ICR'[Issue Feature Delivery]), 0 )
+		formatString: 0
+		lineageTag: 0d64386d-ad3f-46a8-b3f4-12e078039050
+
+		changedProperty = Name
+
+	column Resolution_date =
+			
+			IF(YEAR('Jira ICR'[Issue resolution date]) >= 2026, 'Jira ICR'[Issue resolution date], blank())
+		formatString: General Date
+		lineageTag: 5b87683f-30b2-424f-9274-42d3d1d78434
+		summarizeBy: none
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Issue
+		dataType: string
+		isNullable: false
+		lineageTag: 753cee49-a2c9-410a-a0f4-f78a5df0fecb
+		sourceLineageTag: 90a12ad5-2cfc-449a-93a0-b9bbf5d12f0c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue status'
+		dataType: string
+		lineageTag: e45dcb36-379e-4ed5-8cce-b1aa8401c37f
+		sourceLineageTag: f86a8919-7659-43ab-8bf6-75ce539887b7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue status
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Incident/Problem Code'
+		dataType: string
+		lineageTag: c1c874bb-9f73-4870-952d-5de4e8d8fba3
+		sourceLineageTag: eae09e32-e1b4-4e38-8740-57275b16f3cd
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Incident/Problem Code
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue APM List'
+		dataType: string
+		lineageTag: c09c5282-a554-4894-bb2c-5494d549c0be
+		sourceLineageTag: 73775765-6b90-48b6-8c8d-43fd3c83317b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue APM List
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Provider and Contract'
+		dataType: string
+		lineageTag: 1efbefe2-3f60-4485-9b4a-efb11b03be39
+		sourceLineageTag: aebd2291-cc50-4f15-970a-84ca29772870
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Provider and Contract
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Contract ID'
+		dataType: string
+		lineageTag: f0480503-864f-4934-86f4-6d2cfb030ef1
+		sourceLineageTag: 2af0d43e-d056-4605-8e79-bd5ef42b4994
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Contract ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Provider Name'
+		dataType: string
+		lineageTag: 91a7023c-7587-4d90-8303-ecd54219ffa9
+		sourceLineageTag: b68826a1-2f0e-4cae-bc11-c207c5629c72
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Provider Name
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Caller Service Now'
+		dataType: string
+		lineageTag: 5a0cdb47-a11b-4a80-b1a1-fbf598ac260c
+		sourceLineageTag: f6c93e65-41c2-438c-85e1-5ecf87a96358
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Caller Service Now
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Company'
+		dataType: string
+		lineageTag: 3ff2e6a7-8672-4e92-a2c7-ca85d1e27124
+		sourceLineageTag: e1ece894-9c79-4c31-92e4-786931afef35
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Company
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Issue Provider'
+		dataType: string
+		lineageTag: 0836cec7-4862-4720-a0b4-a4e467638e4c
+		sourceLineageTag: 00d01a6a-8b1f-4883-acb1-29b4ae9248bb
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Issue Provider
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue fix versions'
+		dataType: string
+		lineageTag: 0bb31a81-5720-47a7-8706-fa1ef56edcbc
+		sourceLineageTag: 1fbcc8e4-97ad-44cb-b6cc-737eea4d91d6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue fix versions
+
+		annotation SummarizationSetBy = User
+
+	column 'Environment Release text'
+		dataType: string
+		lineageTag: 6088ec63-fed6-4e02-97a6-db1840de2a7a
+		sourceLineageTag: c0f9a8fa-efff-4c58-a75b-e7c3c8ae69dd
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Environment Release text
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue priority'
+		dataType: string
+		lineageTag: 2bbd3088-20ac-4ada-b398-09ac3cec0c4c
+		sourceLineageTag: d734bdbd-4956-4013-87cb-79eb0e7ab821
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue priority
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Feature Delivery'
+		dataType: string
+		lineageTag: 6e6517f0-b965-4d2c-a8a3-cd3c2dd8e106
+		sourceLineageTag: 972bd638-a84f-4b84-8b3b-8ac602add306
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Feature Delivery
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue resolution date'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 5ee7f8dd-280c-4b8d-ba30-e4911c8e1b3c
+		sourceLineageTag: 6a59dfea-e90e-46d3-8f95-98b906792453
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue resolution date
+
+		variation Variazione
+			isDefault
+			relationship: 336f60aa-9676-4c83-b2f3-c06d837fe1ed
+			defaultHierarchy: LocalDateTable_3698b417-5ac5-4684-bd0b-e0f3c94836bf.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira ICR' = entity
+		mode: directQuery
+		source
+			entityName: Jira ICR
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

@@ -1,0 +1,60 @@
+table 'Bitbucket Repo APM'
+	lineageTag: 15e1e21d-d7b9-4875-90b4-c5c2e293e03a
+	sourceLineageTag: afc57474-aa1b-4aa6-9c5b-b88061966c55
+
+	column repo_key
+		dataType: string
+		lineageTag: 9783777d-ef09-4b9e-ac96-a642385583b5
+		sourceLineageTag: baf5c18f-f843-427e-ae19-992e74649412
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: repo_key
+
+		annotation SummarizationSetBy = User
+
+	column project_key
+		dataType: string
+		lineageTag: 47ae9a26-8f81-46e0-bf49-d27ae75cb634
+		sourceLineageTag: 5d31d336-0de3-4646-bbe3-9ebe6219b7f4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: project_key
+
+		annotation SummarizationSetBy = User
+
+	column apm_name
+		dataType: string
+		lineageTag: e75ffd69-3c17-4dea-8a62-adebc8e11127
+		sourceLineageTag: bb3bd4fc-466c-443d-bdc8-75914687c2aa
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: apm_name
+
+		annotation SummarizationSetBy = User
+
+	column apm_code
+		dataType: string
+		lineageTag: 65d467b2-7e89-4ac6-bbec-c353260598e0
+		sourceLineageTag: ceadb06c-1815-4e6a-9c34-1f88a7627f40
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: apm_code
+
+		annotation SummarizationSetBy = User
+
+	column repo_name
+		dataType: string
+		lineageTag: e3f216dd-de52-4473-82c7-1f094ae82090
+		sourceLineageTag: 075703cd-48c1-46db-ac0f-0b93a145a8ab
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: repo_name
+
+		annotation SummarizationSetBy = User
+
+	partition 'Bitbucket Repo APM' = entity
+		mode: directQuery
+		source
+			entityName: Bitbucket Repo APM
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

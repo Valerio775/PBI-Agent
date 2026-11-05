@@ -1,0 +1,49 @@
+table 'Workflow Fasi FD Journey'
+	lineageTag: da120dda-70a5-45af-bb4c-1a46b03fa94a
+
+	column Status
+		lineageTag: e1a26c2e-3f67-4fb0-81a2-20fcfdc30fce
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status]
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrdineFase
+		formatString: 0
+		lineageTag: 70c1f33a-894a-4517-b6ef-e50f3e1f8ef8
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [OrdineFase]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status Tradotto'
+		lineageTag: 3815a292-ac05-42c9-97bf-1881ba605b5d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status Tradotto]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Workflow Fasi FD Journey' = calculated
+		mode: import
+		source = ```
+				
+				DATATABLE (
+				    "Status", STRING,
+				    "OrdineFase", INTEGER,
+				    "Status Tradotto", STRING,
+				    {
+				        { "Authorized", 1, "Pianificazione Intervento" },
+				        { "In Progress", 2, "In Progress" },
+				        { "Completed", 4, "UAT ENV Preparation" },
+				        { "Ready for UAT", 4, "UAT" },
+				        { "UAT Passed", 5, "Release" }
+				    }
+				)
+				
+				```
+
+	annotation PBI_Id = 53652b31fb7f48dd99137c9fc3c92df5
+

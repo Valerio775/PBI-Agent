@@ -1,0 +1,51 @@
+table 'Jira Xray BF APM Test UAT Status 2'
+	lineageTag: 5f29905f-d500-4b3c-bda3-384a9ba323c5
+	sourceLineageTag: fa0ac2c8-e35d-4215-8ff7-576d258c4d3f
+
+	column 'Business Feature'
+		dataType: string
+		lineageTag: 59f7e162-0e58-45db-a8a4-23f62ba23c6c
+		sourceLineageTag: 20054620-92ba-41e5-9775-0f6266e6d397
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Business Feature
+
+		annotation SummarizationSetBy = User
+
+	column APM
+		dataType: string
+		lineageTag: 9e256b0a-5a10-47f7-8264-73f3465ddef8
+		sourceLineageTag: 0429595b-4b7d-4038-92c5-d863948942de
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: APM
+
+		annotation SummarizationSetBy = User
+
+	column Status
+		dataType: string
+		lineageTag: 2ba673eb-9240-4f8a-a1ba-20e52eb24c82
+		sourceLineageTag: 7a173a1e-b931-4e0f-98e6-1c593c7cc01b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = User
+
+	column 'Test count'
+		dataType: int64
+		formatString: 0
+		lineageTag: ac1881ff-2d7f-441a-ba05-7c16126812c1
+		sourceLineageTag: 4d717f41-6aed-49c6-a5a6-93bb95ee5ca8
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Test count
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira Xray BF APM Test UAT Status 2' = entity
+		mode: directQuery
+		source
+			entityName: Jira Xray BF APM Test UAT Status
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab 2'
+
