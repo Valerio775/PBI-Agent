@@ -1,0 +1,169 @@
+table Calendario
+	lineageTag: 40ad9016-1d1c-40a0-802f-1fe0eb3d391d
+
+	measure 'Inspection MultiYear' = ```
+			
+			CALCULATE(
+			    SUM(Inspection[id]),
+			    Calendario[Anno] IN {2025, 2026}
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 7ab94370-d792-4c50-bf7d-da9bf3bbef7e
+
+	column Date
+		formatString: Short Date
+		lineageTag: 9f424d2c-8141-4aab-b96f-f38654db134c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: ce7697ff-4742-46f1-8464-40cbfa7f0099
+			defaultHierarchy: LocalDateTable_f3c55cb4-96fb-4830-8c8a-bc5c7693c5f9.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Anno
+		formatString: 0
+		lineageTag: 0edfed49-0adf-4eca-9da1-9b75a6e5b4c4
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Anno]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mese
+		lineageTag: a72fc019-f9dd-4045-a1a9-3639b5d517d3
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Mese]
+		sortByColumn: NumeroMese
+
+		annotation SummarizationSetBy = Automatic
+
+	column NumeroMese
+		formatString: 0
+		lineageTag: 6aa9882a-67f6-4d17-80e7-4af4b846a015
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [NumeroMese]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Settimana
+		formatString: 0
+		lineageTag: 269a0042-c116-4c1b-b87b-095df3102b8a
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Settimana]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Giorno
+		formatString: 0
+		lineageTag: ea38c3d8-4ebd-4f8e-876c-290f671525de
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Giorno]
+
+		annotation SummarizationSetBy = Automatic
+
+	column AnnoMese
+		lineageTag: 83cd8a3f-e40a-41e1-974e-8a106553744e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [AnnoMese]
+
+		annotation SummarizationSetBy = Automatic
+
+	column AnnoSettimana
+		lineageTag: 791c6061-454b-4003-908a-3cb0c2f2ab46
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [AnnoSettimana]
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateJoin = LEFT(Calendario[Date], 10)
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: bac0ff61-1226-4b42-8b7b-34b6b9d24d4a
+		summarizeBy: none
+
+		variation Variazione
+			isDefault
+			relationship: 1c9a7672-e6a3-476b-942c-39c6c04b3849
+			defaultHierarchy: LocalDateTable_c15994f2-cbe7-4595-bcfe-77b8ef98e0fd.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Inspection_GraficoA = 'Calendario'[DateJoin]
+		formatString: General Date
+		lineageTag: a9277ed0-72c0-476a-bccd-4dbf3cb7057a
+		summarizeBy: none
+
+		variation Variazione
+			isDefault
+			relationship: d526d0fd-af35-4fd1-aa7b-836e7223f4e2
+			defaultHierarchy: LocalDateTable_c56aa2b1-7667-4ad0-b268-9f75edd8c632.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Inspection_GraficoB = 'Calendario'[DateJoin]
+		formatString: General Date
+		lineageTag: 0e3f529e-cc42-4bdc-adf9-f233d490bb83
+		summarizeBy: none
+
+		variation Variazione
+			isDefault
+			relationship: 9989b7d5-94c6-45c1-af59-66308d104fee
+			defaultHierarchy: LocalDateTable_19d7f840-62fc-45a2-9ff9-a6aeb04cf5d5.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column x = "x"
+		lineageTag: 7f029186-d8b2-44fc-8148-4ac6f7b1e3be
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column FiltroYTD = ```
+			
+			var oggi = TODAY()
+			var inizio_anno_corrente = DATE(YEAR(oggi),1,1)
+			var data_cella = 'Calendario'[DateJoin]
+			RETURN
+			IF(data_cella >= inizio_anno_corrente && data_cella <= oggi, 
+			    "YTD",
+			    "ALTRO")
+			```
+		lineageTag: 141097a5-7f64-46d2-9450-89f472bc4e0e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Calendario = calculated
+		mode: import
+		source = ```
+				
+				ADDCOLUMNS(
+				    CALENDAR(DATE(2024,12,31), MAX(Inspection[planning_date])),  // intervallo anni
+				    "Anno", YEAR([Date]),
+				    "Mese", FORMAT([Date], "MMMM"),
+				    "NumeroMese", MONTH([Date]),
+				    "Settimana", WEEKNUM([Date], 2),
+				    "Giorno", DAY([Date]),  
+				    "AnnoMese", FORMAT([Date], "YYYY-MM"),
+				    "AnnoSettimana", YEAR([Date]) & "-" & WEEKNUM([Date], 2)
+				)
+				```
+
+	annotation PBI_Id = 53296f8f0dfb46389389dd1b51244d4e
+

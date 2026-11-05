@@ -1,0 +1,596 @@
+table Inspection
+	lineageTag: 8522b3d9-6308-487d-a070-5da644585097
+
+	measure 'Inspection YTD' = ```
+			
+			TOTALYTD(
+			    SUM(Inspection[id]),
+			    Calendario[Date]
+			)
+			
+			```
+		formatString: 0
+		lineageTag: f32620ac-3838-4e4c-bf8d-9c554386698f
+
+	measure 'Totale Ispezioni' =
+			//Totale Ispezioni conta tutto
+			var conteggio = COUNTROWS(Inspection)
+			return COALESCE(conteggio, 0)
+		formatString: 0
+		lineageTag: 0588821b-e573-4982-a4b7-be961266a126
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Conteggio Inspection' = COUNT('inspection'[id])
+		formatString: 0
+		lineageTag: 33f0e2c8-718b-4fe4-aefb-04f701cb7075
+
+	measure 'Numero Ispezioni' = ```
+			
+			// ASSE Y grafico Inspections: conta solo ciò che rientra nel periodo selezionato più le ispezioni di backlog
+			VAR SlicerMin = MIN('Calendario'[DateJoin])
+			VAR SlicerMax = MAX('Calendario'[DateJoin])
+			 
+			VAR ConteggioFisico = COUNTROWS(Inspection)
+			 
+			VAR IsBacklog = SELECTEDVALUE('Inspection'[execution_date_fixed]) = DATE(2024, 12, 31)
+			 
+			RETURN
+			IF(
+			    IsBacklog,
+			    ConteggioFisico,
+			    IF(
+			        MIN('Inspection'[execution_date_fixed]) <= SlicerMax &&
+			        MAX('Inspection'[execution_date_fixed]) >= SlicerMin,
+			        COALESCE(ConteggioFisico, 0),
+			        BLANK()
+			    )
+			)
+			```
+		formatString: 0
+		lineageTag: 1c4dfd3d-3bac-447d-8b62-574b48fed752
+
+	measure 'Ispezioni Trend Annuale' =
+			VAR Conteggio = COUNTROWS(Inspection)
+			RETURN IF(Conteggio = 0, BLANK(), Conteggio)
+		formatString: 0
+		displayFolder: Contractor
+		lineageTag: 6c40b07d-ef96-4baf-9086-63e53fc28be3
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 11554566-4c3e-4ba0-b5ab-40cbabdd02c4
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column title
+		dataType: string
+		lineageTag: 56de36bd-f4a2-4ce9-a881-da618e157831
+		summarizeBy: none
+		sourceColumn: title
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: 0b8e2e31-9ece-46e5-bd65-56743dfb8969
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_language
+		dataType: string
+		lineageTag: b446595b-5814-4569-8f3d-cc1fc41c4985
+		summarizeBy: none
+		sourceColumn: id_language
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_status
+		dataType: string
+		lineageTag: f72a5380-7bd5-4abe-b68c-5d85c9c43194
+		summarizeBy: none
+		sourceColumn: id_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_inspection_group
+		dataType: string
+		lineageTag: f4741869-bd7e-4975-a8c2-c8f1e6580d12
+		summarizeBy: none
+		sourceColumn: id_inspection_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_location
+		dataType: string
+		lineageTag: 4d1c3259-b259-45f7-a631-3288a85d4eb8
+		summarizeBy: none
+		sourceColumn: id_location
+
+		annotation SummarizationSetBy = Automatic
+
+	column location_description
+		dataType: string
+		lineageTag: b613137a-2ba5-4964-8eac-0a4a6d0b1af1
+		summarizeBy: none
+		sourceColumn: location_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_location_group
+		dataType: string
+		lineageTag: f3282e31-eebd-4e07-a035-f024698a7d2c
+		summarizeBy: none
+		sourceColumn: id_location_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_location_technology
+		dataType: string
+		lineageTag: fb07bafd-bb28-4fe0-b81c-ad6f0db8b404
+		summarizeBy: none
+		sourceColumn: id_location_technology
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_location_country
+		dataType: string
+		lineageTag: 9eccfd38-7650-41d0-b395-b50a0687a0e6
+		summarizeBy: none
+		sourceColumn: id_location_country
+
+		annotation SummarizationSetBy = Automatic
+
+	column scopes
+		dataType: string
+		lineageTag: f2110258-9127-4d77-8a9c-0b582e93c09a
+		summarizeBy: none
+		sourceColumn: scopes
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_activity
+		dataType: string
+		lineageTag: 1dcf853e-0934-4400-8784-62585057f815
+		summarizeBy: none
+		sourceColumn: id_activity
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_product_line
+		dataType: string
+		lineageTag: 757aa7a8-7793-4e1c-be5e-1ba37902acd8
+		summarizeBy: none
+		sourceColumn: id_product_line
+
+		annotation SummarizationSetBy = Automatic
+
+	column inspection_target
+		dataType: string
+		lineageTag: 1737c526-13ea-4a89-9106-f672cff3e7e5
+		summarizeBy: none
+		sourceColumn: inspection_target
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_contract
+		dataType: string
+		lineageTag: dbe6029f-10a9-47af-94b7-7d57442af1ff
+		summarizeBy: none
+		sourceColumn: id_contract
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_vendor_cui
+		dataType: string
+		lineageTag: fd336ef5-83fe-43b6-871f-fc1c0b9317dd
+		summarizeBy: none
+		sourceColumn: id_vendor_cui
+
+		annotation SummarizationSetBy = Automatic
+
+	column execution_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6f25f10a-f15f-4088-afd6-d471ab537463
+		summarizeBy: none
+		sourceColumn: execution_date
+
+		variation Variazione
+			isDefault
+			relationship: 9a960e2d-327e-43db-aa4c-3d9d05d9951a
+			defaultHierarchy: LocalDateTable_fdda5bad-4272-44f2-b4bc-b878a0ebdb7f.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column no_responsible_on_site
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 39b85931-c0c7-4403-a58c-8e1a41f48e2b
+		summarizeBy: none
+		sourceColumn: no_responsible_on_site
+
+		annotation SummarizationSetBy = Automatic
+
+	column no_show
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: ecbd20ef-55b9-494d-a835-cd362c17be08
+		summarizeBy: none
+		sourceColumn: no_show
+
+		annotation SummarizationSetBy = Automatic
+
+	column note
+		dataType: string
+		lineageTag: acf59fff-7fd5-415f-af79-0622b40be7ce
+		summarizeBy: none
+		sourceColumn: note
+
+		annotation SummarizationSetBy = Automatic
+
+	column creation_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4916e221-3edb-4f56-ba27-607f3ab33632
+		summarizeBy: none
+		sourceColumn: creation_date
+
+		variation Variazione
+			isDefault
+			relationship: 7694c3d3-3334-412f-b826-5f5eb2bc59f8
+			defaultHierarchy: LocalDateTable_dc503898-3423-4216-a4b6-6c34ea27ad31.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column creation_user
+		dataType: string
+		lineageTag: f00c3328-7334-475d-86ca-2eb4e22097f2
+		summarizeBy: none
+		sourceColumn: creation_user
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_update
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 98763968-50bc-4a9a-8943-7b82a3dcca4d
+		summarizeBy: none
+		sourceColumn: last_update
+
+		variation Variazione
+			isDefault
+			relationship: 20490c8d-98e3-4d39-81d3-fc97b48ae730
+			defaultHierarchy: LocalDateTable_6f33807b-e3ab-41d7-a740-0c58a8a80505.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_update
+		dataType: string
+		lineageTag: e70e0693-217f-4cad-8000-189482b6d420
+		summarizeBy: none
+		sourceColumn: user_update
+
+		annotation SummarizationSetBy = Automatic
+
+	column deleted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7d81faa9-d4e8-4b31-a3ee-5ab19e1217c0
+		summarizeBy: none
+		sourceColumn: deleted
+
+		annotation SummarizationSetBy = Automatic
+
+	column validation_errors
+		dataType: string
+		lineageTag: 9fbad428-2f8d-4fb9-b770-8f6b87c95e6a
+		summarizeBy: none
+		sourceColumn: validation_errors
+
+		annotation SummarizationSetBy = Automatic
+
+	column managed_offline
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a5d981d9-12cf-499d-9bbc-cdc2c38976ab
+		summarizeBy: none
+		sourceColumn: managed_offline
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_inspection_unit
+		dataType: string
+		lineageTag: 57a784a4-0faa-4258-a1b2-ad8293a598e0
+		summarizeBy: none
+		sourceColumn: id_inspection_unit
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_parent_scope
+		dataType: string
+		lineageTag: aea4c224-1c39-49a8-a7a9-35566740ebd0
+		summarizeBy: none
+		sourceColumn: id_parent_scope
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_order
+		dataType: string
+		lineageTag: dc7aa408-4388-437b-a05b-b21e3c9f358c
+		summarizeBy: none
+		sourceColumn: id_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column planning_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0a60f964-e980-4bf2-8ae3-dd45ef2baeba
+		summarizeBy: none
+		sourceColumn: planning_date
+
+		variation Variation
+			isDefault
+			relationship: 5362caab-219a-4a82-a339-b45b86e537f3
+			defaultHierarchy: LocalDateTable_b5064c10-91a6-4600-a748-26a2c4db4f32.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_contract_id_vendor_cui = Inspection[id_contract] & "-" & Inspection[id_vendor_cui]
+		lineageTag: a6782770-88a3-44f4-a553-df60eb87e2e1
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column creation_date_join = LEFT(Inspection[creation_date], 10)
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 70c12c0a-f06f-4b02-b6b5-a488d7d469c0
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: 215cd697-f5c5-4ed5-9f26-59cafd63ad28
+			defaultHierarchy: LocalDateTable_9ce541af-4342-4ebd-9a7d-103070da4379.'Gerarchia data'
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Formatted_scope = ```
+			
+			SWITCH( 
+			    TRUE(),
+			    CONTAINSSTRING('Inspection'[scopes], "IS_SAFE"), "Safety",
+			    CONTAINSSTRING('Inspection'[scopes], "IS_ENV"), "Environment",
+			    CONTAINSSTRING('Inspection'[scopes], "IS_HGNL"), "HGNL",
+			    CONTAINSSTRING('Inspection'[scopes], "IS_GNLP"), "GNLP",
+			    CONTAINSSTRING('Inspection'[scopes], "IS_GNLE"), "GNLE",
+			    CONTAINSSTRING('Inspection'[scopes], "IS_GNLS"), "GNLS"
+			)
+			```
+		lineageTag: e4bff708-6c43-41e6-ab65-086fa9566e92
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Formatted_state = ```
+			
+			SWITCH( 
+			    TRUE(),
+			    CONTAINSSTRING('Inspection'[id_status], "IST_CLOSED"), "Closed",
+			    CONTAINSSTRING('Inspection'[id_status], "IST_DRAFT"), "Draft",
+			    CONTAINSSTRING('Inspection'[id_status], "IST_TO_BE_VALIDATED"), "To be Validated",
+			    CONTAINSSTRING('Inspection'[id_status], "IST_DELETED"), "Deleted"
+			)
+			```
+		lineageTag: 66c708a5-25e2-40dd-9959-c723b58acadc
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column execution_date_formatted = LEFT(Inspection[execution_date], 10)
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 34ccbdfb-5df1-441d-ba8c-23a5d5173bee
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column execution_date_fixed =
+			
+			IF (
+			    ISBLANK ( 'Inspection'[execution_date] ),
+			    DATE ( 2024, 12, 31 ),
+			    'Inspection'[execution_date]
+			)
+		formatString: Short Date
+		lineageTag: 71cdc5ef-0640-4aa9-8e7d-29e806bed0df
+		summarizeBy: none
+
+		variation Variazione
+			isDefault
+			relationship: bfba1996-d4ba-4997-b964-5f15b23dcaa2
+			defaultHierarchy: LocalDateTable_5893cf15-7706-444e-8f75-1ab892e81ca1.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Etichetta_Mese_Custom = ```
+			
+			//ASSE X grafico Inspections:genera una etichetta basata sulla data ispezione. Se anno=2024 viene mostrata la dicitura "ispezioni in bozza" 
+			IF (
+			    'Inspection'[execution_date_fixed] = DATE (2024, 12, 31),
+			    "Ispezioni in bozza",
+			    FORMAT ( 'Inspection'[execution_date_fixed], "MMMM", "it-IT" )
+			)
+			```
+		lineageTag: 2004b0da-df1a-44b0-93c1-cb578985bf31
+		summarizeBy: none
+		sortByColumn: Ordine_Mesi
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ordine_Mesi =
+			
+			//Crea un valore numerico nel formato YYYYMM per ordinare correttamente i mesi in ordine cronologico quando l’etichetta del mese è testuale
+			YEAR('Inspection'[execution_date_fixed]) * 100 + MONTH('Inspection'[execution_date_fixed])
+		formatString: 0
+		lineageTag: ded8720b-1c94-43ef-8585-a7dc4f21148f
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column location_note
+		dataType: string
+		lineageTag: 4b60cda7-78e5-439a-920c-ccf13360ab05
+		summarizeBy: none
+		sourceColumn: location_note
+
+		annotation SummarizationSetBy = Automatic
+
+	column planning_date_formatted = LEFT(Inspection[planning_date], 10)
+		lineageTag: 223e1e91-7bda-4ab9-bc6c-89ed527e4903
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data inspection' = COALESCE(Inspection[execution_date], Inspection[planning_date])
+		formatString: General Date
+		lineageTag: e242c4d5-6f5c-47d7-ab69-9764676f283b
+		summarizeBy: none
+
+		variation Variation
+			isDefault
+			relationship: e09a444d-14c0-4207-b7bb-071fd3aef28f
+			defaultHierarchy: LocalDateTable_1c5def04-d0ec-4ea3-bfcb-190acb7af442.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_inspection_section
+		dataType: string
+		lineageTag: a2a84fd4-8d35-4ab2-bc55-4dd5d17e27e7
+		summarizeBy: none
+		sourceColumn: id_inspection_section
+
+		annotation SummarizationSetBy = Automatic
+
+	column inspection_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 31d51a35-ce77-4f6e-a937-20aa4f45e814
+		summarizeBy: none
+		sourceColumn: inspection_date
+
+		variation Variation
+			isDefault
+			relationship: 9e7fb8f5-339f-4ecc-b23a-dc8bf3b5f220
+			defaultHierarchy: LocalDateTable_510ad579-b6b9-4108-9e62-7965cc8ef615.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_checklist_scope
+		dataType: string
+		lineageTag: be1f975d-d19a-471d-b7da-e599d8fd4be5
+		summarizeBy: none
+		sourceColumn: id_checklist_scope
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_checklist_cluster
+		dataType: int64
+		formatString: 0
+		lineageTag: e6ae8c1d-afda-45e4-854c-83f14a33130f
+		summarizeBy: sum
+		sourceColumn: id_checklist_cluster
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_checklist
+		dataType: int64
+		formatString: 0
+		lineageTag: e2b6ba90-d81c-47d8-aa67-88a634151e23
+		summarizeBy: sum
+		sourceColumn: id_checklist
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_checklist_version
+		dataType: int64
+		formatString: 0
+		lineageTag: 6ca793b9-8ad4-430d-9bcd-369395a41929
+		summarizeBy: sum
+		sourceColumn: id_checklist_version
+
+		annotation SummarizationSetBy = Automatic
+
+	column no_show_reason
+		dataType: string
+		lineageTag: e12cc03b-28bc-490e-975c-1136f497b4ad
+		summarizeBy: none
+		sourceColumn: no_show_reason
+
+		annotation SummarizationSetBy = Automatic
+
+	column rejection_note
+		dataType: string
+		lineageTag: 173ebd0f-d043-4dc3-8d3d-21c59d3f6235
+		summarizeBy: none
+		sourceColumn: rejection_note
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_offline
+		dataType: string
+		lineageTag: e0c03a2a-9cbd-42b7-a246-2d6b8538959c
+		summarizeBy: none
+		sourceColumn: id_offline
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_old
+		dataType: int64
+		formatString: 0
+		lineageTag: 4971cc28-77cc-49b0-b02c-5058ea1a6a45
+		summarizeBy: sum
+		sourceColumn: id_old
+
+		annotation SummarizationSetBy = Automatic
+
+	column manual_wo_or_lcl
+		dataType: string
+		lineageTag: 7c691651-a720-461b-863d-a23d52a20cb6
+		summarizeBy: none
+		sourceColumn: manual_wo_or_lcl
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Inspection = m
+		mode: import
+		source = ```
+				let
+				    Origine = Databricks.Catalogs(origine, warehouses, [Catalog = "", Database = ""]),
+				    #"dpegpl-hseq-dev_Database" = Origine{[Name=database,Kind="Database"]}[Data],
+				    hseq4all_gl_gld_Schema = #"dpegpl-hseq-dev_Database"{[Name=schema,Kind="Schema"]}[Data],
+				    finding_View = hseq4all_gl_gld_Schema{[Name="inspection",Kind="View"]}[Data]
+				 
+				in finding_View
+				```
+
+	annotation PBI_NavigationStepName = Navigazione
+
+	annotation PBI_ResultType = Table
+

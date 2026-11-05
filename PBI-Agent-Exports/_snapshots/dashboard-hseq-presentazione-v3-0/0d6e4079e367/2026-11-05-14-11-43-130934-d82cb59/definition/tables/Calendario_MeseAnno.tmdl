@@ -1,0 +1,89 @@
+table Calendario_MeseAnno
+	lineageTag: 5c1baf1b-f2bc-40f6-8561-a8f9d2e98e80
+
+	column Date
+		formatString: Short Date
+		lineageTag: a8d4ea15-94b9-4d7e-ab17-183772bf789c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: 677caef8-e796-4e42-8be5-339bc5a541db
+			defaultHierarchy: LocalDateTable_b76699ee-3648-4c5b-9597-cd0c0991a8b5.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Anno
+		lineageTag: 3023bed8-8522-4b93-a3af-f10ca6236f22
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Anno]
+
+		annotation SummarizationSetBy = Automatic
+
+	column NumeroMese
+		lineageTag: f378c031-cfef-4e5d-aac3-21d3a4986795
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [NumeroMese]
+
+		annotation SummarizationSetBy = Automatic
+
+	column AnnoMese
+		lineageTag: a5e7c8cf-4a1d-4141-b008-843d6e98dc42
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [AnnoMese]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mese
+		lineageTag: 16b77e77-4556-4d2e-aef3-e60b4dfcf290
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Mese]
+		sortByColumn: Mese_No
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mese_No
+		formatString: 0
+		lineageTag: 4f0a4c85-c2d6-4054-a2b5-ddf0691514b5
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Mese_No]
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Anno Gerarchia'
+		lineageTag: 7169ad26-8a3e-45cc-b2f3-2beccfba2b18
+
+		level Anno
+			lineageTag: 7fe13d35-2dc2-4eb6-8981-46c219fc69da
+			column: Anno
+
+		level NumeroMese
+			lineageTag: d768b4a3-d433-458d-a8f7-2e0da5429503
+			column: NumeroMese
+
+	partition Calendario_MeseAnno = calculated
+		mode: import
+		source =
+				
+				VAR DataInizio = DATE(2025, 1, 1)
+				VAR DataFine   = MAXX(ALL(Update_time), Update_time[last_update])
+				RETURN
+				SUMMARIZE(
+				    CALENDAR(DataInizio, DataFine),
+				    [Date],
+				    "Anno", CONVERT(YEAR([Date]),STRING),
+				    "NumeroMese", CONVERT(MONTH([Date]),STRING),
+				    "AnnoMese", FORMAT([Date], "YYYY-MM"),
+				    "Mese", FORMAT([Date], "MMM", "en-US"),
+				    "Mese_No", MONTH([Date])
+				)
+
+	annotation PBI_Id = 759e7a04238748c1a19cd89fc710c14c
+

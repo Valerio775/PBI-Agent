@@ -1,0 +1,91 @@
+table 'Finding vendor'
+	lineageTag: 47304a4c-db1e-4f46-9c7b-d20be793ef64
+
+	column id
+		dataType: string
+		lineageTag: db3a4c8a-d48a-45b3-ab31-13a159203518
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column company
+		dataType: string
+		lineageTag: 30bfc6cb-38fc-4a0e-8c0f-9afef110b799
+		summarizeBy: none
+		sourceColumn: company
+
+		annotation SummarizationSetBy = Automatic
+
+	column manually_inserted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 262dad90-0ba7-49a4-8678-42cc2937927a
+		summarizeBy: none
+		sourceColumn: manually_inserted
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_update
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 5828f633-aac3-48cd-b554-3feeb5fcf23a
+		summarizeBy: none
+		sourceColumn: last_update
+
+		variation Variazione
+			isDefault
+			relationship: 4c5fdfd1-127d-448d-b5eb-095ca7384ec1
+			defaultHierarchy: LocalDateTable_ff04dcee-646e-4221-9ce1-7c1194b3515c.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_update
+		dataType: string
+		lineageTag: 64bd8b71-abbd-468a-8abb-3104290e8840
+		summarizeBy: none
+		sourceColumn: user_update
+
+		annotation SummarizationSetBy = Automatic
+
+	column deleted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 322442a8-ebd5-4a47-a84f-cd96b3b3b9d6
+		summarizeBy: none
+		sourceColumn: deleted
+
+		annotation SummarizationSetBy = Automatic
+
+	column email
+		dataType: string
+		lineageTag: 1296ae4c-7a77-4ddc-82fd-f7700990795a
+		summarizeBy: none
+		sourceColumn: email
+
+		annotation SummarizationSetBy = Automatic
+
+	column phone
+		dataType: string
+		lineageTag: 2dab15ae-a56f-4b1f-9bcc-8ec1ec32bda5
+		summarizeBy: none
+		sourceColumn: phone
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Finding vendor' = m
+		mode: import
+		source = ```
+				let
+				    Origine = Databricks.Catalogs(origine, warehouses, [Catalog = "", Database = ""]),
+				    #"dpegpl-hseq-dev_Database" = Origine{[Name=database,Kind="Database"]}[Data],
+				    hseq4all_gl_gld_Schema = #"dpegpl-hseq-dev_Database"{[Name=schema,Kind="Schema"]}[Data],
+				    finding_View = hseq4all_gl_gld_Schema{[Name="finding_vendor",Kind="View"]}[Data]
+				 
+				in finding_View
+				```
+
+	annotation PBI_NavigationStepName = Navigazione
+
+	annotation PBI_ResultType = Table
+

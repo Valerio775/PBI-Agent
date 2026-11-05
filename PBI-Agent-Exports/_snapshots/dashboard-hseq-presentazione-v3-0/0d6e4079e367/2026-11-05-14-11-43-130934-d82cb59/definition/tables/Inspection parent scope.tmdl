@@ -1,0 +1,107 @@
+table 'Inspection parent scope'
+	lineageTag: 39b3f5fd-29c9-4094-968b-bb282cbd90a1
+
+	column id
+		dataType: string
+		lineageTag: 6cd0282f-c11c-4d5e-a655-8f1c2431269f
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: 22084522-9a1e-45fa-8cb7-656681a35997
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column valid_from
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 572e2045-8218-4e0c-b146-adba7e38a943
+		summarizeBy: none
+		sourceColumn: valid_from
+
+		variation Variazione
+			isDefault
+			relationship: d84d4f90-d9c1-4cf1-bbf5-e5c0268ebb55
+			defaultHierarchy: LocalDateTable_9534c08b-f778-4a90-b809-9c6e5429271e.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column valid_to
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: deaa9d49-a100-424b-9add-c22676aa9795
+		summarizeBy: none
+		sourceColumn: valid_to
+
+		variation Variazione
+			isDefault
+			relationship: df4f559c-44f2-4363-8ba3-2785ed5b8831
+			defaultHierarchy: LocalDateTable_be409fd7-344a-4c55-83f0-9237ce4c2cee.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column deleted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: ab0ce59f-7bfc-441d-ad33-c7c4ef5d8046
+		summarizeBy: none
+		sourceColumn: deleted
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_update
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c6bfa477-ecdc-4859-ae54-bc4f35f6cc35
+		summarizeBy: none
+		sourceColumn: last_update
+
+		variation Variazione
+			isDefault
+			relationship: 6253be02-094f-43e0-886c-48a787dcd785
+			defaultHierarchy: LocalDateTable_ec5a5c79-aae1-40d9-b343-21d7ccef324c.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_update
+		dataType: string
+		lineageTag: c22080f2-e38a-4b29-8571-af73c9b05be1
+		summarizeBy: none
+		sourceColumn: user_update
+
+		annotation SummarizationSetBy = Automatic
+
+	column priority
+		dataType: int64
+		formatString: 0
+		lineageTag: 9ff58ce0-5ed2-43aa-a33d-779b41825fa4
+		summarizeBy: sum
+		sourceColumn: priority
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Inspection parent scope' = m
+		mode: import
+		source = ```
+				let
+				    Origine = Databricks.Catalogs(origine, warehouses, [Catalog = "", Database = ""]),
+				    #"dpegpl-hseq-dev_Database" = Origine{[Name=database,Kind="Database"]}[Data],
+				    hseq4all_gl_gld_Schema = #"dpegpl-hseq-dev_Database"{[Name=schema,Kind="Schema"]}[Data],
+				    finding_View = hseq4all_gl_gld_Schema{[Name="inspection_parent_scope",Kind="View"]}[Data]
+				 
+				in finding_View
+				```
+
+	annotation PBI_NavigationStepName = Navigazione
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,98 @@
+table 'Finding finding root cause analysis node'
+	lineageTag: cee5a14f-f9bd-4240-a2d7-9f31a4e940e5
+
+	column id_finding
+		dataType: int64
+		formatString: 0
+		lineageTag: 46a04775-afe8-4d54-a72e-ef656df69a84
+		summarizeBy: none
+		sourceColumn: id_finding
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_rca_node
+		dataType: string
+		lineageTag: 0a45b80c-b811-44da-abd6-656f4a3943e8
+		summarizeBy: none
+		sourceColumn: id_rca_node
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_finding_scope
+		dataType: string
+		lineageTag: 7a41bddc-70b5-4ed6-8bbd-738a9e620445
+		summarizeBy: none
+		sourceColumn: id_finding_scope
+
+		annotation SummarizationSetBy = Automatic
+
+	column comment
+		dataType: string
+		lineageTag: 4ae3c564-2ec2-4cbe-a0de-9fce96728ed8
+		summarizeBy: none
+		sourceColumn: comment
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_update
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: eafdb567-11c6-4867-8941-fe03f16014a9
+		summarizeBy: none
+		sourceColumn: last_update
+
+		variation Variazione
+			isDefault
+			relationship: cf6f95b9-dcbe-4259-97a6-a79b20a1c13c
+			defaultHierarchy: LocalDateTable_db9a7a20-204f-4c3a-8749-c609f1fb4556.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_update
+		dataType: string
+		lineageTag: f99f9632-412c-4663-b747-89da50a9ee14
+		summarizeBy: none
+		sourceColumn: user_update
+
+		annotation SummarizationSetBy = Automatic
+
+	column deleted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 030c3dff-828b-4828-9791-bbb2939edf78
+		summarizeBy: none
+		sourceColumn: deleted
+
+		annotation SummarizationSetBy = Automatic
+
+	column code = ```
+			
+			LOOKUPVALUE(
+			    'Finding root cause analysis node'[code], 
+			    'Finding root cause analysis node'[id], 
+			    'Finding finding root cause analysis node'[id_rca_node]
+			)
+			
+			// code = RELATED('Finding root cause analysis node'[code])
+			```
+		lineageTag: 27152037-af50-417c-85c1-cb82562328fd
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Finding finding root cause analysis node' = m
+		mode: import
+		source = ```
+				let
+				    Origine = Databricks.Catalogs(origine, warehouses, [Catalog = "", Database = ""]),
+				    #"dpegpl-hseq-dev_Database" = Origine{[Name=database,Kind="Database"]}[Data],
+				    hseq4all_gl_gld_Schema = #"dpegpl-hseq-dev_Database"{[Name=schema,Kind="Schema"]}[Data],
+				    finding_View = hseq4all_gl_gld_Schema{[Name="finding__finding_root_cause_analysis_node",Kind="View"]}[Data]
+				 
+				in finding_View
+				```
+
+	annotation PBI_NavigationStepName = Navigazione
+
+	annotation PBI_ResultType = Table
+

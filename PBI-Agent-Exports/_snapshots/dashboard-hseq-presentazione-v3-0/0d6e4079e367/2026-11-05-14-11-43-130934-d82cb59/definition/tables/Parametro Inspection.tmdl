@@ -1,0 +1,50 @@
+table 'Parametro Inspection'
+	lineageTag: 490f8feb-7b9c-4c50-9087-b692717ea019
+
+	column Parametro
+		lineageTag: df8f47ec-48bf-4d57-9955-9edf296e9c21
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Ordine di Parametro'
+
+		relatedColumnDetails
+			groupByColumn: 'Campi di Parametro'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Campi di Parametro'
+		isHidden
+		lineageTag: 64b75c76-1a2e-48a6-9231-0b4d1d135999
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Ordine di Parametro'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ordine di Parametro'
+		isHidden
+		formatString: 0
+		lineageTag: 6aff6b66-65bd-4748-bc91-5b16f83fb237
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Parametro Inspection' = calculated
+		mode: import
+		source =
+				{
+				    ("Inspection [id]", NAMEOF('Inspection'[id]), 0),
+				    ("Inspection [description]", NAMEOF('Inspection'[description]), 1),
+				    ("Inspection [id_contract]", NAMEOF('Inspection'[id_contract]), 2),
+				    ("Inspection [id_location]", NAMEOF('Inspection'[id_location]), 3)
+				}
+
+	annotation PBI_Id = fa55180fcd504b25aa558018442ea114
+

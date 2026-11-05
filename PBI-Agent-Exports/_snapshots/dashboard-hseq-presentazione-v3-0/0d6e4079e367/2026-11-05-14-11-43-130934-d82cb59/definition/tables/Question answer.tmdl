@@ -1,0 +1,107 @@
+table 'Question answer'
+	lineageTag: 46526be9-0388-4e1d-818b-1801d2f5a892
+
+	column id
+		dataType: string
+		lineageTag: ccc9b824-75d1-4a9a-b559-93183edc9c45
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: 1d087074-4765-4363-93b7-cba1e44e06e3
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column valid_from
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3fb6e9ae-5f5b-41ac-b707-4bc2aaa140f0
+		summarizeBy: none
+		sourceColumn: valid_from
+
+		variation Variazione
+			isDefault
+			relationship: cca9b879-805f-474a-a369-81db474d4ef0
+			defaultHierarchy: LocalDateTable_eb52bece-a937-468b-b58a-f5520904643a.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column valid_to
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f48689df-b7d5-4637-b316-c12d302d0b88
+		summarizeBy: none
+		sourceColumn: valid_to
+
+		variation Variazione
+			isDefault
+			relationship: b0e52a10-ec4c-42bd-a089-6bc7677aca31
+			defaultHierarchy: LocalDateTable_237ed9c4-7784-422f-8d11-9cf2f5614e36.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column deleted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 7361c03b-0ed1-445a-98a5-9612af88c8d8
+		summarizeBy: none
+		sourceColumn: deleted
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_update
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0b859a62-689f-4e05-b842-45644afe70eb
+		summarizeBy: none
+		sourceColumn: last_update
+
+		variation Variazione
+			isDefault
+			relationship: 66ed8867-4ee5-4317-8964-b7982e005d2b
+			defaultHierarchy: LocalDateTable_6418d9f2-e854-4f43-884c-b1691720296b.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_update
+		dataType: string
+		lineageTag: d1acc3f6-f3a4-4990-ade4-7e1395a447b1
+		summarizeBy: none
+		sourceColumn: user_update
+
+		annotation SummarizationSetBy = Automatic
+
+	column priority
+		dataType: int64
+		formatString: 0
+		lineageTag: 3490ba77-a4c6-4079-b433-44d24cc5348a
+		summarizeBy: sum
+		sourceColumn: priority
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Question answer' = m
+		mode: import
+		source = ```
+				let
+				    Origine = Databricks.Catalogs(origine, warehouses, [Catalog = "", Database = ""]),
+				    #"dpegpl-hseq-dev_Database" = Origine{[Name=database,Kind="Database"]}[Data],
+				    hseq4all_gl_gld_Schema = #"dpegpl-hseq-dev_Database"{[Name=schema,Kind="Schema"]}[Data],
+				    finding_View = hseq4all_gl_gld_Schema{[Name="question_answer",Kind="View"]}[Data]
+				 
+				in finding_View
+				```
+
+	annotation PBI_NavigationStepName = Navigazione
+
+	annotation PBI_ResultType = Table
+

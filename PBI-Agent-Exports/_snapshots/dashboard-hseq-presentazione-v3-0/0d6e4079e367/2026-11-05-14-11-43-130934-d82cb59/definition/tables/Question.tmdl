@@ -1,0 +1,225 @@
+table Question
+	lineageTag: 7bc9cf79-7f1e-4b8f-9964-f72e6a6b66c2
+
+	measure 'Tooltip Pulito Subcluster' = ```
+			
+			SELECTEDVALUE('Question'[hl_risk_activities_sub_cluster]) 
+			& UNICHAR(10) & 
+			SELECTEDVALUE('Question'[Description_ES])
+			```
+		lineageTag: cd16b798-bc0c-4b51-9e16-840e8daf93f2
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 762b43af-1f26-461b-9dc6-cb0dabefb8d3
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_scope
+		dataType: string
+		lineageTag: 26ee3b3f-985b-4c10-b2a9-b880025b7784
+		summarizeBy: none
+		sourceColumn: id_scope
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_hazard
+		dataType: string
+		lineageTag: 82fdbe3c-9e53-46fb-8c2d-c1cc6e0b00c5
+		summarizeBy: none
+		sourceColumn: id_hazard
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: f2aa24eb-74b4-4fc4-b301-5189752856d2
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column relevance
+		dataType: string
+		lineageTag: ea157490-30c9-4859-85a0-e9091922b48f
+		summarizeBy: none
+		sourceColumn: relevance
+
+		annotation SummarizationSetBy = Automatic
+
+	column mandatory
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f00b265b-c3d3-4fed-96af-16c17a033de8
+		summarizeBy: none
+		sourceColumn: mandatory
+
+		annotation SummarizationSetBy = Automatic
+
+	column help
+		dataType: string
+		lineageTag: 67282863-36ad-4ddc-822d-cca2d13d4bd2
+		summarizeBy: none
+		sourceColumn: help
+
+		annotation SummarizationSetBy = Automatic
+
+	column hl_reference
+		dataType: string
+		lineageTag: 8b81608d-5e93-46c3-aff6-50dac060f5e3
+		summarizeBy: none
+		sourceColumn: hl_reference
+
+		annotation SummarizationSetBy = Automatic
+
+	column hl_type
+		dataType: string
+		lineageTag: e9fdf3d5-0118-4b51-afb6-92fde3be7601
+		summarizeBy: none
+		sourceColumn: hl_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column valid_from
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7cf8ade0-b81a-4d7e-94b0-177d29a97e7f
+		summarizeBy: none
+		sourceColumn: valid_from
+
+		variation Variazione
+			isDefault
+			relationship: 33edddaf-f342-4309-b945-ac3f47f5447a
+			defaultHierarchy: LocalDateTable_524412b3-6ef3-4390-980d-53b36c0a0dce.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column valid_to
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 5efc3c1b-2720-424c-bb79-c53743ceaf44
+		summarizeBy: none
+		sourceColumn: valid_to
+
+		variation Variazione
+			isDefault
+			relationship: e6df3555-dfc6-469c-b801-3a56d67eca59
+			defaultHierarchy: LocalDateTable_be2a276d-1253-4de6-9281-c70be860d5af.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column deleted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 47b5be5f-481b-48cb-ba78-7f633767294e
+		summarizeBy: none
+		sourceColumn: deleted
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_update
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: edb92817-f7f6-4cde-9eeb-493a672b8328
+		summarizeBy: none
+		sourceColumn: last_update
+
+		variation Variazione
+			isDefault
+			relationship: 2e184935-d2e0-4ea3-95f7-4e7d6cc24c53
+			defaultHierarchy: LocalDateTable_abdbfbbb-8350-42bc-9086-8073dd2efd46.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_update
+		dataType: string
+		lineageTag: 46342964-dcfb-485d-9cee-05a38a4f5bfd
+		summarizeBy: none
+		sourceColumn: user_update
+
+		annotation SummarizationSetBy = Automatic
+
+	column hl_process_first_cluster
+		dataType: string
+		lineageTag: 13924127-3b61-4b0c-8820-891aba6e34d5
+		summarizeBy: none
+		sourceColumn: hl_process_first_cluster
+
+		annotation SummarizationSetBy = Automatic
+
+	column hl_risk_activities_sub_cluster
+		dataType: string
+		lineageTag: 6acf53f7-f0aa-4349-a099-12e33fcae9ac
+		summarizeBy: none
+		sourceColumn: hl_risk_activities_sub_cluster
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description_ES = ```
+			
+			VAR txt = 'Question'[description]
+			VAR Clean = SUBSTITUTE(txt, """}", "§END§")     -- rimpiazza '}' chiusura oggetto
+			VAR StartPos = FIND("""ES""", Clean, 1, -1)
+			VAR ValueStart = FIND("""value"": """, Clean, StartPos, -1) + LEN("""value"": """)
+			VAR ValueEnd = FIND("§END§", Clean, ValueStart, -1)
+			RETURN MID(Clean, ValueStart, ValueEnd - ValueStart)
+			
+			```
+		lineageTag: a3fa509f-8efc-4241-adc2-6969dc99c08e
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Testo_tra_parentesi = ```
+			
+			VAR PosInizio = SEARCH("[", 'Question'[Description_ES], , 0)
+			VAR PosFine   = SEARCH("]", 'Question'[Description_ES], , 0)
+			RETURN
+			IF(
+			    PosInizio > 0 && PosFine > PosInizio,
+			    MID(
+			        'Question'[Description_ES],
+			        PosInizio + 1,
+			        PosFine - PosInizio - 1
+			    ),
+			    BLANK()
+			)
+			
+			```
+		lineageTag: f1a05dcf-f933-440c-ba05-23573de86c0a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column priority
+		dataType: int64
+		formatString: 0
+		lineageTag: 8cd8aa8a-2346-46e9-b444-48f6b093126a
+		summarizeBy: sum
+		sourceColumn: priority
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Question = m
+		mode: import
+		source = ```
+				let
+				    Origine = Databricks.Catalogs(origine, warehouses, [Catalog = "", Database = ""]),
+				    #"dpegpl-hseq-dev_Database" = Origine{[Name=database,Kind="Database"]}[Data],
+				    hseq4all_gl_gld_Schema = #"dpegpl-hseq-dev_Database"{[Name=schema,Kind="Schema"]}[Data],
+				    finding_View = hseq4all_gl_gld_Schema{[Name="question",Kind="View"]}[Data]
+				 
+				in finding_View
+				```
+
+	annotation PBI_NavigationStepName = Navigazione
+
+	annotation PBI_ResultType = Table
+

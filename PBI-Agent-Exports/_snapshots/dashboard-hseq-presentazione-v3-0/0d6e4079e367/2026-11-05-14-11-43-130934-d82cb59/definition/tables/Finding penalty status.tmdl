@@ -1,0 +1,107 @@
+table 'Finding penalty status'
+	lineageTag: 31c1f9a8-3def-4b89-b61e-311d2edc1877
+
+	column id
+		dataType: string
+		lineageTag: e1904526-cd8f-4659-a67f-5c988d7113d0
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: 609c6edc-2a71-47cd-b26a-492806c80f98
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column valid_from
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 1bbc66d1-fc6f-4eea-8b40-98400ae6d5cd
+		summarizeBy: none
+		sourceColumn: valid_from
+
+		variation Variazione
+			isDefault
+			relationship: 12a10328-38bd-4353-b4cb-553a34d998b9
+			defaultHierarchy: LocalDateTable_dca69f81-a84a-4439-9310-5d8192a8f8b7.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column valid_to
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: aa2a6bce-458e-4066-9a86-14011532d634
+		summarizeBy: none
+		sourceColumn: valid_to
+
+		variation Variazione
+			isDefault
+			relationship: 87d65372-1822-4d18-834d-5fda477ba989
+			defaultHierarchy: LocalDateTable_a72c7e0a-8e6f-4e31-b0bd-e3151e5ece18.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column deleted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b261113b-0d4c-4500-8073-a94b035e9e5e
+		summarizeBy: none
+		sourceColumn: deleted
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_update
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ba92bba4-4c8f-4ae3-943a-d1ffa65132b0
+		summarizeBy: none
+		sourceColumn: last_update
+
+		variation Variazione
+			isDefault
+			relationship: 148aed27-3b82-4feb-a640-c97d8dda0b97
+			defaultHierarchy: LocalDateTable_73664ae2-0789-4cd3-b609-22b49315bf48.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_update
+		dataType: string
+		lineageTag: d7d7c07b-2d3d-4d3c-8b9b-ccc358752e73
+		summarizeBy: none
+		sourceColumn: user_update
+
+		annotation SummarizationSetBy = Automatic
+
+	column priority
+		dataType: int64
+		formatString: 0
+		lineageTag: ae1db7d1-838b-40e0-9faf-12d6b247a78b
+		summarizeBy: none
+		sourceColumn: priority
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Finding penalty status' = m
+		mode: import
+		source = ```
+				let
+				    Origine = Databricks.Catalogs(origine, warehouses, [Catalog = "", Database = ""]),
+				    #"dpegpl-hseq-dev_Database" = Origine{[Name=database,Kind="Database"]}[Data],
+				    hseq4all_gl_gld_Schema = #"dpegpl-hseq-dev_Database"{[Name=schema,Kind="Schema"]}[Data],
+				    finding_View = hseq4all_gl_gld_Schema{[Name="finding_penalty_status",Kind="View"]}[Data]
+				 
+				in finding_View
+				```
+
+	annotation PBI_NavigationStepName = Navigazione
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,446 @@
+table Finding
+	lineageTag: 45c998f3-c873-4131-8189-cdfa5a9ce36a
+
+	measure 'Totale NCO' = ```
+			
+			var verifica = 
+			CALCULATE(
+			    COUNTROWS(Finding),
+			    Finding[id_finding_type] = "FT_NCO" )
+			RETURN if (ISBLANK(verifica), 0, verifica)
+			```
+		formatString: 0
+		lineageTag: da62bba8-400a-4644-9d2a-ab653170b973
+
+	measure 'NC Rate (%)' = ```
+			
+			var verifica = 
+			DIVIDE(
+			    [Ispezioni con NC],
+			    [Totale Ispezioni]
+			)
+			RETURN if(ISBLANK(verifica), 0, verifica)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: d6a33ee7-2d18-4c40-8e93-9e69f711b172
+
+	measure 'Totale NC' = ```
+			
+			VAR Conteggio =
+			    CALCULATE(
+			        COUNTROWS(Finding),
+			        Finding[id_finding_type] = "FT_NCO"
+			    )
+			RETURN IF(ISBLANK(Conteggio), 0, Conteggio)
+			
+			```
+		formatString: 0
+		lineageTag: a5736d12-1e59-4895-9056-7cd4ced8ba6d
+
+	measure 'Conteggio di id_finding_type per FT_NCO' =
+			
+			CALCULATE(
+				COUNT('Finding'[id_question]),
+				'Finding'[id_finding_type] IN { "FT_NCO" }
+			)
+		formatString: 0
+		lineageTag: 5a5dcc7a-b783-449e-bce9-f151b8e8f246
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "FilteredMeasure"
+				}
+
+		changedProperty = FormatString
+
+	measure 'Ispezioni con NC' =
+			
+			VAR _IspezioniNelContesto = VALUES(Inspection[id])
+			RETURN
+			CALCULATE(
+			    COUNT(Finding[id_inspection]), // DISTINCTCOUNT
+			    FILTER(
+			        Finding,
+			        Finding[id_finding_type] = "FT_NCO" &&
+			        Finding[id_inspection] IN _IspezioniNelContesto
+			    )
+			)
+		formatString: 0
+		lineageTag: 0cf3fa59-ee0e-4779-9d81-987f22c7eef9
+
+	measure 'Totale NCO Cluster' =
+			
+			CALCULATE(
+			    COUNTROWS(Finding),
+			    Finding[id_finding_type] = "FT_NCO",
+			    TREATAS(VALUES(Question[id]), Finding[id_question])
+			)
+		formatString: 0
+		lineageTag: 23bb5e96-4f17-42f7-9bb6-61d0d70ee346
+
+	measure 'Tooltip solo linea' =
+			
+			IF (
+			    HASONEVALUE ( 'Inspection'[Formatted_scope] ),
+			    BLANK (),
+			    [Totale NCO]
+			)
+		formatString: 0
+		lineageTag: ec92772e-de7b-4c7f-a1f8-9b768760fd27
+
+	measure 'Detection rate' = DIVIDE([Totale NCO], Inspection[Totale Ispezioni])
+		lineageTag: 15052dc6-60d2-4809-bf62-65e476a9e627
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 51d69d1c-01e0-432d-9004-06e64cd3453e
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_inspection
+		dataType: int64
+		formatString: 0
+		lineageTag: 11d0a5f4-5f58-4648-a15e-9077d8f34b72
+		summarizeBy: sum
+		sourceColumn: id_inspection
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_question
+		dataType: string
+		lineageTag: ce6591a5-6da8-44c7-8187-ab51423837a9
+		summarizeBy: none
+		sourceColumn: id_question
+
+		annotation SummarizationSetBy = Automatic
+
+	column relevance
+		dataType: string
+		lineageTag: 5bc4d15f-f611-4694-a2d7-2f3881434702
+		summarizeBy: none
+		sourceColumn: relevance
+
+		annotation SummarizationSetBy = Automatic
+
+	column title
+		dataType: string
+		lineageTag: e3725f7e-6989-4895-b2ae-8670ed86884b
+		summarizeBy: none
+		sourceColumn: title
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: 88af4075-284e-4975-b526-0c9cbbd550d3
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column immediate_action
+		dataType: string
+		lineageTag: 275bc327-7ea7-4572-9bd9-d8fb5078dd3e
+		summarizeBy: none
+		sourceColumn: immediate_action
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_language
+		dataType: string
+		lineageTag: 13b6e350-57cc-47bb-baae-e7cd7b6ed174
+		summarizeBy: none
+		sourceColumn: id_language
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_status
+		dataType: string
+		lineageTag: a7bab740-f242-4d43-a4ff-f7cf2666e5a0
+		summarizeBy: none
+		sourceColumn: id_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_finding_type
+		dataType: string
+		lineageTag: 325af1ad-4b9b-4ee8-8788-5476fb7557c3
+		summarizeBy: none
+		sourceColumn: id_finding_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_location
+		dataType: string
+		lineageTag: 8d56915d-04dc-4acf-9aff-0304c676fd48
+		summarizeBy: none
+		sourceColumn: id_location
+
+		annotation SummarizationSetBy = Automatic
+
+	column location_description
+		dataType: string
+		lineageTag: ffdfdfc9-dd67-4556-9b15-b66ec0af9e8a
+		summarizeBy: none
+		sourceColumn: location_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_location_group
+		dataType: string
+		lineageTag: 489845ff-f382-4aea-8ed2-27963e9c0aed
+		summarizeBy: none
+		sourceColumn: id_location_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_location_technology
+		dataType: string
+		lineageTag: 29a2238b-b3b1-4c71-88b3-96b8a46dd31a
+		summarizeBy: none
+		sourceColumn: id_location_technology
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_location_country
+		dataType: string
+		lineageTag: 03733557-9dba-4aa4-b555-0742dffd8690
+		summarizeBy: none
+		sourceColumn: id_location_country
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_scope
+		dataType: string
+		lineageTag: d2a815cd-e3e7-4381-914a-f61116960c98
+		summarizeBy: none
+		sourceColumn: id_scope
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_contract
+		dataType: string
+		lineageTag: d501df07-8627-4ab6-ac8c-3f9afc51ccf9
+		summarizeBy: none
+		sourceColumn: id_contract
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_vendor_cui
+		dataType: string
+		lineageTag: 036dfd1f-c3b6-462b-bec8-46db8d80ff8c
+		summarizeBy: none
+		sourceColumn: id_vendor_cui
+
+		annotation SummarizationSetBy = Automatic
+
+	column management_needed
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 5b92e5c9-0588-4d9e-bc4e-01a78fe4b1d6
+		summarizeBy: none
+		sourceColumn: management_needed
+
+		annotation SummarizationSetBy = Automatic
+
+	column note
+		dataType: string
+		lineageTag: 3ca1c9e1-9cb9-450d-b4eb-7080405e73e3
+		summarizeBy: none
+		sourceColumn: note
+
+		annotation SummarizationSetBy = Automatic
+
+	column cause_analysis
+		dataType: string
+		lineageTag: a5f3ed5c-7d5e-4b68-98ac-7938439410fc
+		summarizeBy: none
+		sourceColumn: cause_analysis
+
+		annotation SummarizationSetBy = Automatic
+
+	column released_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6c2e482a-1799-47df-8a3b-cee968cba924
+		summarizeBy: none
+		sourceColumn: released_date
+
+		variation Variazione
+			isDefault
+			relationship: 33a56b41-8504-4720-9f1b-db1f4d4a0f98
+			defaultHierarchy: LocalDateTable_5a60ecbb-f491-41e3-9e85-8ae840431fec.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_rca_mandatory
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 39337a55-c98b-4177-9864-7ec3b2d4208f
+		summarizeBy: none
+		sourceColumn: is_rca_mandatory
+
+		annotation SummarizationSetBy = Automatic
+
+	column creation_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 70da0d9e-ab65-4b41-989f-130eb77e10de
+		summarizeBy: none
+		sourceColumn: creation_date
+
+		variation Variazione
+			isDefault
+			relationship: f6eed1ad-3871-4704-aea3-5067516ec941
+			defaultHierarchy: LocalDateTable_c94072cc-150c-4ebf-8fdb-37627e8bd143.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column creation_user
+		dataType: string
+		lineageTag: 04c54dd7-b1fb-4db7-a1cd-1e805a95b244
+		summarizeBy: none
+		sourceColumn: creation_user
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_update
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 8d25cc23-bbf0-43b3-b968-7e6d3634e6ec
+		summarizeBy: none
+		sourceColumn: last_update
+
+		variation Variazione
+			isDefault
+			relationship: 2bf39583-eefc-4c11-b514-18e390be297e
+			defaultHierarchy: LocalDateTable_5536669a-430c-4a4a-bdc9-98dbdba4ad5b.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_update
+		dataType: string
+		lineageTag: d035959d-623f-4362-9f50-b4a2ddb26b97
+		summarizeBy: none
+		sourceColumn: user_update
+
+		annotation SummarizationSetBy = Automatic
+
+	column deleted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: d5c76bfd-fe64-4482-83dc-12880de98764
+		summarizeBy: none
+		sourceColumn: deleted
+
+		annotation SummarizationSetBy = Automatic
+
+	column validation_errors
+		dataType: string
+		lineageTag: c7e14cb7-b256-4541-871b-2086d1c7d269
+		summarizeBy: none
+		sourceColumn: validation_errors
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_offline
+		dataType: string
+		lineageTag: 64e2d35a-a1f0-4258-8a2a-8d0233bd597d
+		summarizeBy: none
+		sourceColumn: id_offline
+
+		annotation SummarizationSetBy = Automatic
+
+	column closure_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 253a9dd4-13ad-4510-ad58-de5d873a2078
+		summarizeBy: none
+		sourceColumn: closure_date
+
+		variation Variazione
+			isDefault
+			relationship: 84fc2472-3873-4853-a83f-991c9950e753
+			defaultHierarchy: LocalDateTable_01006d95-75bf-4156-b336-8679bc4f3c8d.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column main_contract_cui_number = Finding[id_contract] & "-" & Finding[id_vendor_cui]
+		lineageTag: 2a8ec41c-90a7-4b47-b817-4bb4d2f3e336
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column inspection_question = Finding[id_inspection] & "-" & Finding[id_question]
+		lineageTag: e564ab71-55a9-4e00-b83c-2f2521ef99c2
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column creation_date_join = LEFT(Finding[creation_date], 10)
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 39db7cf4-dd58-45a7-8085-8574ce9884f1
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Commento Lookup' = LOOKUPVALUE('Finding finding root cause analysis node'[comment], 'Finding finding root cause analysis node'[id_finding], Finding[id])
+		lineageTag: 2193524b-14eb-410f-af4d-71a1f2dbb378
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_order
+		dataType: string
+		lineageTag: 64b12a4d-8d7a-4d6b-92ba-a36daf227d52
+		summarizeBy: none
+		sourceColumn: id_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_checklist
+		dataType: int64
+		formatString: 0
+		lineageTag: 68573af5-3590-48b6-8d08-dad19ae22684
+		summarizeBy: sum
+		sourceColumn: id_checklist
+
+		annotation SummarizationSetBy = Automatic
+
+	column checklist_version
+		dataType: int64
+		formatString: 0
+		lineageTag: 629e7009-52b7-4613-bd07-cc2eb846e7c5
+		summarizeBy: sum
+		sourceColumn: checklist_version
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Finding = m
+		mode: import
+		source = ```
+				let
+				    Origine = Databricks.Catalogs(origine, "/sql/1.0/warehouses/9786a1ae5d337959", [Catalog = "", Database = ""]),
+				    #"dpegpl-hseq-dev_Database" = Origine{[Name=database,Kind="Database"]}[Data],
+				    hseq4all_gl_gld_Schema = #"dpegpl-hseq-dev_Database"{[Name=schema,Kind="Schema"]}[Data],
+				    finding_View = hseq4all_gl_gld_Schema{[Name="finding",Kind="View"]}[Data]
+				 
+				in finding_View
+				```
+
+	annotation PBI_NavigationStepName = Navigazione
+
+	annotation PBI_ResultType = Table
+

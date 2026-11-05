@@ -1,0 +1,169 @@
+table Checklist
+	lineageTag: 966d4dd2-030a-47e0-9d1b-849375ac136c
+
+	column checklist_inspection = Checklist[checklist[id]]] & "-" & Checklist[checklist[version]]]
+		lineageTag: 727e94ef-d53b-4c5d-80c8-471439e06e89
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 54ad7ee9-23d6-4858-ab83-385d3bca370f
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column version
+		dataType: int64
+		formatString: 0
+		lineageTag: 8ef7082d-91c8-4c3e-8785-899b6fbd663d
+		summarizeBy: none
+		sourceColumn: version
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_scope
+		dataType: string
+		lineageTag: d081b595-1ae7-4512-8158-6bca65a619c6
+		summarizeBy: none
+		sourceColumn: id_scope
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_cluster
+		dataType: int64
+		formatString: 0
+		lineageTag: be0586c0-5019-4770-ba2d-3415b1cb4f68
+		summarizeBy: sum
+		sourceColumn: id_cluster
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_country
+		dataType: string
+		lineageTag: de50d899-dd75-46ff-a673-64a5d7f56a34
+		summarizeBy: none
+		sourceColumn: id_country
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_language
+		dataType: string
+		lineageTag: 1e60aae5-09de-4483-a418-70cdb5a3d188
+		summarizeBy: none
+		sourceColumn: id_language
+
+		annotation SummarizationSetBy = Automatic
+
+	column title
+		dataType: string
+		lineageTag: cf30132b-5ae5-45fc-a488-efb93bbcbe01
+		summarizeBy: none
+		sourceColumn: title
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_status
+		dataType: string
+		lineageTag: 9500ff90-8597-437f-8e56-50f201e0b44a
+		summarizeBy: none
+		sourceColumn: id_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column start_validity_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b3fa0a85-49a1-4699-aaaa-0298fdf55606
+		summarizeBy: none
+		sourceColumn: start_validity_date
+
+		variation Variation
+			isDefault
+			relationship: 231491b2-69be-4c6b-a393-083147c2117b
+			defaultHierarchy: LocalDateTable_288ab674-8a3c-4934-aaf4-e6f155cb4d2b.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column end_validity_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: bf331680-efe1-46cd-ab7d-2cda7ba7e952
+		summarizeBy: none
+		sourceColumn: end_validity_date
+
+		variation Variation
+			isDefault
+			relationship: 68cfc48c-0796-4606-b1e1-feeb0431726a
+			defaultHierarchy: LocalDateTable_1cbb6518-2cc8-4352-89fa-c23834557e61.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column partial_answer
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e7d330c7-0a91-46bc-a79e-a7d645646f25
+		summarizeBy: none
+		sourceColumn: partial_answer
+
+		annotation SummarizationSetBy = Automatic
+
+	column finding_required
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 847d8076-4d0b-481a-add5-b8a341193e04
+		summarizeBy: none
+		sourceColumn: finding_required
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_update
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a799d577-e08b-41bc-badb-c6e37f87e7e0
+		summarizeBy: none
+		sourceColumn: last_update
+
+		variation Variation
+			isDefault
+			relationship: 99acdec4-812c-4c62-878c-c1cad584ab4b
+			defaultHierarchy: LocalDateTable_4720aa60-859b-4a9e-b38e-97abda10fbef.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_update
+		dataType: string
+		lineageTag: 8a67cd5d-b963-4bb0-9cc3-372d4ae43ab1
+		summarizeBy: none
+		sourceColumn: user_update
+
+		annotation SummarizationSetBy = Automatic
+
+	column deleted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a47154aa-76ee-45f1-8dac-36c9b3392409
+		summarizeBy: none
+		sourceColumn: deleted
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Checklist = m
+		mode: import
+		source = ```
+				let
+				    Origine = Databricks.Catalogs(origine, warehouses, [Catalog = "", Database = ""]),
+				    #"dpegpl-hseq-dev_Database" = Origine{[Name=database,Kind="Database"]}[Data],
+				    hseq4all_gl_gld_Schema = #"dpegpl-hseq-dev_Database"{[Name=schema,Kind="Schema"]}[Data],
+				    finding_View = hseq4all_gl_gld_Schema{[Name="checklist",Kind="View"]}[Data]
+				 
+				in finding_View
+				```
+
+	annotation PBI_NavigationStepName = Navigazione
+
+	annotation PBI_ResultType = Table
+

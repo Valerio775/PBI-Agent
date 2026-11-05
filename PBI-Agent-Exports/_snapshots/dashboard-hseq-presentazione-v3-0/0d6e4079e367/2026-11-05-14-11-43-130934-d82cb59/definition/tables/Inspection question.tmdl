@@ -1,0 +1,82 @@
+table 'Inspection question'
+	lineageTag: db847103-bbcb-4028-9c23-c3d6578a928f
+
+	column id_inspection
+		dataType: int64
+		formatString: 0
+		lineageTag: 8d40fa08-f46a-4430-a6e2-405ed6ee7649
+		summarizeBy: none
+		sourceColumn: id_inspection
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_question
+		dataType: int64
+		formatString: 0
+		lineageTag: 3e3a099b-f439-48f7-a73a-b601ff738a7c
+		summarizeBy: none
+		sourceColumn: id_question
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_answer
+		dataType: string
+		lineageTag: 4cd0f19d-477f-44fe-942c-a924b8fee5f6
+		summarizeBy: none
+		sourceColumn: id_answer
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_update
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0725e014-39ce-46c0-9702-a37b64c910ae
+		summarizeBy: none
+		sourceColumn: last_update
+
+		variation Variazione
+			isDefault
+			relationship: 86c6f740-adfe-4e03-826e-66151bf1179a
+			defaultHierarchy: LocalDateTable_a70c51b7-d493-40ad-b9b8-e74212636858.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_update
+		dataType: string
+		lineageTag: b4df8d09-1d77-48ba-87a7-049f3d56bfb1
+		summarizeBy: none
+		sourceColumn: user_update
+
+		annotation SummarizationSetBy = Automatic
+
+	column deleted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b89ae746-31b4-4fc6-933b-a306ce6ea783
+		summarizeBy: none
+		sourceColumn: deleted
+
+		annotation SummarizationSetBy = Automatic
+
+	column inspection_question = 'Inspection question'[id_inspection] & "-" & 'Inspection question'[id_question]
+		lineageTag: 059031eb-c75c-49f3-a292-9e4f19752a78
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Inspection question' = m
+		mode: import
+		source = ```
+				let
+				    Origine = Databricks.Catalogs(origine, warehouses, [Catalog = "", Database = ""]),
+				    #"dpegpl-hseq-dev_Database" = Origine{[Name=database,Kind="Database"]}[Data],
+				    hseq4all_gl_gld_Schema = #"dpegpl-hseq-dev_Database"{[Name=schema,Kind="Schema"]}[Data],
+				    finding_View = hseq4all_gl_gld_Schema{[Name="inspection__question",Kind="View"]}[Data]
+				 
+				in finding_View
+				```
+
+	annotation PBI_NavigationStepName = Navigazione
+
+	annotation PBI_ResultType = Table
+

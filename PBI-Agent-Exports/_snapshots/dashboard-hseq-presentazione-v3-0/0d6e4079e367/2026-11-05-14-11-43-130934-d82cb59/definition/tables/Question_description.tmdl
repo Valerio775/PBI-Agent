@@ -1,0 +1,183 @@
+table Question_description
+	lineageTag: f589277d-3947-4988-a11c-ef4ed83ba374
+
+	column id
+		formatString: 0
+		lineageTag: eed9613d-8751-4a1c-9399-37b9850babf7
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: Question[id]
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_scope
+		lineageTag: 5f5c2b14-9d21-49b1-9955-ef7f106157c1
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Question[id_scope]
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_hazard
+		lineageTag: 03f814eb-ccb1-415b-8587-37bbf23ea03d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Question[id_hazard]
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		lineageTag: 1cca638e-edff-4b09-866a-a0ccd6c9e957
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Question[description]
+
+		annotation SummarizationSetBy = Automatic
+
+	column relevance
+		lineageTag: 96e73adb-3611-4e0f-9855-48a5555b66db
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Question[relevance]
+
+		annotation SummarizationSetBy = Automatic
+
+	column mandatory
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: ef5dd157-a29f-45ed-9b17-0c3f0b264a92
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Question[mandatory]
+
+		annotation SummarizationSetBy = Automatic
+
+	column help
+		lineageTag: 870319ca-755d-4022-bf30-7949dbbf6f5e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Question[help]
+
+		annotation SummarizationSetBy = Automatic
+
+	column hl_reference
+		lineageTag: b1ac0771-09a0-4d12-a1ab-eaf07704bd32
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Question[hl_reference]
+
+		annotation SummarizationSetBy = Automatic
+
+	column hl_type
+		lineageTag: 71c9220f-0080-45e7-9879-9b6875ed652d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Question[hl_type]
+
+		annotation SummarizationSetBy = Automatic
+
+	column valid_from
+		formatString: General Date
+		lineageTag: f3910c01-7343-4ec2-a1de-29b8e272bf42
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Question[valid_from]
+
+		variation Variazione
+			isDefault
+			relationship: d476ce3f-babd-4413-b9b5-a26ec0bfd56c
+			defaultHierarchy: LocalDateTable_6432648d-a700-4e8d-976f-2a248bc6ef99.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column valid_to
+		formatString: General Date
+		lineageTag: 1f71222c-0e12-4dbd-8c02-08b465c39de0
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Question[valid_to]
+
+		variation Variazione
+			isDefault
+			relationship: da9e2126-67a5-42e1-96bb-3b6f2537e9af
+			defaultHierarchy: LocalDateTable_fd8b41dd-b5ce-4bc0-a1ae-08519107e580.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column deleted
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 1c75c745-9043-4a9d-bd3a-7945331883ee
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Question[deleted]
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_update
+		formatString: General Date
+		lineageTag: b6116ef2-f738-49fd-8545-b3d0d65587bf
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Question[last_update]
+
+		variation Variazione
+			isDefault
+			relationship: f0a4e7c6-54b5-4d8c-b625-59cadcdd4363
+			defaultHierarchy: LocalDateTable_05733abd-6452-4c9b-aca6-882af0c6f9ed.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_update
+		lineageTag: 499c0d50-c124-4088-bdcd-e8ddc2de27af
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Question[user_update]
+
+		annotation SummarizationSetBy = Automatic
+
+	column hl_process_first_cluster
+		lineageTag: c14a1ec1-6f53-4a56-bef1-3d868b27ac5b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Question[hl_process_first_cluster]
+
+		annotation SummarizationSetBy = Automatic
+
+	column hl_risk_activities_sub_cluster
+		lineageTag: 62ae9797-ebad-44a7-8841-07ab79a9b677
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Question[hl_risk_activities_sub_cluster]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Description_ES
+		lineageTag: da4877a8-cefb-47d4-81c2-3a695628629b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Question[Description_ES]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Testo_tra_parentesi
+		lineageTag: f506cc81-4d99-4b23-86ef-e0406512b99c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Question[Testo_tra_parentesi]
+
+		annotation SummarizationSetBy = Automatic
+
+	column priority
+		formatString: 0
+		lineageTag: 995f2ded-9ab1-46e4-b009-2f684b4e8fb2
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: Question[priority]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Question_description = calculated
+		mode: import
+		source = 'Question'
+
+	annotation PBI_Id = 8277180bcf394e209654c0adfe3cfb7f
+

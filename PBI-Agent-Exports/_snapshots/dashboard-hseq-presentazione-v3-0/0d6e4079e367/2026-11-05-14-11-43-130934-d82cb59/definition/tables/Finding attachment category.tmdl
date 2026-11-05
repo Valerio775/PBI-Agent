@@ -1,0 +1,107 @@
+table 'Finding attachment category'
+	lineageTag: 35bcd23a-04aa-4941-845d-7f946fd04673
+
+	column id
+		dataType: string
+		lineageTag: 737efef7-a088-4e64-b7bf-08a9a5036915
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: b768bcc2-5d67-4468-8044-b56fa2d30f0a
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column valid_from
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: bd05abb0-414b-4225-9aa6-7fac549e3908
+		summarizeBy: none
+		sourceColumn: valid_from
+
+		variation Variazione
+			isDefault
+			relationship: 59a97a97-d1fc-4c46-b58e-68ab56720757
+			defaultHierarchy: LocalDateTable_9795c58e-d448-4495-a83d-b457af6031ef.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column valid_to
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: be6e8689-63f8-4d94-ba1c-73f88cd19b2d
+		summarizeBy: none
+		sourceColumn: valid_to
+
+		variation Variazione
+			isDefault
+			relationship: 514f4b94-d678-46ee-b914-071ffb969e4f
+			defaultHierarchy: LocalDateTable_a7276254-6ccd-490a-9b51-195f23a0d4af.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column deleted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a82e08cc-2149-4b47-b7d2-96d27d013f14
+		summarizeBy: none
+		sourceColumn: deleted
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_update
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 98888004-4740-4170-b225-36278fcd0407
+		summarizeBy: none
+		sourceColumn: last_update
+
+		variation Variazione
+			isDefault
+			relationship: 0bd4a2a4-f2cd-41e0-b7fd-0b640b99671d
+			defaultHierarchy: LocalDateTable_f916a3f0-206f-498a-b2f6-826d48a2b1ce.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_update
+		dataType: string
+		lineageTag: 1a6af592-d91e-42eb-9b2f-a58bf38ba54f
+		summarizeBy: none
+		sourceColumn: user_update
+
+		annotation SummarizationSetBy = Automatic
+
+	column priority
+		dataType: int64
+		formatString: 0
+		lineageTag: b3687cc8-6be8-47f7-bcf3-ac887e73d648
+		summarizeBy: none
+		sourceColumn: priority
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Finding attachment category' = m
+		mode: import
+		source = ```
+				let
+				    Origine = Databricks.Catalogs(origine, warehouses, [Catalog = "", Database = ""]),
+				    #"dpegpl-hseq-dev_Database" = Origine{[Name=database,Kind="Database"]}[Data],
+				    hseq4all_gl_gld_Schema = #"dpegpl-hseq-dev_Database"{[Name=schema,Kind="Schema"]}[Data],
+				    finding_View = hseq4all_gl_gld_Schema{[Name="finding_attachment_category",Kind="View"]}[Data]
+				 
+				in finding_View
+				```
+
+	annotation PBI_NavigationStepName = Navigazione
+
+	annotation PBI_ResultType = Table
+

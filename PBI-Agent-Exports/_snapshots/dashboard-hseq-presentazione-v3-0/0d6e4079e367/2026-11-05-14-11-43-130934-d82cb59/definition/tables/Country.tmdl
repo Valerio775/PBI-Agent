@@ -1,0 +1,131 @@
+table Country
+	lineageTag: e4c2ef7f-9df1-457f-a0b7-6b3a0b8b6685
+
+	column id
+		dataType: string
+		lineageTag: 6f2c3bfe-e403-4ce3-a764-dc6607e8c9e0
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: 46ab5ea9-398e-4a20-b722-38d1d8435229
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column id_language
+		dataType: string
+		lineageTag: bf1a13d4-4874-4b45-8edb-14cdc0ef6509
+		summarizeBy: none
+		sourceColumn: id_language
+
+		annotation SummarizationSetBy = Automatic
+
+	column timezone
+		dataType: string
+		lineageTag: 8afd1769-8140-4506-96d0-8f4b884b5b78
+		summarizeBy: none
+		sourceColumn: timezone
+
+		annotation SummarizationSetBy = Automatic
+
+	column currency
+		dataType: string
+		lineageTag: 6d993de2-bfff-4f30-9850-7e5758f3178e
+		summarizeBy: none
+		sourceColumn: currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column valid_from
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2a0b31df-f9c9-417b-9d7b-844a0add76b0
+		summarizeBy: none
+		sourceColumn: valid_from
+
+		variation Variazione
+			isDefault
+			relationship: 07782c74-938e-420e-8b7d-32c74b8ec93e
+			defaultHierarchy: LocalDateTable_32b180db-640d-46e1-a4c1-61164f5680e9.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column valid_to
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4c11c780-13d9-44b1-b207-dd0694f5b57e
+		summarizeBy: none
+		sourceColumn: valid_to
+
+		variation Variazione
+			isDefault
+			relationship: 1f3e48cf-1e65-4d36-aa6c-c727cb0d003b
+			defaultHierarchy: LocalDateTable_ec893454-ac4a-408f-a604-e7c7eb17dfea.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column deleted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b153fa22-377d-4880-b013-ff30be1add2b
+		summarizeBy: none
+		sourceColumn: deleted
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_update
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a0481efe-8e70-48fd-be5e-3284ca1da79c
+		summarizeBy: none
+		sourceColumn: last_update
+
+		variation Variazione
+			isDefault
+			relationship: afc812a0-141c-4e8c-a73c-07cbc5d2d6e0
+			defaultHierarchy: LocalDateTable_7ddc7e6a-e89f-438e-9325-ee686c604b03.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_update
+		dataType: string
+		lineageTag: d5d302ea-98a1-4993-9e8f-1d701c7ce161
+		summarizeBy: none
+		sourceColumn: user_update
+
+		annotation SummarizationSetBy = Automatic
+
+	column priority
+		dataType: int64
+		formatString: 0
+		lineageTag: 4ebf82b4-fbe3-4e46-97c1-9b168b3f7a31
+		summarizeBy: sum
+		sourceColumn: priority
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Country = m
+		mode: import
+		source = ```
+				let
+				    Origine = Databricks.Catalogs(origine, warehouses, [Catalog = "", Database = ""]),
+				    #"dpegpl-hseq-dev_Database" = Origine{[Name=database,Kind="Database"]}[Data],
+				    hseq4all_gl_gld_Schema = #"dpegpl-hseq-dev_Database"{[Name=schema,Kind="Schema"]}[Data],
+				    finding_View = hseq4all_gl_gld_Schema{[Name="country",Kind="View"]}[Data]
+				 
+				in finding_View
+				```
+
+	annotation PBI_NavigationStepName = Navigazione
+
+	annotation PBI_ResultType = Table
+

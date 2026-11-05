@@ -1,0 +1,116 @@
+table LocalDateTable_145847a9-4ecb-45d1-a6b1-a6d09a221376
+	isHidden
+	showAsVariationsOnly
+	lineageTag: 17968a0d-d58f-485f-adf4-f99ff9349356
+
+	column Date
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: f8bde222-5fed-47a8-a774-eb7cfcbf3165
+		dataCategory: PaddedDateTableDates
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = User
+
+	column Anno = YEAR([Date])
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 5e67aa4c-9b63-4fee-8b85-166e62037613
+		dataCategory: Years
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+		annotation TemplateId = Year
+
+	column NumMese = MONTH([Date])
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ed866559-6351-4afa-8edd-677bb3cd4c8f
+		dataCategory: MonthOfYear
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+		annotation TemplateId = MonthNumber
+
+	column Mese = FORMAT([Date], "MMMM")
+		dataType: string
+		isHidden
+		lineageTag: 9460d01c-ef4d-4a35-8b9e-82f3ece3b5da
+		dataCategory: Months
+		summarizeBy: none
+		sortByColumn: NumMese
+
+		annotation SummarizationSetBy = User
+
+		annotation TemplateId = Month
+
+	column NumTrimestre = INT(([NumMese] + 2) / 3)
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 01aa77d5-b9d0-4bbe-8ed4-5a6bbb32ad83
+		dataCategory: QuarterOfYear
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+		annotation TemplateId = QuarterNumber
+
+	column Trimestre = "Qtr " & [NumTrimestre]
+		dataType: string
+		isHidden
+		lineageTag: cf2d21cf-9422-4d7f-80cb-82cf43a52a89
+		dataCategory: Quarters
+		summarizeBy: none
+		sortByColumn: NumTrimestre
+
+		annotation SummarizationSetBy = User
+
+		annotation TemplateId = Quarter
+
+	column Giorno = DAY([Date])
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: d3d1dc5c-61fe-454c-9920-c0036b5f183b
+		dataCategory: DayOfMonth
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+		annotation TemplateId = Day
+
+	hierarchy 'Gerarchia data'
+		lineageTag: ae29a785-e562-433d-9d59-c4d092b34b4f
+
+		level Anno
+			lineageTag: 72ca28ac-8625-4dd9-8595-2c839c3855ae
+			column: Anno
+
+		level Trimestre
+			lineageTag: 13d9f410-3f94-4725-a673-41d127105fba
+			column: Trimestre
+
+		level Mese
+			lineageTag: 7efa01a0-23fb-4dff-9b7c-26e91aad37d5
+			column: Mese
+
+		level Giorno
+			lineageTag: ee5411bb-3bf7-43fc-b79e-e9ab793d72d2
+			column: Giorno
+
+		annotation TemplateId = DateHierarchy
+
+	partition LocalDateTable_145847a9-4ecb-45d1-a6b1-a6d09a221376 = calculated
+		mode: import
+		source = Calendar(Date(Year(MIN('Finding person group'[valid_to])), 1, 1), Date(Year(MAX('Finding person group'[valid_to])), 12, 31))
+
+	annotation __PBI_LocalDateTable = true
+

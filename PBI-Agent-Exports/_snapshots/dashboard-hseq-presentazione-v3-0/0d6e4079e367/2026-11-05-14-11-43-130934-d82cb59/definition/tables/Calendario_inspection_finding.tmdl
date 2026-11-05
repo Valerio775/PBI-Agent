@@ -1,0 +1,76 @@
+table Calendario_inspection_finding
+	lineageTag: e7bc10b4-69b8-4f26-961e-56a85181c9cc
+
+	column Date
+		formatString: General Date
+		lineageTag: cd17deed-5b18-48b8-8961-546c5253acdb
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Calendario_MeseAnno[Date]
+
+		variation Variation
+			isDefault
+			relationship: 1526b006-7840-4a26-a56c-41d895e2fc84
+			defaultHierarchy: LocalDateTable_b89f761b-1076-4160-9723-f16d6a073a45.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Anno
+		lineageTag: 5ebd4355-4721-4579-b557-e34cc6b864a5
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Calendario_MeseAnno[Anno]
+
+		annotation SummarizationSetBy = Automatic
+
+	column NumeroMese
+		lineageTag: a89d1a30-0388-40e8-874d-a164e684ea5f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Calendario_MeseAnno[NumeroMese]
+
+		annotation SummarizationSetBy = Automatic
+
+	column AnnoMese
+		lineageTag: df38a37e-7f41-438b-96d4-01bc5463b700
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Calendario_MeseAnno[AnnoMese]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mese
+		lineageTag: 7f0e9971-a570-4226-9a71-570640078d1b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Calendario_MeseAnno[Mese]
+		sortByColumn: Mese_No
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mese_No
+		formatString: 0
+		lineageTag: 8d540dbc-fdbb-4550-b024-732da268e662
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: Calendario_MeseAnno[Mese_No]
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Anno Hierarchy'
+		lineageTag: 7a1f7cb5-0d25-4441-82ae-9dc474be923f
+
+		level Anno
+			lineageTag: 153cc452-4268-47a6-aacf-7fb58202e666
+			column: Anno
+
+		level Mese
+			lineageTag: 6e66089e-7e9c-4c24-91f6-fe5f9e40f15a
+			column: Mese
+
+	partition Calendario_inspection_finding = calculated
+		mode: import
+		source = Calendario_MeseAnno
+
+	annotation PBI_Id = 71e1ee939c0e462a88d5fdd3ec989f65
+

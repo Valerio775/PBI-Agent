@@ -1,0 +1,125 @@
+table 'Checklist scope'
+	lineageTag: 83081694-cd49-406c-b017-fd1771bfc495
+
+	column id
+		dataType: string
+		lineageTag: f5c3c198-0c2e-4847-bae8-2f774fa8f45c
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: e187199f-c8a2-4cd0-8217-2f122c43013c
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	column valid_from
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 682dff8b-ef99-47e1-b0e1-6afa710e522f
+		summarizeBy: none
+		sourceColumn: valid_from
+
+		variation Variation
+			isDefault
+			relationship: b17d85bc-2991-4b62-9b39-571f7e21d9ea
+			defaultHierarchy: LocalDateTable_8dd7e547-8e23-4e50-88c1-db7dce5c6951.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column valid_to
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e1ea5301-3a2c-4d5f-9fe1-810a0bdd09f0
+		summarizeBy: none
+		sourceColumn: valid_to
+
+		variation Variation
+			isDefault
+			relationship: 5d0de25f-77e6-4517-9022-10ec1cfda2fa
+			defaultHierarchy: LocalDateTable_c10b5205-3f67-4cc4-a571-0b94625fb528.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column deleted
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b9f3e5e8-de43-45a3-a55b-06c09c58f24d
+		summarizeBy: none
+		sourceColumn: deleted
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_update
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6b5c2181-33c8-41b1-a009-97f631c76947
+		summarizeBy: none
+		sourceColumn: last_update
+
+		variation Variation
+			isDefault
+			relationship: c234e758-ef4a-454d-814d-76913d8ac328
+			defaultHierarchy: LocalDateTable_6653008e-2a6e-462e-abb7-033b33aa8f7a.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_update
+		dataType: string
+		lineageTag: 907ac2a3-7654-43dd-a90a-04435816301b
+		summarizeBy: none
+		sourceColumn: user_update
+
+		annotation SummarizationSetBy = Automatic
+
+	column priority
+		dataType: int64
+		formatString: 0
+		lineageTag: 02e1fbc1-31d5-44e6-b9e1-a8fc7fa2508e
+		summarizeBy: sum
+		sourceColumn: priority
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_edit_enabled
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: b7c0a98d-857a-4d6b-92ba-73f7a6fef16d
+		summarizeBy: none
+		sourceColumn: is_edit_enabled
+
+		annotation SummarizationSetBy = Automatic
+
+	column edit_window
+		dataType: int64
+		formatString: 0
+		lineageTag: d8c3cd34-06bb-4132-8784-c220aaba6ce9
+		summarizeBy: sum
+		sourceColumn: edit_window
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Checklist scope' = m
+		mode: import
+		source = ```
+				let
+				    Origine = Databricks.Catalogs(origine, warehouses, [Catalog = "", Database = ""]),
+				    #"dpegpl-hseq-dev_Database" = Origine{[Name=database,Kind="Database"]}[Data],
+				    hseq4all_gl_gld_Schema = #"dpegpl-hseq-dev_Database"{[Name=schema,Kind="Schema"]}[Data],
+				    finding_View = hseq4all_gl_gld_Schema{[Name="checklist_scope",Kind="View"]}[Data]
+				 
+				in finding_View
+				```
+
+	annotation PBI_NavigationStepName = Navigazione
+
+	annotation PBI_ResultType = Table
+
