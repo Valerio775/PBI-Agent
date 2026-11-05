@@ -1,0 +1,128 @@
+table 'Confluence Comala Activity 2'
+	lineageTag: 001a00d6-4730-4bf3-b450-5c33095349ad
+	sourceLineageTag: b455d012-ca31-4968-8b78-63aaf76b1aec
+
+	column pageid
+		dataType: int64
+		formatString: 0
+		lineageTag: 6d885f64-4df6-439e-922f-8c30e224683f
+		sourceLineageTag: 4a765e94-008f-40cc-9d1f-b072dd04ff75
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: pageid
+
+		annotation SummarizationSetBy = User
+
+	column workflow
+		dataType: string
+		lineageTag: cdb5c890-4e84-423d-84be-60e5d29aaf3b
+		sourceLineageTag: d398fdee-bd27-47ef-81ff-18f568cc2ae2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: workflow
+
+		annotation SummarizationSetBy = User
+
+	column date
+		dataType: string
+		lineageTag: 446e83d8-2f44-46d2-8fa6-9537fc54e132
+		sourceLineageTag: 3d177d89-757c-4723-92fe-d5fe01778c05
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = User
+
+	column username
+		dataType: string
+		lineageTag: 3ca39801-98d2-44a6-a555-da34fd50d0f9
+		sourceLineageTag: cb42fbf6-fcbc-4bd1-8734-2ce5bad353c5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: username
+
+		annotation SummarizationSetBy = User
+
+	column contributors
+		dataType: string
+		lineageTag: d7a706e4-a680-4872-bfc2-bee491db1472
+		sourceLineageTag: 92878b5b-3cdf-4e55-9acd-e953679fecb4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: contributors
+
+		annotation SummarizationSetBy = User
+
+	column activity
+		dataType: string
+		lineageTag: 4c36b55c-52cc-4873-9c15-35c203b42754
+		sourceLineageTag: c2f06149-96ca-4c17-a22f-7fd1c9492819
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: activity
+
+		annotation SummarizationSetBy = User
+
+	column description
+		dataType: string
+		lineageTag: c9c1ce8c-c82b-4edf-9c1d-48498c3de66f
+		sourceLineageTag: b4fc7a5e-46ed-4e53-a998-2fc461a3416c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = User
+
+	column page_version
+		dataType: string
+		lineageTag: 84e84861-4ab1-4355-900e-aa61011b8762
+		sourceLineageTag: 30ee78ef-90bc-46cb-93a9-726303aaa0da
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: page_version
+
+		annotation SummarizationSetBy = User
+
+	column page_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 36e61cf2-411d-48ad-a15a-489105ec6c6e
+		sourceLineageTag: 19d2e3eb-102d-4e19-b0ae-04191fbf7cda
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: page_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_comment
+		dataType: string
+		lineageTag: 1d0b6f7e-b6df-455c-b41e-b830c02aef61
+		sourceLineageTag: 84e3495e-f645-4947-a917-5a303bd94701
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: user_comment
+
+		annotation SummarizationSetBy = User
+
+	column loaded_at
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 5abd26b6-a52e-4e9b-a494-861b756e0123
+		sourceLineageTag: ad236f81-5cce-4425-a0ee-2095028d618b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: loaded_at
+
+		variation Variazione
+			isDefault
+			relationship: eacb1270-39e6-4e80-b150-bb1d4f7a26e5
+			defaultHierarchy: 'LocalDateTable_647975a0-05be-449a-9570-ce093d0ca43a 2'.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	partition 'Confluence Comala Activity 2' = entity
+		mode: directQuery
+		source
+			entityName: Confluence Comala Activity
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab 2'
+

@@ -1,0 +1,2620 @@
+table 'MBI Transition Status'
+	lineageTag: 5b7a3cec-2f54-43e3-9c1e-8af853122bf0
+
+	measure 'Giorni in Stato' = ```
+			
+			VAR issueKey = SELECTEDVALUE('Jira Macro Business Initiative'[Issue key])
+			VAR currentStatus = SELECTEDVALUE('Jira Macro Business Initiative'[Issue status])
+			
+			VAR startDate =
+			    CALCULATE(
+			        MIN('MBI Transition Status'[transition_date]),
+			        FILTER(
+			            ALL('MBI Transition Status'),
+			            'MBI Transition Status'[issue_key] = issueKey
+			                && 'MBI Transition Status'[to_status] = currentStatus
+			        )
+			    )
+			
+			VAR DataCreazioneOpen =
+			    CALCULATE(
+			        MAX('Jira Macro Business Initiative'[Issue created date]),
+			        REMOVEFILTERS('Jira Macro Business Initiative'),
+			        'Jira Macro Business Initiative'[Issue key] = issueKey
+			    )
+			
+			VAR startDateFinale =
+			    IF(
+			        currentStatus = "Open" && ISBLANK(startDate),
+			        DataCreazioneOpen,
+			        startDate
+			    )
+			
+			RETURN
+			IF( 
+			    currentStatus = "Approved", 
+			    0,
+			    IF (
+			        NOT ISBLANK(startDateFinale),
+			        DATEDIFF(startDateFinale, TODAY(), DAY),
+			        BLANK()
+			    )
+			)
+			```
+		formatString: 0
+		displayFolder: Grafico 1
+		lineageTag: 08fb3a31-9199-419d-aa52-9fe05c2eea42
+
+	measure 'Media per Stato' =
+			
+			AVERAGEX(
+			    VALUES('MBI Transition Status'[issue_key]),
+			    CALCULATE(MIN('MBI Transition Status'[Giorni_In_Stato_Colonna]))
+			)
+		displayFolder: Grafico 1
+		lineageTag: 60dfc512-7437-48ef-8fbf-a977a8a58ab2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Data Ingresso' =
+			
+			VAR IssueCorrente = SELECTEDVALUE('Jira Macro Business Initiative'[Issue key])
+			VAR StatoCorrente = SELECTEDVALUE('Jira Macro Business Initiative'[Issue status])
+			
+			VAR DataDaTransizioni =
+			    CALCULATE(
+			        MAX('MBI Transition Status'[transition_date]),
+			        FILTER(
+			            ALL('MBI Transition Status'),
+			            'MBI Transition Status'[issue_key] = IssueCorrente
+			                && 'MBI Transition Status'[to_status] = StatoCorrente
+			                && 'MBI Transition Status'[from_status] <> StatoCorrente
+			        )
+			    )
+			
+			VAR DataCreazioneOpen =
+			    CALCULATE(
+			        MAX('Jira Macro Business Initiative'[Issue created date]),
+			        'Jira Macro Business Initiative'[Issue key] = IssueCorrente
+			    )
+			
+			RETURN
+			IF(
+			    StatoCorrente = "Open", //&& ISBLANK(DataDaTransizioni)
+			    DataCreazioneOpen,
+			    DataDaTransizioni
+			)
+		formatString: General Date
+		displayFolder: Grafico 1
+		lineageTag: dd81653b-67cf-4351-af37-4913aa04b03b
+
+	measure 'Conteggio Pass-Through' =
+			
+			VAR StatusTradotto = SELECTEDVALUE('Workflow Fasi MBI 2'[Status Tradotto])
+			
+			VAR StatiDellaFase =
+			    CALCULATETABLE(
+			        VALUES('Workflow Fasi MBI 2'[Status]),
+			        FILTER(
+			            ALL('Workflow Fasi MBI 2'),
+			            'Workflow Fasi MBI 2'[Status Tradotto] = StatusTradotto
+			        )
+			    )
+			
+			VAR IsOpen = CONTAINS(StatiDellaFase, 'Workflow Fasi MBI 2'[Status], "Open")
+			
+			VAR TransizioniUscita =
+			    CALCULATETABLE(
+			        SELECTCOLUMNS(
+			            FILTER(
+			                ALL('MBI Transition Status'),
+			                'MBI Transition Status'[from_status] IN StatiDellaFase
+			                    && NOT('MBI Transition Status'[to_status] IN StatiDellaFase)
+			                    && 'MBI Transition Status'[from_status] <> 'MBI Transition Status'[to_status]
+			            ),
+			            "iu_issue_key", 'MBI Transition Status'[issue_key],
+			            "iu_data", 'MBI Transition Status'[transition_date]
+			        )
+			    )
+			
+			RETURN
+			IF(
+			    IsOpen,
+			    -- Per Open: conta tutte le issue che hanno almeno una transizione di uscita dalla fase
+			    COUNTROWS(
+			        CALCULATETABLE(
+			            VALUES('MBI Transition Status'[issue_key]),
+			            FILTER(
+			                ALL('MBI Transition Status'),
+			                'MBI Transition Status'[from_status] IN StatiDellaFase
+			                && NOT('MBI Transition Status'[to_status] IN StatiDellaFase)
+			                && 'MBI Transition Status'[from_status] <> 'MBI Transition Status'[to_status]
+			            )
+			        )
+			    ),
+			    -- Per tutti gli altri stati: logica originale con coppia completa
+			    VAR TransizioniEntrata =
+			        CALCULATETABLE(
+			            SELECTCOLUMNS(
+			                FILTER(
+			                    ALL('MBI Transition Status'),
+			                    'MBI Transition Status'[to_status] IN StatiDellaFase
+			                ),
+			                "ie_issue_key", 'MBI Transition Status'[issue_key],
+			                "ie_data", 'MBI Transition Status'[transition_date]
+			            )
+			        )
+			    VAR IssueUscite =
+			        CALCULATETABLE(
+			            VALUES('MBI Transition Status'[issue_key]),
+			            FILTER(
+			                ADDCOLUMNS(
+			                    VALUES('MBI Transition Status'[issue_key]),
+			                    "HasCoppiaCompleta",
+			                    VAR currentKey = 'MBI Transition Status'[issue_key]
+			                    VAR entrateIssue = FILTER(TransizioniEntrata, [ie_issue_key] = currentKey)
+			                    VAR usciteIssue  = FILTER(TransizioniUscita,  [iu_issue_key] = currentKey)
+			                    RETURN
+			                        COUNTROWS(
+			                            FILTER(
+			                                entrateIssue,
+			                                VAR dataEntrata = [ie_data]
+			                                RETURN
+			                                    COUNTROWS(
+			                                        FILTER(usciteIssue, [iu_data] > dataEntrata)
+			                                    ) > 0
+			                            )
+			                        ) > 0
+			                ),
+			                [HasCoppiaCompleta] = TRUE()
+			            )
+			        )
+			    RETURN
+			    CALCULATE(
+			        DISTINCTCOUNT('MBI Transition Status'[issue_key]),
+			        FILTER(
+			            ALL('MBI Transition Status'),
+			            'MBI Transition Status'[to_status] IN StatiDellaFase
+			            && 'MBI Transition Status'[issue_key] IN IssueUscite
+			        )
+			    )
+			)
+		formatString: 0
+		displayFolder: Grafico 2
+		lineageTag: 72b09e9f-bff4-43a9-8657-44667f0ff772
+
+	measure 'DEBUG Giorni Per Issue' =
+			
+			VAR issueKey = SELECTEDVALUE('MBI Transition Status'[issue_key])
+			VAR StatusTradotto = SELECTEDVALUE('Workflow Fasi MBI 2'[Status Tradotto])
+			
+			VAR statiDellaFase =
+			    CALCULATETABLE(
+			        VALUES('Workflow Fasi MBI 2'[Status]),
+			        FILTER(
+			            ALL('Workflow Fasi MBI 2'),
+			            'Workflow Fasi MBI 2'[Status Tradotto] = StatusTradotto
+			        )
+			    )
+			
+			VAR primaEntrata =
+			    CALCULATE(
+			        MIN('MBI Transition Status'[transition_date]),
+			        FILTER(
+			            ALL('MBI Transition Status'),
+			            'MBI Transition Status'[issue_key] = issueKey
+			                && 'MBI Transition Status'[to_status] IN statiDellaFase
+			        )
+			    )
+			
+			VAR ultimaUscita =
+			    CALCULATE(
+			        MAX('MBI Transition Status'[transition_date]),
+			        FILTER(
+			            ALL('MBI Transition Status'),
+			            'MBI Transition Status'[issue_key] = issueKey
+			                && 'MBI Transition Status'[from_status] IN statiDellaFase
+			        )
+			    )
+			
+			VAR giorni =
+			    IF(
+			        NOT ISBLANK(primaEntrata) && NOT ISBLANK(ultimaUscita),
+			        DATEDIFF(primaEntrata, ultimaUscita, DAY),
+			        0
+			    )
+			
+			RETURN IF(giorni > 0, giorni, 0)
+		formatString: 0
+		displayFolder: Grafico 2
+		lineageTag: 11023a7e-3be4-4913-8888-7be14c1a5999
+
+	measure 'DEBUG Giorni per Issue Open' =
+			
+			VAR issueKey = SELECTEDVALUE('MBI Transition Status'[issue_key])
+			
+			VAR dataCreazioneOpen =
+			    CALCULATE(
+			        MIN('Jira Macro Business Initiative'[Issue Created Date Formatted]),
+			        REMOVEFILTERS('Jira Macro Business Initiative'),
+			        'Jira Macro Business Initiative'[Issue key] = issueKey
+			    )
+			
+			VAR dataUscitaOpen =
+			    CALCULATE(
+			        MIN('MBI Transition Status'[transition_date]),
+			        FILTER(
+			            ALL('MBI Transition Status'),
+			            'MBI Transition Status'[issue_key] = issueKey
+			                && 'MBI Transition Status'[from_status] = "Open"
+			        )
+			    )
+			
+			VAR giorni =
+			    IF(
+			        NOT ISBLANK(dataCreazioneOpen) && NOT ISBLANK(dataUscitaOpen),
+			        IF(
+			            DATEDIFF(dataCreazioneOpen, dataUscitaOpen, DAY) < 0,
+			            0,
+			            DATEDIFF(dataCreazioneOpen, dataUscitaOpen, DAY)
+			        ),
+			        BLANK()
+			    )
+			
+			RETURN IF(giorni > 0, giorni, BLANK())
+		formatString: 0
+		displayFolder: Grafico 2
+		lineageTag: 7a82195f-06e9-43f9-9ce9-6028927bdada
+
+	measure 'Tempo Medio nello Stato' = ```
+			
+			VAR StatusTradotto = 
+			    SELECTEDVALUE('Workflow Fasi MBI 2'[Status Tradotto])
+			
+			VAR StatiDellaFase =
+			    CALCULATETABLE(
+			        VALUES('Workflow Fasi MBI 2'[Status]),
+			        FILTER(
+			            ALL('Workflow Fasi MBI 2'),
+			            IF(
+			                ISBLANK(StatusTradotto),
+			                TRUE(),
+			                'Workflow Fasi MBI 2'[Status Tradotto] = StatusTradotto
+			            )
+			        )
+			    )
+			
+			VAR IsOpen = CONTAINS(StatiDellaFase, 'Workflow Fasi MBI 2'[Status], "Open")
+			
+			VAR TransizioniEntrata =
+			    CALCULATETABLE(
+			        SELECTCOLUMNS(
+			            FILTER(
+			                ALL('MBI Transition Status'),
+			                'MBI Transition Status'[to_status] IN StatiDellaFase
+			                && NOT('MBI Transition Status'[from_status] IN StatiDellaFase)
+			                && 'MBI Transition Status'[from_status] <> 'MBI Transition Status'[to_status]
+			            ),
+			            "ie_issue_key", 'MBI Transition Status'[issue_key],
+			            "ie_data", 'MBI Transition Status'[transition_date]
+			        )
+			    )
+			
+			VAR TransizioniUscita =
+			    CALCULATETABLE(
+			        SELECTCOLUMNS(
+			            FILTER(
+			                ALL('MBI Transition Status'),
+			                'MBI Transition Status'[from_status] IN StatiDellaFase
+			                && NOT('MBI Transition Status'[to_status] IN StatiDellaFase)
+			                && 'MBI Transition Status'[from_status] <> 'MBI Transition Status'[to_status]
+			            ),
+			            "iu_issue_key", 'MBI Transition Status'[issue_key],
+			            "iu_data", 'MBI Transition Status'[transition_date]
+			        )
+			    )
+			
+			VAR IssueConSoggiorni =
+			    CALCULATETABLE(
+			        VALUES('MBI Transition Status'[issue_key]),
+			        FILTER(
+			            ALL('MBI Transition Status'),
+			            'MBI Transition Status'[to_status] IN StatiDellaFase
+			            || 'MBI Transition Status'[from_status] IN StatiDellaFase
+			        )
+			    )
+			
+			VAR tabellaGiorni =
+			    ADDCOLUMNS(
+			        IssueConSoggiorni,
+			        "giorni_totali",
+			        VAR issueKey = 'MBI Transition Status'[issue_key]
+			        VAR entrateIssue = FILTER(TransizioniEntrata, [ie_issue_key] = issueKey)
+			        VAR usciteIssue  = FILTER(TransizioniUscita,  [iu_issue_key] = issueKey)
+			        VAR sommaSoggiorni =
+			            SUMX(
+			                FILTER(
+			                    entrateIssue,
+			                    VAR dataEntrata = [ie_data]
+			                    RETURN COUNTROWS(
+			                        FILTER(usciteIssue, [iu_data] > dataEntrata)
+			                    ) > 0
+			                ),
+			                VAR dataEntrata = [ie_data]
+			                VAR primaUscita =
+			                    MINX(
+			                        FILTER(usciteIssue, [iu_data] > dataEntrata),
+			                        [iu_data]
+			                    )
+			                RETURN DATEDIFF(dataEntrata, primaUscita, DAY)
+			            )
+			        RETURN 
+			            IF(
+			                ISBLANK(sommaSoggiorni) && IsOpen,
+			                0,
+			                IF(NOT ISBLANK(sommaSoggiorni), sommaSoggiorni, BLANK())
+			            )
+			    )
+			
+			RETURN
+			AVERAGEX(
+			    FILTER(tabellaGiorni, NOT ISBLANK([giorni_totali])),
+			    [giorni_totali]
+			)
+			```
+		displayFolder: Grafico 2
+		lineageTag: a305cff8-3e39-4a99-8172-98ffcc9e53a5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Conteggio Rework per Stato' = ```
+			
+			VAR StatoCorrente = MAX('Workflow Fasi MBI 2'[Status Tradotto])
+			VAR OrdineCorrente = 
+			    MAXX(
+			        FILTER(
+			            ALL('Workflow Fasi MBI 2'),
+			            'Workflow Fasi MBI 2'[Status Tradotto] = StatoCorrente
+			        ),
+			        'Workflow Fasi MBI 2'[OrdineFase]
+			    )
+			
+			RETURN
+			COUNTROWS(
+			    DISTINCT(
+			        SELECTCOLUMNS(
+			            FILTER(
+			                ALL('MBI Transition Status'),
+			                VAR CurrentFromStatus = 'MBI Transition Status'[from_status]
+			                VAR CurrentToStatus = 'MBI Transition Status'[to_status]
+			                VAR CurrentKey = 'MBI Transition Status'[issue_key]
+			                VAR CurrentDate = 'MBI Transition Status'[transition_date]
+			
+			                VAR OrdineFrom =
+			                    MAXX(
+			                        FILTER(ALL('Workflow Fasi MBI 2'),
+			                            'Workflow Fasi MBI 2'[Status] = CurrentFromStatus),
+			                        'Workflow Fasi MBI 2'[OrdineFase]
+			                    )
+			                VAR OrdineTo =
+			                    MAXX(
+			                        FILTER(ALL('Workflow Fasi MBI 2'),
+			                            'Workflow Fasi MBI 2'[Status] = CurrentToStatus),
+			                        'Workflow Fasi MBI 2'[OrdineFase]
+			                    )
+			
+			                VAR DataUscita =
+			                    CALCULATE(
+			                        MIN('MBI Transition Status'[transition_date]),
+			                        FILTER(
+			                            ALL('MBI Transition Status'),
+			                            'MBI Transition Status'[issue_key] = CurrentKey
+			                            && 'MBI Transition Status'[transition_date] > CurrentDate
+			                            && 'MBI Transition Status'[to_status] = CurrentFromStatus
+			                            && 'MBI Transition Status'[from_status] <> 'MBI Transition Status'[to_status]
+			                        )
+			                    )
+			
+			                RETURN
+			                    NOT ISBLANK(OrdineFrom)
+			                    && NOT ISBLANK(OrdineTo)
+			                    && OrdineTo < OrdineFrom
+			                    && OrdineFrom = OrdineCorrente
+			                    && NOT ISBLANK(DataUscita)
+			            ),
+			            "issue_key", 'MBI Transition Status'[issue_key]
+			        )
+			    )
+			)
+			```
+		formatString: 0
+		displayFolder: Grafico 3
+		lineageTag: 7eb6fa48-5d21-45a9-8109-65cc933670a0
+
+	measure 'Data Ingresso Stato' =
+			
+			VAR issueKey = SELECTEDVALUE('MBI Transition Status'[issue_key])
+			VAR StatusTradotto = SELECTEDVALUE('Workflow Fasi MBI 2'[Status Tradotto])
+			
+			VAR StatiDellaFase =
+			    CALCULATETABLE(
+			        VALUES('Workflow Fasi MBI 2'[Status]),
+			        FILTER(
+			            ALL('Workflow Fasi MBI 2'),
+			            'Workflow Fasi MBI 2'[Status Tradotto] = StatusTradotto
+			        )
+			    )
+			
+			VAR DataCreazioneOpen =
+			    CALCULATE(
+			        MIN('Jira Macro Business Initiative'[Issue Created Date]),
+			        REMOVEFILTERS('Jira Macro Business Initiative'),
+			        'Jira Macro Business Initiative'[Issue key] = issueKey
+			    )
+			
+			VAR DataDaTransizioni =
+			    CALCULATE(
+			        MIN('MBI Transition Status'[transition_date]),
+			        FILTER(
+			            ALL('MBI Transition Status'),
+			            'MBI Transition Status'[issue_key] = issueKey
+			                && 'MBI Transition Status'[to_status] IN StatiDellaFase
+			                && NOT('MBI Transition Status'[from_status] IN StatiDellaFase)
+			                && 'MBI Transition Status'[from_status] <> 'MBI Transition Status'[to_status]
+			        )
+			    )
+			
+			RETURN
+			IF(
+			    StatusTradotto = "Conferma Perimetro",
+			    DataCreazioneOpen,
+			    DataDaTransizioni
+			)
+		formatString: General Date
+		displayFolder: Grafico 2
+		lineageTag: 3beb9135-8dd7-4289-9612-99e684bae946
+
+	measure 'Data Uscita Stato' =
+			
+			VAR issueKey = SELECTEDVALUE('MBI Transition Status'[issue_key])
+			VAR StatusTradotto = SELECTEDVALUE('Workflow Fasi MBI 2'[Status Tradotto])
+			VAR StatiDellaFase =
+			    CALCULATETABLE(
+			        VALUES('Workflow Fasi MBI 2'[Status]),
+			        FILTER(
+			            ALL('Workflow Fasi MBI 2'),
+			            'Workflow Fasi MBI 2'[Status Tradotto] = StatusTradotto
+			        )
+			    )
+			RETURN
+			CALCULATE(
+			    MAX('MBI Transition Status'[transition_date]),
+			    REMOVEFILTERS('Workflow Fasi MBI 2'),
+			    FILTER(
+			        ALL('MBI Transition Status'),
+			        'MBI Transition Status'[issue_key] = issueKey
+			            && 'MBI Transition Status'[from_status] IN StatiDellaFase
+			            && NOT('MBI Transition Status'[to_status] IN StatiDellaFase)
+			            && 'MBI Transition Status'[from_status] <> 'MBI Transition Status'[to_status]
+			    )
+			)
+		formatString: Short Date
+		displayFolder: Grafico 2
+		lineageTag: ebe462c5-b0ba-4e90-8cb4-6a6bf12a10d8
+
+	measure 'Filtro Rework' = ```
+			
+			VAR FaseSelezionata = 
+			    CALCULATE(
+			        SELECTEDVALUE('Workflow Fasi MBI 2'[Status Tradotto]),
+			        ALLSELECTED('Workflow Fasi MBI 2')
+			    )
+			
+			VAR OrdineSelezionato =
+			    IF(
+			        NOT ISBLANK(FaseSelezionata),
+			        MAXX(
+			            FILTER(ALL('Workflow Fasi MBI 2'),
+			                'Workflow Fasi MBI 2'[Status Tradotto] = FaseSelezionata),
+			            'Workflow Fasi MBI 2'[OrdineFase]
+			        ),
+			        BLANK()
+			    )
+			
+			VAR OrdineFromRiga = MAX('MBI Transition Status'[OrdineFrom])
+			VAR OrdineToRiga = MAX('MBI Transition Status'[OrdineTo])
+			
+			RETURN
+			IF(
+			    NOT ISBLANK(OrdineFromRiga)
+			    && NOT ISBLANK(OrdineToRiga)
+			    && OrdineToRiga < OrdineFromRiga
+			    && (ISBLANK(OrdineSelezionato) || OrdineFromRiga = OrdineSelezionato),
+			    1, 0
+			)
+			```
+		formatString: 0
+		displayFolder: Grafico 3
+		lineageTag: 9b08f75e-89e8-4582-bea4-059d648039b1
+
+	measure 'debug rework_test' = ```
+			
+			VAR FaseSelezionata = 
+			    CALCULATE(
+			        SELECTEDVALUE('Workflow Fasi MBI 2'[Status Tradotto]),
+			        ALLSELECTED('Workflow Fasi MBI 2')
+			    )
+			VAR OrdineSelezionato =
+			    IF(
+			        NOT ISBLANK(FaseSelezionata),
+			        MAXX(
+			            FILTER(ALL('Workflow Fasi MBI 2'),
+			                'Workflow Fasi MBI 2'[Status Tradotto] = FaseSelezionata),
+			            'Workflow Fasi MBI 2'[OrdineFase]
+			        ),
+			        BLANK()
+			    )
+			VAR OrdineFromRiga = MAX('MBI Transition Status'[OrdineFrom])
+			VAR IsReworkRiga = MAX('MBI Transition Status'[IsRework])
+			RETURN
+			" "
+			```
+		displayFolder: Grafico 3
+		lineageTag: ed1a28ec-fe8c-4626-9f7c-1470532a4a2f
+
+	measure 'Data Uscita Rework' =
+			
+			VAR CurrentKey = MAX('MBI Transition Status'[issue_key])
+			VAR CurrentDate = MAX('MBI Transition Status'[transition_date])
+			VAR CurrentFromStatus = MAX('MBI Transition Status'[from_status])
+			
+			RETURN
+			CALCULATE(
+			    MIN('MBI Transition Status'[transition_date]),
+			    FILTER(
+			        ALL('MBI Transition Status'),
+			        'MBI Transition Status'[issue_key] = CurrentKey
+			        && 'MBI Transition Status'[transition_date] > CurrentDate
+			        && 'MBI Transition Status'[to_status] = CurrentFromStatus
+			        && 'MBI Transition Status'[from_status] <> 'MBI Transition Status'[to_status]
+			    )
+			)
+		formatString: General Date
+		displayFolder: Grafico 3
+		lineageTag: 31accb82-fd82-4e75-b680-c68952092474
+
+	measure 'Media Giorni Rework' = ```
+			
+			VAR OrdineSelezionato = 
+			    MAX('Workflow Fasi MBI 2'[OrdineFase])
+			
+			VAR TabellaFiltrata =
+			    FILTER(
+			        ALL('MBI Transition Status'),
+			        'MBI Transition Status'[IsRework] = 1
+			        && 'MBI Transition Status'[OrdineFrom] = OrdineSelezionato
+			    )
+			
+			RETURN
+			IF(
+			    ISBLANK(OrdineSelezionato),
+			    BLANK(),
+			    AVERAGEX(
+			        TabellaFiltrata,
+			        VAR DataIngresso = 'MBI Transition Status'[transition_date]
+			        VAR DataUscita = 
+			            CALCULATE(
+			                MIN('MBI Transition Status'[transition_date]),
+			                REMOVEFILTERS('Workflow Fasi MBI 2'),
+			                FILTER(
+			                    ALL('MBI Transition Status'),
+			                    'MBI Transition Status'[issue_key] = EARLIER('MBI Transition Status'[issue_key])
+			                    && 'MBI Transition Status'[transition_date] > EARLIER('MBI Transition Status'[transition_date])
+			                    && 'MBI Transition Status'[to_status] = EARLIER('MBI Transition Status'[from_status])
+			                    && 'MBI Transition Status'[from_status] <> 'MBI Transition Status'[to_status]
+			                )
+			            )
+			        RETURN
+			        -- MODIFICA QUI: Se non c'è una data di uscita, restituiamo BLANK(). 
+			        -- AVERAGEX ignora automaticamente le righe che restituiscono BLANK()
+			        IF(
+			            ISBLANK(DataUscita),
+			            BLANK(), 
+			            DATEDIFF(DataIngresso, DataUscita, DAY)
+			        )
+			    )
+			)
+			```
+		displayFolder: Grafico 3
+		lineageTag: 1d1fd9d0-e7da-4164-8b4c-0a577db0fbd6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Somma dei tempi nello stato' = ```
+			
+			VAR StatusTradotto = SELECTEDVALUE('Workflow Fasi MBI 2'[Status Tradotto])
+			VAR issueKey = SELECTEDVALUE('MBI Transition Status'[issue_key])
+			
+			VAR StatiDellaFase =
+			    CALCULATETABLE(
+			        VALUES('Workflow Fasi MBI 2'[Status]),
+			        FILTER(
+			            ALL('Workflow Fasi MBI 2'),
+			            'Workflow Fasi MBI 2'[Status Tradotto] = StatusTradotto
+			        )
+			    )
+			
+			VAR IsOpen = CONTAINS(StatiDellaFase, 'Workflow Fasi MBI 2'[Status], "Open")
+			
+			VAR DataCreazioneOpen =
+			    CALCULATE(
+			        MIN('Jira Macro Business Initiative'[Issue Created Date Formatted]),
+			        REMOVEFILTERS('Jira Macro Business Initiative'),
+			        'Jira Macro Business Initiative'[Issue key] = issueKey
+			    )
+			
+			VAR entrateIssue =
+			    FILTER(
+			        ALL('MBI Transition Status'),
+			        'MBI Transition Status'[issue_key] = issueKey
+			        && 'MBI Transition Status'[to_status] IN StatiDellaFase
+			        && NOT('MBI Transition Status'[from_status] IN StatiDellaFase)
+			        && 'MBI Transition Status'[from_status] <> 'MBI Transition Status'[to_status]
+			    )
+			
+			VAR usciteIssue =
+			    FILTER(
+			        ALL('MBI Transition Status'),
+			        'MBI Transition Status'[issue_key] = issueKey
+			        && 'MBI Transition Status'[from_status] IN StatiDellaFase
+			        && NOT('MBI Transition Status'[to_status] IN StatiDellaFase)
+			        && 'MBI Transition Status'[from_status] <> 'MBI Transition Status'[to_status]
+			    )
+			
+			VAR primaUscitaOpen =
+			    MINX(usciteIssue, 'MBI Transition Status'[transition_date])
+			
+			VAR giorniOpen =
+			    VAR primaEntrata = 
+			        IF(
+			            NOT ISBLANK(DataCreazioneOpen) && DataCreazioneOpen <= primaUscitaOpen,
+			            DataCreazioneOpen,
+			            primaUscitaOpen
+			        )
+			    VAR primaSoggiorno =
+			        IF(
+			            NOT ISBLANK(primaEntrata) && NOT ISBLANK(primaUscitaOpen) && primaEntrata < primaUscitaOpen,
+			            DATEDIFF(primaEntrata, primaUscitaOpen, DAY),
+			            0
+			        )
+			    VAR soggiorniSuccessivi =
+			        SUMX(
+			            FILTER(
+			                entrateIssue,
+			                VAR dataEntrata = 'MBI Transition Status'[transition_date]
+			                RETURN COUNTROWS(
+			                    FILTER(usciteIssue, 'MBI Transition Status'[transition_date] > dataEntrata)
+			                ) > 0
+			            ),
+			            VAR dataEntrata = 'MBI Transition Status'[transition_date]
+			            VAR primaUscitaSucc =
+			                MINX(
+			                    FILTER(usciteIssue, 'MBI Transition Status'[transition_date] > dataEntrata),
+			                    'MBI Transition Status'[transition_date]
+			                )
+			            RETURN DATEDIFF(dataEntrata, primaUscitaSucc, DAY)
+			        )
+			    RETURN primaSoggiorno + soggiorniSuccessivi
+			
+			VAR giorniAltriStati =
+			    SUMX(
+			        FILTER(
+			            entrateIssue,
+			            VAR dataEntrata = 'MBI Transition Status'[transition_date]
+			            RETURN COUNTROWS(
+			                FILTER(usciteIssue, 'MBI Transition Status'[transition_date] > dataEntrata)
+			            ) > 0
+			        ),
+			        VAR dataEntrata = 'MBI Transition Status'[transition_date]
+			        VAR primaUscita =
+			            MINX(
+			                FILTER(usciteIssue, 'MBI Transition Status'[transition_date] > dataEntrata),
+			                'MBI Transition Status'[transition_date]
+			            )
+			        RETURN DATEDIFF(dataEntrata, primaUscita, DAY)
+			    )
+			
+			RETURN
+			IF(IsOpen, giorniOpen, giorniAltriStati)
+			```
+		formatString: 0
+		displayFolder: Grafico 2
+		lineageTag: 56496a61-0776-4d6c-b1fb-1f7a5ebb4dd3
+
+	measure 'Debug Entrate Issue' =
+			
+			VAR StatusTradotto = SELECTEDVALUE('Workflow Fasi MBI 2'[Status Tradotto])
+			VAR issueKey = SELECTEDVALUE('MBI Transition Status'[issue_key])
+			
+			VAR StatiDellaFase =
+			    CALCULATETABLE(
+			        VALUES('Workflow Fasi MBI 2'[Status]),
+			        FILTER(
+			            ALL('Workflow Fasi MBI 2'),
+			            'Workflow Fasi MBI 2'[Status Tradotto] = StatusTradotto
+			        )
+			    )
+			
+			VAR entrateIssue =
+			    FILTER(
+			        ALL('MBI Transition Status'),
+			        'MBI Transition Status'[issue_key] = issueKey
+			        && 'MBI Transition Status'[to_status] IN StatiDellaFase
+			        && NOT('MBI Transition Status'[from_status] IN StatiDellaFase)
+			        && 'MBI Transition Status'[from_status] <> 'MBI Transition Status'[to_status]
+			    )
+			
+			RETURN
+			COUNTROWS(entrateIssue)
+		formatString: 0
+		displayFolder: Grafico 2
+		lineageTag: e1729d58-8c61-4b04-b460-7547fe0f18f3
+
+	measure 'Media Rework per Stato' = ```
+			
+			VAR OrdineSelezionato = MAX('Workflow Fasi MBI 2'[OrdineFase])
+			
+			VAR RigheRework =
+			    FILTER(
+			        ALL('MBI Transition Status'),
+			        NOT ISBLANK('MBI Transition Status'[OrdineFrom])
+			        && NOT ISBLANK('MBI Transition Status'[OrdineTo])
+			        && 'MBI Transition Status'[OrdineTo] < 'MBI Transition Status'[OrdineFrom]
+			        && NOT ISBLANK(OrdineSelezionato)
+			        && 'MBI Transition Status'[OrdineFrom] = OrdineSelezionato
+			        && NOT ISBLANK(
+			            CALCULATE(
+			                MIN('MBI Transition Status'[transition_date]),
+			                FILTER(
+			                    ALL('MBI Transition Status'),
+			                    'MBI Transition Status'[issue_key] = EARLIER('MBI Transition Status'[issue_key])
+			                    && 'MBI Transition Status'[transition_date] > EARLIER('MBI Transition Status'[transition_date])
+			                    && 'MBI Transition Status'[to_status] = EARLIER('MBI Transition Status'[from_status])
+			                    && 'MBI Transition Status'[from_status] <> 'MBI Transition Status'[to_status]
+			                )
+			            )
+			        )
+			    )
+			
+			VAR TotaleEpisodi = COUNTROWS(RigheRework)
+			
+			VAR IssueDistinte = 
+			    COUNTROWS(
+			        DISTINCT(
+			            SELECTCOLUMNS(RigheRework, "issue_key", 'MBI Transition Status'[issue_key])
+			        )
+			    )
+			
+			RETURN
+			DIVIDE(TotaleEpisodi, IssueDistinte)
+			```
+		displayFolder: Grafico 3
+		lineageTag: 14497be3-8b49-4f27-9463-468f2af0be2c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'IE Giorni in stato' =
+			
+			
+			VAR issueKey = SELECTEDVALUE('IE Transition Status'[issue_key])
+			VAR currentStatus = SELECTEDVALUE('Jira Initiative Estimation'[issue_status])
+			
+			VAR startDate =
+			    CALCULATE(
+			        MAX('IE Transition Status'[transition_date]),
+			        FILTER(
+			            ALL('IE Transition Status'),
+			            'IE Transition Status'[issue_key] = issueKey
+			                && 'IE Transition Status'[to_status] = currentStatus
+			        )
+			    )
+			
+			RETURN
+			IF(
+			    NOT ISBLANK(startDate),
+			    DATEDIFF(startDate, TODAY(), DAY),
+			    BLANK()
+			)
+		formatString: 0
+		lineageTag: 06048999-8fa8-46d4-987c-87334a466341
+
+	measure 'Filtro_Tabella_Dinamica MBI' = ```
+			
+			VAR _End = [ToStatus_MBI]
+			
+			-- Recuperiamo l'intervallo del mese selezionato nel report
+			VAR _MinDate = MIN('MBI Transition Status'[transition_date]) 
+			VAR _MaxDate = MAX('MBI Transition Status'[transition_date])
+			
+			RETURN
+			IF( 
+			    -- 1. Esiste la data di fine?
+			    NOT ISBLANK(_End) 
+			    
+			    -- 2. La data di fine (Approved) è nel mese selezionato?
+			    && _End >= _MinDate 
+			    && _End <= _MaxDate, 
+			    1, 
+			    0 
+			)
+			```
+		formatString: 0
+		lineageTag: 1cdcc715-3a85-486a-a073-16cb9fda2be0
+
+	measure 'Media Filtrata GoLive' = ```
+			
+			VAR SelectedMin = MIN('Date Table'[Date])
+			VAR SelectedMax = MAX('Date Table'[Date])
+			VAR AbsoluteMin = CALCULATE(MIN('Date Table'[Date]), ALL('Date Table'))
+			VAR AbsoluteMax = CALCULATE(MAX('Date Table'[Date]), ALL('Date Table'))
+			VAR IsSlicerActive = (SelectedMin <> AbsoluteMin) || (SelectedMax <> AbsoluteMax)
+			VAR FilteredIssues = 
+			    CALCULATETABLE(
+			        VALUES('Jira Business Feature 2'[Issue Macro Business Initiative])
+			    )
+			RETURN
+			IF(
+			    NOT IsSlicerActive,
+			    AVERAGEX(
+			        VALUES('MBI Transition Status'[issue_key]),
+			        CALCULATE(MIN('MBI Transition Status'[Giorni_In_Stato_Colonna]))
+			    ),
+			    CALCULATE(
+			        AVERAGEX(
+			            VALUES('MBI Transition Status'[issue_key]),
+			            CALCULATE(MIN('MBI Transition Status'[Giorni_In_Stato_Colonna]))
+			        ),
+			        TREATAS(FilteredIssues, 'Jira Macro Business Initiative'[Issue key])
+			    )
+			)
+			```
+		displayFolder: Grafico 1
+		lineageTag: d346d2ac-63e1-4bf2-a279-6853c9f69000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Roles =
+			
+			VAR _username = SELECTEDVALUE('MBI Transition Status'[username])
+			VAR _projectKey = SELECTEDVALUE('MBI Transition Status'[project_key])
+			RETURN
+			CALCULATE(
+			    CONCATENATEX(VALUES('Jira User Role'[role_name]), 'Jira User Role'[role_name], ", "),
+			    REMOVEFILTERS('Jira Macro Business Initiative'),
+			    REMOVEFILTERS('Workflow Fasi MBI'[Status Tradotto]),
+			    'Jira User Role'[username] = _username,
+			    'Jira User Role'[project_key] = _projectKey
+			)
+		lineageTag: ff447755-08ce-44d2-9aae-0dd8703661ab
+
+	measure 'COUNT Backlog Semplificato' =
+			
+			VAR StatiDellaFase =
+			    VALUES (
+			        'Workflow Fasi MBI Semplificate'[Status]
+			    )
+			
+			RETURN
+			CALCULATE (
+			    DISTINCTCOUNT (
+			        'Jira Macro Business Initiative'[Issue key]
+			    ),
+			    TREATAS (
+			        StatiDellaFase,
+			        'Jira Macro Business Initiative'[Issue status]
+			    )
+			)
+		formatString: 0
+		displayFolder: Executive Journey
+		lineageTag: 61afa06a-5273-4b73-b06a-f4105c907b89
+
+	measure 'Conteggio Pass-Through Semplificato' =
+			
+			VAR OrdineFaseCorrente =
+			    SELECTEDVALUE (
+			        'Workflow Fasi MBI Semplificate'[OrdineFase]
+			    )
+			
+			RETURN
+			IF (
+			    ISBLANK ( OrdineFaseCorrente ),
+			    BLANK (),
+			    CALCULATE (
+			        DISTINCTCOUNT ( 'MBI Transition Status'[issue_key] ),
+			        FILTER (
+			            'MBI Transition Status',
+			            'MBI Transition Status'[From OrdineFase Semplificate] = OrdineFaseCorrente
+			                &&
+			            'MBI Transition Status'[To OrdineFase Semplificate] <> OrdineFaseCorrente
+			                &&
+			            NOT ISBLANK ( 'MBI Transition Status'[From OrdineFase Semplificate] )
+			                &&
+			            NOT ISBLANK ( 'MBI Transition Status'[To OrdineFase Semplificate] )
+			        )
+			    )
+			)
+		formatString: 0
+		displayFolder: Executive Journey
+		lineageTag: 96cddc8d-58c8-4fcc-8d05-b889d1aa5f18
+
+	measure 'MBI Tempo Storico Medio nello Stato Semplificato' =
+			
+			VAR OrdineFaseCorrente =
+			    SELECTEDVALUE ( 'Workflow Fasi MBI Semplificate'[OrdineBarra] )
+			
+			RETURN
+			CALCULATE (
+			    VAR TransizioniEntrata =
+			        SELECTCOLUMNS (
+			            FILTER (
+			                'MBI Transition Status',
+			                'MBI Transition Status'[To OrdineBarra Semplificato] = OrdineFaseCorrente
+			                    && 'MBI Transition Status'[From OrdineBarra Semplificato] <> OrdineFaseCorrente
+			            ),
+			            "ie_issue_key", 'MBI Transition Status'[issue_key],
+			            "ie_data", 'MBI Transition Status'[transition_date]
+			        )
+			
+			    VAR TransizioniUscita =
+			        SELECTCOLUMNS (
+			            FILTER (
+			                'MBI Transition Status',
+			                'MBI Transition Status'[From OrdineBarra Semplificato] = OrdineFaseCorrente
+			                    && 'MBI Transition Status'[To OrdineBarra Semplificato] <> OrdineFaseCorrente
+			            ),
+			            "iu_issue_key", 'MBI Transition Status'[issue_key],
+			            "iu_data", 'MBI Transition Status'[transition_date]
+			        )
+			
+			    -- Una riga per OGNI singolo soggiorno (entrata->prima uscita), non aggregato per issue
+			    VAR TabellaSoggiorni =
+			        ADDCOLUMNS (
+			            TransizioniEntrata,
+			            "giorni_soggiorno",
+			            VAR issueKey = [ie_issue_key]
+			            VAR dataEntrata = [ie_data]
+			            VAR usciteSuccessive =
+			                FILTER (
+			                    TransizioniUscita,
+			                    [iu_issue_key] = issueKey && [iu_data] > dataEntrata
+			                )
+			            VAR primaUscita = MINX ( usciteSuccessive, [iu_data] )
+			            RETURN
+			                IF ( NOT ISBLANK ( primaUscita ), DATEDIFF ( dataEntrata, primaUscita, DAY ) )
+			        )
+			
+			    RETURN
+			    AVERAGEX (
+			        FILTER ( TabellaSoggiorni, NOT ISBLANK ( [giorni_soggiorno] ) ),
+			        [giorni_soggiorno]
+			    ),
+			    REMOVEFILTERS ( 'MBI Transition Status' ),
+			    REMOVEFILTERS ( 'Workflow Fasi MBI' ),
+			    REMOVEFILTERS ( 'Jira Macro Business Initiative' ),
+			    REMOVEFILTERS ( 'Workflow Fasi MBI Semplificate 2' )
+			)
+		displayFolder: Executive Journey
+		lineageTag: ca90338a-f36d-43ef-8a20-434e90e4fbe0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'MBI Aging Medio Corrente nello Stato Semplificato' =
+			
+			VAR OrdineFaseCorrente =
+			    SELECTEDVALUE (
+			        'Workflow Fasi MBI Semplificate'[OrdineBarra]
+			    )
+			
+			VAR StatiDellaFase =
+			    CALCULATETABLE (
+			        VALUES ( 'Workflow Fasi MBI Semplificate'[Status] ),
+			        FILTER (
+			            ALL ( 'Workflow Fasi MBI Semplificate' ),
+			            'Workflow Fasi MBI Semplificate'[OrdineBarra]
+			                = OrdineFaseCorrente
+			        )
+			    )
+			
+			VAR IssueAttualmenteInFase =
+			    CALCULATETABLE (
+			        VALUES ( 'Jira Macro Business Initiative'[Issue key] ),
+			        TREATAS (
+			            StatiDellaFase,
+			            'Jira Macro Business Initiative'[Issue status]
+			        )
+			    )
+			
+			VAR TabellaAging =
+			    ADDCOLUMNS (
+			        IssueAttualmenteInFase,
+			
+			        "DataEntrataFase",
+			
+			        VAR CurrentIssue =
+			            'Jira Macro Business Initiative'[Issue key]
+			
+			        VAR UltimaEntrata =
+			            CALCULATE (
+			                MAX ( 'MBI Transition Status'[transition_date] ),
+			
+			                FILTER (
+			                    ALL ( 'MBI Transition Status' ),
+			                    'MBI Transition Status'[issue_key] = CurrentIssue
+			                        &&
+			                    'MBI Transition Status'[To OrdineBarra Semplificato]
+			                        = OrdineFaseCorrente
+			                        &&
+			                    'MBI Transition Status'[From OrdineBarra Semplificato]
+			                        <> OrdineFaseCorrente
+			                )
+			            )
+			
+			        VAR CreatedDate =
+			            CALCULATE (
+			                MAX ( 'Jira Macro Business Initiative'[created_date] )
+			            )
+			
+			        RETURN
+			            IF (
+			                OrdineFaseCorrente = 1,
+			                COALESCE ( UltimaEntrata, CreatedDate ),
+			                UltimaEntrata
+			            )
+			    )
+			
+			RETURN
+			AVERAGEX (
+			    FILTER (
+			        TabellaAging,
+			        NOT ISBLANK ( [DataEntrataFase] )
+			    ),
+			    DATEDIFF (
+			        [DataEntrataFase],
+			        TODAY (),
+			        DAY
+			    )
+			)
+		displayFolder: Executive Journey
+		lineageTag: 2085a409-6c90-451b-a4b6-2b39fea9f751
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Misura
+		displayFolder: Executive Journey
+		lineageTag: 2ba133a1-572f-4799-be19-8c94ce526588
+
+		annotation 43dbc3e8-3a1c-4b6f-9923-b49ff7d6691c = True
+
+	measure 'AVG MBI Dinamico Tempo' =
+			
+			VAR NumeroFasiVisibili =
+			    COUNTROWS (
+			        VALUES (
+			            'Workflow Fasi MBI Semplificate'[OrdineFase]
+			        )
+			    )
+			
+			RETURN
+			IF (
+			    NumeroFasiVisibili = 1,
+			    [MBI Tempo Storico Medio nello Stato Semplificato Leam Time],
+			    [Lead Time Teorico Processo MBI]
+			)
+		displayFolder: Executive Journey
+		lineageTag: 9c13ed0d-cb8b-4936-bef2-c27b0536afd9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Lead Time Teorico Processo MBI' =
+			
+			SUMX (
+			    VALUES (
+			        'Workflow Fasi MBI Semplificate'[OrdineFase]
+			    ),
+			    CALCULATE (
+			        [MBI Tempo Storico Medio nello Stato Semplificato Leam Time]
+			    )
+			)
+		displayFolder: Executive Journey
+		lineageTag: 7e70ee37-0cc2-42d5-8ff4-3639ea31b220
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Is HLD Selected' =
+			
+			VAR SelectedPhase = SELECTEDVALUE('Workflow Fasi MBI'[Status Tradotto])
+			RETURN
+			    IF(
+			        SelectedPhase = "HLD e stime",
+			        1,
+			        0
+			    )
+		formatString: 0
+		lineageTag: c4394c85-f4b1-4f2d-a65a-a49c5fe752d9
+
+	measure 'COUNT Backlog Semplificato - Somma Barre' =
+			
+			SUMX(
+			    FILTER(
+			        VALUES('Workflow Fasi MBI Semplificate'[Status Tradotto]),
+			        NOT('Workflow Fasi MBI Semplificate'[Status Tradotto] IN { BLANK(), "0. Aborted" })
+			    ),
+			    [COUNT Backlog Semplificato]
+			)
+		formatString: 0
+		displayFolder: Executive Journey
+		lineageTag: e2bc00d5-ae8b-4d20-8bbd-acc49399a193
+
+	measure 'MBI Tempo Storico Medio nello Stato Semplificato Actual' =
+			
+			VAR OrdineFaseCorrente =
+			    SELECTEDVALUE (
+			        'Workflow Fasi MBI Semplificate 2'[OrdineFase]
+			    )
+			
+			VAR TransizioniEntrata =
+			    SELECTCOLUMNS (
+			        FILTER (
+			            ALL ( 'MBI Transition Status' ),
+			            'MBI Transition Status'[To OrdineFase Semplificate] = OrdineFaseCorrente
+			                &&
+			            'MBI Transition Status'[From OrdineFase Semplificate] <> OrdineFaseCorrente
+			        ),
+			        "ie_issue_key", 'MBI Transition Status'[issue_key],
+			        "ie_data", 'MBI Transition Status'[transition_date]
+			    )
+			
+			VAR TransizioniUscita =
+			    SELECTCOLUMNS (
+			        FILTER (
+			            'MBI Transition Status',
+			            'MBI Transition Status'[From OrdineFase Semplificate] = OrdineFaseCorrente
+			                &&
+			            'MBI Transition Status'[To OrdineFase Semplificate] <> OrdineFaseCorrente
+			        ),
+			        "iu_issue_key", 'MBI Transition Status'[issue_key],
+			        "iu_data", 'MBI Transition Status'[transition_date]
+			    )
+			
+			VAR IssueConSoggiorni =
+			    CALCULATETABLE (
+			        VALUES ( 'MBI Transition Status'[issue_key] ),
+			        FILTER (
+			            ALL ( 'MBI Transition Status' ),
+			            'MBI Transition Status'[To OrdineFase Semplificate] = OrdineFaseCorrente
+			                ||
+			            'MBI Transition Status'[From OrdineFase Semplificate] = OrdineFaseCorrente
+			        )
+			    )
+			
+			VAR tabellaGiorni =
+			    ADDCOLUMNS (
+			        IssueConSoggiorni,
+			        "giorni_totali",
+			        VAR issueKey = 'MBI Transition Status'[issue_key]
+			        VAR entrateIssue =
+			            FILTER ( TransizioniEntrata, [ie_issue_key] = issueKey )
+			        VAR usciteIssue =
+			            FILTER ( TransizioniUscita, [iu_issue_key] = issueKey )
+			
+			        RETURN
+			            SUMX (
+			                FILTER (
+			                    entrateIssue,
+			                    VAR dataEntrata = [ie_data]
+			                    RETURN
+			                        COUNTROWS (
+			                            FILTER (
+			                                usciteIssue,
+			                                [iu_data] > dataEntrata
+			                            )
+			                        ) > 0
+			                ),
+			                VAR dataEntrata = [ie_data]
+			                VAR primaUscita =
+			                    MINX (
+			                        FILTER (
+			                            usciteIssue,
+			                            [iu_data] > dataEntrata
+			                        ),
+			                        [iu_data]
+			                    )
+			                RETURN
+			                    DATEDIFF (
+			                        dataEntrata,
+			                        primaUscita,
+			                        DAY
+			                    )
+			            )
+			    )
+			
+			RETURN
+			AVERAGEX (
+			    FILTER (
+			        tabellaGiorni,
+			        NOT ISBLANK ( [giorni_totali] )
+			    ),
+			    [giorni_totali]
+			)
+		displayFolder: Executive Journey
+		lineageTag: 3504cf79-da48-480d-851b-dad76aba4f7b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'MBI Aging Medio Corrente nello Stato Semplificato Actual' =
+			
+			VAR OrdineFaseCorrente =
+			    SELECTEDVALUE (
+			        'Workflow Fasi MBI Semplificate 2'[OrdineFase]
+			    )
+			
+			VAR StatiDellaFase =
+			    CALCULATETABLE (
+			        VALUES ( 'Workflow Fasi MBI Semplificate 2'[Status] ),
+			        FILTER (
+			            ALL ( 'Workflow Fasi MBI Semplificate 2' ),
+			            'Workflow Fasi MBI Semplificate 2'[OrdineFase]
+			                = OrdineFaseCorrente
+			        )
+			    )
+			
+			VAR IssueAttualmenteInFase =
+			    CALCULATETABLE (
+			        VALUES ( 'Jira Macro Business Initiative'[Issue key] ),
+			        TREATAS (
+			            StatiDellaFase,
+			            'Jira Macro Business Initiative'[Issue status]
+			        )
+			    )
+			
+			VAR TabellaAging =
+			    ADDCOLUMNS (
+			        IssueAttualmenteInFase,
+			
+			        "DataEntrataFase",
+			
+			        VAR CurrentIssue =
+			            'Jira Macro Business Initiative'[Issue key]
+			
+			        VAR UltimaEntrata =
+			            CALCULATE (
+			                MAX ( 'MBI Transition Status'[transition_date] ),
+			
+			                FILTER (
+			                    ALL ( 'MBI Transition Status' ),
+			                    'MBI Transition Status'[issue_key] = CurrentIssue
+			                        &&
+			                    'MBI Transition Status'[To OrdineFase Semplificate]
+			                        = OrdineFaseCorrente
+			                        &&
+			                    'MBI Transition Status'[From OrdineFase Semplificate]
+			                        <> OrdineFaseCorrente
+			                )
+			            )
+			
+			        VAR CreatedDate =
+			            CALCULATE (
+			                MAX ( 'Jira Macro Business Initiative'[created_date] )
+			            )
+			
+			        RETURN
+			            IF (
+			                OrdineFaseCorrente = 1,
+			                COALESCE ( UltimaEntrata, CreatedDate ),
+			                UltimaEntrata
+			            )
+			    )
+			
+			RETURN
+			AVERAGEX (
+			    FILTER (
+			        TabellaAging,
+			        NOT ISBLANK ( [DataEntrataFase] )
+			    ),
+			    DATEDIFF (
+			        [DataEntrataFase],
+			        TODAY (),
+			        DAY
+			    )
+			)
+		displayFolder: Executive Journey
+		lineageTag: e8628b91-435e-4a4a-8769-a8453fa3bd31
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'COUNT Backlog Semplificato Actual' =
+			
+			VAR StatusAsse =
+			    SELECTEDVALUE ( 'Workflow Fasi MBI Semplificate'[Status] )
+			
+			VAR IssueKeySelezionata =
+			    SELECTEDVALUE ( 'Jira Macro Business Initiative'[Issue key] )
+			
+			VAR StatusIssueSelezionata =
+			    SELECTEDVALUE ( 'Jira Macro Business Initiative'[Issue status] )
+			
+			VAR Risultato =
+			    IF (
+			        NOT ISBLANK ( IssueKeySelezionata ),
+			        // Issue selezionata -> mostra 1 solo sulla barra del suo stato attuale
+			        IF ( StatusAsse = StatusIssueSelezionata, 1 ),
+			        // Nessuna selezione -> vista aggregata
+			        CALCULATE (
+			            DISTINCTCOUNT ( 'Jira Macro Business Initiative'[Issue key] ),
+			            REMOVEFILTERS ( 'Jira Macro Business Initiative' ),
+			            TREATAS (
+			                VALUES ( 'Workflow Fasi MBI Semplificate'[Status] ),
+			                'Jira Macro Business Initiative'[Issue status]
+			            )
+			        )
+			    )
+			
+			RETURN
+			IF (
+			    NOT ISBLANK ( IssueKeySelezionata ),
+			    MIN ( Risultato, 1 ),
+			    Risultato
+			)
+		formatString: 0
+		displayFolder: Executive Journey
+		lineageTag: ebeb60ed-edbf-4f59-923b-06ef8a6a535f
+
+	measure 'Debug Locale' = SELECTEDVALUE ( 'Jira Macro Business Initiative'[Issue key] )
+		lineageTag: e6d6c615-6ac6-4158-b6fb-b00905e31b2d
+
+	measure Grafico1_Visible =
+			
+			IF(
+			    COUNTROWS(ALLSELECTED('Jira Macro Business Initiative')) = 0,
+			    1,
+			    0
+			)
+		formatString: 0
+		displayFolder: Executive Journey
+		lineageTag: 121a2675-26ec-4fee-9bc9-5f21650d50ea
+
+	measure 'Filtro Issue per Fase Selezionata' =
+			
+			VAR StatoFaseSelezionata =
+			    SELECTEDVALUE ( 'Workflow Fasi MBI Semplificate'[Status] )
+			RETURN
+			    IF (
+			        ISBLANK ( StatoFaseSelezionata ),
+			        1,
+			        IF (
+			            SELECTEDVALUE ( 'Jira Macro Business Initiative'[Issue status] ) = StatoFaseSelezionata,
+			            1,
+			            BLANK()
+			        )
+			    )
+		formatString: 0
+		displayFolder: Executive Journey
+		lineageTag: 3738c9ee-35a4-4884-b34e-0d21fd8ce8a6
+
+	measure 'Debug Filtro Attivo' =
+			
+			"Righe filtrate: " & COUNTROWS ( 'Jira Macro Business Initiative' )
+		displayFolder: Executive Journey
+		lineageTag: 341be336-7e50-4c9d-9a79-11316e74ceed
+
+	measure 'Debug Status Asse Puro' =
+			
+			"Asse: [" & SELECTEDVALUE ( 'Workflow Fasi MBI Semplificate'[Status], "BLANK" ) & "]"
+		displayFolder: Executive Journey
+		lineageTag: 259b9841-8afc-4b62-946d-6fcf519758d4
+
+	measure 'Conteggio Pass-Through Semplificato 2' = ```
+			
+			VAR IsSingleIssueSelected =
+			    ISFILTERED('Jira Macro Business Initiative'[Issue key])
+			    &&
+			    CALCULATE(
+			        DISTINCTCOUNT('Jira Macro Business Initiative'[Issue key]),
+			        ALLSELECTED('Jira Macro Business Initiative')
+			    ) = 1
+			VAR Risultato =
+			    CALCULATE(
+			        DISTINCTCOUNT('MBI Transition Status'[issue_key]),
+			        FILTER(
+			            ALL('MBI Transition Status'),
+			            'MBI Transition Status'[From OrdineBarra Semplificato]
+			                = SELECTEDVALUE('Workflow Fasi MBI Semplificate'[OrdineBarra])
+			            &&
+			            'MBI Transition Status'[To OrdineBarra Semplificato]
+			                <> SELECTEDVALUE('Workflow Fasi MBI Semplificate'[OrdineBarra])
+			        )
+			    )
+			RETURN
+			    IF(
+			        IsSingleIssueSelected && Risultato > 1,
+			        BLANK(),
+			        Risultato
+			    )
+			
+			    /*
+			    Conteggio Pass-Through Semplificato 2 = 
+			VAR IsSingleIssueSelected =
+			    ISFILTERED('Jira Macro Business Initiative'[Issue key])
+			    &&
+			    CALCULATE(
+			        DISTINCTCOUNT('Jira Macro Business Initiative'[Issue key]),
+			        ALLSELECTED('Jira Macro Business Initiative')
+			    ) = 1
+			
+			VAR OrdineFaseAsse =
+			    SELECTEDVALUE('Workflow Fasi MBI Semplificate'[OrdineBarra])
+			
+			VAR StatoCorrenteIssue =
+			    SELECTEDVALUE('Jira Macro Business Initiative'[Issue status])
+			
+			VAR OrdineFaseCorrenteIssue =
+			    LOOKUPVALUE(
+			        'Workflow Fasi MBI Semplificate'[OrdineBarra],
+			        'Workflow Fasi MBI Semplificate'[Status],
+			        StatoCorrenteIssue
+			    )
+			
+			VAR Risultato =
+			    CALCULATE(
+			        DISTINCTCOUNT('MBI Transition Status'[issue_key]),
+			        FILTER(
+			            ALL('MBI Transition Status'),
+			            'MBI Transition Status'[From OrdineBarra Semplificato]
+			                = SELECTEDVALUE('Workflow Fasi MBI Semplificate'[OrdineBarra])
+			            &&
+			            'MBI Transition Status'[To OrdineBarra Semplificato]
+			                <> SELECTEDVALUE('Workflow Fasi MBI Semplificate'[OrdineBarra])
+			        )
+			    )
+			
+			RETURN
+			    IF(
+			        IsSingleIssueSelected
+			            && (
+			                OrdineFaseAsse > OrdineFaseCorrenteIssue   -- fase successiva a quella attuale
+			                || Risultato > 1
+			            ),
+			        BLANK(),
+			        Risultato
+			    )
+			    */
+			```
+		formatString: 0
+		displayFolder: Executive Journey
+		lineageTag: a5ed113b-fda2-48f2-ab59-5f0b2d5b202b
+
+	measure 'MBI Tempo Storico Medio Fisso' =
+			
+			VAR FaseCorrente =
+			    SELECTEDVALUE(
+			        'Workflow Fasi MBI Semplificate'[OrdineFase]
+			    )
+			RETURN
+			CALCULATE(
+			    [MBI Tempo Storico Medio nello Stato Semplificato],
+			    REMOVEFILTERS('Jira Macro Business Initiative'),
+			    REMOVEFILTERS('MBI Transition Status'),
+			    TREATAS(
+			        { FaseCorrente },
+			        'Workflow Fasi MBI Semplificate'[OrdineFase]
+			    )
+			)
+		displayFolder: Executive Journey
+		lineageTag: a6f108b2-30d7-441b-9019-b01f56fd04f8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Giorni Issue in Stato (verifica)' =
+			
+			VAR IssueCorrente =
+			    SELECTEDVALUE ( 'MBI Transition Status'[issue_key] )
+			
+			VAR OrdineFaseCorrente =
+			    SELECTEDVALUE ( 'Workflow Fasi MBI Semplificate'[OrdineFase] )
+			
+			RETURN
+			CALCULATE (
+			    VAR TransizioniEntrata =
+			        SELECTCOLUMNS (
+			            FILTER (
+			                ALL ( 'MBI Transition Status' ),
+			                'MBI Transition Status'[To OrdineFase Semplificate] = OrdineFaseCorrente
+			                    && 'MBI Transition Status'[From OrdineFase Semplificate] <> OrdineFaseCorrente
+			                    && 'MBI Transition Status'[issue_key] = IssueCorrente
+			            ),
+			            "ie_data", 'MBI Transition Status'[transition_date]
+			        )
+			    VAR TransizioniUscita =
+			        SELECTCOLUMNS (
+			            FILTER (
+			                ALL ( 'MBI Transition Status' ),
+			                'MBI Transition Status'[From OrdineFase Semplificate] = OrdineFaseCorrente
+			                    && 'MBI Transition Status'[To OrdineFase Semplificate] <> OrdineFaseCorrente
+			                    && 'MBI Transition Status'[issue_key] = IssueCorrente
+			            ),
+			            "iu_data", 'MBI Transition Status'[transition_date]
+			        )
+			    RETURN
+			    SUMX (
+			        TransizioniEntrata,
+			        VAR dataEntrata = [ie_data]
+			        VAR primaUscita = MINX ( FILTER ( TransizioniUscita, [iu_data] > dataEntrata ), [iu_data] )
+			        RETURN IF ( NOT ISBLANK ( primaUscita ), DATEDIFF ( dataEntrata, primaUscita, DAY ) )
+			    )
+			)
+		formatString: 0
+		lineageTag: 8f7a87fc-fd21-44b4-b357-aa02c779f457
+
+	measure 'IE Passata da Stato (flag)' =
+			
+			VAR IssueCorrente =
+			    SELECTEDVALUE ( 'MBI Transition Status'[issue_key] )
+			
+			VAR OrdineBarraCorrente =
+			    SELECTEDVALUE ( 'Workflow Fasi MBI Semplificate'[OrdineBarra] )
+			
+			RETURN
+			CALCULATE (
+			    COUNTROWS (
+			        FILTER (
+			            ALL ( 'MBI Transition Status' ),
+			            'MBI Transition Status'[From OrdineBarra Semplificato] = OrdineBarraCorrente
+			                && 'MBI Transition Status'[To OrdineBarra Semplificato] <> OrdineBarraCorrente
+			                && 'MBI Transition Status'[issue_key] = IssueCorrente
+			        )
+			    )
+			)
+		formatString: 0
+		lineageTag: a201db78-a40e-4665-a929-5ec4bf8db158
+
+	measure 'MBI Tempo Storico Medio nello Stato Semplificato Leam Time' =
+			
+			VAR OrdineFaseCorrente =
+			    SELECTEDVALUE (
+			        'Workflow Fasi MBI Semplificate'[OrdineFase]
+			    )
+			
+			VAR TransizioniEntrata =
+			    SELECTCOLUMNS (
+			        FILTER (
+			            ALL ( 'MBI Transition Status' ),
+			            'MBI Transition Status'[To OrdineFase Semplificate] = OrdineFaseCorrente
+			                &&
+			            'MBI Transition Status'[From OrdineFase Semplificate] <> OrdineFaseCorrente
+			        ),
+			        "ie_issue_key", 'MBI Transition Status'[issue_key],
+			        "ie_data", 'MBI Transition Status'[transition_date]
+			    )
+			
+			VAR TransizioniUscita =
+			    SELECTCOLUMNS (
+			        FILTER (
+			            'MBI Transition Status',
+			            'MBI Transition Status'[From OrdineFase Semplificate] = OrdineFaseCorrente
+			                &&
+			            'MBI Transition Status'[To OrdineFase Semplificate] <> OrdineFaseCorrente
+			        ),
+			        "iu_issue_key", 'MBI Transition Status'[issue_key],
+			        "iu_data", 'MBI Transition Status'[transition_date]
+			    )
+			
+			VAR IssueConSoggiorni =
+			    CALCULATETABLE (
+			        VALUES ( 'MBI Transition Status'[issue_key] ),
+			        FILTER (
+			            ALL ( 'MBI Transition Status' ),
+			            'MBI Transition Status'[To OrdineFase Semplificate] = OrdineFaseCorrente
+			                ||
+			            'MBI Transition Status'[From OrdineFase Semplificate] = OrdineFaseCorrente
+			        )
+			    )
+			
+			VAR tabellaGiorni =
+			    ADDCOLUMNS (
+			        IssueConSoggiorni,
+			        "giorni_totali",
+			        VAR issueKey = 'MBI Transition Status'[issue_key]
+			        VAR entrateIssue =
+			            FILTER ( TransizioniEntrata, [ie_issue_key] = issueKey )
+			        VAR usciteIssue =
+			            FILTER ( TransizioniUscita, [iu_issue_key] = issueKey )
+			
+			        RETURN
+			            SUMX (
+			                FILTER (
+			                    entrateIssue,
+			                    VAR dataEntrata = [ie_data]
+			                    RETURN
+			                        COUNTROWS (
+			                            FILTER (
+			                                usciteIssue,
+			                                [iu_data] > dataEntrata
+			                            )
+			                        ) > 0
+			                ),
+			                VAR dataEntrata = [ie_data]
+			                VAR primaUscita =
+			                    MINX (
+			                        FILTER (
+			                            usciteIssue,
+			                            [iu_data] > dataEntrata
+			                        ),
+			                        [iu_data]
+			                    )
+			                RETURN
+			                    DATEDIFF (
+			                        dataEntrata,
+			                        primaUscita,
+			                        DAY
+			                    )
+			            )
+			    )
+			
+			RETURN
+			AVERAGEX (
+			    FILTER (
+			        tabellaGiorni,
+			        NOT ISBLANK ( [giorni_totali] )
+			    ),
+			    [giorni_totali]
+			)
+		displayFolder: Executive Journey
+		lineageTag: 3a5ad22a-b216-43c0-8059-9c2de95319d3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'MBI Giorni Issue Selezionata per Stato TEST' =
+			
+			VAR OrdineBarraCorrente =
+			    SELECTEDVALUE ( 'Workflow Fasi MBI Semplificate'[OrdineBarra] )
+			
+			VAR IssueSelezionata =
+			    SELECTEDVALUE ( 'Jira Macro Business Initiative'[Issue key] )
+			
+			RETURN
+			IF (
+			    NOT ISBLANK ( IssueSelezionata ),
+			
+			    CALCULATE (
+			        VAR TransizioniEntrataDaTransizioni =
+			            SELECTCOLUMNS (
+			                FILTER (
+			                    ALL ( 'MBI Transition Status' ),
+			                    'MBI Transition Status'[To OrdineBarra Semplificato] = OrdineBarraCorrente
+			                        && 'MBI Transition Status'[From OrdineBarra Semplificato] <> OrdineBarraCorrente
+			                        && 'MBI Transition Status'[issue_key] = IssueSelezionata
+			                ),
+			                "ie_data", 'MBI Transition Status'[transition_date]
+			            )
+			
+			        -- Se lo stato è "Open" e l'issue non ha una transizione di entrata registrata,
+			        -- usa la data di creazione come data di ingresso
+			        VAR EntrataDaCreazione =
+			            SELECTCOLUMNS (
+			                FILTER (
+			                    ALL ( 'Jira Macro Business Initiative' ),
+			                    OrdineBarraCorrente = 1
+			                        && 'Jira Macro Business Initiative'[Issue key] = IssueSelezionata
+			                        && COUNTROWS ( TransizioniEntrataDaTransizioni ) = 0
+			                ),
+			                "ie_data", 'Jira Macro Business Initiative'[Issue created date]
+			            )
+			
+			        VAR TransizioniEntrata =
+			            UNION ( TransizioniEntrataDaTransizioni, EntrataDaCreazione )
+			
+			        VAR TransizioniUscita =
+			            SELECTCOLUMNS (
+			                FILTER (
+			                    ALL ( 'MBI Transition Status' ),
+			                    'MBI Transition Status'[From OrdineBarra Semplificato] = OrdineBarraCorrente
+			                        && 'MBI Transition Status'[To OrdineBarra Semplificato] <> OrdineBarraCorrente
+			                        && 'MBI Transition Status'[issue_key] = IssueSelezionata
+			                ),
+			                "iu_data", 'MBI Transition Status'[transition_date]
+			            )
+			
+			        RETURN
+			        SUMX (
+			            TransizioniEntrata,
+			            VAR dataEntrata = [ie_data]
+			            VAR primaUscita =
+			                MINX (
+			                    FILTER ( TransizioniUscita, [iu_data] > dataEntrata ),
+			                    [iu_data]
+			                )
+			            RETURN
+			                IF (
+			                    NOT ISBLANK ( primaUscita ),
+			                    DATEDIFF ( dataEntrata, primaUscita, DAY ),
+			                    DATEDIFF ( dataEntrata, TODAY (), DAY )
+			                )
+			        ),
+			        ALL ()
+			    ),
+			
+			    [MBI Aging Medio Corrente nello Stato Semplificato]
+			)
+		formatString: 0
+		lineageTag: 4b27d2cb-b4c2-4648-b15e-e166652a61b3
+
+	measure 'MBI Aging Medio Corrente nello Stato Executive' =
+			
+			VAR OrdineFaseCorrente =
+			    SELECTEDVALUE (
+			        'Workflow Fasi MBI Semplificate'[OrdineFase]
+			    )
+			
+			VAR StatiDellaFase =
+			    CALCULATETABLE (
+			        VALUES ( 'Workflow Fasi MBI Semplificate'[Status] ),
+			        FILTER (
+			            ALL ( 'Workflow Fasi MBI Semplificate' ),
+			            'Workflow Fasi MBI Semplificate'[OrdineFase]
+			                = OrdineFaseCorrente
+			        )
+			    )
+			
+			VAR IssueAttualmenteInFase =
+			    CALCULATETABLE (
+			        VALUES ( 'Jira Macro Business Initiative'[Issue key] ),
+			        TREATAS (
+			            StatiDellaFase,
+			            'Jira Macro Business Initiative'[Issue status]
+			        )
+			    )
+			
+			VAR TabellaAging =
+			    ADDCOLUMNS (
+			        IssueAttualmenteInFase,
+			
+			        "DataEntrataFase",
+			
+			        VAR CurrentIssue =
+			            'Jira Macro Business Initiative'[Issue key]
+			
+			        VAR UltimaEntrata =
+			            CALCULATE (
+			                MAX ( 'MBI Transition Status'[transition_date] ),
+			
+			                FILTER (
+			                    ALL ( 'MBI Transition Status' ),
+			                    'MBI Transition Status'[issue_key] = CurrentIssue
+			                        &&
+			                    'MBI Transition Status'[To OrdineFase Semplificate]
+			                        = OrdineFaseCorrente
+			                        &&
+			                    'MBI Transition Status'[From OrdineFase Semplificate]
+			                        <> OrdineFaseCorrente
+			                )
+			            )
+			
+			        VAR CreatedDate =
+			            CALCULATE (
+			                MAX ( 'Jira Macro Business Initiative'[created_date] )
+			            )
+			
+			        RETURN
+			            IF (
+			                OrdineFaseCorrente = 1,
+			                COALESCE ( UltimaEntrata, CreatedDate ),
+			                UltimaEntrata
+			            )
+			    )
+			
+			RETURN
+			AVERAGEX (
+			    FILTER (
+			        TabellaAging,
+			        NOT ISBLANK ( [DataEntrataFase] )
+			    ),
+			    DATEDIFF (
+			        [DataEntrataFase],
+			        TODAY (),
+			        DAY
+			    )
+			)
+		displayFolder: Executive Journey
+		lineageTag: 096ef9fe-b0ea-47e9-af25-e9307d9422f7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'MBI Tempo Storico Medio nello Stato Executive' =
+			
+			VAR OrdineFaseCorrente =
+			    SELECTEDVALUE (
+			        'Workflow Fasi MBI Semplificate'[OrdineFase]
+			    )
+			
+			VAR TransizioniEntrata =
+			    SELECTCOLUMNS (
+			        FILTER (
+			            ALL ( 'MBI Transition Status' ),
+			            'MBI Transition Status'[To OrdineFase Semplificate] = OrdineFaseCorrente
+			                &&
+			            'MBI Transition Status'[From OrdineFase Semplificate] <> OrdineFaseCorrente
+			        ),
+			        "ie_issue_key", 'MBI Transition Status'[issue_key],
+			        "ie_data", 'MBI Transition Status'[transition_date]
+			    )
+			
+			VAR TransizioniUscita =
+			    SELECTCOLUMNS (
+			        FILTER (
+			            'MBI Transition Status',
+			            'MBI Transition Status'[From OrdineFase Semplificate] = OrdineFaseCorrente
+			                &&
+			            'MBI Transition Status'[To OrdineFase Semplificate] <> OrdineFaseCorrente
+			        ),
+			        "iu_issue_key", 'MBI Transition Status'[issue_key],
+			        "iu_data", 'MBI Transition Status'[transition_date]
+			    )
+			
+			VAR IssueConSoggiorni =
+			    CALCULATETABLE (
+			        VALUES ( 'MBI Transition Status'[issue_key] ),
+			        FILTER (
+			            ALL ( 'MBI Transition Status' ),
+			            'MBI Transition Status'[To OrdineFase Semplificate] = OrdineFaseCorrente
+			                ||
+			            'MBI Transition Status'[From OrdineFase Semplificate] = OrdineFaseCorrente
+			        )
+			    )
+			
+			VAR tabellaGiorni =
+			    ADDCOLUMNS (
+			        IssueConSoggiorni,
+			        "giorni_totali",
+			        VAR issueKey = 'MBI Transition Status'[issue_key]
+			        VAR entrateIssue =
+			            FILTER ( TransizioniEntrata, [ie_issue_key] = issueKey )
+			        VAR usciteIssue =
+			            FILTER ( TransizioniUscita, [iu_issue_key] = issueKey )
+			
+			        RETURN
+			            SUMX (
+			                FILTER (
+			                    entrateIssue,
+			                    VAR dataEntrata = [ie_data]
+			                    RETURN
+			                        COUNTROWS (
+			                            FILTER (
+			                                usciteIssue,
+			                                [iu_data] > dataEntrata
+			                            )
+			                        ) > 0
+			                ),
+			                VAR dataEntrata = [ie_data]
+			                VAR primaUscita =
+			                    MINX (
+			                        FILTER (
+			                            usciteIssue,
+			                            [iu_data] > dataEntrata
+			                        ),
+			                        [iu_data]
+			                    )
+			                RETURN
+			                    DATEDIFF (
+			                        dataEntrata,
+			                        primaUscita,
+			                        DAY
+			                    )
+			            )
+			    )
+			
+			RETURN
+			AVERAGEX (
+			    FILTER (
+			        tabellaGiorni,
+			        NOT ISBLANK ( [giorni_totali] )
+			    ),
+			    [giorni_totali]
+			)
+		displayFolder: Executive Journey
+		lineageTag: 6c5ec4ef-a65a-491f-a4fe-2a16a04c14bb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column issue_key
+		lineageTag: 13ce672c-e46e-4f24-b8e1-954b05cd3017
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[issue_key]
+
+		annotation SummarizationSetBy = Automatic
+
+	column issue_type
+		lineageTag: 9bac787d-1ef8-4e05-b0a5-59664cb38020
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[issue_type]
+
+		annotation SummarizationSetBy = Automatic
+
+	column transition_date
+		formatString: General Date
+		lineageTag: 9965e6fd-06fa-4714-887d-64c0869f5383
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[transition_date]
+
+		variation Variation
+			isDefault
+			relationship: ebb41905-57cf-48c4-89e1-ccc56695c8d2
+			defaultHierarchy: LocalDateTable_88048d5a-5b82-4c90-9877-df10709653b9.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_status
+		lineageTag: a09affcf-a58d-4d45-b0e6-b8b333d7a477
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[from_status]
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_status
+		lineageTag: d3d71ea5-9e17-404a-b55c-f80522a6b12d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[to_status]
+
+		annotation SummarizationSetBy = Automatic
+
+	column username
+		lineageTag: 142d7cd2-5959-414d-a125-329306f28f7e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[username]
+
+		annotation SummarizationSetBy = Automatic
+
+	column display_name
+		lineageTag: ef4d8464-cc4f-4182-a7eb-d8a52cdbea7f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[display_name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Giorni da In Progress a Completed'
+		isHidden
+		lineageTag: ea4b4a41-d969-4714-99ec-cc4ebf176eab
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[Giorni da In Progress a Completed]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Lead Time - OpenApproved' = ```
+			
+			// cerca la data più vecchia dell'issue nello stato from_status
+			VAR _startDate = 
+			    CALCULATE (
+			         MIN ( 'MBI Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'MBI Transition Status', 'MBI Transition Status'[issue_key] ),
+			        'MBI Transition Status'[from_status] = "Open"
+			    )
+			
+			-- cerco l'ultima volta che la issue è arrivata nello stato to_status
+			VAR _lastDate = 
+			    CALCULATE (
+			        MAX ( 'MBI Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'MBI Transition Status', 'MBI Transition Status'[issue_key] ),
+			        'MBI Transition Status'[to_status] = "Approved",
+			        'MBI Transition Status'[from_status] <> "Approved" // evita duplicati se lo stato di partenza e arrivo coincidono
+			    )
+			
+			// conta i giorni che intercorrono da from_status a to_status (conta anche i giorni degli stati intermedi)
+			RETURN 
+			IF ( 
+			    'MBI Transition Status'[to_status] = "Approved" 
+			    && 'MBI Transition Status'[transition_date] = _lastDate
+			    && NOT ISBLANK ( _startDate ),
+			    'MBI Transition Status'[transition_date] - _startDate,
+			    BLANK()
+			)
+			```
+		dataType: double
+		formatString: 0
+		lineageTag: 54d8ed8c-0876-405d-83cb-8069e3782a1d
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column MeseAnno_ = ```
+			
+			VAR y = CONVERT(YEAR ( 'MBI Transition Status'[transition_date] ), STRING)
+			VAR m = MONTH ( 'MBI Transition Status'[transition_date]  )
+			VAR mShort =
+			    SWITCH (
+			        m,
+			        1, "01", 2, "02", 3, "03", 4, "04", 5, "05", 6, "06",
+			        7, "07", 8, "08", 9, "09", 10, "10", 11, "11", 12, "12"
+			    )
+			RETURN y & "-" &  mShort 
+			
+			
+			```
+		lineageTag: 3d5623f3-4560-484f-b14e-760e703660ee
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Lead Time - HighlevelFunctionalApproved' = ```
+			
+			// cerca la data più vecchia dell'issue nello stato from_status
+			VAR _startDate = 
+			    CALCULATE (
+			        MIN ( 'MBI Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'MBI Transition Status', 'MBI Transition Status'[issue_key] ),
+			        'MBI Transition Status'[from_status] = "High-Level Functional Requirement"
+			    )
+			
+			-- cerco l'ultima volta che la issue è arrivata nello stato to_status
+			VAR _lastDate = 
+			    CALCULATE (
+			        MAX ( 'MBI Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'MBI Transition Status', 'MBI Transition Status'[issue_key] ),
+			        'MBI Transition Status'[to_status] = "Approved",
+			        'MBI Transition Status'[from_status] <> "Approved" // evita duplicati se lo stato di partenza e arrivo coincidono
+			    )
+			
+			// conta i giorni che intercorrono da from_status a to_status (conta anche i giorni degli stati intermedi)
+			RETURN 
+			IF ( 
+			    'MBI Transition Status'[to_status] = "Approved" 
+			    && 'MBI Transition Status'[transition_date] = _lastDate
+			    && NOT ISBLANK ( _startDate ),
+			    'MBI Transition Status'[transition_date] - _startDate,
+			    BLANK()
+			)
+			```
+		dataType: double
+		lineageTag: a4b7de00-b1d5-4ab5-b787-80e2fc9d5c70
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Lead Time - TechEvaluationEstimationDone' = ```
+			
+			// cerca la data più vecchia dell'issue nello stato from_status
+			VAR _startDate = 
+			    CALCULATE (
+			        MIN ( 'MBI Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'MBI Transition Status', 'MBI Transition Status'[issue_key] ),
+			        'MBI Transition Status'[from_status] = "Tech Evaluation"
+			    )
+			
+			-- cerco l'ultima volta che la issue è arrivata nello stato to_status
+			VAR _lastDate = 
+			    CALCULATE (
+			        MAX ( 'MBI Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'MBI Transition Status', 'MBI Transition Status'[issue_key] ),
+			        'MBI Transition Status'[to_status] = "Estimation Done"
+			        //'MBI Transition Status'[from_status] <> "Estimation Done" // evita duplicati se lo stato di partenza e arrivo coincidono
+			    )
+			
+			// conta i giorni che intercorrono da from_status a to_status (conta anche i giorni degli stati intermedi)
+			RETURN 
+			IF ( 
+			    'MBI Transition Status'[to_status] = "Estimation Done" 
+			    && 'MBI Transition Status'[transition_date] = _lastDate
+			    && NOT ISBLANK ( _startDate ),
+			    'MBI Transition Status'[transition_date] - _startDate,
+			    BLANK()
+			)
+			```
+		dataType: double
+		lineageTag: 2b31c659-87f7-4eba-8370-bcef8fff7b67
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Lead Time - Open-HighlevelFunctional' = ```
+			
+			// cerca la data più vecchia dell'issue nello stato from_status
+			VAR _startDate = 
+			    CALCULATE (
+			        MIN ( 'MBI Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'MBI Transition Status', 'MBI Transition Status'[issue_key] ),
+			        'MBI Transition Status'[from_status] = "Open"
+			    )
+			
+			-- cerco l'ultima volta che la issue è arrivata nello stato to_status
+			VAR _lastDate = 
+			    CALCULATE (
+			        MAX ( 'MBI Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'MBI Transition Status', 'MBI Transition Status'[issue_key] ),
+			        'MBI Transition Status'[to_status] = "High-Level Functional Requirement",
+			        'MBI Transition Status'[from_status] <> "High-Level Functional Requirement" // evita duplicati se lo stato di partenza e arrivo coincidono
+			    )
+			
+			// conta i giorni che intercorrono da from_status a to_status (conta anche i giorni degli stati intermedi)
+			RETURN 
+			IF ( 
+			    'MBI Transition Status'[to_status] = "High-Level Functional Requirement" 
+			    && 'MBI Transition Status'[transition_date] = _lastDate
+			    && NOT ISBLANK ( _startDate ),
+			    'MBI Transition Status'[transition_date] - _startDate,
+			    BLANK()
+			)
+			```
+		dataType: double
+		lineageTag: c24f4e04-64f1-4061-8e13-af2d54567dcf
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Lead Time - HighLevelFunctionalRequirement-TechEvaluation' = ```
+			
+			VAR _startDate = 
+			    CALCULATE (
+			         MIN ( 'MBI Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'MBI Transition Status', 'MBI Transition Status'[issue_key] ),
+			        'MBI Transition Status'[from_status] = "High-Level Functional Requirement"
+			    )
+			
+			VAR _lastDate = 
+			    CALCULATE (
+			        MAX ( 'MBI Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'MBI Transition Status', 'MBI Transition Status'[issue_key] ),
+			        'MBI Transition Status'[to_status] = "Tech Evaluation",
+			        'MBI Transition Status'[from_status] <> "Tech Evaluation" 
+			    )
+			
+			RETURN 
+			IF ( 
+			    'MBI Transition Status'[to_status] = "Tech Evaluation" 
+			    && 'MBI Transition Status'[transition_date] = _lastDate
+			    && NOT ISBLANK ( _startDate ),
+			    'MBI Transition Status'[transition_date] - _startDate,
+			    BLANK()
+			)
+			```
+		dataType: double
+		lineageTag: 51164674-2ead-4871-a1a4-cd5845a44f6b
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Lead Time - EstimationDone-FinancialEvaluation' = ```
+			
+			VAR _startDate = 
+			    CALCULATE (
+			         MIN ( 'MBI Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'MBI Transition Status', 'MBI Transition Status'[issue_key] ),
+			        'MBI Transition Status'[from_status] = "Estimation Done"
+			    )
+			
+			VAR _lastDate = 
+			    CALCULATE (
+			        MAX ( 'MBI Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'MBI Transition Status', 'MBI Transition Status'[issue_key] ),
+			        'MBI Transition Status'[to_status] = "Financial Evaluation",
+			        'MBI Transition Status'[from_status] <> "Financial Evaluation" 
+			    )
+			
+			RETURN 
+			IF ( 
+			    'MBI Transition Status'[to_status] = "Financial Evaluation" 
+			    && 'MBI Transition Status'[transition_date] = _lastDate
+			    && NOT ISBLANK ( _startDate ),
+			    'MBI Transition Status'[transition_date] - _startDate,
+			    BLANK()
+			)
+			```
+		dataType: double
+		lineageTag: 81e4bfb2-9da2-41a9-b1d3-86315f3d516f
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Lead Time - EstimationDoneFinancialEvaluation' = ```
+			
+			// cerca la data più vecchia dell'issue nello stato from_status
+			VAR _startDate = 
+			    CALCULATE (
+			         MIN ( 'MBI Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'MBI Transition Status', 'MBI Transition Status'[issue_key] ),
+			        'MBI Transition Status'[from_status] = "Estimation Done"
+			    )
+			
+			-- cerco l'ultima volta che la issue è arrivata nello stato to_status
+			VAR _lastDate = 
+			    CALCULATE (
+			        MAX ( 'MBI Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'MBI Transition Status', 'MBI Transition Status'[issue_key] ),
+			        'MBI Transition Status'[to_status] = "Financial Evaluation",
+			        'MBI Transition Status'[from_status] <> "Financial Evaluation" // evita duplicati se lo stato di partenza e arrivo coincidono
+			    )
+			
+			// conta i giorni che intercorrono da from_status a to_status (conta anche i giorni degli stati intermedi)
+			RETURN 
+			IF ( 
+			    'MBI Transition Status'[to_status] = "Financial Evaluation" 
+			    && 'MBI Transition Status'[transition_date] = _lastDate
+			    && NOT ISBLANK ( _startDate ),
+			    'MBI Transition Status'[transition_date] - _startDate,
+			    BLANK()
+			)
+			```
+		dataType: double
+		lineageTag: 6ca14493-273c-4600-be17-565f8792ab56
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Lead Time - FinancialEvaluationImManagement' = ```
+			
+			// cerca la data più vecchia dell'issue nello stato from_status
+			VAR _startDate = 
+			    CALCULATE (
+			         MIN ( 'MBI Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'MBI Transition Status', 'MBI Transition Status'[issue_key] ),
+			        'MBI Transition Status'[from_status] = "Financial Evaluation"
+			    )
+			
+			-- cerco l'ultima volta che la issue è arrivata nello stato to_status
+			VAR _lastDate = 
+			    CALCULATE (
+			        MAX ( 'MBI Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'MBI Transition Status', 'MBI Transition Status'[issue_key] ),
+			        'MBI Transition Status'[to_status] = "Im Management",
+			        'MBI Transition Status'[from_status] <> "Im Management" // evita duplicati se lo stato di partenza e arrivo coincidono
+			    )
+			
+			// conta i giorni che intercorrono da from_status a to_status (conta anche i giorni degli stati intermedi)
+			RETURN 
+			IF ( 
+			    'MBI Transition Status'[to_status] = "Im Management" 
+			    && 'MBI Transition Status'[transition_date] = _lastDate
+			    && NOT ISBLANK ( _startDate ),
+			    'MBI Transition Status'[transition_date] - _startDate,
+			    BLANK()
+			)
+			```
+		dataType: double
+		formatString: 0.00
+		lineageTag: 6cd80f55-d21e-41a0-b8dc-202a421d6beb
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Lead Time - ImManagementWaitingForApproval' = ```
+			
+			// cerca la data più vecchia dell'issue nello stato from_status
+			VAR _startDate = 
+			    CALCULATE (
+			         MIN ( 'MBI Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'MBI Transition Status', 'MBI Transition Status'[issue_key] ),
+			        'MBI Transition Status'[from_status] = "Im Management"
+			    )
+			
+			-- cerco l'ultima volta che la issue è arrivata nello stato to_status
+			VAR _lastDate = 
+			    CALCULATE (
+			        MAX ( 'MBI Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'MBI Transition Status', 'MBI Transition Status'[issue_key] ),
+			        'MBI Transition Status'[to_status] = "Waiting for approval",
+			        'MBI Transition Status'[from_status] <> "Waiting for approval" // evita duplicati se lo stato di partenza e arrivo coincidono
+			    )
+			
+			// conta i giorni che intercorrono da from_status a to_status (conta anche i giorni degli stati intermedi)
+			RETURN 
+			IF ( 
+			    'MBI Transition Status'[to_status] = "Waiting for approval" 
+			    && 'MBI Transition Status'[transition_date] = _lastDate
+			    && NOT ISBLANK ( _startDate ),
+			    'MBI Transition Status'[transition_date] - _startDate,
+			    BLANK()
+			)
+			```
+		dataType: double
+		lineageTag: 45ab8ad0-a6fa-491a-b2a4-501df5938be3
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Lead Time - WaitingForApprovalWBEManagement' = ```
+			
+			// cerca la data più vecchia dell'issue nello stato from_status
+			VAR _startDate = 
+			    CALCULATE (
+			         MIN ( 'MBI Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'MBI Transition Status', 'MBI Transition Status'[issue_key] ),
+			        'MBI Transition Status'[from_status] = "Waiting for approval"
+			    )
+			
+			-- cerco l'ultima volta che la issue è arrivata nello stato to_status
+			VAR _lastDate = 
+			    CALCULATE (
+			        MAX ( 'MBI Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'MBI Transition Status', 'MBI Transition Status'[issue_key] ),
+			        'MBI Transition Status'[to_status] = "WBE Management",
+			        'MBI Transition Status'[from_status] <> "WBE Management" // evita duplicati se lo stato di partenza e arrivo coincidono
+			    )
+			
+			// conta i giorni che intercorrono da from_status a to_status (conta anche i giorni degli stati intermedi)
+			RETURN 
+			IF ( 
+			    'MBI Transition Status'[to_status] = "WBE Management" 
+			    && 'MBI Transition Status'[transition_date] = _lastDate
+			    && NOT ISBLANK ( _startDate ),
+			    'MBI Transition Status'[transition_date] - _startDate,
+			    BLANK()
+			)
+			```
+		dataType: double
+		lineageTag: 047b608a-2420-4f14-9301-b389e113af0f
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Lead Time - WBEManagementApproved' = ```
+			
+			// cerca la data più vecchia dell'issue nello stato from_status
+			VAR _startDate = 
+			    CALCULATE (
+			         MIN ( 'MBI Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'MBI Transition Status', 'MBI Transition Status'[issue_key] ),
+			        'MBI Transition Status'[from_status] = "WBE Management"
+			    )
+			
+			-- cerco l'ultima volta che la issue è arrivata nello stato to_status
+			VAR _lastDate = 
+			    CALCULATE (
+			        MAX ( 'MBI Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'MBI Transition Status', 'MBI Transition Status'[issue_key] ),
+			        'MBI Transition Status'[to_status] = "Approved",
+			        'MBI Transition Status'[from_status] <> "Approved" // evita duplicati se lo stato di partenza e arrivo coincidono
+			    )
+			
+			// conta i giorni che intercorrono da from_status a to_status (conta anche i giorni degli stati intermedi)
+			RETURN 
+			IF ( 
+			    'MBI Transition Status'[to_status] = "Approved" 
+			    && 'MBI Transition Status'[transition_date] = _lastDate
+			    && NOT ISBLANK ( _startDate ),
+			    'MBI Transition Status'[transition_date] - _startDate,
+			    BLANK()
+			)
+			```
+		dataType: double
+		lineageTag: 555e4a02-2ef2-4288-bc40-019157860d8a
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Giorni_In_Stato_Colonna =
+			
+			VAR currentIssue = 'MBI Transition Status'[issue_key]
+			VAR currentStatus = 'MBI Transition Status'[to_status]
+			
+			VAR startDate =
+			    CALCULATE(
+			        MIN('MBI Transition Status'[transition_date]),
+			        ALLEXCEPT('MBI Transition Status', 'MBI Transition Status'[issue_key], 'MBI Transition Status'[to_status])
+			    )
+			
+			RETURN
+			IF(
+			    NOT ISBLANK(startDate),
+			    DATEDIFF(startDate, TODAY(), DAY)
+			)
+		formatString: 0
+		displayFolder: Grafico 1
+		lineageTag: eeb3b5cb-bd25-47b0-8f1a-348706c3f17b
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status Tradotto From' =
+			
+			LOOKUPVALUE(
+			    'Workflow Fasi MBI 2'[Status Tradotto],
+			    'Workflow Fasi MBI 2'[Status], 'MBI Transition Status'[from_status]
+			)
+		displayFolder: Grafico 3
+		lineageTag: 945db9b7-00aa-4590-a51d-c2fb8e87ae6f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrdineFrom =
+			
+			LOOKUPVALUE(
+			    'Workflow Fasi MBI 2'[OrdineFase],
+			    'Workflow Fasi MBI 2'[Status], 'MBI Transition Status'[from_status]
+			)
+		formatString: 0
+		displayFolder: Grafico 3
+		lineageTag: 88d91bcb-b1e1-44be-8b62-9d2e4128034a
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrdineTo =
+			
+			LOOKUPVALUE(
+			    'Workflow Fasi MBI 2'[OrdineFase],
+			    'Workflow Fasi MBI 2'[Status], 'MBI Transition Status'[to_status]
+			)
+		formatString: 0
+		displayFolder: Grafico 3
+		lineageTag: 2fe7fff2-76ce-4ae8-9ea1-a4f0368ccb8f
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column ToStatus = 'MBI Transition Status'[to_status]
+		displayFolder: Grafico 3
+		lineageTag: 2e645eae-16bd-4aa0-9a9f-08985f99fff0
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Giorni Rework' =
+			
+			VAR DataUscita = [Data Uscita Rework]
+			VAR DataIngresso = 'MBI Transition Status'[transition_date]
+			RETURN
+			IF(
+			    ISBLANK(DataUscita),
+			    BLANK(),
+			    DATEDIFF(DataIngresso, DataUscita, DAY)
+			)
+		formatString: 0
+		displayFolder: Grafico 3
+		lineageTag: cc3471d5-cab3-4e6d-a42a-81900e0804c2
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsRework =
+			
+			IF(
+			    NOT ISBLANK('MBI Transition Status'[OrdineFrom])
+			    && NOT ISBLANK('MBI Transition Status'[OrdineTo])
+			    && 'MBI Transition Status'[OrdineTo] < 'MBI Transition Status'[OrdineFrom],
+			    1, 0
+			)
+		formatString: 0
+		displayFolder: Grafico 3
+		lineageTag: 988964b6-1fc1-4567-bed3-9d17e75c4a46
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status Tradotto To' =
+			
+			LOOKUPVALUE(
+			    'Workflow Fasi MBI 2'[Status Tradotto],
+			    'Workflow Fasi MBI 2'[Status], 'MBI Transition Status'[to_status]
+			)
+		displayFolder: Grafico 2
+		lineageTag: 26c739fa-7ef8-4228-9975-120f038fdd50
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Journey Status' = IF ([Somma dei tempi nello stato], [Somma dei tempi nello stato], 0)
+		formatString: 0
+		displayFolder: Grafico 2
+		lineageTag: 8c405b8f-46c6-4e26-b329-f4a6a3001167
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Issue name' =
+			
+			LOOKUPVALUE(
+			    'Jira Macro Business Initiative'[Issue Name],
+			    'Jira Macro Business Initiative'[Issue key], 'MBI Transition Status'[issue_key]
+			)
+		lineageTag: d28ce7b4-e9e7-4407-b399-dc572324601d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column project_key =
+			
+			LOOKUPVALUE(
+			    'Jira Macro Business Initiative'[Project Key],
+			    'Jira Macro Business Initiative'[Issue key], 'MBI Transition Status'[issue_key]
+			)
+		lineageTag: aed1694e-09f9-422e-9dac-0384fbc37b93
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'From OrdineFase Semplificate' =
+			
+			LOOKUPVALUE (
+			    'Workflow Fasi MBI Semplificate'[OrdineFase],
+			    'Workflow Fasi MBI Semplificate'[Status],
+			    'MBI Transition Status'[from_status]
+			)
+		formatString: 0
+		displayFolder: Executive Journey
+		lineageTag: ae9e5fa2-3075-4c62-adb4-a5b32f81e71d
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'To OrdineFase Semplificate' =
+			
+			LOOKUPVALUE (
+			    'Workflow Fasi MBI Semplificate'[OrdineFase],
+			    'Workflow Fasi MBI Semplificate'[Status],
+			    'MBI Transition Status'[to_status]
+			)
+		formatString: 0
+		displayFolder: Executive Journey
+		lineageTag: 421de99d-61eb-4e99-b57c-34a75b336eda
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'From OrdineBarra Semplificato' =
+			
+			LOOKUPVALUE (
+			    'Workflow Fasi MBI Semplificate'[OrdineBarra],
+			    'Workflow Fasi MBI Semplificate'[Status], 'MBI Transition Status'[from_status]
+			)
+		formatString: 0
+		displayFolder: Executive Journey
+		lineageTag: 58663efa-87bc-4878-b6d9-025f4eeba55c
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'To OrdineBarra Semplificato' =
+			
+			LOOKUPVALUE (
+			    'Workflow Fasi MBI Semplificate'[OrdineBarra],
+			    'Workflow Fasi MBI Semplificate'[Status], 'MBI Transition Status'[to_status]
+			)
+		formatString: 0
+		displayFolder: Executive Journey
+		lineageTag: 07871ed7-5ddd-4f65-a5f9-baa23780548f
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'MBI Transition Status' = calculated
+		mode: import
+		source = FILTER('Jira Change Status IE FD MBI BF', 'Jira Change Status IE FD MBI BF'[issue_type] = "Macro Business Initiative")
+
+	annotation PBI_Id = 0a455d80b1eb4d23810a1fd60af08df8
+

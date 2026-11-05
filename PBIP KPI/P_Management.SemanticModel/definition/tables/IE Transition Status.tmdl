@@ -1,0 +1,1590 @@
+table 'IE Transition Status'
+	lineageTag: 93bfc120-4636-46d9-914c-5064bb5e1a40
+
+	measure 'Filtro_Tabella_Dinamica IE' = ```
+			
+			VAR _End = [ToStatus_IE]
+			
+			-- Recuperiamo l'intervallo del mese selezionato nel report
+			VAR _MinDate = MIN('IE Transition Status'[transition_date]) 
+			VAR _MaxDate = MAX('IE Transition Status'[transition_date])
+			
+			RETURN
+			IF( 
+			    -- 1. Esiste la data di fine?
+			    NOT ISBLANK(_End) 
+			    
+			    -- 2. La data di fine (Approved) è nel mese selezionato?
+			    && _End >= _MinDate 
+			    && _End <= _MaxDate, 
+			    1, 
+			    0 
+			)
+			```
+		formatString: 0
+		lineageTag: d0411489-48da-44c2-8744-384189872f70
+
+	measure 'IE Data Ingresso' =
+			
+			VAR IssueCorrente = SELECTEDVALUE('Jira Initiative Estimation'[issue_key])
+			VAR StatoCorrente = SELECTEDVALUE('Jira Initiative Estimation'[issue_status])
+			
+			VAR DataDaTransizioni =
+			    CALCULATE(
+			        MAX('IE Transition Status'[transition_date]),
+			        FILTER(
+			            ALL('IE Transition Status'),
+			            'IE Transition Status'[issue_key] = IssueCorrente
+			                && 'IE Transition Status'[to_status] = StatoCorrente
+			                && 'IE Transition Status'[from_status] <> StatoCorrente
+			        )
+			    )
+			
+			VAR DataCreazioneOpen =
+			    CALCULATE(
+			        MAX('Jira Initiative Estimation'[issue_created_date]),
+			        'Jira Initiative Estimation'[issue_key] = IssueCorrente
+			    )
+			
+			RETURN
+			IF(
+			    StatoCorrente = "Open",// && ISBLANK(DataDaTransizioni),
+			    DataCreazioneOpen,
+			    DataDaTransizioni
+			)
+		formatString: General Date
+		displayFolder: OP34 MBI Journey
+		lineageTag: a2da9600-972e-491c-806e-ebc361f60c1f
+
+	measure 'IE conteggio giorni' =
+			
+			
+			VAR issueKey = SELECTEDVALUE('Jira Initiative Estimation'[issue_key])
+			VAR currentStatus = SELECTEDVALUE('Jira Initiative Estimation'[issue_status])
+			
+			VAR startDate =
+			    CALCULATE(
+			        MIN('IE Transition Status'[transition_date]),
+			        FILTER(
+			            ALL('IE Transition Status'),
+			            'IE Transition Status'[issue_key] = issueKey
+			                && 'IE Transition Status'[to_status] = currentStatus
+			        )
+			    )
+			
+			VAR DataCreazioneOpen =
+			    CALCULATE(
+			        MAX('Jira Initiative Estimation'[issue_created_date]),
+			        REMOVEFILTERS('Jira Initiative Estimation'),
+			        'Jira Initiative Estimation'[issue_key] = issueKey
+			    )
+			
+			VAR startDateFinale =
+			    IF(
+			        currentStatus = "Open",
+			        DataCreazioneOpen,
+			        startDate
+			    )
+			
+			RETURN
+			IF(
+			    currentStatus = "Done",
+			    0,
+			    IF(
+			        NOT ISBLANK(startDateFinale),
+			        DATEDIFF(startDateFinale, TODAY(), DAY),
+			        BLANK()
+			    )
+			)
+		formatString: 0
+		displayFolder: OP34 MBI Journey
+		lineageTag: 7caae89e-92e3-44d1-8359-8d2089ae27f4
+
+	measure 'IE Media giorni in stato' =
+			
+			AVERAGEX(
+			    VALUES('Jira Initiative Estimation'[issue_key]),
+			    CALCULATE(MIN('IE Transition Status'[IE Giorni nello stato]))
+			)
+		displayFolder: OP34 MBI Journey
+		lineageTag: 8baa31fc-ebe7-4b20-9a5d-3ce67b687ee1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Roles IE' =
+			
+			VAR _username = SELECTEDVALUE('IE Transition Status'[username])
+			VAR _projectKey = SELECTEDVALUE('MBI Transition Status'[project_key])
+			RETURN
+			CALCULATE(
+			    CONCATENATEX(VALUES('Jira User Role'[role_name]), 'Jira User Role'[role_name], ", "),
+			    'Jira User Role'[username] = _username,
+			    'Jira User Role'[project_key] = _projectKey
+			)
+		lineageTag: efbd1cfe-1f33-4d3c-94ce-f6848b8e68c7
+
+	measure 'IE Data Uscita' =
+			
+			VAR IssueCorrente = MAX('Jira Initiative Estimation'[issue_key])
+			VAR StatoCorrente = MAX('Jira Initiative Estimation'[issue_status])
+			
+			VAR FaseCorrente =
+			    LOOKUPVALUE(
+			        'Workflow Fasi IE 2'[Status Tradotto],
+			        'Workflow Fasi IE 2'[Status], StatoCorrente
+			    )
+			
+			VAR StatiDellaFase =
+			    CALCULATETABLE(
+			        VALUES('Workflow Fasi IE 2'[Status]),
+			        FILTER(
+			            ALL('Workflow Fasi IE 2'),
+			            'Workflow Fasi IE 2'[Status Tradotto] = FaseCorrente
+			        )
+			    )
+			
+			VAR DataIngresso = [IE Data Ingresso]
+			
+			RETURN
+			CALCULATE(
+			    MIN('IE Transition Status'[transition_date]),
+			    FILTER(
+			        ALL('IE Transition Status'),
+			        'IE Transition Status'[issue_key] = IssueCorrente
+			            && 'IE Transition Status'[transition_date] > DataIngresso
+			            && 'IE Transition Status'[from_status] IN StatiDellaFase
+			            && NOT('IE Transition Status'[to_status] IN StatiDellaFase)
+			    )
+			)
+		formatString: General Date
+		displayFolder: OP34 MBI Journey
+		lineageTag: b1b8a5c9-e790-48a5-96c0-1806acd6b79e
+
+	measure 'Data Ingresso Stato IE' =
+			
+			VAR issueKey = SELECTEDVALUE('IE Transition Status'[issue_key])
+			VAR StatusTradotto = SELECTEDVALUE('Workflow Fasi IE 2'[Status Tradotto])
+			
+			VAR StatiDellaFase =
+			    CALCULATETABLE(
+			        VALUES('Workflow Fasi IE 2'[Status]),
+			        FILTER(
+			            ALL('Workflow Fasi IE 2'),
+			            'Workflow Fasi IE 2'[Status Tradotto] = StatusTradotto
+			        )
+			    )
+			
+			VAR DataCreazioneOpen =
+			    CALCULATE(
+			        MIN('Jira Initiative Estimation'[issue_start_date]),
+			        REMOVEFILTERS('Jira Initiative Estimation'),
+			        'Jira Initiative Estimation'[issue_key] = issueKey
+			    )
+			
+			VAR DataDaTransizioni =
+			    CALCULATE(
+			        MIN('IE Transition Status'[transition_date]),
+			        FILTER(
+			            ALL('IE Transition Status'),
+			            'IE Transition Status'[issue_key] = issueKey
+			                && 'IE Transition Status'[to_status] IN StatiDellaFase
+			                && NOT('IE Transition Status'[from_status] IN StatiDellaFase)
+			                && 'IE Transition Status'[from_status] <> 'IE Transition Status'[to_status]
+			        )
+			    )
+			
+			RETURN
+			IF(
+			    StatusTradotto = "IE Open",
+			    DataCreazioneOpen,
+			    DataDaTransizioni
+			)
+		formatString: General Date
+		displayFolder: Grafico Journey
+		lineageTag: e566af8b-298c-44f2-bc80-09267e09278e
+
+	measure 'Data Uscita Stato IE' =
+			
+			VAR issueKey = SELECTEDVALUE('IE Transition Status'[issue_key])
+			VAR StatusTradotto = SELECTEDVALUE('Workflow Fasi IE 2'[Status Tradotto])
+			VAR StatiDellaFase =
+			    CALCULATETABLE(
+			        VALUES('Workflow Fasi IE 2'[Status]),
+			        FILTER(
+			            ALL('Workflow Fasi IE 2'),
+			            'Workflow Fasi IE 2'[Status Tradotto] = StatusTradotto
+			        )
+			    )
+			RETURN
+			CALCULATE(
+			    MAX('IE Transition Status'[transition_date]),
+			    REMOVEFILTERS('Workflow Fasi IE 2'),
+			    FILTER(
+			        ALL('IE Transition Status'),
+			        'IE Transition Status'[issue_key] = issueKey
+			            && 'IE Transition Status'[from_status] IN StatiDellaFase
+			            && NOT('IE Transition Status'[to_status] IN StatiDellaFase)
+			            && 'IE Transition Status'[from_status] <> 'IE Transition Status'[to_status]
+			    )
+			)
+		formatString: General Date
+		displayFolder: Grafico Journey
+		lineageTag: 41a8489f-283b-4c07-a8d7-2387b93be496
+
+	measure 'Conteggio Pass-Through IE' =
+			
+			VAR StatusTradotto = SELECTEDVALUE('Workflow Fasi IE 2'[Status Tradotto])
+			
+			VAR StatiDellaFase =
+			    CALCULATETABLE(
+			        VALUES('Workflow Fasi IE 2'[Status]),
+			        FILTER(
+			            ALL('Workflow Fasi IE 2'),
+			            'Workflow Fasi IE 2'[Status Tradotto] = StatusTradotto
+			        )
+			    )
+			
+			VAR IsOpen = CONTAINS(StatiDellaFase, 'Workflow Fasi IE 2'[Status], "Open")
+			
+			VAR TransizioniUscita =
+			    CALCULATETABLE(
+			        SELECTCOLUMNS(
+			            FILTER(
+			                ALL('IE Transition Status'),
+			                'IE Transition Status'[from_status] IN StatiDellaFase
+			                    && NOT('IE Transition Status'[to_status] IN StatiDellaFase)
+			                    && 'IE Transition Status'[from_status] <> 'IE Transition Status'[to_status]
+			            ),
+			            "iu_issue_key", 'IE Transition Status'[issue_key],
+			            "iu_data", 'IE Transition Status'[transition_date]
+			        )
+			    )
+			
+			RETURN
+			IF(
+			    IsOpen,
+			    -- Per Open: conta tutte le issue che hanno almeno una transizione di uscita dalla fase
+			    COUNTROWS(
+			        CALCULATETABLE(
+			            VALUES('IE Transition Status'[issue_key]),
+			            FILTER(
+			                ALL('IE Transition Status'),
+			                'IE Transition Status'[from_status] IN StatiDellaFase
+			                && NOT('IE Transition Status'[to_status] IN StatiDellaFase)
+			                && 'IE Transition Status'[from_status] <> 'IE Transition Status'[to_status]
+			            )
+			        )
+			    ),
+			    -- Per tutti gli altri stati: logica originale con coppia completa
+			    VAR TransizioniEntrata =
+			        CALCULATETABLE(
+			            SELECTCOLUMNS(
+			                FILTER(
+			                    ALL('IE Transition Status'),
+			                    'IE Transition Status'[to_status] IN StatiDellaFase
+			                ),
+			                "ie_issue_key", 'IE Transition Status'[issue_key],
+			                "ie_data", 'IE Transition Status'[transition_date]
+			            )
+			        )
+			    VAR IssueUscite =
+			        CALCULATETABLE(
+			            VALUES('IE Transition Status'[issue_key]),
+			            FILTER(
+			                ADDCOLUMNS(
+			                    VALUES('IE Transition Status'[issue_key]),
+			                    "HasCoppiaCompleta",
+			                    VAR currentKey = 'IE Transition Status'[issue_key]
+			                    VAR entrateIssue = FILTER(TransizioniEntrata, [ie_issue_key] = currentKey)
+			                    VAR usciteIssue  = FILTER(TransizioniUscita,  [iu_issue_key] = currentKey)
+			                    RETURN
+			                        COUNTROWS(
+			                            FILTER(
+			                                entrateIssue,
+			                                VAR dataEntrata = [ie_data]
+			                                RETURN
+			                                    COUNTROWS(
+			                                        FILTER(usciteIssue, [iu_data] > dataEntrata)
+			                                    ) > 0
+			                            )
+			                        ) > 0
+			                ),
+			                [HasCoppiaCompleta] = TRUE()
+			            )
+			        )
+			    RETURN
+			    CALCULATE(
+			        DISTINCTCOUNT('IE Transition Status'[issue_key]),
+			        FILTER(
+			            ALL('IE Transition Status'),
+			            'IE Transition Status'[to_status] IN StatiDellaFase
+			            && 'IE Transition Status'[issue_key] IN IssueUscite
+			        )
+			    )
+			)
+		formatString: 0
+		displayFolder: Grafico Journey
+		lineageTag: 7b6fe9d7-192b-4268-98fd-5a58a83b50a6
+
+	measure 'Tempo Medio nello Stato IE' = ```
+			
+			VAR StatusTradotto = 
+			    SELECTEDVALUE('Workflow Fasi IE 2'[Status Tradotto])
+			
+			VAR StatiDellaFase =
+			    CALCULATETABLE(
+			        VALUES('Workflow Fasi IE 2'[Status]),
+			        FILTER(
+			            ALL('Workflow Fasi IE 2'),
+			            IF(
+			                ISBLANK(StatusTradotto),
+			                TRUE(),
+			                'Workflow Fasi IE 2'[Status Tradotto] = StatusTradotto
+			            )
+			        )
+			    )
+			
+			VAR IsOpen = CONTAINS(StatiDellaFase, 'Workflow Fasi IE 2'[Status], "Open")
+			
+			VAR TransizioniEntrata =
+			    CALCULATETABLE(
+			        SELECTCOLUMNS(
+			            FILTER(
+			                ALL('IE Transition Status'),
+			                'IE Transition Status'[to_status] IN StatiDellaFase
+			                && NOT('IE Transition Status'[from_status] IN StatiDellaFase)
+			                && 'IE Transition Status'[from_status] <> 'IE Transition Status'[to_status]
+			            ),
+			            "ie_issue_key", 'IE Transition Status'[issue_key],
+			            "ie_data", 'IE Transition Status'[transition_date]
+			        )
+			    )
+			
+			VAR TransizioniUscita =
+			    CALCULATETABLE(
+			        SELECTCOLUMNS(
+			            FILTER(
+			                ALL('IE Transition Status'),
+			                'IE Transition Status'[from_status] IN StatiDellaFase
+			                && NOT('IE Transition Status'[to_status] IN StatiDellaFase)
+			                && 'IE Transition Status'[from_status] <> 'IE Transition Status'[to_status]
+			            ),
+			            "iu_issue_key", 'IE Transition Status'[issue_key],
+			            "iu_data", 'IE Transition Status'[transition_date]
+			        )
+			    )
+			
+			VAR IssueConSoggiorni =
+			    CALCULATETABLE(
+			        VALUES('IE Transition Status'[issue_key]),
+			        FILTER(
+			            ALL('IE Transition Status'),
+			            'IE Transition Status'[to_status] IN StatiDellaFase
+			            || 'IE Transition Status'[from_status] IN StatiDellaFase
+			        )
+			    )
+			
+			VAR tabellaGiorni =
+			    ADDCOLUMNS(
+			        IssueConSoggiorni,
+			        "giorni_totali",
+			        VAR issueKey = 'IE Transition Status'[issue_key]
+			        VAR entrateIssue = FILTER(TransizioniEntrata, [ie_issue_key] = issueKey)
+			        VAR usciteIssue  = FILTER(TransizioniUscita,  [iu_issue_key] = issueKey)
+			        VAR sommaSoggiorni =
+			            SUMX(
+			                FILTER(
+			                    entrateIssue,
+			                    VAR dataEntrata = [ie_data]
+			                    RETURN COUNTROWS(
+			                        FILTER(usciteIssue, [iu_data] > dataEntrata)
+			                    ) > 0
+			                ),
+			                VAR dataEntrata = [ie_data]
+			                VAR primaUscita =
+			                    MINX(
+			                        FILTER(usciteIssue, [iu_data] > dataEntrata),
+			                        [iu_data]
+			                    )
+			                RETURN DATEDIFF(dataEntrata, primaUscita, DAY)
+			            )
+			        RETURN 
+			            IF(
+			                ISBLANK(sommaSoggiorni) && IsOpen,
+			                0,
+			                IF(NOT ISBLANK(sommaSoggiorni), sommaSoggiorni, BLANK())
+			            )
+			    )
+			
+			RETURN
+			AVERAGEX(
+			    FILTER(tabellaGiorni, NOT ISBLANK([giorni_totali])),
+			    [giorni_totali]
+			)
+			```
+		displayFolder: Grafico Journey
+		lineageTag: 778871f3-e2a0-459d-8cbb-43182d9812ca
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'COUNT MBI Dinamico Tempo' =
+			
+			VAR NumeroFasiVisibili =
+			    COUNTROWS (
+			        VALUES (
+			            'Workflow Fasi MBI Semplificate'[OrdineFase]
+			        )
+			    )
+			
+			RETURN
+			IF (
+			    NumeroFasiVisibili = 1,
+			    [Conteggio Pass-Through Semplificato],
+			    [MBI Throughput Totale Mensile]
+			)
+		displayFolder: Grafico Journey
+		lineageTag: 0eccd92a-9bc1-43fa-9481-4e74ea8656af
+
+	measure 'MBI Throughput Totale Mensile' =
+			
+			CALCULATE (
+			    DISTINCTCOUNT (
+			        'MBI Transition Status'[issue_key]
+			    )
+			)
+		formatString: 0
+		displayFolder: Grafico Journey
+		lineageTag: 683ebb6c-2a5e-4028-91c8-c481d1846b9c
+
+	measure 'Conteggio Pass-Through Semplificato IE' =
+			
+			VAR IsSingleIssueSelected =
+			    ISFILTERED('Jira Initiative Estimation'[issue_key])
+			    &&
+			    CALCULATE(
+			        DISTINCTCOUNT('Jira Initiative Estimation'[issue_key]),
+			        ALLSELECTED('Jira Initiative Estimation')
+			    ) = 1
+			VAR Risultato =
+			    CALCULATE(
+			        DISTINCTCOUNT('IE Transition Status'[issue_key]),
+			        FILTER(
+			            ALL('IE Transition Status'),
+			            'IE Transition Status'[From OrdineBarra Semplificato]
+			                = SELECTEDVALUE('Workflow Fasi IE Semplificate'[OrdineBarra])
+			            &&
+			            'IE Transition Status'[To OrdineBarra Semplificato]
+			                <> SELECTEDVALUE('Workflow Fasi IE Semplificate'[OrdineBarra])
+			        )
+			    )
+			RETURN
+			    IF(
+			        IsSingleIssueSelected && Risultato > 1,
+			        BLANK(),
+			        Risultato
+			    )
+		displayFolder: Focus HLD e Stime
+		lineageTag: b1a3ce86-065c-4f13-a581-6c2dacce8fd6
+
+	measure 'COUNT Backlog Semplificato IE' =
+			
+			VAR StatiDellaFase =
+			    VALUES (
+			        'Workflow Fasi IE Semplificate 2'[Status]
+			    )
+			
+			RETURN
+			CALCULATE (
+			    DISTINCTCOUNT (
+			        'Jira Initiative Estimation'[issue_key]
+			    ),
+			    TREATAS (
+			        StatiDellaFase,
+			        'Jira Initiative Estimation'[issue_status]
+			    )
+			)
+		formatString: 0
+		displayFolder: Focus HLD e Stime
+		lineageTag: eff4455d-a1f4-42b0-b6be-f39dd8afcb7b
+
+	measure 'IE Tempo Storico Medio nello Stato Semplificato' =
+			
+			VAR OrdineFaseCorrente =
+			    SELECTEDVALUE ( 'Workflow Fasi IE Semplificate'[OrdineBarra] )
+			
+			RETURN
+			CALCULATE (
+			    VAR TransizioniEntrata =
+			        SELECTCOLUMNS (
+			            FILTER (
+			                ALL ( 'IE Transition Status' ),
+			                'IE Transition Status'[To OrdineBarra Semplificato] = OrdineFaseCorrente
+			                    && 'IE Transition Status'[From OrdineBarra Semplificato] <> OrdineFaseCorrente
+			            ),
+			            "ie_issue_key", 'IE Transition Status'[issue_key],
+			            "ie_data", 'IE Transition Status'[transition_date]
+			        )
+			
+			    VAR TransizioniUscita =
+			        SELECTCOLUMNS (
+			            FILTER (
+			                ALL ( 'IE Transition Status' ),
+			                'IE Transition Status'[From OrdineBarra Semplificato] = OrdineFaseCorrente
+			                    && 'IE Transition Status'[To OrdineBarra Semplificato] <> OrdineFaseCorrente
+			            ),
+			            "iu_issue_key", 'IE Transition Status'[issue_key],
+			            "iu_data", 'IE Transition Status'[transition_date]
+			        )
+			
+			    VAR TabellaSoggiorni =
+			        ADDCOLUMNS (
+			            TransizioniEntrata,
+			            "giorni_soggiorno",
+			            VAR issueKey = [ie_issue_key]
+			            VAR dataEntrata = [ie_data]
+			            VAR usciteSuccessive =
+			                FILTER (
+			                    TransizioniUscita,
+			                    [iu_issue_key] = issueKey && [iu_data] > dataEntrata
+			                )
+			            VAR primaUscita = MINX ( usciteSuccessive, [iu_data] )
+			            RETURN
+			                IF ( NOT ISBLANK ( primaUscita ), DATEDIFF ( dataEntrata, primaUscita, DAY ) )
+			        )
+			
+			    RETURN
+			    AVERAGEX (
+			        FILTER ( TabellaSoggiorni, NOT ISBLANK ( [giorni_soggiorno] ) ),
+			        [giorni_soggiorno]
+			    ),
+			    ALL ()
+			)
+		displayFolder: Focus HLD e Stime
+		lineageTag: 8c2237f8-e826-460a-8b63-2603781ff7b6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Data Stato Initial IE (Confluence) 2' = ```
+			
+			VAR _issueKeys =
+			    VALUES ( 'Jira Initiative Estimation'[issue_key] )
+			VAR _pageIDs =
+			    CALCULATETABLE (
+			        SELECTCOLUMNS (
+			            'Confluence IE Pages',
+			            "pageid", 'Confluence IE Pages'[pageid]
+			        ),
+			        TREATAS ( _issueKeys, 'Confluence Comala Issue Link'[issue_key] )
+			    )
+			VAR _result =
+			    CALCULATE (
+			        MAX ( 'Confluence Comala Activity'[Date Convertita] ),
+			        TREATAS ( _pageIDs, 'Confluence Comala Activity'[page_id] ),
+			        'Confluence Comala Activity'[Comala Stato Documento] = "Initial"
+			    )
+			RETURN
+			    _result
+			
+			```
+		formatString: General Date
+		displayFolder: Focus HLD e Stime
+		lineageTag: bde9cd43-90ca-41b8-b2fa-d3e9da5a5ab5
+
+	measure 'Issue Name' = SELECTEDVALUE ( 'Jira Macro Business Initiative'[Issue Name] )
+		displayFolder: Focus HLD e Stime
+		lineageTag: 59cbfcd1-a1e8-4471-bedd-bd01c304b382
+
+	measure 'Giorni in Stato IE' =
+			
+			VAR issueKey = SELECTEDVALUE('Jira Initiative Estimation'[issue_key])
+			RETURN
+			IF(
+			    NOT ISBLANK(issueKey),
+			    VAR currentStatus = SELECTEDVALUE('Jira Initiative Estimation'[issue_status])
+			    VAR startDate =
+			        CALCULATE(
+			            MAX('IE Transition Status'[transition_date]),
+			            FILTER(
+			                ALL('IE Transition Status'),
+			                'IE Transition Status'[issue_key] = issueKey
+			                    && 'IE Transition Status'[to_status] = currentStatus
+			            )
+			        )
+			    VAR DataCreazioneOpen =
+			        CALCULATE(
+			            MAX('Jira Initiative Estimation'[issue_created_date]),
+			            REMOVEFILTERS('Jira Initiative Estimation'),
+			            'Jira Initiative Estimation'[issue_key] = issueKey
+			        )
+			    VAR startDateFinale =
+			        IF(
+			            currentStatus = "Open" && ISBLANK(startDate),
+			            DataCreazioneOpen,
+			            startDate
+			        )
+			    RETURN
+			    IF(
+			        currentStatus = "Done" || currentStatus = "Rejected",
+			        0,
+			        IF(
+			            NOT ISBLANK(startDateFinale),
+			            DATEDIFF(startDateFinale, TODAY(), DAY),
+			            BLANK()
+			        )
+			    ),
+			    BLANK()
+			)
+		formatString: 0
+		lineageTag: c28d3ff4-1c01-4b37-a7e4-96b2c17aeea9
+
+	measure 'COUNT Backlog Semplificato Actual IE' =
+			
+			VAR StatiDellaFase =
+			    VALUES (
+			        'Workflow Fasi IE Semplificate'[Status]
+			    )
+			
+			RETURN
+			CALCULATE (
+			    DISTINCTCOUNT (
+			        'Jira Initiative Estimation'[issue_key]
+			    ),
+			    TREATAS (
+			        StatiDellaFase,
+			        'Jira Initiative Estimation'[issue_status]
+			    )
+			)
+		formatString: 0
+		displayFolder: Focus HLD e Stime
+		lineageTag: b1a1b854-5270-4925-8826-7ebf358a2b06
+
+	measure 'Filtro Issue per Fase Selezionata IE' =
+			
+			VAR StatoFaseSelezionata =
+			    SELECTEDVALUE ( 'Workflow Fasi IE Semplificate'[Status] )
+			RETURN
+			    IF (
+			        ISBLANK ( StatoFaseSelezionata ),
+			        1,
+			        IF (
+			            SELECTEDVALUE ( 'Jira Initiative Estimation'[issue_status] ) = StatoFaseSelezionata,
+			            1,
+			            BLANK()
+			        )
+			    )
+		formatString: 0
+		displayFolder: Focus HLD e Stime
+		lineageTag: 1fac8538-74b0-4d1c-8a50-c56b25e6250e
+
+	measure 'DEBUG Conteggio Righe IE' =
+			
+			CALCULATE (
+			    COUNTROWS (
+			        FILTER (
+			            ALL ( 'IE Transition Status' ),
+			            'IE Transition Status'[To OrdineBarra Semplificato] = 2
+			                && 'IE Transition Status'[From OrdineBarra Semplificato] <> 2
+			        )
+			    ),
+			    ALL ()
+			)
+		formatString: 0
+		lineageTag: 7900ae09-1ab0-4c64-941b-bbec98ba842c
+
+	measure 'IE Tempo Storico Medio nello Stato Semplificato 2' =
+			
+			VAR OrdineFaseCorrente =
+			    SELECTEDVALUE ( 'Workflow Fasi IE Semplificate'[OrdineBarra] )
+			
+			RETURN
+			CALCULATE (
+			    VAR TransizioniEntrata =
+			        SELECTCOLUMNS (
+			            FILTER (
+			                'IE Transition Status',
+			                'IE Transition Status'[To OrdineBarra Semplificato] = OrdineFaseCorrente
+			                    && 'IE Transition Status'[From OrdineBarra Semplificato] <> OrdineFaseCorrente
+			            ),
+			            "ie_issue_key", 'IE Transition Status'[issue_key],
+			            "ie_data", 'IE Transition Status'[transition_date]
+			        )
+			
+			    VAR TransizioniUscita =
+			        SELECTCOLUMNS (
+			            FILTER (
+			                'IE Transition Status',
+			                'IE Transition Status'[From OrdineBarra Semplificato] = OrdineFaseCorrente
+			                    && 'IE Transition Status'[To OrdineBarra Semplificato] <> OrdineFaseCorrente
+			            ),
+			            "iu_issue_key", 'IE Transition Status'[issue_key],
+			            "iu_data", 'IE Transition Status'[transition_date]
+			        )
+			
+			    -- Una riga per OGNI singolo soggiorno (entrata->prima uscita), non aggregato per issue
+			    VAR TabellaSoggiorni =
+			        ADDCOLUMNS (
+			            TransizioniEntrata,
+			            "giorni_soggiorno",
+			            VAR issueKey = [ie_issue_key]
+			            VAR dataEntrata = [ie_data]
+			            VAR usciteSuccessive =
+			                FILTER (
+			                    TransizioniUscita,
+			                    [iu_issue_key] = issueKey && [iu_data] > dataEntrata
+			                )
+			            VAR primaUscita = MINX ( usciteSuccessive, [iu_data] )
+			            RETURN
+			                IF ( NOT ISBLANK ( primaUscita ), DATEDIFF ( dataEntrata, primaUscita, DAY ) )
+			        )
+			
+			    RETURN
+			    AVERAGEX (
+			        FILTER ( TabellaSoggiorni, NOT ISBLANK ( [giorni_soggiorno] ) ),
+			        [giorni_soggiorno]
+			    ),
+			    REMOVEFILTERS ( 'IE Transition Status' ),
+			    REMOVEFILTERS ( 'Workflow Fasi IE' ),
+			    REMOVEFILTERS ( 'Jira Initiative Estimation' ),
+			    REMOVEFILTERS ( 'Workflow Fasi IE Semplificate 2' )
+			)
+		displayFolder: Focus HLD e Stime
+		lineageTag: 3a53413e-5278-437b-9fbb-1f2421ef4598
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'IE Aging Medio Corrente nello Stato Semplificato 2' =
+			
+			VAR OrdineFaseCorrente =
+			    SELECTEDVALUE (
+			        'Workflow Fasi IE Semplificate 2'[OrdineBarra]
+			    )
+			
+			VAR StatiDellaFase =
+			    CALCULATETABLE (
+			        VALUES ( 'Workflow Fasi IE Semplificate 2'[Status] ),
+			        FILTER (
+			            ALL ( 'Workflow Fasi IE Semplificate 2' ),
+			            'Workflow Fasi IE Semplificate 2'[OrdineBarra]
+			                = OrdineFaseCorrente
+			        )
+			    )
+			
+			VAR IssueAttualmenteInFase =
+			    CALCULATETABLE (
+			        VALUES ( 'Jira Initiative Estimation'[issue_key] ),
+			        TREATAS (
+			            StatiDellaFase,
+			            'Jira Initiative Estimation'[issue_status]
+			        )
+			    )
+			
+			VAR TabellaAging =
+			    ADDCOLUMNS (
+			        IssueAttualmenteInFase,
+			
+			        "DataEntrataFase",
+			
+			        VAR CurrentIssue =
+			            'Jira Initiative Estimation'[issue_key]
+			
+			        VAR UltimaEntrata =
+			            CALCULATE (
+			                MAX ( 'IE Transition Status'[transition_date] ),
+			
+			                FILTER (
+			                    ALL ( 'IE Transition Status' ),
+			                    'IE Transition Status'[issue_key] = CurrentIssue
+			                        &&
+			                    'IE Transition Status'[To OrdineBarra Semplificato]
+			                        = OrdineFaseCorrente
+			                        &&
+			                    'IE Transition Status'[From OrdineBarra Semplificato]
+			                        <> OrdineFaseCorrente
+			                )
+			            )
+			
+			        VAR CreatedDate =
+			            CALCULATE (
+			                MAX ( 'Jira Initiative Estimation'[created_date] )
+			            )
+			
+			        RETURN
+			            IF (
+			                OrdineFaseCorrente = 1,
+			                COALESCE ( UltimaEntrata, CreatedDate ),
+			                UltimaEntrata
+			            )
+			    )
+			
+			RETURN
+			AVERAGEX (
+			    FILTER (
+			        TabellaAging,
+			        NOT ISBLANK ( [DataEntrataFase] )
+			    ),
+			    DATEDIFF (
+			        [DataEntrataFase],
+			        TODAY (),
+			        DAY
+			    )
+			)
+		displayFolder: Focus HLD e Stime
+		lineageTag: 2ff179cc-1e97-4c19-97f6-851c6ae946b7
+
+	measure 'IE Aging Medio Corrente nello Stato Semplificato' =
+			
+			VAR OrdineFaseCorrente =
+			    SELECTEDVALUE (
+			        'Workflow Fasi IE Semplificate'[OrdineBarra]
+			    )
+			
+			VAR StatiDellaFase =
+			    CALCULATETABLE (
+			        VALUES ( 'Workflow Fasi IE Semplificate'[Status] ),
+			        FILTER (
+			            ALL ( 'Workflow Fasi IE Semplificate' ),
+			            'Workflow Fasi IE Semplificate'[OrdineBarra]
+			                = OrdineFaseCorrente
+			        )
+			    )
+			
+			VAR IssueAttualmenteInFase =
+			    CALCULATETABLE (
+			        VALUES ( 'Jira Initiative Estimation'[issue_key] ),
+			        TREATAS (
+			            StatiDellaFase,
+			            'Jira Initiative Estimation'[issue_status]
+			        )
+			    )
+			
+			VAR TabellaAging =
+			    ADDCOLUMNS (
+			        IssueAttualmenteInFase,
+			
+			        "DataEntrataFase",
+			
+			        VAR CurrentIssue =
+			            'Jira Initiative Estimation'[issue_key]
+			
+			        VAR UltimaEntrata =
+			            CALCULATE (
+			                MAX ( 'IE Transition Status'[transition_date] ),
+			
+			                FILTER (
+			                    ALL ( 'IE Transition Status' ),
+			                    'IE Transition Status'[issue_key] = CurrentIssue
+			                        &&
+			                    'IE Transition Status'[To OrdineBarra Semplificato]
+			                        = OrdineFaseCorrente
+			                        &&
+			                    'IE Transition Status'[From OrdineBarra Semplificato]
+			                        <> OrdineFaseCorrente
+			                )
+			            )
+			
+			        VAR CreatedDate =
+			            CALCULATE (
+			                MAX ( 'Jira Initiative Estimation'[created_date] )
+			            )
+			
+			        RETURN
+			            IF (
+			                OrdineFaseCorrente = 1,
+			                COALESCE ( UltimaEntrata, CreatedDate ),
+			                UltimaEntrata
+			            )
+			    )
+			
+			RETURN
+			AVERAGEX (
+			    FILTER (
+			        TabellaAging,
+			        NOT ISBLANK ( [DataEntrataFase] )
+			    ),
+			    DATEDIFF (
+			        [DataEntrataFase],
+			        TODAY (),
+			        DAY
+			    )
+			)
+		displayFolder: Focus HLD e Stime
+		lineageTag: b38a2462-288f-44d3-9b0e-b0db913395e5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'IE Aging Medio Corrente nello Stato Semplificato 3' =
+			
+			VAR OrdineFaseCorrente =
+			    SELECTEDVALUE (
+			        'Workflow Fasi IE Semplificate 2'[OrdineBarra]
+			    )
+			
+			VAR StatiDellaFase =
+			    CALCULATETABLE (
+			        VALUES ( 'Workflow Fasi IE Semplificate 2'[Status] ),
+			        FILTER (
+			            ALL ( 'Workflow Fasi IE Semplificate 2' ),
+			            'Workflow Fasi IE Semplificate 2'[OrdineBarra]
+			                = OrdineFaseCorrente
+			        )
+			    )
+			
+			VAR IssueAttualmenteInFase =
+			    CALCULATETABLE (
+			        VALUES ( 'Jira Initiative Estimation'[issue_key] ),
+			        TREATAS (
+			            StatiDellaFase,
+			            'Jira Initiative Estimation'[issue_status]
+			        )
+			    )
+			    -- NB: nessun ALL() qui - il filtro DF_LEVEL_2 (dall'Asse X, via 'APM (2)')
+			    -- deve restare attivo per isolare correttamente il sottogruppo
+			
+			VAR TabellaAging =
+			    ADDCOLUMNS (
+			        IssueAttualmenteInFase,
+			
+			        "DataEntrataFase",
+			
+			        VAR CurrentIssue =
+			            'Jira Initiative Estimation'[issue_key]
+			
+			        VAR UltimaEntrata =
+			            CALCULATE (
+			                MAX ( 'IE Transition Status'[transition_date] ),
+			                FILTER (
+			                    ALL ( 'IE Transition Status' ),
+			                    'IE Transition Status'[issue_key] = CurrentIssue
+			                        && 'IE Transition Status'[To OrdineBarra Semplificato] = OrdineFaseCorrente
+			                        && 'IE Transition Status'[From OrdineBarra Semplificato] <> OrdineFaseCorrente
+			                )
+			            )
+			
+			        VAR CreatedDate =
+			            CALCULATE (
+			                MAX ( 'Jira Initiative Estimation'[created_date] ),
+			                ALL ( 'Jira Initiative Estimation' ),
+			                'Jira Initiative Estimation'[issue_key] = CurrentIssue
+			            )
+			
+			        RETURN
+			            IF (
+			                OrdineFaseCorrente = 1,
+			                COALESCE ( UltimaEntrata, CreatedDate ),
+			                UltimaEntrata
+			            )
+			    )
+			
+			RETURN
+			AVERAGEX (
+			    FILTER (
+			        TabellaAging,
+			        NOT ISBLANK ( [DataEntrataFase] )
+			    ),
+			    DATEDIFF (
+			        [DataEntrataFase],
+			        TODAY (),
+			        DAY
+			    )
+			)
+		displayFolder: Focus HLD e Stime
+		lineageTag: 24daaf06-3b3c-4302-b10c-c09ffdfa1150
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Titolo IE' = ```
+			
+			VAR _misura = SELECTEDVALUE('Jira Macro Business Initiative'[Issue Name])
+			VAR _titolo = 
+			        "Focus HLD " & _misura & ""
+			    
+			RETURN _titolo
+			
+			
+			
+			```
+		lineageTag: ba90ae8f-d473-4731-b3b2-d7c988db41eb
+
+	measure 'IE Aging Medio Corrente nello Stato Executive' =
+			
+			VAR OrdineFaseCorrente =
+			    SELECTEDVALUE (
+			        'Workflow Fasi IE Semplificate'[OrdineFase]
+			    )
+			
+			VAR StatiDellaFase =
+			    CALCULATETABLE (
+			        VALUES ( 'Workflow Fasi IE Semplificate'[Status] ),
+			        FILTER (
+			            ALL ( 'Workflow Fasi IE Semplificate' ),
+			            'Workflow Fasi IE Semplificate'[OrdineFase]
+			                = OrdineFaseCorrente
+			        )
+			    )
+			
+			VAR IssueAttualmenteInFase =
+			    CALCULATETABLE (
+			        VALUES ( 'Jira Initiative Estimation'[issue_key] ),
+			        TREATAS (
+			            StatiDellaFase,
+			            'Jira Initiative Estimation'[issue_status]
+			        )
+			    )
+			
+			VAR TabellaAging =
+			    ADDCOLUMNS (
+			        IssueAttualmenteInFase,
+			
+			        "DataEntrataFase",
+			
+			        VAR CurrentIssue =
+			            'Jira Initiative Estimation'[issue_key]
+			
+			        VAR UltimaEntrata =
+			            CALCULATE (
+			                MAX ( 'IE Transition Status'[transition_date] ),
+			
+			                FILTER (
+			                    ALL ( 'IE Transition Status' ),
+			                    'IE Transition Status'[issue_key] = CurrentIssue
+			                        &&
+			                    'IE Transition Status'[To OrdineFase Semplificate]
+			                        = OrdineFaseCorrente
+			                        &&
+			                    'IE Transition Status'[From OrdineFase Semplificate]
+			                        <> OrdineFaseCorrente
+			                )
+			            )
+			
+			        VAR CreatedDate =
+			            CALCULATE (
+			                MAX ( 'Jira Initiative Estimation'[created_date] )
+			            )
+			
+			        RETURN
+			            IF (
+			                OrdineFaseCorrente = 1,
+			                COALESCE ( UltimaEntrata, CreatedDate ),
+			                UltimaEntrata
+			            )
+			    )
+			
+			RETURN
+			AVERAGEX (
+			    FILTER (
+			        TabellaAging,
+			        NOT ISBLANK ( [DataEntrataFase] )
+			    ),
+			    DATEDIFF (
+			        [DataEntrataFase],
+			        TODAY (),
+			        DAY
+			    )
+			)
+		displayFolder: Focus HLD e Stime
+		lineageTag: 7c6a3188-6457-42cf-b88b-d76e5c057c7b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column issue_key
+		lineageTag: ac886332-6d8b-41e3-9c83-6fb8f6d6b408
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[issue_key]
+
+		annotation SummarizationSetBy = Automatic
+
+	column issue_type
+		lineageTag: eaba0690-1664-4a1e-b3c7-67741e80a582
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[issue_type]
+
+		annotation SummarizationSetBy = Automatic
+
+	column transition_date
+		formatString: General Date
+		lineageTag: 0bcb1e7f-8b0b-40d1-8a1e-867c702999c9
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[transition_date]
+
+		variation Variation
+			isDefault
+			relationship: 871d259e-747e-4014-b347-eccd0579e450
+			defaultHierarchy: LocalDateTable_c7694065-792d-428f-8358-8041d00288b9.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_status
+		lineageTag: 0fe03bf8-b2ce-40fc-a9fa-defe4a22b345
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[from_status]
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_status
+		lineageTag: e31c2b56-a6dc-4bb6-81ab-a52db0c73666
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[to_status]
+
+		annotation SummarizationSetBy = Automatic
+
+	column username
+		lineageTag: 37f54d5d-8de4-4a3f-bef0-7ccd24b70d2b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[username]
+
+		annotation SummarizationSetBy = Automatic
+
+	column display_name
+		lineageTag: 011fbfcd-4bed-4ea1-9283-e7b80e17e63b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[display_name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Giorni da In Progress a Completed'
+		lineageTag: 4779fdd9-5fbd-498d-b29e-5fc44dee565a
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[Giorni da In Progress a Completed]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Lead Time - OpenDone' = ```
+			
+			
+			-- data primo ingresso in Open (from_status = "Open")
+			VAR _startDate = 
+			    CALCULATE (
+			        MIN ( 'IE Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'IE Transition Status', 'IE Transition Status'[issue_key] ),
+			        'IE Transition Status'[from_status] = "Open"
+			    )
+			
+			-- data dell'ultima transizione verso Done
+			VAR _lastDate = 
+			    CALCULATE (
+			        MAX ( 'IE Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'IE Transition Status', 'IE Transition Status'[issue_key] ),
+			        'IE Transition Status'[to_status] = "Done",
+			        'IE Transition Status'[from_status] <> "Done"
+			    )
+			
+			-- Controlla se dopo l'ultima Done la issue è uscita dallo stato Done
+			-- (es. Done -> Open, Done → Estimation Approval, ecc., in questo caso non la conto più)
+			-- (es. Open .. -> Done, Done -> Done non viene considerata)
+			VAR _hasExitAfterLastDone =
+			    CALCULATE (
+			        COUNTROWS ( 'IE Transition Status' ),
+			        ALLEXCEPT ( 'IE Transition Status', 'IE Transition Status'[issue_key] ),
+			        'IE Transition Status'[from_status] = "Done",
+			        'IE Transition Status'[to_status] <> "Done",
+			        'IE Transition Status'[transition_date] > _lastDate
+			    )
+			
+			-- Restituisce il lead time solo se:
+			-- 1. La riga corrente è una transizione verso Done
+			-- 2. È l'ultima transizione verso Done
+			-- 3. Esiste una data di partenza da Open
+			-- 4. La issue NON è uscita da Done dopo l'ultima volta
+			RETURN 
+			IF ( 
+			    'IE Transition Status'[to_status] = "Done" 
+			        && 'IE Transition Status'[transition_date] = _lastDate
+			        && NOT ISBLANK ( _startDate ),
+			        //&& ( ISBLANK ( _hasExitAfterLastDone ) || _hasExitAfterLastDone = 0 ),
+			    'IE Transition Status'[transition_date] - _startDate,
+			    BLANK()
+			)
+			```
+		dataType: double
+		lineageTag: ef2c68cb-ad55-4168-b0c8-847b4012e08a
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Lead Time - WaitingForEstimateDone' = ```
+			
+			VAR _startDate = 
+			    CALCULATE (
+			         MIN ( 'IE Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'IE Transition Status', 'IE Transition Status'[issue_key] ),
+			        'IE Transition Status'[from_status] = "Waiting for Estimate"
+			    )
+			
+			VAR _lastDate = 
+			    CALCULATE (
+			        MAX ( 'IE Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'IE Transition Status', 'IE Transition Status'[issue_key] ),
+			        'IE Transition Status'[to_status] = "Done",
+			        'IE Transition Status'[from_status] <> "Done" 
+			    )
+			
+			RETURN 
+			IF ( 
+			    'IE Transition Status'[to_status] = "Done" 
+			    && 'IE Transition Status'[transition_date] = _lastDate
+			    && NOT ISBLANK ( _startDate ),
+			    'IE Transition Status'[transition_date] - _startDate,
+			    BLANK()
+			)
+			```
+		dataType: double
+		lineageTag: 285045df-d926-438f-b36a-b71c2ad55cc0
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Lead Time - OpenWaitingForEstimate' = ```
+			
+			VAR _startDate = 
+			    CALCULATE (
+			         MIN ( 'IE Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'IE Transition Status', 'IE Transition Status'[issue_key] ),
+			        'IE Transition Status'[from_status] = "Open"
+			    )
+			
+			VAR _lastDate = 
+			    CALCULATE (
+			        MAX ( 'IE Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'IE Transition Status', 'IE Transition Status'[issue_key] ),
+			        'IE Transition Status'[to_status] = "Waiting for Estimate",
+			        'IE Transition Status'[from_status] <> "Waiting for Estimate" 
+			    )
+			
+			RETURN 
+			IF ( 
+			    'IE Transition Status'[to_status] = "Waiting for Estimate" 
+			    && 'IE Transition Status'[transition_date] = _lastDate
+			    && NOT ISBLANK ( _startDate ),
+			    'IE Transition Status'[transition_date] - _startDate,
+			    BLANK()
+			)
+			```
+		dataType: double
+		lineageTag: 3fd6d701-3db4-462c-ad94-186e83a63073
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Lead Time - WaitingForEstimateEstimationApproval' = ```
+			
+			VAR _startDate = 
+			    CALCULATE (
+			         MIN ( 'IE Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'IE Transition Status', 'IE Transition Status'[issue_key] ),
+			        'IE Transition Status'[from_status] = "Waiting for Estimate"
+			    )
+			
+			VAR _lastDate = 
+			    CALCULATE (
+			        MAX ( 'IE Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'IE Transition Status', 'IE Transition Status'[issue_key] ),
+			        'IE Transition Status'[to_status] = "Estimation Approval",
+			        'IE Transition Status'[from_status] <> "Estimation Approval" 
+			    )
+			
+			RETURN 
+			IF ( 
+			    'IE Transition Status'[to_status] = "Estimation Approval" 
+			    && 'IE Transition Status'[transition_date] = _lastDate
+			    && NOT ISBLANK ( _startDate ),
+			    'IE Transition Status'[transition_date] - _startDate,
+			    BLANK()
+			)
+			```
+		dataType: double
+		lineageTag: f1340484-c7a3-4f17-902c-e976b4ee0a0e
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Lead Time - EstimationApprovalDone' = ```
+			
+			VAR _startDate = 
+			    CALCULATE (
+			         MIN ( 'IE Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'IE Transition Status', 'IE Transition Status'[issue_key] ),
+			        'IE Transition Status'[from_status] = "Estimation Approval"
+			    )
+			
+			VAR _lastDate = 
+			    CALCULATE (
+			        MAX ( 'IE Transition Status'[transition_date] ),
+			        ALLEXCEPT ( 'IE Transition Status', 'IE Transition Status'[issue_key] ),
+			        'IE Transition Status'[to_status] = "Done",
+			        'IE Transition Status'[from_status] <> "Done" 
+			    )
+			
+			RETURN 
+			IF ( 
+			    'IE Transition Status'[to_status] = "Done" 
+			    && 'IE Transition Status'[transition_date] = _lastDate
+			    && NOT ISBLANK ( _startDate ),
+			    'IE Transition Status'[transition_date] - _startDate,
+			    BLANK()
+			)
+			```
+		dataType: double
+		lineageTag: da945e90-0923-48aa-bc80-bf5dc633a253
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MeseAnno_ = ```
+			
+			VAR y = CONVERT(YEAR ( 'IE Transition Status'[transition_date] ), STRING)
+			VAR m = MONTH ( 'IE Transition Status'[transition_date]  )
+			VAR mShort =
+			    SWITCH (
+			        m,
+			        1, "01", 2, "02", 3, "03", 4, "04", 5, "05", 6, "06",
+			        7, "07", 8, "08", 9, "09", 10, "10", 11, "11", 12, "12"
+			    )
+			RETURN y & "-" &  mShort 
+			
+			
+			```
+		lineageTag: 6525de2f-79ed-433b-b7c2-84d43e523ef2
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'IE Giorni nello stato' =
+			
+			VAR currentIssue = 'IE Transition Status'[issue_key]
+			VAR currentStatus = 'IE Transition Status'[to_status]
+			
+			VAR startDate =
+			    CALCULATE(
+			        MIN('IE Transition Status'[transition_date]),
+			        ALLEXCEPT('IE Transition Status', 'IE Transition Status'[issue_key], 'IE Transition Status'[to_status])
+			    )
+			
+			VAR DataCreazioneOpen =
+			    LOOKUPVALUE(
+			        'Jira Initiative Estimation'[issue_created_date],
+			        'Jira Initiative Estimation'[issue_key], currentIssue
+			    )
+			
+			VAR startDateFinale =
+			    IF(
+			        currentStatus = "Open",// && ISBLANK(startDate),
+			        DataCreazioneOpen,
+			        startDate
+			    )
+			
+			RETURN
+			IF(
+			    NOT ISBLANK(startDateFinale),
+			    DATEDIFF(startDateFinale, TODAY(), DAY),
+			    BLANK()
+			)
+		formatString: 0
+		displayFolder: OP34 MBI Journey
+		lineageTag: f3e3a5cf-6381-484a-b6b2-ece34fa78cc8
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Somma dei tempi nello stato IE' = ```
+			
+			VAR StatusTradotto = SELECTEDVALUE('Workflow Fasi IE 2'[Status Tradotto])
+			VAR issueKey = SELECTEDVALUE('IE Transition Status'[issue_key])
+			
+			VAR StatiDellaFase =
+			    CALCULATETABLE(
+			        VALUES('Workflow Fasi IE 2'[Status]),
+			        FILTER(
+			            ALL('Workflow Fasi IE 2'),
+			            'Workflow Fasi IE 2'[Status Tradotto] = StatusTradotto
+			        )
+			    )
+			
+			VAR IsOpen = CONTAINS(StatiDellaFase, 'Workflow Fasi IE 2'[Status], "Open")
+			
+			VAR DataCreazioneOpen =
+			    CALCULATE(
+			        MIN('Jira Initiative Estimation'[issue_start_date]),
+			        REMOVEFILTERS('Jira Initiative Estimation'),
+			        'Jira Initiative Estimation'[issue_key] = issueKey
+			    )
+			
+			VAR entrateIssue =
+			    FILTER(
+			        ALL('IE Transition Status'),
+			        'IE Transition Status'[issue_key] = issueKey
+			        && 'IE Transition Status'[to_status] IN StatiDellaFase
+			        && NOT('IE Transition Status'[from_status] IN StatiDellaFase)
+			        && 'IE Transition Status'[from_status] <> 'IE Transition Status'[to_status]
+			    )
+			
+			VAR usciteIssue =
+			    FILTER(
+			        ALL('IE Transition Status'),
+			        'IE Transition Status'[issue_key] = issueKey
+			        && 'IE Transition Status'[from_status] IN StatiDellaFase
+			        && NOT('IE Transition Status'[to_status] IN StatiDellaFase)
+			        && 'IE Transition Status'[from_status] <> 'IE Transition Status'[to_status]
+			    )
+			
+			VAR primaUscitaOpen =
+			    MINX(usciteIssue, 'IE Transition Status'[transition_date])
+			
+			VAR giorniOpen =
+			    VAR primaEntrata = 
+			        IF(
+			            NOT ISBLANK(DataCreazioneOpen) && DataCreazioneOpen <= primaUscitaOpen,
+			            DataCreazioneOpen,
+			            primaUscitaOpen
+			        )
+			    VAR primaSoggiorno =
+			        IF(
+			            NOT ISBLANK(primaEntrata) && NOT ISBLANK(primaUscitaOpen) && primaEntrata < primaUscitaOpen,
+			            DATEDIFF(primaEntrata, primaUscitaOpen, DAY),
+			            0
+			        )
+			    VAR soggiorniSuccessivi =
+			        SUMX(
+			            FILTER(
+			                entrateIssue,
+			                VAR dataEntrata = 'IE Transition Status'[transition_date]
+			                RETURN COUNTROWS(
+			                    FILTER(usciteIssue, 'IE Transition Status'[transition_date] > dataEntrata)
+			                ) > 0
+			            ),
+			            VAR dataEntrata = 'IE Transition Status'[transition_date]
+			            VAR primaUscitaSucc =
+			                MINX(
+			                    FILTER(usciteIssue, 'IE Transition Status'[transition_date] > dataEntrata),
+			                    'IE Transition Status'[transition_date]
+			                )
+			            RETURN DATEDIFF(dataEntrata, primaUscitaSucc, DAY)
+			        )
+			    RETURN primaSoggiorno + soggiorniSuccessivi
+			
+			VAR giorniAltriStati =
+			    SUMX(
+			        FILTER(
+			            entrateIssue,
+			            VAR dataEntrata = 'IE Transition Status'[transition_date]
+			            RETURN COUNTROWS(
+			                FILTER(usciteIssue, 'IE Transition Status'[transition_date] > dataEntrata)
+			            ) > 0
+			        ),
+			        VAR dataEntrata = 'IE Transition Status'[transition_date]
+			        VAR primaUscita =
+			            MINX(
+			                FILTER(usciteIssue, 'IE Transition Status'[transition_date] > dataEntrata),
+			                'IE Transition Status'[transition_date]
+			            )
+			        RETURN DATEDIFF(dataEntrata, primaUscita, DAY)
+			    )
+			
+			RETURN
+			IF(IsOpen, giorniOpen, giorniAltriStati)
+			```
+		formatString: 0
+		displayFolder: Grafico Journey
+		lineageTag: 46895bb2-7427-4ef3-a00c-ace03887f058
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Journey Status' = IF ([Somma dei tempi nello stato IE], [Somma dei tempi nello stato IE], 0)
+		formatString: 0
+		displayFolder: Grafico Journey
+		lineageTag: f1701022-ccea-42f7-8aa4-8910c5786645
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'From OrdineFase Semplificate' =
+			
+			LOOKUPVALUE (
+			    'Workflow Fasi IE Semplificate'[OrdineFase],
+			    'Workflow Fasi IE Semplificate'[Status],
+			    'IE Transition Status'[from_status]
+			)
+		formatString: 0
+		displayFolder: Focus HLD e Stime
+		lineageTag: 2e7b1ac3-598b-443b-8cf9-e2ffae869564
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'To OrdineFase Semplificate' =
+			
+			LOOKUPVALUE (
+			    'Workflow Fasi IE Semplificate'[OrdineFase],
+			    'Workflow Fasi IE Semplificate'[Status],
+			    'IE Transition Status'[to_status]
+			)
+		formatString: 0
+		displayFolder: Focus HLD e Stime
+		lineageTag: 48bc454b-1003-4a57-95ad-832995ebebc7
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'From OrdineBarra Semplificato' =
+			
+			LOOKUPVALUE (
+			    'Workflow Fasi IE Semplificate'[OrdineBarra],
+			    'Workflow Fasi IE Semplificate'[Status], 'IE Transition Status'[from_status]
+			)
+		displayFolder: Focus HLD e Stime
+		lineageTag: e64f37c6-6fba-4dda-8985-4a2ba8597a18
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'To OrdineBarra Semplificato' =
+			
+			LOOKUPVALUE (
+			    'Workflow Fasi IE Semplificate'[OrdineBarra],
+			    'Workflow Fasi IE Semplificate'[Status], 'IE Transition Status'[to_status]
+			)
+		formatString: 0
+		displayFolder: Focus HLD e Stime
+		lineageTag: 71d17bf4-b764-4398-9ad2-aa28dfe69654
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Check_Duplicati_Issue =
+			
+			CALCULATE(
+			    COUNTROWS('IE Transition Status'),
+			    ALLEXCEPT('IE Transition Status', 'IE Transition Status'[issue_key])
+			)
+		formatString: 0
+		lineageTag: 214f439f-6cb7-48fb-a542-917c3be4301c
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'IE Transition Status' = calculated
+		mode: import
+		source = FILTER('Jira Change Status IE FD MBI BF', 'Jira Change Status IE FD MBI BF'[issue_type] = "Initiative Estimation")
+
+	annotation PBI_Id = 9a548c062949492d9c5fe33ed28ed907
+

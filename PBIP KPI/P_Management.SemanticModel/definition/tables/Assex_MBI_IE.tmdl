@@ -1,0 +1,74 @@
+table Assex_MBI_IE
+	lineageTag: b7a5580e-5f2e-49a9-8933-ecd81cb0c6af
+
+	column Assex_MBI_IE
+		lineageTag: ca3f6cec-d06d-426a-afdf-0588e979cabb
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Assex_MBI_IE Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Assex_MBI_IE Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Assex_MBI_IE Fields'
+		isHidden
+		lineageTag: b8b01275-0f6f-4fc0-94f4-1397202cb023
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Assex_MBI_IE Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Assex_MBI_IE Order'
+		isHidden
+		formatString: 0
+		lineageTag: b753e9d6-1cb5-47a7-a9fd-c0778811859b
+		summarizeBy: none
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Assex_MBI_IE = calculated
+		mode: import
+		source =
+				{
+				    ("transition_date", NAMEOF('MBI Transition Status'[MeseAnno_]), 0),
+				    ("transition_date", NAMEOF('MBI Transition Status'[MeseAnno_]), 1),
+				    ("transition_date", NAMEOF('MBI Transition Status'[MeseAnno_]), 2),
+				    ("transition_date", NAMEOF('MBI Transition Status'[MeseAnno_]), 3),
+				    ("transition_date", NAMEOF('MBI Transition Status'[MeseAnno_]), 4),
+				    ("transition_date", NAMEOF('MBI Transition Status'[MeseAnno_]), 5),
+				    ("transition_date", NAMEOF('MBI Transition Status'[MeseAnno_]), 6),
+				    ("transition_date", NAMEOF('MBI Transition Status'[MeseAnno_]), 7),
+				    ("transition_date", NAMEOF('MBI Transition Status'[MeseAnno_]), 8),
+				    ("transition_date", NAMEOF('MBI Transition Status'[MeseAnno_]), 9),
+				
+				    ("transition_date", NAMEOF('IE Transition Status'[MeseAnno_]), 10),
+				    ("transition_date", NAMEOF('IE Transition Status'[MeseAnno_]), 11),
+				    ("transition_date", NAMEOF('IE Transition Status'[MeseAnno_]), 12),
+				    ("transition_date", NAMEOF('IE Transition Status'[MeseAnno_]), 13),
+				
+				    ("transition_date", NAMEOF('FD Transition Status'[MeseAnno_]), 14),
+				    ("transition_date", NAMEOF('FD Transition Status'[MeseAnno_]), 15),
+				    ("transition_date", NAMEOF('FD Transition Status'[MeseAnno_]), 16),
+				    ("transition_date", NAMEOF('FD Transition Status'[MeseAnno_]), 17),
+				
+				    ("transition_date", NAMEOF('BF Transition Status'[MeseAnno_]), 18),
+				    ("transition_date", NAMEOF('BF Transition Status'[MeseAnno_]), 19),
+				    ("transition_date", NAMEOF('BF Transition Status'[MeseAnno_]), 20),
+				    ("transition_date", NAMEOF('BF Transition Status'[MeseAnno_]), 21),
+				    ("transition_date", NAMEOF('BF Transition Status'[MeseAnno_]), 22),
+				    ("transition_date", NAMEOF('BF Transition Status'[MeseAnno_]), 23),
+				    ("transition_date", NAMEOF('BF Transition Status'[MeseAnno_]), 24)
+				}
+
+	annotation PBI_Id = bfe2e45f7a9b44eca713057eac9c99fe
+

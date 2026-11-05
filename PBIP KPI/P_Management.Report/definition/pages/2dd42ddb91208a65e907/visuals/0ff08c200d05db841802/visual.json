@@ -1,0 +1,293 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "0ff08c200d05db841802",
+  "position": {
+    "x": 88.75,
+    "y": 243.75,
+    "z": 1,
+    "height": 266.25,
+    "width": 1367.5,
+    "tabOrder": 1
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Jira Macro Business Initiative"
+                    }
+                  },
+                  "Property": "Issue key"
+                }
+              },
+              "queryRef": "Jira Macro Business Initiative.Issue key",
+              "nativeQueryRef": "Issue key"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Jira Macro Business Initiative"
+                    }
+                  },
+                  "Property": "Issue Name"
+                }
+              },
+              "queryRef": "Jira Macro Business Initiative.Issue Name",
+              "nativeQueryRef": "Issue Name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Jira Macro Business Initiative"
+                    }
+                  },
+                  "Property": "Data Approvazione"
+                }
+              },
+              "queryRef": "Jira Macro Business Initiative.Data Approvazione",
+              "nativeQueryRef": "Data Approvazione"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Jira Macro Business Initiative"
+                    }
+                  },
+                  "Property": "Issue created date"
+                }
+              },
+              "queryRef": "Jira Macro Business Initiative.Issue created date",
+              "nativeQueryRef": "Issue created date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Jira Macro Business Initiative"
+                    }
+                  },
+                  "Property": "Issue End date"
+                }
+              },
+              "queryRef": "Jira Macro Business Initiative.Issue End date",
+              "nativeQueryRef": "Issue End date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Jira Macro Business Initiative"
+                    }
+                  },
+                  "Property": "Issue Start date"
+                }
+              },
+              "queryRef": "Jira Macro Business Initiative.Issue Start date",
+              "nativeQueryRef": "Issue Start date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "APM (2)"
+                    }
+                  },
+                  "Property": "APM Code"
+                }
+              },
+              "queryRef": "APM (2).APM Code",
+              "nativeQueryRef": "APM Code"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Macro Business Initiative'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "87cb2ff8ab16b0ed6e00",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Macro Business Initiative"
+              }
+            },
+            "Property": "Data Approvazione"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "359d3ad01081910d0b95",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "APM (2)"
+              }
+            },
+            "Property": "APM Code"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "a",
+              "Entity": "APM (2)",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "a"
+                          }
+                        },
+                        "Property": "APM Code"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'SO00105'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "6c31c8a48175e71d28a4",
+        "ordinal": 2,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Macro Business Initiative"
+              }
+            },
+            "Property": "Issue created date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f24982c23a3866a4a79a",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Macro Business Initiative"
+              }
+            },
+            "Property": "Issue End date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "15ebbe5cba97bd95a2d3",
+        "ordinal": 4,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Macro Business Initiative"
+              }
+            },
+            "Property": "Issue key"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "664384344c6b2e51825c",
+        "ordinal": 5,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Macro Business Initiative"
+              }
+            },
+            "Property": "Issue Name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e4f4e64c98adb8eb0881",
+        "ordinal": 6,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Macro Business Initiative"
+              }
+            },
+            "Property": "Issue Start date"
+          }
+        },
+        "type": "Categorical"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

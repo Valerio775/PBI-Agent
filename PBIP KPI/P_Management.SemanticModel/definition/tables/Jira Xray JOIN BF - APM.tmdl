@@ -1,0 +1,30 @@
+table 'Jira Xray JOIN BF - APM'
+	lineageTag: 027a05b7-046c-41ba-9baf-b9e3f96b7b35
+	sourceLineageTag: 15b90948-02fe-4715-9936-82712e59bcc7
+
+	column 'Business Feature'
+		dataType: string
+		lineageTag: a8b077b9-eb77-4003-9d6c-80722200075d
+		sourceLineageTag: b523666c-4237-49e4-bb6a-563ed655f3f3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Business Feature
+
+		annotation SummarizationSetBy = User
+
+	column APM
+		dataType: string
+		lineageTag: 1aa44d9a-2ff6-4b9a-964d-dcd1589b2e60
+		sourceLineageTag: 6d4c3db6-3a57-415b-8af3-d762af66d21f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: APM
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira Xray JOIN BF - APM' = entity
+		mode: directQuery
+		source
+			entityName: Jira Xray JOIN BF - APM
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

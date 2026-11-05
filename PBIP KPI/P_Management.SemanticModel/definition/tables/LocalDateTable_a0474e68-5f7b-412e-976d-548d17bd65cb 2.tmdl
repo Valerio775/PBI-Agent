@@ -1,0 +1,120 @@
+table 'LocalDateTable_a0474e68-5f7b-412e-976d-548d17bd65cb 2'
+	showAsVariationsOnly
+	lineageTag: 69c0159d-e6f3-4f34-83ee-3036a4d1d5b0
+	sourceLineageTag: af4d797c-4098-4618-b3ea-d8724d5699f1
+
+	column Date
+		dataType: dateTime
+		isHidden
+		isNullable: false
+		formatString: General Number
+		lineageTag: 61749fec-b4ae-4842-8d46-1768d5e346f9
+		sourceLineageTag: facbf478-1afe-4985-bb5f-ad350c4b43ba
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = User
+
+	column Anno
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: e330a087-1ba7-4e1b-819f-bddfbf48e508
+		sourceLineageTag: acb89350-e29e-45d3-8e53-e29263640b0c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Anno
+
+		annotation SummarizationSetBy = User
+
+	column NumMese
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: f1c3db98-f5e6-4003-bb39-743b268fa794
+		sourceLineageTag: be63c8e2-5d7a-4b3d-b5d0-a7964c7e91e0
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: NumMese
+
+		annotation SummarizationSetBy = User
+
+	column Mese
+		dataType: string
+		isHidden
+		lineageTag: b1adf6f4-f96c-4f7e-b306-52163c2e0608
+		sourceLineageTag: 94d827db-c885-4019-9a7d-221055d77ddf
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Mese
+		sortByColumn: NumMese
+
+		annotation SummarizationSetBy = User
+
+	column NumTrimestre
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a5c813a2-0e55-44f6-ba72-3829d3ee8431
+		sourceLineageTag: dbd597dc-9496-45cc-b5ce-50ff37a50210
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: NumTrimestre
+
+		annotation SummarizationSetBy = User
+
+	column Trimestre
+		dataType: string
+		isHidden
+		lineageTag: c4be6d5a-89b8-4770-8de8-8e9e3bd301dc
+		sourceLineageTag: a07c5876-c543-4ee3-84c9-f31955922697
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Trimestre
+		sortByColumn: NumTrimestre
+
+		annotation SummarizationSetBy = User
+
+	column Giorno
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ad602654-6967-40fb-8cb4-e12380c80212
+		sourceLineageTag: f9c64969-5996-4507-a7ec-7b5081de8590
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Giorno
+
+		annotation SummarizationSetBy = User
+
+	hierarchy 'Gerarchia data'
+		lineageTag: aafe6b3b-5b35-4823-9ee7-dfe8c45437cd
+		sourceLineageTag: 9d283e0f-44cb-441f-928a-f975a8abaf08
+
+		level Anno
+			lineageTag: 2068fc93-9f55-471b-a278-cfacf8141c23
+			sourceLineageTag: 8b4ed03b-0528-403c-ad25-91944c63f21c
+			column: Anno
+
+		level Trimestre
+			lineageTag: 3866c941-7324-4d6b-8fce-674c7a081535
+			sourceLineageTag: 842355c6-81aa-48c2-8d77-954d18eaf6fa
+			column: Trimestre
+
+		level Mese
+			lineageTag: 88be319c-9c61-4ecd-ac20-137f10fafd44
+			sourceLineageTag: 0329b9fb-1702-4208-8dc3-11fc7e48ff63
+			column: Mese
+
+		level Giorno
+			lineageTag: 6a0426e3-b34b-46a3-944c-5f40d2e6d3c7
+			sourceLineageTag: 80d42968-f739-4dd2-8c78-d17e8be3dd28
+			column: Giorno
+
+	partition 'LocalDateTable_a0474e68-5f7b-412e-976d-548d17bd65cb 2' = entity
+		mode: directQuery
+		source
+			entityName: LocalDateTable_a0474e68-5f7b-412e-976d-548d17bd65cb
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab 3'
+

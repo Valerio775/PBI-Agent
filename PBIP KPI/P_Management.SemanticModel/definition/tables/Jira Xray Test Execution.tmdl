@@ -1,0 +1,101 @@
+table 'Jira Xray Test Execution'
+	lineageTag: 10588915-0f13-4e84-93fc-76713f22a973
+	sourceLineageTag: db12f857-bb98-40fb-b686-452ee454f676
+
+	column test_execution_id
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: c214a042-87c8-4541-b753-03038f003ec5
+		sourceLineageTag: b14484a4-9c7c-4ebf-aa9b-9e9ea24c1777
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: test_execution_id
+
+		annotation SummarizationSetBy = User
+
+	column test_execution_summary
+		dataType: string
+		lineageTag: fa45fdf8-0cb5-4cd4-8806-b7639dbfec7d
+		sourceLineageTag: 923bb13f-2293-4bcb-9a60-80596bec4c84
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: test_execution_summary
+
+		annotation SummarizationSetBy = User
+
+	column test_execution_created
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 097ff7ee-efd7-41ed-b436-91b5aa036169
+		sourceLineageTag: 407e76ac-3027-4b93-8544-10f64fca42ae
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: test_execution_created
+
+		variation Variazione
+			isDefault
+			relationship: 6749f24a-1305-46eb-9a38-6ac51bc5f4ba
+			defaultHierarchy: LocalDateTable_c30d781f-0c57-48c1-b6de-3ded1fbb1e21.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column reporter
+		dataType: string
+		lineageTag: d0c2e498-2b52-40e9-92de-5f40882ca3a4
+		sourceLineageTag: a0c9271b-5844-40ce-a77b-e86128701fd1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: reporter
+
+		annotation SummarizationSetBy = User
+
+	column assignee
+		dataType: string
+		lineageTag: 9d0a3b6b-30f5-4105-95bc-cc5608a578b5
+		sourceLineageTag: 67281d0a-893f-4bb6-861a-04bed965491d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: assignee
+
+		annotation SummarizationSetBy = User
+
+	column project
+		dataType: int64
+		formatString: 0
+		lineageTag: 206f020d-a0ba-449a-8294-c0b6ff413d48
+		sourceLineageTag: 5c259778-3e21-47ef-a0b2-707ff0486cb7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: project
+
+		annotation SummarizationSetBy = User
+
+	column issuestatus
+		dataType: int64
+		formatString: 0
+		lineageTag: 542d1ee4-c8ff-4c2f-86ab-7316cda39fda
+		sourceLineageTag: 1a9610cb-0a49-4edf-ac83-e4a982cd584e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issuestatus
+
+		annotation SummarizationSetBy = User
+
+	column test_run_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 86d04693-9c31-4f73-88db-828fee0d7655
+		sourceLineageTag: e30e6c6c-e12b-4352-ac77-ae11adac3a65
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: test_run_id
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira Xray Test Execution' = entity
+		mode: directQuery
+		source
+			entityName: Jira Xray Test Execution
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

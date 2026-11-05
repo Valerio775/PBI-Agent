@@ -1,0 +1,45 @@
+table Tassi_Cambio
+	isHidden
+	lineageTag: 4235dd58-6e64-491b-8e6b-c2420b6b22bc
+	sourceLineageTag: 91c9c0b2-1293-4706-86e8-f4164e521606
+
+	column Owner_Country
+		dataType: string
+		isHidden
+		isNullable: false
+		lineageTag: c236da42-18f6-4dbf-80c2-70cd0e4013e8
+		sourceLineageTag: 1e4cb252-1379-4a30-84bc-78d8bedd3699
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Owner_Country
+
+		annotation SummarizationSetBy = User
+
+	column 'Valuta Locale'
+		dataType: string
+		isHidden
+		lineageTag: 29e1c164-1700-468d-b95c-878c5cdece3f
+		sourceLineageTag: 7bece2fd-3787-4431-9932-f53550006f26
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Valuta Locale
+
+		annotation SummarizationSetBy = User
+
+	column Tasso_EUR
+		dataType: string
+		isHidden
+		lineageTag: 4eb324a6-0f75-43b5-88bc-2513b93a7b93
+		sourceLineageTag: 22d05e20-4980-4a5f-970f-c706a36cb740
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Tasso_EUR
+
+		annotation SummarizationSetBy = User
+
+	partition Tassi_Cambio = entity
+		mode: directQuery
+		source
+			entityName: Tassi_Cambio
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

@@ -1,0 +1,374 @@
+table 'Jira Story Task 2'
+	lineageTag: 321c15be-41a0-4f45-8de5-71118f38ab14
+	sourceLineageTag: 24b6d6bb-4eed-4030-91bc-602c556105bc
+
+	column issue_id
+		dataType: int64
+		formatString: 0
+		lineageTag: f5555285-9815-459c-8b58-1c9cc67db46c
+		sourceLineageTag: c0c59b5e-ab59-45ee-888d-bdc6aa216b8f
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: issue_id
+
+		annotation SummarizationSetBy = User
+
+	column issue_key
+		dataType: string
+		lineageTag: 88c84a34-2fcc-4090-9aea-dc50f85f6cf8
+		sourceLineageTag: d6274239-afbe-4854-af6a-1c0f1152720b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_key
+
+		annotation SummarizationSetBy = User
+
+	column project_name
+		dataType: string
+		lineageTag: d60b94cf-ecbf-4654-a9d5-2e7e2eb10798
+		sourceLineageTag: 295b579b-4cff-41cb-aa0e-b9ea60ac855b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: project_name
+
+		annotation SummarizationSetBy = User
+
+	column project_key
+		dataType: string
+		lineageTag: 1323d0ea-5da4-400e-a6fd-d0ff53308a0d
+		sourceLineageTag: 9456dd49-6ef7-4fae-b7fd-124ad84f6f7b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: project_key
+
+		annotation SummarizationSetBy = User
+
+	column issue_num
+		dataType: int64
+		formatString: 0
+		lineageTag: afdff25d-f7cb-4749-86ad-156d4257726a
+		sourceLineageTag: 6944bc5a-4833-40eb-b1dd-2016543d1880
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: issue_num
+
+		annotation SummarizationSetBy = User
+
+	column assignee
+		dataType: string
+		lineageTag: 358a085e-408b-4cea-8add-418c83ccfe46
+		sourceLineageTag: 6d338d0a-69fd-4712-92c2-0df12d6510a9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: assignee
+
+		annotation SummarizationSetBy = User
+
+	column reporter
+		dataType: string
+		lineageTag: db3e985b-d6a2-4a7e-bb51-1e585c09bcf8
+		sourceLineageTag: c1780cf2-0ba3-4a15-91ea-06f1b4ad6e82
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: reporter
+
+		annotation SummarizationSetBy = User
+
+	column created_date
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 47ec7add-3294-4980-80bc-07412108dedb
+		sourceLineageTag: 60ca4a88-c1e7-4ead-964b-0190406b520b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: created_date
+
+		variation Variazione
+			isDefault
+			relationship: 29401cd5-61d2-4aa2-9d40-bf120f8d5602
+			defaultHierarchy: 'LocalDateTable_a70f2671-c171-4255-9776-3e660f0fc545 2'.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column updated
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: d85f2fb2-5c57-4a19-8ce8-84c1b5d3607e
+		sourceLineageTag: 4a9f87c2-e423-4794-916b-a4133162c4f4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: updated
+
+		variation Variazione
+			isDefault
+			relationship: c7d97ebf-bf61-400d-88d4-0f6a9129cb0b
+			defaultHierarchy: 'LocalDateTable_0ab3ba1a-faa8-416f-a713-1f6e921238ce 2'.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column resolutiondate
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 7ef4cd8b-ee69-4bec-811d-e581e0183eff
+		sourceLineageTag: 300fb349-96be-441e-a302-a807818c7d5b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: resolutiondate
+
+		variation Variazione
+			isDefault
+			relationship: 35eabe4c-c3ce-4f41-9c73-93819f603184
+			defaultHierarchy: 'LocalDateTable_6a950f9d-2d04-440d-86f9-2db7f456f126 2'.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column summary
+		dataType: string
+		lineageTag: b0f03fe8-7c31-4fab-9e77-98172c7e6908
+		sourceLineageTag: 85d4c7d6-aebd-407c-9492-d3e5ba78ee2a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: summary
+
+		annotation SummarizationSetBy = User
+
+	column priority_name
+		dataType: string
+		lineageTag: 0b0d3ea0-7cd1-4f4e-bec2-3fc643e6bcf1
+		sourceLineageTag: a09240a1-5c00-4c80-a9f6-26b099bdeb01
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: priority_name
+
+		annotation SummarizationSetBy = User
+
+	column closed_by
+		dataType: string
+		lineageTag: b9d7f7c1-b27d-4658-ab42-1534cacb44a9
+		sourceLineageTag: d72e32d1-3bbe-4325-aae7-a6819d15e97f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: closed_by
+
+		annotation SummarizationSetBy = User
+
+	column status_name
+		dataType: string
+		lineageTag: d97a1995-778d-40b6-b6bd-a1bc0b19dc83
+		sourceLineageTag: 207389b6-7975-4cbc-acf2-cc62f8bf5897
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: status_name
+
+		annotation SummarizationSetBy = User
+
+	column status_category
+		dataType: string
+		lineageTag: 569a4df7-fffa-46fd-8c61-084738d445d9
+		sourceLineageTag: 74909b8a-3c9c-46ec-967c-e8f8b5aaf345
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: status_category
+
+		annotation SummarizationSetBy = User
+
+	column issue_type_name
+		dataType: string
+		lineageTag: 54abb285-7b8d-471c-8119-cbeeb8e11987
+		sourceLineageTag: 7eec5075-e6bd-47b5-84db-e45b89189070
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_type_name
+
+		annotation SummarizationSetBy = User
+
+	column epiclink
+		dataType: string
+		lineageTag: edeeab81-5433-4a09-b857-5fd4b0cf4826
+		sourceLineageTag: 67595f6c-9d29-4bfb-9480-4d7672bf6cfe
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: epiclink
+
+		annotation SummarizationSetBy = User
+
+	column parentlink
+		dataType: string
+		lineageTag: 4e74cf6d-0fd7-438d-b7c7-12dccde59846
+		sourceLineageTag: 85608b26-4f20-4ce0-8ce3-c561a2d0152f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: parentlink
+
+		annotation SummarizationSetBy = User
+
+	column epic_name
+		dataType: string
+		lineageTag: 74858ffd-8dc9-4e75-a12f-7d5b073a40fc
+		sourceLineageTag: 533701a1-c898-4d9c-8370-e512c47e5346
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: epic_name
+
+		annotation SummarizationSetBy = User
+
+	column epic_status
+		dataType: string
+		lineageTag: 04651df2-fb96-4814-a5c1-d7d828e27d9a
+		sourceLineageTag: 1b2dc37b-f2a0-460d-946b-b9f6dde185fd
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: epic_status
+
+		annotation SummarizationSetBy = User
+
+	column apm_list
+		dataType: string
+		lineageTag: 90293077-b61e-435e-97ff-8d349f2bbc57
+		sourceLineageTag: 9f602110-bdb3-4f37-8ebd-127dffa70ff5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: apm_list
+
+		annotation SummarizationSetBy = User
+
+	column story_points
+		dataType: double
+		lineageTag: 1512a4b0-8e31-4f5e-a8a3-9b075f82e741
+		sourceLineageTag: 2ca01f3b-9aea-46d2-9c56-85c551632cd5
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: story_points
+
+		annotation SummarizationSetBy = User
+
+	column start_date
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: fbd8aa57-5133-4415-953d-6b4c711f39c9
+		sourceLineageTag: b949755d-fd18-4bd7-8bb3-bb845b259aa2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: start_date
+
+		variation Variazione
+			isDefault
+			relationship: b469956b-0cbb-4374-8f87-930e1794877f
+			defaultHierarchy: 'LocalDateTable_e5c3a9c9-75fa-42f3-acd2-0b57c3290240 2'.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column end_date
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: d29711bd-f821-4a98-b57d-3d9d6a8278f7
+		sourceLineageTag: c00ce42b-d7a4-465a-b097-0f114770d94f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: end_date
+
+		variation Variazione
+			isDefault
+			relationship: 07e87836-8126-42be-b9e2-ac5e3e98c295
+			defaultHierarchy: 'LocalDateTable_cfa1cd90-5ec1-45ae-90a8-8e0338465f39 2'.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column baseline_start_date
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 88ac99a4-783c-4f54-8520-7b9d0b00f8ea
+		sourceLineageTag: 2630e234-cad6-430e-a382-ac27cffe1910
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: baseline_start_date
+
+		variation Variazione
+			isDefault
+			relationship: ea705694-6be4-4bf3-888e-c2b9c797b0fa
+			defaultHierarchy: 'LocalDateTable_58a43364-bcce-43c3-874f-0ab016fe777b 2'.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column baseline_end_date
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 3d0c3e32-d82e-4e16-8f3e-7bc9b3dca644
+		sourceLineageTag: 9f71d3c0-dae6-4188-bbfa-789355345d2e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: baseline_end_date
+
+		variation Variazione
+			isDefault
+			relationship: f3dd4447-e566-4314-babb-bc180706a574
+			defaultHierarchy: 'LocalDateTable_3e82ade7-74e4-4826-bf57-0771082c5779 2'.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column progress
+		dataType: double
+		lineageTag: 64f52e01-8858-4a7a-8e23-3a09de26779d
+		sourceLineageTag: 106c8b26-d989-4e36-af35-f488514c1805
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: progress
+
+		annotation SummarizationSetBy = User
+
+	column deploy_strategy
+		dataType: string
+		lineageTag: a9f6b840-492c-4c59-8a7f-c8a31593b253
+		sourceLineageTag: fee33ea9-65a5-4e9c-b9a3-f76dfec5690a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: deploy_strategy
+
+		annotation SummarizationSetBy = User
+
+	column feature_delivery
+		dataType: string
+		lineageTag: 5378ab90-1a34-4afe-8fbd-a755fcdcb41a
+		sourceLineageTag: b5f71936-f0df-4111-9293-c9e023a29db9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: feature_delivery
+
+		annotation SummarizationSetBy = User
+
+	column gdsl_line_hub
+		dataType: string
+		lineageTag: 4b2d1dbd-c4c3-4e7c-bf28-b960237fa41b
+		sourceLineageTag: a5a85869-fc81-4bc7-b835-c025646897e9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: gdsl_line_hub
+
+		annotation SummarizationSetBy = User
+
+	column project_status
+		dataType: string
+		lineageTag: f870344c-4b36-4266-b075-712f905709b5
+		sourceLineageTag: 17ecdbc8-abf7-432d-b79c-ca236c83738b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: project_status
+
+		annotation SummarizationSetBy = User
+
+	column factory_chapter
+		dataType: string
+		lineageTag: 5c41b5d1-2af6-4b09-994f-0c1615feaead
+		sourceLineageTag: 40551c3b-82db-40b0-ac27-cc482e04f65c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: factory_chapter
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira Story Task 2' = entity
+		mode: directQuery
+		source
+			entityName: Jira Story Task
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab 2'
+

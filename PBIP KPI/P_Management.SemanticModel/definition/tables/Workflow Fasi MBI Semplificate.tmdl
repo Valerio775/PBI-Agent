@@ -1,0 +1,104 @@
+table 'Workflow Fasi MBI Semplificate'
+	lineageTag: 809da066-d16a-4e4e-90d0-cbe41ae30461
+
+	column Status
+		lineageTag: c79eea3b-e04f-4d0a-a2a3-380faaeabf87
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status Numerato'
+		lineageTag: 9e8103d8-2243-4817-b80f-09b6885b2d88
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status Numerato]
+		sortByColumn: OrdineFase
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrdineFase
+		formatString: 0
+		lineageTag: d9c7eae8-0208-48b7-bc94-f38ecf5ee0e3
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [OrdineFase]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status Tradotto'
+		lineageTag: a4d12ccc-ba1f-494c-a293-74977cd51fff
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status Tradotto]
+		sortByColumn: OrdineFase
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrdineBarra
+		formatString: 0
+		lineageTag: 0d9fb0ad-5076-45d5-9db9-52812abd705f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [OrdineBarra]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Workflow Fasi MBI Semplificate' = calculated
+		mode: import
+		source = ```
+				
+				DATATABLE (
+				    "Status", STRING,
+				    "Status Numerato", STRING,
+				    "OrdineFase", INTEGER,
+				    "Status Tradotto", STRING,
+				    "OrdineBarra", INTEGER,
+				    {
+				        { "Rejected", "0. Rejected", 0 , "0. Aborted", 0},
+				        { "Cancelled", "0. Cancelled", 0, "0. Aborted", 0},
+				
+				        { "Open", "1. Open", 1, "1. Valutazione iniziative e preparazione requisiti (DE)", 1},
+				        { "High-Level Functional Requirement", "2. High-Level Functional Requirement", 1 , "1. Valutazione iniziative e preparazione requisiti (DE)", 2},
+				
+				        { "Tech Evaluation", "3.Tech Evaluation", 2, "2. High-level Design, cost estimation and project plan (DF)", 3},
+				        { "Estimation Done", "4. Estimation Done", 2, "2. High-level Design, cost estimation and project plan (DF)", 4},
+				
+				        { "Financial Evaluation", "5. Financial Evaluation", 3, "3. Predisposizione offerta e IM (DE)", 5},
+				        { "IM Management", "6. IM Management", 3, "3. Predisposizione offerta e IM (DE)", 6},
+				
+				        { "Waiting for Approval", "7. Waiting for Approval", 4, "4. Approvazione e firma IM (BSN + DE)", 7},
+				
+				        { "WBE Management", "8. WBE Management", 5, "5. Creazione wbe (IC DF)", 8},
+				        { "Approved", "9. Approved", 6, "6. Approved", 9}
+				    }
+				)
+				/*
+				Workflow Fasi MBI Semplificate = 
+				DATATABLE (
+				    "Status", STRING,
+				    "Status Numerato", STRING,
+				    "OrdineFase", INTEGER,
+				    "Status Tradotto", STRING,
+				    "OrdineBarra", INTEGER,
+				    {
+				        { "Open", "1. Conferma Perimetro", 1, "1. Valutazione iniziative e preparazione requisiti (DE)", 1 },
+				        { "High-Level Functional Requirement", "2. Preparazione BR", 1, "1. Valutazione iniziative e preparazione requisiti (DE)", 2 },
+				
+				        { "Tech Evaluation", "3. HLD e Stime", 2, "2. High-level Design, cost estimation and project plan (DF)", 3 },
+				        { "Estimation Done", "4. Plan e Costi DE", 2, "2. High-level Design, cost estimation and project plan (DF)", 4 },
+				
+				        { "Financial Evaluation", "5. IC DE Check e Markup", 3, "3. Predisposizione offerta e IM (DE)", 5 },
+				
+				        { "IM Management", "6. IM Approval", 4, "4. Approvazione e firma IM (BSN + DE)", 6 },
+				        { "Waiting for Approval", "6. IM Approval", 4, "4. Approvazione e firma IM (BSN + DE)", 6 },
+				
+				        { "WBE Management", "7. Approvazione P&C Applicant Unit", 5, "5. Creazione wbe (IC DF)", 7 },
+				        { "Approved", "8. IC DE Approvazione e creazione Demand", 6, "6. Approved", 8 }
+				    }
+				)*/
+				```
+
+	annotation PBI_Id = 3f33f3dbc78d496e908a834f496040e8
+

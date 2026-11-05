@@ -1,0 +1,148 @@
+table 'Jira Demand for APM'
+	lineageTag: 69c41620-e46a-450a-b890-a2ce87a872f9
+	sourceLineageTag: a32643d7-98b1-4e2a-bbbb-85a36b1e4727
+
+	column Issue
+		dataType: string
+		lineageTag: 0532c6f3-a287-48bb-81a9-0b9bb9c3bd31
+		sourceLineageTag: 496ed30a-0142-4377-b103-f7f34b260728
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue created date'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 470a1160-2a9f-4d2e-8ae7-158d4e4bb567
+		sourceLineageTag: 30e1f83c-9a4e-4e04-bbe3-7009cf2301a6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue created date
+
+		variation Variazione
+			isDefault
+			relationship: 80ee663b-d307-493f-9a5b-3ab81e3536ae
+			defaultHierarchy: LocalDateTable_54251152-b6d8-499c-b8ea-023bbc9af7a9.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Issue Sys_ID'
+		dataType: string
+		lineageTag: 9a1b64e9-3960-406d-aed4-c5d75a18bbe3
+		sourceLineageTag: 304a0a8a-d6f4-41c3-a9dc-eda4b279d054
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Sys_ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue sys_created_on'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: dc03f6e4-6fb8-491f-94d7-b37701730209
+		sourceLineageTag: 0c1ebfef-4c1a-4eaf-916c-b62c8491ee9a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue sys_created_on
+
+		variation Variazione
+			isDefault
+			relationship: 42fb2a29-d208-424f-a343-1a28f807d140
+			defaultHierarchy: LocalDateTable_c51aaf8e-5b56-48c6-be3f-091317827fc3.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Issue sys_updated_on'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 7b13305b-9d67-4a06-a2e1-890fb1f925e6
+		sourceLineageTag: 9d0ea428-6265-4472-bc01-42320b3f990f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue sys_updated_on
+
+		variation Variazione
+			isDefault
+			relationship: 75210437-b27f-4719-ab87-765bfbc5fd59
+			defaultHierarchy: LocalDateTable_ad5e9ae8-1f11-4aad-a093-c5204b56c687.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Issue Object Type'
+		dataType: string
+		lineageTag: be91306a-79da-48ec-b6c2-ebf76c035270
+		sourceLineageTag: d7aee8ae-9771-48b1-b00e-efaa6c98c399
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Object Type
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Calculated Weight'
+		dataType: double
+		lineageTag: 449f9344-7c0a-48a7-beb1-c38ac325eba4
+		sourceLineageTag: 342d6122-e897-495d-a0ec-c6715e603455
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Calculated Weight
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Service Name'
+		dataType: string
+		lineageTag: ea2f6794-d201-4998-8cf0-28646342e077
+		sourceLineageTag: 3d6ae3df-220e-48b9-8960-947a3d8a3a7a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Service Name
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Service Code'
+		dataType: string
+		lineageTag: b98d3c79-603d-42a1-94bf-08d4288e6296
+		sourceLineageTag: 7fbffc66-c5a9-44d9-8ace-0a8517a56942
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Service Code
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Application'
+		dataType: string
+		lineageTag: 43cb876a-a4f2-4735-8a83-f872ed4ef111
+		sourceLineageTag: fe661f64-994c-442c-9c25-2d8c06bfca7e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Application
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue key'
+		dataType: string
+		lineageTag: 116193cb-8866-4e70-a992-f938e546677d
+		sourceLineageTag: bc45676d-69cb-4aff-a54f-ad8f6ff3eee1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue key
+
+		annotation SummarizationSetBy = User
+
+	column Jira_DMY_APM_URL
+		dataType: string
+		lineageTag: 038ce98f-5d77-4b24-b76b-10ca0c353f14
+		sourceLineageTag: 04cd5f95-f7b3-41b8-99f0-6f416fb58f11
+		dataCategory: WebUrl
+		summarizeBy: none
+		sourceColumn: Jira_DMY_APM_URL
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira Demand for APM' = entity
+		mode: directQuery
+		source
+			entityName: Jira Demand for APM
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

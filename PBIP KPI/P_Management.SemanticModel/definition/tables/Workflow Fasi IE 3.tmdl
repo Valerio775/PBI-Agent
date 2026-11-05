@@ -1,0 +1,52 @@
+table 'Workflow Fasi IE 3'
+	lineageTag: eb26d35a-15f1-4112-8f82-55cc7aabd0b0
+
+	column Status
+		lineageTag: fd47caa3-d7b2-4d43-b007-8470b3c5ce7d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status]
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrdineFase
+		formatString: 0
+		lineageTag: 50f171f9-6c31-4ed8-b20a-d8ffa9ccc489
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [OrdineFase]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status Tradotto'
+		lineageTag: a6432a1e-7bc9-4743-814c-26a7de3d01f3
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status Tradotto]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Workflow Fasi IE 3' = calculated
+		mode: import
+		source = ```
+				
+				DATATABLE (
+				    "Status", STRING,
+				    "OrdineFase", INTEGER,
+				    "Status Tradotto", STRING,
+				    {
+				        { "Rejected", 0 , "Rejected"},
+				
+				        { "Open", 1, "IE Open"},
+				
+				        { "Waiting for Estimate", 2 , "IE redazione doc & Stime"},
+				        { "Estimation Approval", 3, "IC DU markup"}
+				
+				        //{ "Done", 3, "IC DU markup"}
+				    }
+				)
+				
+				```
+
+	annotation PBI_Id = 1c7063fd023e4ad48b483630cd336ec7
+

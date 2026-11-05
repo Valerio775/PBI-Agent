@@ -1,0 +1,92 @@
+table 'Jira Business Feature Progress'
+	lineageTag: 7828af74-e9a6-458e-b69f-5c0ea9f8c30e
+	sourceLineageTag: 581ce571-98af-416d-86db-9d0791f190e9
+
+	column id
+		dataType: string
+		lineageTag: 313ccfc1-d610-4e74-94f3-28da5af5c43e
+		sourceLineageTag: da4b91b9-9911-44cf-807e-cef160bb9602
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = User
+
+	column Key
+		dataType: string
+		lineageTag: 76b4d89e-8ec1-4ada-bcf7-dfad72e976e7
+		sourceLineageTag: 084d0f81-601f-4501-b73b-532748d2cab3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Key
+
+		annotation SummarizationSetBy = User
+
+	column Status
+		dataType: string
+		lineageTag: de323262-8a94-4765-aef2-fc3c0690de81
+		sourceLineageTag: 59c355b5-8d6f-41d8-8f9d-28094fb569a1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = User
+
+	column 'Activity Type'
+		dataType: string
+		lineageTag: 51037630-e37d-4767-bc92-e49c5e7159cb
+		sourceLineageTag: e9b6d60d-28fe-4880-b8b5-48b12f50968b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Activity Type
+
+		annotation SummarizationSetBy = User
+
+	column Progress
+		dataType: double
+		lineageTag: 4081f26c-4e51-4622-aa49-9366c1653033
+		sourceLineageTag: edb01643-7011-4f2d-a5b0-c99cd91067c0
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Progress
+
+		annotation SummarizationSetBy = User
+
+	column Created
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 598e2f5d-9941-4c37-9db8-0e30306f166c
+		sourceLineageTag: d73ffb49-7a54-45dc-8c91-38431e895646
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Created
+
+		variation Variazione
+			isDefault
+			relationship: b1cf8120-7e64-4d47-8890-256592b9e9b5
+			defaultHierarchy: LocalDateTable_0ac5c064-e23b-4441-9591-357dab2c4a9b.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column Updated
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: d34ed34d-c1ec-4075-b1b6-38b884679621
+		sourceLineageTag: 6a80ab2b-8e90-4b10-8c78-a8e660dfaf26
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Updated
+
+		variation Variazione
+			isDefault
+			relationship: c2dd13b2-6486-429f-b431-0f8cc6e93366
+			defaultHierarchy: LocalDateTable_999466e9-5c89-4d1a-99c8-4b89f6c49d00.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira Business Feature Progress' = entity
+		mode: directQuery
+		source
+			entityName: Jira Business Feature Progress
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

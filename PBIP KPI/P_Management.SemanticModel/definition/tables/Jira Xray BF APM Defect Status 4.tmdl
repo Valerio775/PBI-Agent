@@ -1,0 +1,51 @@
+table 'Jira Xray BF APM Defect Status 4'
+	lineageTag: 80723eac-e4ff-410b-be94-179e325f407a
+	sourceLineageTag: 1e85d910-5e4a-4e23-8db6-ad2867f6bbcf
+
+	column 'Business Feature'
+		dataType: string
+		lineageTag: ad98908f-ce55-4f69-9d58-e59179a47d77
+		sourceLineageTag: 481b6fcb-53bd-4c03-a6fc-4cb83926d2aa
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Business Feature
+
+		annotation SummarizationSetBy = User
+
+	column APM
+		dataType: string
+		lineageTag: 8f8b294b-4365-425b-8fa3-706d3e95c6f7
+		sourceLineageTag: 98f5c447-320c-4372-827b-055a6d500384
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: APM
+
+		annotation SummarizationSetBy = User
+
+	column Status
+		dataType: string
+		lineageTag: d4ca4bc8-1540-4b69-8d06-afcd9af4f255
+		sourceLineageTag: dbb3533d-ca74-438f-9623-c61c011de5e3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = User
+
+	column 'Defect count'
+		dataType: int64
+		formatString: 0
+		lineageTag: a1fce837-c029-4b79-95e2-140fff620cdc
+		sourceLineageTag: 1bf3b2fc-2a9e-4b92-af13-3b65088b8208
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Defect count
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira Xray BF APM Defect Status 4' = entity
+		mode: directQuery
+		source
+			entityName: Jira Xray BF APM Defect Status
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab 3'
+

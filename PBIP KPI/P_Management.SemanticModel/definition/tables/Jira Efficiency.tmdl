@@ -1,0 +1,220 @@
+table 'Jira Efficiency'
+	lineageTag: 204445b8-0325-400f-a597-de7f0a6083f2
+	sourceLineageTag: cc6b9704-b4f6-42e0-9f0d-08dd1ccb7642
+
+	column Time
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c8ac65a4-8f21-49c1-b765-ce833edf319e
+		sourceLineageTag: fbfd4204-54ec-4335-9559-5f3da742f720
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Time
+
+		variation Variazione
+			isDefault
+			relationship: 1daf01ed-41f7-4fda-ab4e-50c28d9aa713
+			defaultHierarchy: LocalDateTable_1341cd8a-23a3-40db-9a43-9c9e743f64a2.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column 'Projectrak GDS Line'
+		dataType: string
+		lineageTag: eb168dd2-ae0c-4e92-8e75-2ef30c0350ba
+		sourceLineageTag: 3f2e1093-3c52-4c8c-83b0-70a1f486560f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Projectrak GDS Line
+
+		annotation SummarizationSetBy = User
+
+	column Issue
+		dataType: string
+		lineageTag: 01d12f3d-3400-420f-a2f9-3b6d07d6fda1
+		sourceLineageTag: 156c2648-7cf5-46a1-a3fa-003a5f1128bb
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue
+
+		annotation SummarizationSetBy = User
+
+	column 'Issues closed'
+		dataType: int64
+		formatString: 0
+		lineageTag: 139c8654-57f4-423c-82fa-58cc9b11d63d
+		sourceLineageTag: a1b0028c-72e6-4330-9863-1f9e97e36cae
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issues closed
+
+		annotation SummarizationSetBy = User
+
+	column 'AVG Project Cycle Time (Hours)'
+		dataType: double
+		lineageTag: ac303cac-c679-468d-a2bb-846232486897
+		sourceLineageTag: 76d04055-4ff2-48e2-af8e-65a976a12713
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: AVG Project Cycle Time (Hours)
+
+		annotation SummarizationSetBy = User
+
+	column 'AH Project AVG Lead Time (hours)'
+		dataType: double
+		lineageTag: 46559731-319a-49a3-afab-86f78815900c
+		sourceLineageTag: 7086f140-793c-4959-9a4b-103f463bb2ad
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: AH Project AVG Lead Time (hours)
+
+		annotation SummarizationSetBy = User
+
+	column 'AVG Project Efficiency (Hours) (%)'
+		dataType: double
+		lineageTag: 640d8a58-4815-4cca-8dd1-5520012d773e
+		sourceLineageTag: e16c8f7c-56c2-484b-b0f9-2846925a9801
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: AVG Project Efficiency (Hours) (%)
+
+		annotation SummarizationSetBy = User
+
+	column 'Project Key [Issue]'
+		dataType: string
+		lineageTag: 33116a01-2350-4f69-8b64-1cb5a7997383
+		sourceLineageTag: 55893edf-bc64-4e84-b35c-48bd06497cda
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Project Key [Issue]
+
+		annotation SummarizationSetBy = User
+
+	column '0-16 Hours'
+		dataType: int64
+		lineageTag: 708b5b3a-f0f2-4f38-a8d0-527179e03b8d
+		sourceLineageTag: 65866788-609d-4ea7-8940-71aa4efdbd86
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: 0-16 Hours
+
+		annotation SummarizationSetBy = User
+
+	column '16-32 Hours'
+		dataType: int64
+		lineageTag: 2b8bca2d-429d-4b43-8efa-176fa4dbae9f
+		sourceLineageTag: e03b6170-8b34-4b89-a017-96fd6ffb76d2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: 16-32 Hours
+
+		annotation SummarizationSetBy = User
+
+	column '32-48 hours'
+		dataType: int64
+		lineageTag: 0cdf18a9-3102-4c62-95d6-1944af62e397
+		sourceLineageTag: 385a0f88-eda7-418a-9513-3816754c4ab3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: 32-48 hours
+
+		annotation SummarizationSetBy = User
+
+	column '>48 Hours'
+		dataType: int64
+		lineageTag: 983d45c9-8267-4df2-9245-f04c51bce281
+		sourceLineageTag: 487a28ae-730e-4867-8e6e-eec33f87fa8a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: >48 Hours
+
+		annotation SummarizationSetBy = User
+
+	column 'AH Project AVG Lead Time (days)'
+		dataType: double
+		formatString: 0.00
+		lineageTag: 7735ae44-63a9-45da-b389-6f844d8eb3c9
+		sourceLineageTag: 4a699700-ab93-4966-9aac-ff04dc4a2c0a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: AH Project AVG Lead Time (days)
+
+		annotation SummarizationSetBy = User
+
+	column 'AVG Project Cycle Time (days)'
+		dataType: double
+		formatString: 0.00
+		lineageTag: 8e3530ec-af3c-42da-9bec-2704ab1aa322
+		sourceLineageTag: f4028275-670d-43a0-a460-978c3a832204
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: AVG Project Cycle Time (days)
+
+		annotation SummarizationSetBy = User
+
+	column Totale_Fasce
+		dataType: int64
+		formatString: 0
+		lineageTag: 06352aa8-fed7-424f-8609-e4a946d3bb4a
+		sourceLineageTag: f9d46757-82ff-4fe0-81eb-c55bb7a25f40
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Totale_Fasce
+
+		annotation SummarizationSetBy = User
+
+	column '0-8 Hours'
+		dataType: string
+		lineageTag: 9639b341-a89f-44c4-afe8-7978b314d350
+		sourceLineageTag: 3097f49f-020c-4188-9348-a218b8c7d5cd
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: 0-8 Hours
+
+		annotation SummarizationSetBy = User
+
+	column '8-16 Hours'
+		dataType: string
+		lineageTag: c59bf973-4af3-4b90-87df-98239e9115a6
+		sourceLineageTag: a453694f-9523-4e51-94c6-b618fd3a50d8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: 8-16 Hours
+
+		annotation SummarizationSetBy = User
+
+	column '48-64 Hours'
+		dataType: string
+		lineageTag: 7052aef6-3d9c-4aad-87f1-884a2aed1528
+		sourceLineageTag: ac2a37f8-1145-49f7-9146-4fde07416ff4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: 48-64 Hours
+
+		annotation SummarizationSetBy = User
+
+	column '>64 Hours'
+		dataType: string
+		lineageTag: e25d3719-b6e9-4be6-b988-8cef02e4eac8
+		sourceLineageTag: 501eecf4-7d56-482e-a7c1-b4c031c532e0
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: >64 Hours
+
+		annotation SummarizationSetBy = User
+
+	column 'AH Cycle Time (hours)'
+		dataType: string
+		lineageTag: 7bcce8f6-5a0c-422b-9b70-57fef7bd4213
+		sourceLineageTag: 3da279c3-4d32-4ded-91c4-3ec278eccc39
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: AH Cycle Time (hours)
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira Efficiency' = entity
+		mode: directQuery
+		source
+			entityName: Jira Efficiency
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

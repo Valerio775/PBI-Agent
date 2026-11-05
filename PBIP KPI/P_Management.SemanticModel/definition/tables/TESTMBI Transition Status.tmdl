@@ -1,0 +1,80 @@
+table 'TESTMBI Transition Status'
+	lineageTag: d87a4c9d-5e57-4de9-bf26-24b36841e3d6
+
+	column issue_key
+		lineageTag: d2c15b61-ed4a-41bd-bf87-d3bb581decca
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[issue_key]
+
+		annotation SummarizationSetBy = Automatic
+
+	column issue_type
+		lineageTag: 3a24fa83-2c50-4e68-ba59-913fc205509a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[issue_type]
+
+		annotation SummarizationSetBy = Automatic
+
+	column transition_date
+		formatString: General Date
+		lineageTag: 482ac900-71f7-424d-b5d2-b4252c3f7f6c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[transition_date]
+
+		variation Variation
+			isDefault
+			relationship: d11b8d64-7a64-4266-a223-51beb5581413
+			defaultHierarchy: LocalDateTable_37c3a860-b52e-419a-bddb-8f1f4336094e.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_status
+		lineageTag: 6751ecb9-c040-4de4-b7a6-8c8d05d1759c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[from_status]
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_status
+		lineageTag: 77444305-ae34-44c0-a95f-d72638bbe1ce
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[to_status]
+
+		annotation SummarizationSetBy = Automatic
+
+	column username
+		lineageTag: 32bf833f-31fe-42e8-b9c8-78bda9edb7f2
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[username]
+
+		annotation SummarizationSetBy = Automatic
+
+	column display_name
+		lineageTag: b1d1ed5d-adc9-4928-be5c-c8654c6e9ab7
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[display_name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Giorni da In Progress a Completed'
+		formatString: 0
+		lineageTag: 3596ae4d-a9be-4917-b20d-bab8d2841165
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[Giorni da In Progress a Completed]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'TESTMBI Transition Status' = calculated
+		mode: import
+		source = FILTER('Jira Change Status IE FD MBI BF', 'Jira Change Status IE FD MBI BF'[issue_type] = "Macro Business Initiative")
+
+	annotation PBI_Id = e434a1dbdcf94b13ad1ce45132be6bb1
+

@@ -1,0 +1,230 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "bdc5f467a6f05f8e2e87",
+  "position": {
+    "x": 1203.8918918918919,
+    "y": 19.027027027027028,
+    "z": 11000,
+    "height": 195.45945945945945,
+    "width": 716.10810810810813,
+    "tabOrder": 10000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Confluence Comala Activity"
+                    }
+                  },
+                  "Property": "activity"
+                }
+              },
+              "queryRef": "Confluence Comala Activity.activity",
+              "nativeQueryRef": "activity"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Confluence Comala Activity"
+                    }
+                  },
+                  "Property": "page_id"
+                }
+              },
+              "queryRef": "Confluence Comala Activity.page_id",
+              "nativeQueryRef": "page_id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Confluence Comala Activity"
+                    }
+                  },
+                  "Property": "Comala Stato Documento"
+                }
+              },
+              "queryRef": "Confluence Comala Activity.Comala Stato Documento",
+              "nativeQueryRef": "Comala Stato Documento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Confluence Comala Activity"
+                    }
+                  },
+                  "Property": "Date Convertita"
+                }
+              },
+              "queryRef": "Confluence Comala Activity.Date Convertita",
+              "nativeQueryRef": "Date Convertita"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Confluence Comala Issue Link"
+                    }
+                  },
+                  "Property": "issue_key"
+                }
+              },
+              "queryRef": "Confluence Comala Issue Link.issue_key",
+              "nativeQueryRef": "issue_key"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Confluence Comala Issue Link"
+                  }
+                },
+                "Property": "issue_key"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "2e9f35172c63b2945a74",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Confluence Comala Issue Link"
+              }
+            },
+            "Property": "issue_key"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "45bd5e5b9096853029ac",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Confluence Comala Activity"
+              }
+            },
+            "Property": "activity"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "c",
+              "Entity": "Confluence Comala Activity",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "c"
+                          }
+                        },
+                        "Property": "activity"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'state'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "ac725841654a936f9b5a",
+        "ordinal": 2,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Confluence Comala Activity"
+              }
+            },
+            "Property": "Comala Stato Documento"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "c31e2873419987947ffc",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Confluence Comala Activity"
+              }
+            },
+            "Property": "Date Convertita"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "b1ba4e2ef4752f612f47",
+        "ordinal": 4,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Confluence Comala Activity"
+              }
+            },
+            "Property": "page_id"
+          }
+        },
+        "type": "Advanced"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

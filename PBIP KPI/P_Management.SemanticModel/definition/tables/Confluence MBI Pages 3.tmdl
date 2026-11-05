@@ -1,0 +1,31 @@
+table 'Confluence MBI Pages 3'
+	lineageTag: a6612cf7-cf55-4a1a-9f16-87cd2f234dc8
+	sourceLineageTag: 9f0fe2e4-2986-42f7-8e37-5c4eb81385bd
+
+	column pageid
+		dataType: int64
+		formatString: 0
+		lineageTag: be732fb9-0295-43e7-a164-99711cad1c68
+		sourceLineageTag: 84bb37d2-66b1-4fc9-8068-722c89b07d9f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: pageid
+
+		annotation SummarizationSetBy = User
+
+	column issue_key
+		dataType: string
+		lineageTag: b1f6001c-c0e6-445a-ba28-fb09b76fad0f
+		sourceLineageTag: 57a28fed-3e21-4147-8d03-ec746c91d6a3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_key
+
+		annotation SummarizationSetBy = User
+
+	partition 'Confluence MBI Pages 3' = entity
+		mode: directQuery
+		source
+			entityName: Confluence MBI Pages
+			expressionSource: 'DirectQuery to AS - SpringLab'
+

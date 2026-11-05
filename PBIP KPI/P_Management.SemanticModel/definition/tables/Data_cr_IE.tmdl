@@ -1,0 +1,59 @@
+table Data_cr_IE
+	lineageTag: dc96f709-b72d-4307-860c-280e31ddbdc8
+
+	column issue_key
+		lineageTag: ad95b33a-58eb-476d-aa08-3ddaa05105b1
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [issue_key]
+
+		annotation SummarizationSetBy = Automatic
+
+	column created_date
+		formatString: General Date
+		lineageTag: 53c55101-7ca5-40d5-9a72-70d75c02c48d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [created_date]
+
+		variation Variazione
+			isDefault
+			relationship: 11efe4db-8a67-441b-9c75-5b509b2e27d8
+			defaultHierarchy: LocalDateTable_d3176ff9-b2c2-4277-b567-686d89ead6d9.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data creazione' =
+			
+			IF(YEAR(Data_cr_IE[created_date])<2026,
+			DATE(1999,01,01),
+			Data_cr_IE[created_date])
+		formatString: General Date
+		lineageTag: d9aa38dc-5436-4383-a8d8-aee786a0635a
+		summarizeBy: none
+
+		variation Variazione
+			isDefault
+			relationship: aa17bf4e-36de-4fab-9953-8bd6272653ea
+			defaultHierarchy: LocalDateTable_ceaecc8f-5213-4403-8781-2c7395a19b28.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Data_cr_IE = calculated
+		mode: import
+		source = ```
+				
+				SELECTCOLUMNS(
+				    FILTER(
+				        'Jira Issue Detail',
+				        'Jira Issue Detail'[issue_key]
+				            IN VALUES ( 'Jira Initiative Estimation'[issue_key] )
+				    ),
+				    "issue_key", 'Jira Issue Detail'[issue_key],
+				    "created_date", 'Jira Issue Detail'[created_date]
+				)
+				
+				```
+
+	annotation PBI_Id = 2c812cb90c0a4314b77952df3dfa7aee
+

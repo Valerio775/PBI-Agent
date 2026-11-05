@@ -1,0 +1,253 @@
+table 'Jira Demand Cost Year'
+	lineageTag: 7b0a2e34-66ba-4a7f-b3ca-1a8a9a0cd701
+	sourceLineageTag: a45b9d2d-9e86-4332-a3f4-3637f8a15073
+
+	column Issue
+		dataType: string
+		lineageTag: 2bb4e2c1-bb73-435c-a395-650c03129b7f
+		sourceLineageTag: db358feb-5b10-4c4d-a2aa-02175c4c3e9d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue created date'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: f74a1533-0aeb-427f-bb0d-8aeeb4d61211
+		sourceLineageTag: 6ce6d568-cfab-4201-9cde-52449b696e52
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue created date
+
+		variation Variazione
+			isDefault
+			relationship: c96dcf35-0589-4803-8b4d-37b2d511ad52
+			defaultHierarchy: LocalDateTable_0b8f0ade-f9f7-410c-a372-fcd293e56c04.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue sys_created_on'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: ddacd6f8-1529-4a39-a724-d789c0e6470c
+		sourceLineageTag: 72dd7319-2e51-40b8-bcab-673923cc8dca
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue sys_created_on
+
+		variation Variazione
+			isDefault
+			relationship: b2080439-5190-416f-b4d4-afc198e7b79a
+			defaultHierarchy: LocalDateTable_538a0ebd-dba2-4612-aba0-196cf6ca8bdd.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Sys_ID'
+		dataType: string
+		lineageTag: 284c20bb-b85b-478c-b26b-27cf3440137a
+		sourceLineageTag: 167b15fe-20b4-471e-9b34-0367483ca274
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Sys_ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue sys_updated_on'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: df9cdd7c-0703-48ee-a5a0-890552acb9e4
+		sourceLineageTag: 1622ae7c-2d7a-44d1-a09d-57a0481d80a6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue sys_updated_on
+
+		variation Variazione
+			isDefault
+			relationship: 97bd6d1f-b49d-434b-a324-a6acbba883dc
+			defaultHierarchy: LocalDateTable_5a5fd50c-1cdc-4e45-afc2-91f26bbbc9ac.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Start_Fiscal_Period'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: abaeb79a-7318-48fe-af7f-fad93994c9e9
+		sourceLineageTag: 6638ffa8-5dc4-42f7-8d0e-57d2515fd2cd
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Start_Fiscal_Period
+
+		variation Variazione
+			isDefault
+			relationship: 4808dc7f-7502-4832-bff7-1977d3bf49ab
+			defaultHierarchy: LocalDateTable_58d23ccc-ccf7-49ab-a1b0-7dca07542207.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue End_Fiscal_Period'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 46ff769d-f2b9-4f73-9c61-7b229fd7a177
+		sourceLineageTag: 3e208dac-cac2-4eb3-8196-8fbd57511713
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue End_Fiscal_Period
+
+		variation Variazione
+			isDefault
+			relationship: 280bddc2-4229-4c15-9c23-a8d7d4077260
+			defaultHierarchy: LocalDateTable_917f9925-f483-4092-9140-06e7f5d85a41.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Quantity'
+		dataType: string
+		lineageTag: 9402209e-825e-44b5-bfd5-eea2618ecd19
+		sourceLineageTag: 56ecca1b-ba35-4c01-be4d-3587f494f29b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Quantity
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Local Cost Currency'
+		dataType: double
+		lineageTag: c519fa64-b1d0-44c8-be19-7a86b5952341
+		sourceLineageTag: 674bc4da-85e3-4b76-b7ac-7a08b77abff4
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Local Cost Currency
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Resource Type'
+		dataType: string
+		lineageTag: 966dbed0-7624-41e4-8994-d3e662d5ddd6
+		sourceLineageTag: 2eb5ee75-e026-4544-a619-f3b5161d8ae5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Resource Type
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue key'
+		dataType: string
+		lineageTag: a7daa088-2761-4f54-a4d7-e8785497a857
+		sourceLineageTag: 781f9dfe-e7a9-49f3-a0a3-89ea2a8c0c76
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue key
+
+		annotation SummarizationSetBy = User
+
+	column Jira_DMY_URL
+		dataType: string
+		lineageTag: eac60322-8087-4713-b102-68d964e95828
+		sourceLineageTag: 522d5c1a-2658-4544-a04f-b329b49ae7e2
+		dataCategory: WebUrl
+		summarizeBy: none
+		sourceColumn: Jira_DMY_URL
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Unit Cost'
+		dataType: string
+		lineageTag: 7e45f694-f1d0-4fc8-b43c-e91e47e02d2f
+		sourceLineageTag: 5b4d9ed7-8b1d-4d00-b147-427ebde8117a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Unit Cost
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Scenario Name'
+		dataType: string
+		lineageTag: 9264de82-2a0e-4509-b9b5-5688ef241702
+		sourceLineageTag: ee4ffa2a-7ad9-4a5d-9a0b-7a9adc2d67b6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Scenario Name
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Currency'
+		dataType: string
+		lineageTag: 6fd02a51-8dcf-4b89-b1d9-1b60a1adaae5
+		sourceLineageTag: 088126d0-f750-4d7f-85d3-bed8cee47aef
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Currency
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue parent key'
+		dataType: string
+		lineageTag: a2dddbf4-60df-488b-9a80-d732aec244de
+		sourceLineageTag: ff91c1db-207a-4b11-ab53-a7179b959f08
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue parent key
+
+		annotation SummarizationSetBy = User
+
+	column Local_cost = ```
+			
+			VAR RawText =
+			    'Jira Demand Cost Year'[Issue Local Cost Currency]
+			
+			VAR CleanText =  SUBSTITUTE(SUBSTITUTE (RawText, ",", ""), ".", ",")
+			
+			RETURN
+			    IF (
+			        CleanText = "" || ISBLANK ( CleanText ),
+			        0,
+			        VALUE ( CleanText )
+			    )
+			
+			```
+		formatString: #,0.###############\ "€";-#,0.###############\ "€";#,0.###############\ "€"
+		lineageTag: b0899bd8-8f64-4171-af4a-2f7921e806fa
+		summarizeBy: sum
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"it-IT"}
+
+	column Scenario = RIGHT('Jira Demand Cost Year'[Issue Scenario Name], 2)
+		lineageTag: edead559-51d3-4437-8b93-4c9f5cfdaa53
+		summarizeBy: none
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Scenario_anno
+		dataType: string
+		lineageTag: 0f9d70e4-b698-4320-84aa-d7df583531b9
+		sourceLineageTag: 9356d43a-0a1b-4e08-9b71-ce9807623369
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Scenario_anno
+
+		annotation SummarizationSetBy = User
+
+	column Scenario_type
+		dataType: string
+		lineageTag: 1c116476-ad97-4dd0-8985-13e13e0a7f9b
+		sourceLineageTag: d5be3b51-c283-452f-984e-dff8187eb6a0
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Scenario_type
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira Demand Cost Year' = entity
+		mode: directQuery
+		source
+			entityName: Jira Demand Cost Year
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

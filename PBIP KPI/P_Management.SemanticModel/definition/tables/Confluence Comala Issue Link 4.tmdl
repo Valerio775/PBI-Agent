@@ -1,0 +1,60 @@
+table 'Confluence Comala Issue Link 4'
+	lineageTag: 9560e4b9-a94c-4e79-a5a2-4847c7973726
+	sourceLineageTag: 570acbfc-a7f0-437c-a2aa-70de6f127f64
+
+	column pageid
+		dataType: string
+		lineageTag: 2d428f46-7c18-412f-9165-e50ab943226a
+		sourceLineageTag: 4352b567-ce1c-44a4-a69d-9bb5e4aa0323
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: pageid
+
+		annotation SummarizationSetBy = Automatic
+
+	column issue_key
+		dataType: string
+		lineageTag: a22dc1df-6d46-48ed-9239-06adfce41b8b
+		sourceLineageTag: 9dc1f2b1-4e6a-4a1f-b138-5d878a46543b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_key
+
+		annotation SummarizationSetBy = User
+
+	column issue_type
+		dataType: string
+		lineageTag: 284e9e3c-fdd2-4e50-9b7d-9e6eab396359
+		sourceLineageTag: 32fa8a39-5211-4c13-a330-521336b31bd7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_type
+
+		annotation SummarizationSetBy = User
+
+	column workflow_name
+		dataType: string
+		lineageTag: b49a061f-9d24-4f61-a6e3-5b7f98914e87
+		sourceLineageTag: b9db06ac-7ecd-41b5-b2a0-8a9469926931
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: workflow_name
+
+		annotation SummarizationSetBy = User
+
+	column confluence_labels
+		dataType: string
+		lineageTag: bcf206a9-b7b9-4082-aee8-1681125fa97a
+		sourceLineageTag: f2f9b1e9-b766-4318-ba05-d3083d2d2d19
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: confluence_labels
+
+		annotation SummarizationSetBy = User
+
+	partition 'Confluence Comala Issue Link 4' = entity
+		mode: directQuery
+		source
+			entityName: Confluence Comala Issue Link
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab 3'
+

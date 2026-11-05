@@ -1,0 +1,63 @@
+table 'Workflow Fasi FD Semplificate'
+	lineageTag: aac35360-4b6e-493b-a8f7-b3be4bbc3737
+
+	column Status
+		lineageTag: 83eda90f-0be7-451f-8ce2-87c05f47425e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status Numerato'
+		lineageTag: d909663c-5e05-41b9-a4e3-c2a3a84ea6d3
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status Numerato]
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrdineFase
+		formatString: 0
+		lineageTag: d492e86a-70c0-4a43-97ce-b6770b778d5b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [OrdineFase]
+
+		annotation SummarizationSetBy = Automatic
+
+	column StatusTradotto
+		lineageTag: baf4b36b-590b-494c-a443-6a611023999b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [StatusTradotto]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Workflow Fasi FD Semplificate' = calculated
+		mode: import
+		source = ```
+				
+				DATATABLE (
+				    "Status", STRING,
+				    "Status Numerato", STRING, 
+				    "OrdineFase", INTEGER,
+				    "StatusTradotto", STRING,
+				    {
+				        { "Rejected", "0. Rejected", 0, "0. Rejected" },
+				        { "Open", "1. Open", 1, "1. In attesa di avvio" },
+				        { "Waiting for Estimate", "2. Waiting for Estimate", 2, "2. Economical check" },
+				        { "Estimation Approval", "3. Estimation Approval", 2, "2. Economical check" },
+				        { "Estimation Done", "4. Estimation Done", 2, "2. Economical check" },
+				        { "Authorized", "5. Authorized", 3,  "3. Sviluppo e Test"},
+				        { "In Progress","6. In Progress", 3, "3. Sviluppo e Test" },
+				        { "Completed", "7. Completed", 3, "3. Sviluppo e Test" },
+				        { "Ready for UAT","8. Ready for UAT", 4, "4. UAT" },
+				        { "UAT Passed", "9. UAT Passed", 5, "5. Release" },
+				        { "Release Completed", "10. Release Completed", 6, "6. Done" }
+				    }
+				)
+				```
+
+	annotation PBI_Id = ddeab3385287457ea67ca2086a3489a8
+

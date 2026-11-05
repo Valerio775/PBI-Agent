@@ -1,0 +1,173 @@
+table 'Confluence Comala Activity'
+	lineageTag: c9ac2782-d7ee-40a4-818e-a379523de0eb
+	sourceLineageTag: b455d012-ca31-4968-8b78-63aaf76b1aec
+
+	column pageid
+		dataType: int64
+		formatString: 0
+		lineageTag: 6cf8107d-4d3c-44c8-b12c-760825abc8f7
+		sourceLineageTag: 4a765e94-008f-40cc-9d1f-b072dd04ff75
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: pageid
+
+		annotation SummarizationSetBy = User
+
+	column workflow
+		dataType: string
+		lineageTag: 37c72424-7f73-40d6-94c6-2780516e93ec
+		sourceLineageTag: d398fdee-bd27-47ef-81ff-18f568cc2ae2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: workflow
+
+		annotation SummarizationSetBy = User
+
+	column date
+		dataType: string
+		lineageTag: 8b5f0a3d-3160-4d0b-aed1-5c71c98b84a3
+		sourceLineageTag: 3d177d89-757c-4723-92fe-d5fe01778c05
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: date
+
+		annotation SummarizationSetBy = User
+
+	column username
+		dataType: string
+		lineageTag: fbed8956-7c7d-4107-83df-1a268aeca5e3
+		sourceLineageTag: cb42fbf6-fcbc-4bd1-8734-2ce5bad353c5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: username
+
+		annotation SummarizationSetBy = User
+
+	column contributors
+		dataType: string
+		lineageTag: fb0b320c-acc7-450e-a9d0-df985408e3bc
+		sourceLineageTag: 92878b5b-3cdf-4e55-9acd-e953679fecb4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: contributors
+
+		annotation SummarizationSetBy = User
+
+	column activity
+		dataType: string
+		lineageTag: 6f80c582-09f9-49ca-a3fa-69112bc81470
+		sourceLineageTag: c2f06149-96ca-4c17-a22f-7fd1c9492819
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: activity
+
+		annotation SummarizationSetBy = User
+
+	column description
+		dataType: string
+		lineageTag: 60696e44-ebe1-4594-80e4-52b65262c030
+		sourceLineageTag: b4fc7a5e-46ed-4e53-a998-2fc461a3416c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = User
+
+	column page_version
+		dataType: string
+		lineageTag: 2d803193-c315-4331-9a56-227e90c200c2
+		sourceLineageTag: 30ee78ef-90bc-46cb-93a9-726303aaa0da
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: page_version
+
+		annotation SummarizationSetBy = User
+
+	column page_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 2d3b8cfa-3939-4c5b-a2bf-2871584c968a
+		sourceLineageTag: 19d2e3eb-102d-4e19-b0ae-04191fbf7cda
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: page_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column user_comment
+		dataType: string
+		lineageTag: ec6deb79-f8ea-441d-8824-615c3d6c628e
+		sourceLineageTag: 84e3495e-f645-4947-a917-5a303bd94701
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: user_comment
+
+		annotation SummarizationSetBy = User
+
+	column loaded_at
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: e3ab46b1-892f-4518-9c43-5146e0b8869b
+		sourceLineageTag: ad236f81-5cce-4425-a0ee-2095028d618b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: loaded_at
+
+		variation Variazione
+			isDefault
+			relationship: 982b2f64-8417-4f7f-a4bf-fd69ce9cbb75
+			defaultHierarchy: LocalDateTable_647975a0-05be-449a-9570-ce093d0ca43a.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column 'Comala Stato Documento' = ```
+			
+			VAR _activity = 'Confluence Comala Activity'[activity]
+			VAR _desc = 'Confluence Comala Activity'[description]
+			VAR _startMarker = "changed state to "
+			VAR _startPos = SEARCH(_startMarker, _desc, 1, BLANK())
+			VAR _startText = _startPos + LEN(_startMarker)
+			VAR _endPos = 
+			    IF(
+			        ISERROR(_startPos),
+			        BLANK(),
+			        SEARCH(" at ", _desc, _startText, BLANK())
+			    )
+			RETURN
+			    IF(
+			        _activity <> "state" 
+			            || ISERROR(_startPos) 
+			            || ISERROR(_endPos) 
+			            || ISBLANK(_endPos) 
+			            || _endPos <= _startText,
+			        BLANK(),
+			        MID(_desc, _startText, _endPos - _startText)
+			    )
+			```
+		lineageTag: c0857d66-ed57-491e-8062-8d28e5d46d6a
+		summarizeBy: none
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Date Convertita' =
+			
+			VAR _testo = 'Confluence Comala Activity'[date]
+			VAR _senzaOffset = LEFT(_testo, 19) -- toglie " +02:00" tenendo solo "2026-07-02 12:21:09"
+			RETURN
+			    DATEVALUE(LEFT(_senzaOffset, 10)) + TIMEVALUE(MID(_senzaOffset, 12, 8))
+		formatString: General Date
+		lineageTag: d53e00d3-ca23-459e-a1a2-b251540b5838
+		summarizeBy: none
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Confluence Comala Activity' = entity
+		mode: directQuery
+		source
+			entityName: Confluence Comala Activity
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

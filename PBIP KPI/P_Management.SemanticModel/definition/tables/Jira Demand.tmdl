@@ -1,0 +1,560 @@
+table 'Jira Demand'
+	lineageTag: c87a2087-6c04-4c45-8c3c-e3a29b29a310
+	sourceLineageTag: b46007d8-8876-40bb-ad08-440e4c4170b4
+
+	measure 'New IM link' = EXTERNALMEASURE("New IM link", STRING, "DirectQuery in Analysis Services - SpringLab")
+		lineageTag: e9c46ad2-3336-4ba7-bf5f-8ad89f3fff26
+		sourceLineageTag: 57ee09aa-91f4-4489-95bc-a31aa8021538
+		dataCategory: Uncategorized
+
+	measure 'Richiedente (visual)' =
+			
+			VAR _Richiedente =
+			    SELECTEDVALUE ( 'Jira Demand'[1st richiedente] )
+			RETURN
+			IF (
+			    ISBLANK ( _Richiedente ),
+			    "Non esiste relazione tra Demand e BSN Need",
+			    _Richiedente
+			)
+		lineageTag: c18bf6be-e325-42cc-8a47-1f56e88721f8
+
+		changedProperty = Name
+
+	column Issue
+		dataType: string
+		lineageTag: 2127fa06-7358-4324-a3c9-504c6c28392d
+		sourceLineageTag: 23a22e55-0bf9-4293-86c5-0fb3d1583063
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue created date'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: bf8a7658-a4fb-49ac-937d-6fdfcf4e63cb
+		sourceLineageTag: bdb04dbe-4f85-46a8-b70a-2855303bf537
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue created date
+
+		variation Variazione
+			isDefault
+			relationship: bca57b54-bd1b-4df7-8d77-053638363e01
+			defaultHierarchy: LocalDateTable_a686cc91-02ab-4d7c-8f94-77f876fe29cf.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Issue Number'
+		dataType: string
+		lineageTag: c94d321a-01c0-4b6b-9423-7ccd2be10923
+		sourceLineageTag: ac9f6015-1c33-4038-a12b-d1e0ffc683be
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Number
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Sys_ID'
+		dataType: string
+		lineageTag: 806f9a0b-9cf2-43d3-8fbf-a58f84246bb4
+		sourceLineageTag: 10e9fe47-f6ca-476e-a877-d2300a835d21
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Sys_ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue sys_created_on'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 7f1b265b-2e8c-4657-9ccd-46c82053816b
+		sourceLineageTag: 5fd371c2-be1d-4e1c-98ee-6728ef97cb1f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue sys_created_on
+
+		variation Variazione
+			isDefault
+			relationship: 01137317-8939-4992-9a49-ba4452e21b6d
+			defaultHierarchy: LocalDateTable_071499f2-2548-4eb7-83b2-8159bdd5bbe7.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Issue sys_updated_on'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 4d8cbe3b-d842-4665-ac47-cb4e49342d09
+		sourceLineageTag: 38b3743f-b28a-46ad-9fe8-ebb690691fb9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue sys_updated_on
+
+		variation Variazione
+			isDefault
+			relationship: a51c777c-bbfc-4a12-9146-1dddfedbdd91
+			defaultHierarchy: LocalDateTable_799a860b-4a3f-4f40-9940-e50c0c375e81.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Issue sys_updated_by'
+		dataType: string
+		lineageTag: fe4387bf-645c-4bcf-8d30-a96631f3f1c9
+		sourceLineageTag: 5552d7b5-7c18-4da4-856b-9fcb3639adce
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue sys_updated_by
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Order Type'
+		dataType: string
+		lineageTag: 12c4fb18-f85e-46f2-bd48-5fc8fda4eaa4
+		sourceLineageTag: e54acad2-176a-4a3f-93f9-e328598ecfd5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Order Type
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Demand Manager'
+		dataType: string
+		lineageTag: 0da96682-7e58-4252-adc0-cceb9504490b
+		sourceLineageTag: eb1c5088-4b20-44b9-9041-5e56e7530818
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Demand Manager
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Demand Other Costs'
+		dataType: string
+		lineageTag: 16a0c2b8-e1cc-4c2f-80aa-c69c23393fb1
+		sourceLineageTag: 6b6fec4a-523c-42a4-a3a7-ca61c9113898
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Demand Other Costs
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Investment Memo Approval Date'
+		dataType: string
+		lineageTag: 0b3bc8cf-e67a-44a7-ad0b-ffcb2e0fd809
+		sourceLineageTag: 7084a7c2-1653-4151-8454-52f9000b0ec3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Investment Memo Approval Date
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue WBE Type 3'
+		dataType: string
+		lineageTag: 29af3501-714c-4845-8e56-277dfcccd157
+		sourceLineageTag: 188e41c2-f814-40d1-a8fc-658f683d946b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue WBE Type 3
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Impact'
+		dataType: string
+		lineageTag: 51fc999f-cf48-4730-a26a-cdbb2aed6346
+		sourceLineageTag: b62ca86c-57a4-47cf-96bd-f7c4c8cede8f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Impact
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Active'
+		dataType: string
+		lineageTag: d1ba25e4-b3c8-4a2c-8920-01b101a7a831
+		sourceLineageTag: e7c4b233-140e-4c19-9a09-78b0dbf22128
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Active
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Investment Type'
+		dataType: string
+		lineageTag: 060eac48-7b0d-441d-8a84-45af65d0e9d0
+		sourceLineageTag: 0379e9ad-31e9-4d94-9ba9-217e2c4adab1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Investment Type
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Total Costs'
+		dataType: string
+		lineageTag: dee3f6e3-048b-4d82-8ccd-c223c88c9d6b
+		sourceLineageTag: 9e77f5eb-1082-4595-914a-d6ed43a81498
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Total Costs
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Total Weight'
+		dataType: string
+		lineageTag: a74ab41d-e36b-418d-b8fb-5826b49901c7
+		sourceLineageTag: 6e810847-8a7a-40bc-a673-793cf6c5c88c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Total Weight
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Approval Date DSP'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d6b4e937-eacd-4d15-ac1b-33306d9dde14
+		sourceLineageTag: 2f20cb2c-68b8-4824-89dd-2699fff44315
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Approval Date DSP
+
+		variation Variazione
+			isDefault
+			relationship: dd59b529-1768-4cf2-bb14-aadeb09f056d
+			defaultHierarchy: LocalDateTable_656f7b45-e5ef-4ef0-a6d9-a2be46ea48d1.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Issue Responsability Phase'
+		dataType: string
+		lineageTag: 69fe2e12-9552-4fee-ae22-b1197fdc0b32
+		sourceLineageTag: bb62705f-250b-4f8e-a284-1eb2dfeef14d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Responsability Phase
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Line Owner Delivery'
+		dataType: string
+		lineageTag: 4be096d1-4d3a-47ad-b5d7-f6819798af3c
+		sourceLineageTag: 18a96b04-5a09-4d53-aab1-69a42557ce7b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Line Owner Delivery
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue closed date'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 933c9001-f16e-42ef-a90a-c5dba2c09bf9
+		sourceLineageTag: d80158b8-57ce-4320-82d8-aa215e5e9370
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue closed date
+
+		variation Variazione
+			isDefault
+			relationship: 67511a5a-73c5-4410-9dbc-4c77318c35c1
+			defaultHierarchy: LocalDateTable_d605c5e6-499d-4459-bf2d-ce358137394c.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Issue Investment Memo Number'
+		dataType: string
+		lineageTag: 18d831f9-e241-49e5-814e-d79e8f9e0368
+		sourceLineageTag: 79401f00-8f45-42ae-a74a-389b48917827
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Investment Memo Number
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Investment Memo Sys_ID'
+		dataType: string
+		lineageTag: ab78e627-52be-4310-949e-cdec9bf029ec
+		sourceLineageTag: 9bab651d-1f36-4cad-8a0d-604910d40d3b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Investment Memo Sys_ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue BSN Legal Entity'
+		dataType: string
+		lineageTag: 80477035-2957-4f7e-acdc-be053b680a5a
+		sourceLineageTag: 47be8bcb-dcae-488f-9d5f-c49ffa377d0c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue BSN Legal Entity
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Urgency'
+		dataType: string
+		lineageTag: 0aad2625-81f7-4deb-b1a2-e27c965d8b51
+		sourceLineageTag: f9ff244c-7bf4-41fa-ae50-0687e6c94317
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Urgency
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Approved Start Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c8b6472a-b3be-4860-b13b-e73051782045
+		sourceLineageTag: f7a7ce11-6d2a-45ef-8a28-d4adf85acde5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Approved Start Date
+
+		variation Variazione
+			isDefault
+			relationship: 58a1436b-393d-47e7-a797-336756a19e1b
+			defaultHierarchy: LocalDateTable_afde5906-b17a-4dc8-9e07-e1e4b344209b.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Issue Type of the Demand'
+		dataType: string
+		lineageTag: ab0aa075-5c5d-447f-be6b-cb447883305e
+		sourceLineageTag: d52d8523-8faf-436a-ba01-8362bc7d1c16
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Type of the Demand
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Demand Client Organization'
+		dataType: string
+		lineageTag: ba0a3e26-681b-423b-bd6c-61ae00e82348
+		sourceLineageTag: 87d54777-8a33-406b-a31b-73b418dd3093
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Demand Client Organization
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Requested By'
+		dataType: string
+		lineageTag: b61c25ad-7e7b-45e4-b310-7e38863e8db7
+		sourceLineageTag: 2ed2ef5f-ff3f-4532-9b30-9c6a0a1d4bfe
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Requested By
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Business Need Number'
+		dataType: string
+		lineageTag: d5bbcf41-daa1-4629-90b6-a92b04c534b6
+		sourceLineageTag: 0c08f626-8b35-4a28-a70a-5b3906fbd7d0
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Business Need Number
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Business Need Sys_ID'
+		dataType: string
+		lineageTag: be384d6d-a1bf-47b0-b1a5-852f43552d09
+		sourceLineageTag: afbe7355-8d6b-4599-a15b-84cabdaa6555
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Business Need Sys_ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Approver DSP'
+		dataType: string
+		lineageTag: 5f6e114d-e005-4df6-a6f3-195c3b8dc1a1
+		sourceLineageTag: bea0d1dd-9e13-4c14-90e4-733c649c33d3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Approver DSP
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Demand Project Manager'
+		dataType: string
+		lineageTag: 9f2c3ccf-88ac-4a17-a6a1-c0b3cc86a6d5
+		sourceLineageTag: 329f1b19-1297-47a6-8236-fd63d0cec089
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Demand Project Manager
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Expense Type'
+		dataType: string
+		lineageTag: d84cfaeb-bc7a-49b9-9861-b1555962826e
+		sourceLineageTag: 4c9e8cfd-6d7c-4172-956c-156d5db25117
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Expense Type
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Investment Memo Needed'
+		dataType: string
+		lineageTag: a6fffad3-b2c5-4e5d-95ec-dafe4a5519e0
+		sourceLineageTag: 308bd56d-14c3-4ccd-b7a9-42e7ae421026
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Investment Memo Needed
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Total Missing Weight'
+		dataType: double
+		lineageTag: 570dadc9-a8fb-467f-bff6-108762f8d568
+		sourceLineageTag: 65a6526b-d0c8-4cbf-a78d-5209df684836
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Total Missing Weight
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Demand Department'
+		dataType: string
+		lineageTag: c8f9299b-3d31-4b40-870f-70cd2311f2ef
+		sourceLineageTag: 6e18d8ee-d9b4-4f65-9303-2cc7d8ccf8d9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Demand Department
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Investment Memo'
+		dataType: string
+		lineageTag: b9feb3a4-aff4-4c0f-a947-19b12117d2a8
+		sourceLineageTag: 87ad932d-9287-42bd-8b33-dfc557374752
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Investment Memo
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue WBE Level 3'
+		dataType: string
+		lineageTag: f7d7da29-9a8a-4aae-816e-d501b99ec664
+		sourceLineageTag: 817c4314-4d92-4668-8e87-8454490ec51e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue WBE Level 3
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue WBE Level 4'
+		dataType: string
+		lineageTag: 8f893e51-941f-4ae4-8fc6-64349ab6f70b
+		sourceLineageTag: 178778e5-e31c-4ec7-b630-42813040f0bd
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue WBE Level 4
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue key'
+		dataType: string
+		isNullable: false
+		lineageTag: 14d3238a-4053-4bfb-bab7-56bc185f1f21
+		sourceLineageTag: 69cf291a-a74f-41c8-89fd-4a11e9b4a3cd
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue key
+
+		annotation SummarizationSetBy = User
+
+	column 'Total Cost' = ```
+			
+			VAR CostF0 =
+			    CALCULATE (
+			        SUMX (
+			            'Jira Demand Cost Year',
+			            VALUE (
+			                'Jira Demand Cost Year'[Local_cost]
+			            ) 
+			        ),
+			        CONTAINSSTRING ( 'Jira Demand Cost Year'[Issue Scenario Name], "F0" )
+			    )
+			
+			VAR CostB0 =
+			    CALCULATE (
+			        SUMX (
+			            'Jira Demand Cost Year',
+			            VALUE (
+			                 'Jira Demand Cost Year'[Local_cost]
+			            )
+			        ),
+			        CONTAINSSTRING ( 'Jira Demand Cost Year'[Issue Scenario Name], "B0" )
+			    )
+			
+			RETURN
+			    COALESCE ( CostF0, CostB0, 0 )
+			```
+		lineageTag: 4bcef245-7527-4f1e-b5c8-267674925b2f
+		summarizeBy: sum
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Jira_DMD_URL
+		dataType: string
+		lineageTag: c55cbfae-1006-4854-88b9-d0e13987b47c
+		sourceLineageTag: 6de6a2fe-2933-49f7-b14c-eaf576c8b7fc
+		dataCategory: WebUrl
+		summarizeBy: none
+		sourceColumn: Jira_DMD_URL
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Business Need'
+		dataType: string
+		lineageTag: 6a5a6e9b-a8f4-4c0a-a3db-3b54bbe2953d
+		sourceLineageTag: 6d190ae8-0bd2-4a82-bb21-250f04106cf8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Business Need
+
+		annotation SummarizationSetBy = User
+
+	column '1st Richiedente' =
+			
+			COALESCE(RELATED('Jira Business Need'[1st richiedente]), "NaN")
+		lineageTag: d844b185-b468-49c2-a187-a741e84a484d
+		summarizeBy: none
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column '2nd Richiedente' = RELATED('Jira Business Need'[2nd richiedente])
+		lineageTag: dde3965c-b6e9-459a-9543-2f2c540fea08
+		summarizeBy: none
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Demand Country Legal Entity'
+		dataType: string
+		lineageTag: 6aafb120-4d28-451d-a1f0-610ca5317f6a
+		sourceLineageTag: aa4f8ab8-d420-4974-b0ad-0253578271d4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Demand Country Legal Entity
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira Demand' = entity
+		mode: directQuery
+		source
+			entityName: Jira Demand
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

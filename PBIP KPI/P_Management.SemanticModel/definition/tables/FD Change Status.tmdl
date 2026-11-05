@@ -1,0 +1,81 @@
+table 'FD Change Status'
+	lineageTag: 8ef44107-bbe8-45e2-9b7d-83248340b690
+
+	column issue_key
+		lineageTag: b5564b16-a499-41f3-bcce-b45a0289d6c9
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[issue_key]
+
+		annotation SummarizationSetBy = Automatic
+
+	column issue_type
+		lineageTag: aea97781-65bf-4f16-aab8-c2ebeaf2b2d7
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[issue_type]
+
+		annotation SummarizationSetBy = Automatic
+
+	column transition_date
+		formatString: General Date
+		lineageTag: 945fab60-43db-4ae8-9eeb-0dc6f97a9d4a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[transition_date]
+
+		variation Variation
+			isDefault
+			relationship: 403cd396-5bc9-4d61-94c1-136f88c088e2
+			defaultHierarchy: LocalDateTable_81ae3dad-70df-4db9-ac0a-fa97bbd54aa0.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column from_status
+		lineageTag: 417bc849-ab12-4129-a698-88ebf4fbcfb0
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[from_status]
+
+		annotation SummarizationSetBy = Automatic
+
+	column to_status
+		lineageTag: 69a77168-3ef6-4c34-981a-9ed83ca66871
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[to_status]
+
+		annotation SummarizationSetBy = Automatic
+
+	column username
+		lineageTag: f96b160a-184c-480c-bac0-a6e3c77cf517
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[username]
+
+		annotation SummarizationSetBy = Automatic
+
+	column display_name
+		lineageTag: 7a1afd8d-1b09-4ebb-8cd0-bae1d8436aa6
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[display_name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Giorni da In Progress a Completed'
+		lineageTag: 59d6993d-1774-4750-a952-e430cdec4a99
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: Jira Change Status IE FD MBI BF[Giorni da In Progress a Completed]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'FD Change Status' = calculated
+		mode: import
+		source = FILTER('Jira Change Status IE FD MBI BF', 'Jira Change Status IE FD MBI BF'[issue_type] = "Feature Delivery")
+
+	annotation PBI_Id = 730b8967a8b24ec4bd9d0a0ef58e3acb
+

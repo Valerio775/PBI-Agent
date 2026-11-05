@@ -1,0 +1,92 @@
+table 'TEST Issue IE'
+	lineageTag: 233eb132-c30f-4230-87fe-7a50d52de306
+
+	column issue_key
+		lineageTag: ddc8b630-86ce-4f6f-856a-1b0a6e6cca2d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [issue_key]
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_entrata
+		formatString: General Date
+		lineageTag: 85210068-3d94-44b1-98cf-4ed14cfeb6ac
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [data_entrata]
+
+		variation Variazione
+			isDefault
+			relationship: 23002dca-63d2-4a7c-a351-19acf0ee677b
+			defaultHierarchy: LocalDateTable_e0da2244-6847-44fd-9598-4e2c2cef520d.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_prima_uscita
+		formatString: General Date
+		lineageTag: 25ccb1e5-4dcb-4b06-860b-3cc241c44322
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [data_prima_uscita]
+
+		variation Variazione
+			isDefault
+			relationship: 6b58c334-7414-49f8-829c-447b64e195b6
+			defaultHierarchy: LocalDateTable_6de0b87d-180c-4121-8aff-c4ff57e4c60a.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column giorni_soggiorno
+		formatString: 0
+		lineageTag: 36628a25-1cb1-4f2d-a864-2b8577e7dadd
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [giorni_soggiorno]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'TEST Issue IE' = calculated
+		mode: import
+		source =
+				
+				VAR OrdineBarraCorrente = 1
+				
+				VAR TransizioniEntrata =
+				    SELECTCOLUMNS (
+				        FILTER (
+				            ALL ( 'IE Transition Status' ),
+				            'IE Transition Status'[To OrdineBarra Semplificato] = OrdineBarraCorrente
+				                && 'IE Transition Status'[From OrdineBarra Semplificato] <> OrdineBarraCorrente
+				        ),
+				        "issue_key", 'IE Transition Status'[issue_key],
+				        "data_entrata", 'IE Transition Status'[transition_date]
+				    )
+				
+				VAR TransizioniUscita =
+				    SELECTCOLUMNS (
+				        FILTER (
+				            ALL ( 'IE Transition Status' ),
+				            'IE Transition Status'[From OrdineBarra Semplificato] = OrdineBarraCorrente
+				                && 'IE Transition Status'[To OrdineBarra Semplificato] <> OrdineBarraCorrente
+				        ),
+				        "issue_key_u", 'IE Transition Status'[issue_key],
+				        "data_uscita", 'IE Transition Status'[transition_date]
+				    )
+				
+				RETURN
+				ADDCOLUMNS (
+				    TransizioniEntrata,
+				    "data_prima_uscita",
+				        VAR k = [issue_key]
+				        VAR d = [data_entrata]
+				        RETURN MINX ( FILTER ( TransizioniUscita, [issue_key_u] = k && [data_uscita] > d ), [data_uscita] ),
+				    "giorni_soggiorno",
+				        VAR k = [issue_key]
+				        VAR d = [data_entrata]
+				        VAR pu = MINX ( FILTER ( TransizioniUscita, [issue_key_u] = k && [data_uscita] > d ), [data_uscita] )
+				        RETURN IF ( NOT ISBLANK ( pu ), DATEDIFF ( d, pu, DAY ) )
+				)
+
+	annotation PBI_Id = 36b88d15c89141a69c3be81307218d73
+

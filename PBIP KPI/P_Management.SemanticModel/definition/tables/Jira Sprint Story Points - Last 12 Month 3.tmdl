@@ -1,0 +1,77 @@
+table 'Jira Sprint Story Points - Last 12 Month 3'
+	lineageTag: 76a2fa89-542a-4485-9437-2a3a02ee9189
+	sourceLineageTag: bab695b5-4ab4-4556-9173-3abc777f2b9f
+
+	column Sprint
+		dataType: string
+		lineageTag: 92a5c332-edcb-4adf-ad74-1f36c46a9372
+		sourceLineageTag: 48cb85a0-9924-401e-a9f7-61f64fc04b38
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Sprint
+
+		annotation SummarizationSetBy = User
+
+	column 'Issues created'
+		dataType: int64
+		formatString: 0
+		lineageTag: 25f72d35-e05d-4481-998f-b8938b75962c
+		sourceLineageTag: 62089356-2373-4de4-95f8-5ce427b08f1f
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issues created
+
+		annotation SummarizationSetBy = User
+
+	column 'Story Points created'
+		dataType: double
+		lineageTag: 11647c13-f82a-4e1b-92cf-deba3ffff138
+		sourceLineageTag: 78b69cd9-2663-4a3a-b2da-f9bd49a5ea9f
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Story Points created
+
+		annotation SummarizationSetBy = User
+
+	column 'Story Points closed'
+		dataType: double
+		lineageTag: 8d3c8e9f-8eeb-4655-8d6c-d16b700166e7
+		sourceLineageTag: eef5c6d1-f186-4188-a2b6-2e8e2f0a8d7d
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Story Points closed
+
+		annotation SummarizationSetBy = User
+
+	column 'Sprint actual end date'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 8b043b4a-45fe-4f31-87ac-54bb03e3eb5c
+		sourceLineageTag: 0e4573a5-90dd-4e5b-8248-0ce719e7bd2d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Sprint actual end date
+
+		variation Variazione
+			isDefault
+			relationship: 460c32e9-12b9-425d-ae02-e5f050fe040b
+			defaultHierarchy: 'LocalDateTable_97f988a4-b7b1-46ee-9e1c-5e20b13bf855 3'.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column 'Board Name (Sprint)'
+		dataType: string
+		lineageTag: 8bfd0849-c6a4-4031-abbb-a7704ba77f6b
+		sourceLineageTag: bdc28986-36f9-4f1f-92b5-33e71f6303d4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Board Name (Sprint)
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira Sprint Story Points - Last 12 Month 3' = entity
+		mode: directQuery
+		source
+			entityName: Jira Sprint Story Points - Last 12 Month
+			expressionSource: 'DirectQuery to AS - SpringLab'
+

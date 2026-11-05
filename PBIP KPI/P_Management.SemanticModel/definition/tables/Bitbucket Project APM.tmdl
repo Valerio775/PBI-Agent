@@ -1,0 +1,40 @@
+table 'Bitbucket Project APM'
+	lineageTag: e6a540c0-d2ed-4372-ae58-826da17e762e
+	sourceLineageTag: 2066e428-ae79-4d7f-8282-9b7b0a02797d
+
+	column project_key
+		dataType: string
+		lineageTag: 056003c6-ed82-4219-9382-f8a817fcced1
+		sourceLineageTag: 419c0625-bd38-4837-9410-c423b039e5b2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: project_key
+
+		annotation SummarizationSetBy = User
+
+	column apm_name
+		dataType: string
+		lineageTag: 1f81c8df-e273-4c37-99e7-6fec45363346
+		sourceLineageTag: 2448b7bd-04c1-4d5d-bfa8-f83fdc449cfa
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: apm_name
+
+		annotation SummarizationSetBy = User
+
+	column apm_code
+		dataType: string
+		lineageTag: ce4ac5e8-7b7c-40f3-a5d1-f77481172b74
+		sourceLineageTag: 720026c5-d404-42b7-a1b6-d698de2cbffb
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: apm_code
+
+		annotation SummarizationSetBy = User
+
+	partition 'Bitbucket Project APM' = entity
+		mode: directQuery
+		source
+			entityName: Bitbucket Project APM
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

@@ -1,0 +1,443 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "7f2f526d1034b6cb6ea4",
+  "position": {
+    "x": 1186.8472254683354,
+    "y": 106.9393586684032,
+    "z": 3000,
+    "height": 363.93268379096548,
+    "width": 641.13374667847654,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "BF Transition Status Confluence"
+                    }
+                  },
+                  "Property": "Issue name"
+                }
+              },
+              "queryRef": "BF Transition Status Confluence.Issue name",
+              "nativeQueryRef": "Issue name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "BF Transition Status Confluence"
+                    }
+                  },
+                  "Property": "issue_key"
+                }
+              },
+              "queryRef": "BF Transition Status Confluence.issue_key",
+              "nativeQueryRef": "BF Key",
+              "displayName": "BF Key"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "BF Transition Status Confluence"
+                    }
+                  },
+                  "Property": "Data Ingresso Stato BF Journey"
+                }
+              },
+              "queryRef": "BF Transition Status Confluence.Data Ingresso Stato BF Journey",
+              "nativeQueryRef": "Data Ingresso Stato",
+              "displayName": "Data Ingresso Stato"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "BF Transition Status Confluence"
+                    }
+                  },
+                  "Property": "Data Uscita Stato BF Journey"
+                }
+              },
+              "queryRef": "BF Transition Status Confluence.Data Uscita Stato Journey",
+              "nativeQueryRef": "Data Uscita Stato",
+              "displayName": "Data Uscita Stato"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "BF Transition Status Confluence"
+                    }
+                  },
+                  "Property": "(gg) Transazione BF Journey"
+                }
+              },
+              "queryRef": "BF Transition Status Confluence.(gg) Transazione BF Journey",
+              "nativeQueryRef": "(gg) Transazione BF Journey"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "BF Transition Status Confluence"
+                    }
+                  },
+                  "Property": "Journey Status BF"
+                }
+              },
+              "queryRef": "Sum(BF Transition Status Confluence.Journey Status BF)",
+              "nativeQueryRef": "(gg) Transazione",
+              "displayName": "(gg) Transazione"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Workflow Fasi BF Journey Confluence 2"
+                    }
+                  },
+                  "Property": "Status Tradotto"
+                }
+              },
+              "queryRef": "Workflow Fasi BF Journey Confluence 2.Status Tradotto",
+              "nativeQueryRef": "Current Status Jira",
+              "displayName": "Current Status Jira"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Arial'"
+                }
+              }
+            },
+            "backColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F3F9FF'"
+                    }
+                  }
+                }
+              }
+            },
+            "urlIcon": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Arial Black'''"
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#EBEBEB'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.6
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            },
+            "rowPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "6D"
+                }
+              }
+            },
+            "outlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#C4C4C4'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "379.96183705336045D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "BF Transition Status Confluence.Issue name"
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Tabella Dettaglio'"
+                }
+              }
+            },
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "2288a76690e4a808de3e",
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "fabbcce596ed06fcfae2",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "BF Transition Status Confluence"
+              }
+            },
+            "Property": "issue_key"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "6fb5836ba065008b6828",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Business Feature"
+              }
+            },
+            "Property": "Issue Initiative Type"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "9d44f7b32db2c24162a1",
+        "ordinal": 2,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "BF Transition Status Confluence"
+              }
+            },
+            "Property": "Data Ingresso Stato BF Journey"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "aa00e733eac853a47eb7",
+        "ordinal": 3,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "BF Transition Status Confluence"
+              }
+            },
+            "Property": "Data Uscita Stato BF Journey"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "a5a87e6179907c99e43c",
+        "ordinal": 4,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Workflow Fasi BF Journey Confluence 2"
+              }
+            },
+            "Property": "Status Tradotto"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "b1c32c40c43acae513c7",
+        "ordinal": 5,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Business Feature"
+              }
+            },
+            "Property": "Projectrak Project Status"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "4121fd762320a0662e28",
+        "ordinal": 6,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "BF Transition Status Confluence"
+              }
+            },
+            "Property": "Journey Status BF"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "b240b7735cc79c6ae04e",
+        "ordinal": 7,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "BF Transition Status Confluence"
+              }
+            },
+            "Property": "Issue name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "313026d03eac357e0b00",
+        "ordinal": 8,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "BF Transition Status Confluence"
+              }
+            },
+            "Property": "(gg) Transazione BF Journey"
+          }
+        },
+        "type": "Advanced"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

@@ -1,0 +1,40 @@
+table 'Jira Relation Investment Memo Business Need'
+	lineageTag: ff9dfa9d-6401-4f89-8443-17c576115793
+	sourceLineageTag: dba5e90f-5f0f-4093-93b3-9a9bba923430
+
+	column 'Issue Business Need'
+		dataType: string
+		lineageTag: 7355e903-c266-4529-aa93-f6516b0ca614
+		sourceLineageTag: 12fd07a7-c389-4eb2-96d5-7cc3deb4d8eb
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Business Need
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Investment Memo'
+		dataType: string
+		lineageTag: c91e267c-4303-4e04-8972-fb72d6f04b7b
+		sourceLineageTag: 29841529-d61a-481c-b7cd-f197afb72d08
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Investment Memo
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue type'
+		dataType: string
+		lineageTag: 2120de01-255e-41b2-a3f1-e9023064468b
+		sourceLineageTag: aa8a7d57-2752-43ca-b3bd-6e664d1c9b5c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue type
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira Relation Investment Memo Business Need' = entity
+		mode: directQuery
+		source
+			entityName: Jira Relation Investment Memo Business Need
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

@@ -1,0 +1,1560 @@
+table 'Jira Macro Business Initiative'
+	lineageTag: c454ebb4-02ef-457a-a812-3eccf98c7552
+	sourceLineageTag: 0b05fb84-0cd9-4ca1-9ef4-e394079e17fc
+
+	measure 'Data Ingresso Initial MBI' =
+			
+			var issue_key = SELECTEDVALUE('Jira Macro Business Initiative'[Issue key])
+			RETURN
+			CALCULATE(
+			    MIN('MBI Transition Status'[transition_date]),
+			    'MBI Transition Status'[to_status] = "High-Level Functional Requirement"
+			)
+		formatString: General Date
+		lineageTag: 9f478810-f448-4a2b-b317-b4264e3fcd5b
+
+		changedProperty = Name
+
+	measure 'Data Ingresso Draft MBI' =
+			
+			CALCULATE(
+			    MIN('Comala Activity MBI'[Date Convertita]),
+			    'Comala Activity MBI'[Comala Stato Documento] = "In Draft"
+			)
+		formatString: General Date
+		lineageTag: d0027789-08e3-4166-a4f4-9946c57eb274
+
+		changedProperty = Name
+
+	measure 'Data Ingresso Approved MBI' =
+			
+			CALCULATE(
+			    MIN('Comala Activity MBI'[Date Convertita]),
+			    'Comala Activity MBI'[Comala Stato Documento] = "Approved"
+			)
+		formatString: General Date
+		lineageTag: 860e40ee-a272-43ac-9fc5-21041c8e24a8
+
+		changedProperty = Name
+
+	measure 'Data Stato Draft MBI (Confluence)' =
+			
+			VAR _issueKeys =
+			    VALUES ( 'Jira Macro Business Initiative'[Issue key] )
+			VAR _pageIDs =
+			    CALCULATETABLE (
+			        SELECTCOLUMNS (
+			            'Confluence MBI Pages',
+			            "pageid", 'Confluence MBI Pages'[pageid]
+			        ),
+			        TREATAS ( _issueKeys, 'Confluence Comala Issue Link'[issue_key] )
+			    )
+			VAR _result =
+			    CALCULATE (
+			        MIN ( 'Confluence Comala Activity'[Date Convertita] ),
+			        TREATAS ( _pageIDs, 'Confluence Comala Activity'[page_id] ),
+			        'Confluence Comala Activity'[Comala Stato Documento] = "In Draft"
+			    )
+			RETURN
+			    _result
+		formatString: General Date
+		displayFolder: Documenti confluence MBI
+		lineageTag: 12d14594-727d-45ad-ac9c-b8021ea20ce1
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Data Stato Initial MBI (Confluence)' =
+			
+			VAR _issueKeys =
+			    VALUES ( 'Jira Macro Business Initiative'[Issue key] )
+			VAR _pageIDs =
+			    CALCULATETABLE (
+			        SELECTCOLUMNS (
+			            'Confluence MBI Pages',
+			            "pageid", 'Confluence MBI Pages'[pageid]
+			        ),
+			        TREATAS ( _issueKeys, 'Confluence Comala Issue Link'[issue_key] )
+			    )
+			VAR _result =
+			    CALCULATE (
+			        MIN ( 'Confluence Comala Activity'[Date Convertita] ),
+			        TREATAS ( _pageIDs, 'Confluence Comala Activity'[page_id] ),
+			        'Confluence Comala Activity'[Comala Stato Documento] = "Initial"
+			    )
+			RETURN
+			    _result
+		formatString: General Date
+		displayFolder: Documenti confluence MBI
+		lineageTag: 6a045b22-3419-4980-b97e-16f002f2e6d7
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Data Stato Approved MBI (Confluence)' =
+			
+			VAR _issueKeys =
+			    VALUES ( 'Jira Macro Business Initiative'[Issue key] )
+			VAR _pageIDs =
+			    CALCULATETABLE (
+			        SELECTCOLUMNS (
+			            'Confluence MBI Pages',
+			            "pageid", 'Confluence MBI Pages'[pageid]
+			        ),
+			        TREATAS ( _issueKeys, 'Confluence Comala Issue Link'[issue_key] )
+			    )
+			VAR _result =
+			    CALCULATE (
+			        MAX ( 'Confluence Comala Activity'[Date Convertita] ),
+			        TREATAS ( _pageIDs, 'Confluence Comala Activity'[page_id] ),
+			        'Confluence Comala Activity'[Comala Stato Documento] = "Approved"
+			    )
+			RETURN
+			    _result
+		formatString: General Date
+		displayFolder: Documenti confluence MBI
+		lineageTag: 1237a1f6-6134-40a3-b22d-802fa94ba484
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Tempo di Preparazione MBI' =
+			
+			
+			VAR dataInizital = [Data Stato Initial MBI (Confluence)]
+			VAR dataDraft = [Data Stato Draft MBI (Confluence)]
+			RETURN
+			IF(
+			    NOT ISBLANK(dataInizital) && NOT ISBLANK(dataDraft),
+			    DATEDIFF(dataInizital, dataDraft, DAY)
+			)
+		formatString: 0
+		displayFolder: Documenti confluence MBI
+		lineageTag: 11905f50-9ce5-4413-97ae-2fbe0f0b2106
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Tempo di Approvazione MBI' =
+			
+			
+			VAR dataInizital = [Data Stato Initial MBI (Confluence)]
+			VAR dataApproved = [Data Stato Approved MBI (Confluence)]
+			RETURN
+			IF(
+			    NOT ISBLANK(dataInizital) && NOT ISBLANK(dataApproved),
+			    DATEDIFF(dataInizital, dataApproved, DAY)
+			)
+		formatString: 0
+		displayFolder: Documenti confluence MBI
+		lineageTag: 3df23a68-22b0-4d12-bf8f-903cbbab6442
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Tempo della Chiamata DU per HLD MBI' = ```
+			
+			
+			VAR _dataInitialComala = [Data Stato Approved MBI (Confluence)]
+			
+			var _test = 
+			CALCULATE(
+			    MIN('MBI Transition Status'[transition_date]),
+			    'MBI Transition Status'[to_status] = "Tech Evaluation"
+			)
+			
+			RETURN
+			
+			    DATEDIFF(_test, _dataInitialComala, DAY)
+			
+			
+			```
+		formatString: 0
+		displayFolder: Documenti confluence MBI
+		lineageTag: 64050bf9-8382-451f-b1d1-e4005a1b60a7
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+	measure 'Media Tempo Fasi Documento MBI' = ```
+			
+			VAR T1 = [Tempo di Preparazione MBI]
+			VAR T2 = [Tempo di Approvazione MBI]
+			VAR T3 = [Tempo della Chiamata DU per HLD MBI]
+			VAR Somma = 
+			    COALESCE(T1, 0) + COALESCE(T2, 0) + COALESCE(T3, 0)
+			VAR Conteggio = 
+			    (IF(NOT ISBLANK(T1) && T1 <> 0, 1, 0)) 
+			    + (IF(NOT ISBLANK(T2) && T2 <> 0, 1, 0)) 
+			    + (IF(NOT ISBLANK(T3) && T3 <> 0, 1, 0))
+			RETURN
+			    IF(Conteggio > 0, DIVIDE(Somma, Conteggio))
+			```
+		displayFolder: Documenti confluence MBI
+		lineageTag: d7bf87b5-c479-48d6-9412-c1a618b8f9c0
+
+		changedProperty = DisplayFolder
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Destinazione Dinamica 2' =
+			
+			VAR _statoCorrente = SELECTEDVALUE('Workflow Fasi MBI'[Status Tradotto])
+			
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        _statoCorrente = "2. Preparazione BR", "Documenti confluence",
+			        _statoCorrente = "HLD e stime", "Drill-through Estimation Details",
+			        BLANK()
+			    )
+		lineageTag: 6856bfad-f933-4bbd-a141-e9a39c66c078
+
+		changedProperty = Name
+
+	column 'Issue key'
+		dataType: string
+		isNullable: false
+		lineageTag: 1e196921-4144-4777-a001-1e1fa35cd1e3
+		sourceLineageTag: 20a26a4b-cf27-4959-8738-14727c90ff75
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue key
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Country BSN'
+		dataType: string
+		lineageTag: a2a9835c-b50f-444c-b1ea-61cfff8f6955
+		sourceLineageTag: 3eca935e-907c-46e9-81ae-c9e6b4c56f35
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Country BSN
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue BSN Area'
+		dataType: string
+		lineageTag: bcd2780f-44c5-4479-bfbc-1998b0a57650
+		sourceLineageTag: 6c9bd9b0-21a8-4d0f-947d-f76d675f4500
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue BSN Area
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Initiative Type'
+		dataType: string
+		lineageTag: 591fff54-9eb2-40a6-be14-81abccebf28d
+		sourceLineageTag: ddbe04be-c4cb-43f4-8cc4-574ac3c3dd45
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Initiative Type
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Expense Classification'
+		dataType: string
+		lineageTag: 375492f0-73e6-4285-b334-cbcd2239f830
+		sourceLineageTag: fd485511-d6a6-46f6-aaa0-72a6dff1e74a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Expense Classification
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue BSN Legal Entity'
+		dataType: string
+		lineageTag: 0ccfb72d-9b49-4d83-97ed-b7c700e7d7ee
+		sourceLineageTag: 8e593e56-e124-4ae6-9832-76895121cca5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue BSN Legal Entity
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Cost Type'
+		dataType: string
+		lineageTag: faeb456f-d386-47e6-862d-89c9d550ac3d
+		sourceLineageTag: 62e7c99d-a9fc-4a1c-bc95-a3aa154ae3e5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Cost Type
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Quality Assurance Required'
+		dataType: string
+		lineageTag: cd9325ff-3f3e-4122-8b35-f0e1eb82fe5c
+		sourceLineageTag: 548ac561-fd75-4e2f-ab75-81f225e922b4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Quality Assurance Required
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Strategic Guidelines'
+		dataType: string
+		lineageTag: 16058e55-3f3f-4d36-a2fb-405e3e528f78
+		sourceLineageTag: 2bb51cee-9291-4060-a3d2-9f7da606d38f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Strategic Guidelines
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Business Initiative'
+		dataType: string
+		lineageTag: 29982cc2-0b21-4b7b-8aba-27f814574e78
+		sourceLineageTag: 98d1b340-19ba-488f-8918-ca7dd3b6895c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Business Initiative
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Capex Internal Resources'
+		dataType: double
+		lineageTag: 59ecc7be-744f-42b6-a2d7-f3d84109aeeb
+		sourceLineageTag: a77d9296-55aa-4bc3-986a-4b6ac370af5c
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Capex Internal Resources
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Capex Professional Services'
+		dataType: double
+		lineageTag: 310cf352-b155-42d4-8d5d-90d287973967
+		sourceLineageTag: dc5ad5a8-2c87-4078-982f-d6381e1eda03
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Capex Professional Services
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Capex Licenses'
+		dataType: double
+		lineageTag: ed5c1ec2-ee3e-4814-be60-d21c9e13d969
+		sourceLineageTag: 6b9528e4-658a-4241-bda1-134b5ff29c4a
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Capex Licenses
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Opex Internal Resources'
+		dataType: double
+		lineageTag: 0fe383ab-cc97-47e3-a735-ec06d8831ad4
+		sourceLineageTag: 0cf6a6d9-574c-47a1-89e2-8af3f87c1493
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Opex Internal Resources
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Opex Professional Services'
+		dataType: double
+		lineageTag: 28943c53-db41-48eb-9151-69d9c253a50a
+		sourceLineageTag: 295b016d-5023-40bd-b0b8-efac9d51d945
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Opex Professional Services
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Opex Licenses'
+		dataType: double
+		lineageTag: 6b4b9a4e-b283-4aea-98c2-189e504eecc5
+		sourceLineageTag: 9089ac56-56ac-4535-a302-63d410ebf503
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Opex Licenses
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Total Capex'
+		dataType: double
+		lineageTag: 6f6b6574-c1a2-4fb1-8a60-6909b4319ec1
+		sourceLineageTag: 75e55ad7-e099-4b32-868a-e1d1859ba32a
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Total Capex
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Total Opex'
+		dataType: double
+		lineageTag: 222f574d-b9ec-40b6-a430-820058d6db94
+		sourceLineageTag: 4044c5ec-d666-44ae-8e43-96dd757230ca
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Total Opex
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Business Feature'
+		dataType: string
+		lineageTag: d8e759b0-15a2-46de-9786-2ed00e8fb784
+		sourceLineageTag: d3df3259-d26a-4021-b9d3-fa011137b33f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Business Feature
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Investment Memo'
+		dataType: string
+		lineageTag: 37ee6a3f-ad96-492a-81a7-5ecfc9714517
+		sourceLineageTag: f9d5e945-1e96-4279-9815-b7bc322d1c1a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Investment Memo
+
+		annotation SummarizationSetBy = User
+
+	column URL
+		dataType: string
+		lineageTag: 56ac77b5-b85c-4732-8718-b12ec2d4d06e
+		sourceLineageTag: 398e8744-2f27-4b28-b840-131324d2f0e1
+		dataCategory: WebUrl
+		summarizeBy: none
+		sourceColumn: Jira_MBI_URL
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue status'
+		dataType: string
+		lineageTag: 6439b705-2865-4de0-9ce2-84da79daba79
+		sourceLineageTag: a6859ef0-86f5-4f33-82e6-c40a35d95bfc
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue status
+
+		annotation SummarizationSetBy = User
+
+	column created_date =
+			
+			IF(
+			    YEAR('Jira Macro Business Initiative'[Issue created date]) < 2026,
+			    DATE(1999,01,01),
+			    DATE(
+			        YEAR('Jira Macro Business Initiative'[Issue created date]),
+			        MONTH('Jira Macro Business Initiative'[Issue created date]),
+			        DAY('Jira Macro Business Initiative'[Issue created date])
+			    )
+			)
+		formatString: General Date
+		lineageTag: 673a8742-cbf9-4b1e-9baa-a85be290d312
+		summarizeBy: none
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'IM Num' =
+			
+			LOOKUPVALUE('Jira Investment Memo'[Issue_Number],
+			'Jira Investment Memo'[Issue_key],
+			'Jira Macro Business Initiative'[Issue Investment Memo])
+		lineageTag: f7774e80-74c7-49e2-9824-7138cc0114a5
+		summarizeBy: none
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MBI Created Date'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: cdb4ebe5-e82d-4470-b422-3e292141152d
+		sourceLineageTag: 9a6f48f8-ed2a-4939-9a86-fd0793c70010
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: MBI Created Date
+
+		variation Variazione
+			isDefault
+			relationship: 9fe565d8-aa7d-4266-bc83-f343f96e102c
+			defaultHierarchy: LocalDateTable_21e22022-cad8-47a6-ad37-a4f1679b387a.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column 'IM Present'
+		dataType: string
+		lineageTag: b97d9104-986e-4dcb-84a0-38628774ec7e
+		sourceLineageTag: 63af0b5f-7665-4890-9651-91e20bd3129e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: IM Present
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Business Need'
+		dataType: string
+		lineageTag: c2df6d1a-c4c2-49e7-b5b1-988c20acbe0a
+		sourceLineageTag: d0136b2f-36c3-4dc7-9e0a-60f61eb3d6cf
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Business Need
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Project type'
+		dataType: string
+		lineageTag: eeaf9869-dc3b-4db8-a5d2-135c7a19186d
+		sourceLineageTag: 9acf5411-960b-4ef2-b7de-3ee101755ee0
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Project type
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Initiative Leader Delegate'
+		dataType: string
+		lineageTag: 8568875a-8cfe-4bbd-80d3-f6d1b02f490e
+		sourceLineageTag: 22ed0e32-5eaf-4369-a589-cb6138157039
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Initiative Leader Delegate
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Applicant Unit'
+		dataType: string
+		lineageTag: d1c28eee-7ea4-4eeb-8f8b-63e15ca0d6c9
+		sourceLineageTag: 2378b418-062b-4eac-b644-a2d2faae2ac9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Applicant Unit
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Technical Leader'
+		dataType: string
+		lineageTag: c0e10a74-a1c2-4a3a-b367-de11f760f04c
+		sourceLineageTag: f24ae4b0-e04e-4906-bb90-48c43f2f6d16
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Technical Leader
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Sponsor Delegate'
+		dataType: string
+		lineageTag: d43e6eaa-bf67-4aa9-b856-1585e68fbb6e
+		sourceLineageTag: f24334fb-e100-44df-bb79-9b9471587f8e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Sponsor Delegate
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Request ID'
+		dataType: string
+		lineageTag: 4b3377a3-63f7-48d0-8d80-7c352e9480ee
+		sourceLineageTag: ba35ded5-e4e3-408a-a7fe-1aa5d391e18a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Request ID
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Portal Ticket Status'
+		dataType: string
+		lineageTag: 55d30440-7c14-40e2-8920-6f9814d6d5c5
+		sourceLineageTag: a896fc00-b58a-4977-81d3-8c1f52bff03c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Portal Ticket Status
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Approved by'
+		dataType: string
+		lineageTag: f8c9b1a3-4ab5-407f-a02a-a2eaef7162f8
+		sourceLineageTag: 22f7d6da-47ee-4e3a-a3c8-735c1a58417c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Approved by
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Rejected by'
+		dataType: string
+		lineageTag: f805b1bf-8b5e-4f1d-a605-0e3c557d2886
+		sourceLineageTag: 11bdbbae-aee1-4f1e-810b-3ac6d741348a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Rejected by
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Demand'
+		dataType: string
+		lineageTag: 5e2e586a-f3fb-45e1-8199-8b03b9705d6f
+		sourceLineageTag: 7e3fcced-4993-41d8-bc19-baf08f9d0d34
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Demand
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Motivation'
+		dataType: string
+		lineageTag: 35863f13-92d0-4ee4-ab78-ed51b735ca5a
+		sourceLineageTag: 855081cc-b36d-428a-b740-4062e11a405c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Motivation
+
+		annotation SummarizationSetBy = User
+
+	column 'Data Approvazione'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: afffd28f-588d-4e9d-9478-57e7bbf5f60c
+		sourceLineageTag: d915410b-9818-4780-a0d0-7777bcea17a8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Data Approvazione
+
+		variation Variazione
+			isDefault
+			relationship: 9555aa01-168d-4a40-bf97-01bf1db4a834
+			defaultHierarchy: LocalDateTable_e1f594ba-a167-4b70-9b6b-d4a33b97b7e7.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column 'Status Tradotto' =
+			
+			SWITCH(
+			    'Jira Macro Business Initiative'[Issue status],
+			    "Rejected",                          "Rejected",
+			    "Open",                              "Conferma Perimetro",
+			    "High-Level Functional Requirement", "Preparazione BR",
+			    "Tech Evaluation",                   "HLD e stime",
+			    "Estimation Done",                   "PJPlan e costi DE",
+			    "Financial Evaluation",              "IC DE Check e Markup",
+			    "IM Management",                     "IC DE Check e Markup",
+			    "Waiting for Approval",              "IC DE Check e Markup",
+			    "WBE Management",                    "Approvazione P&C Applicant Unit",
+			    "Approved",                          "IC DE approvazione e creazione Demand"
+			)
+		lineageTag: 9999a7ea-c3c3-4357-8115-dee22d9cd831
+		summarizeBy: none
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Issue Total Capex RI'
+		dataType: double
+		lineageTag: b9bbd31a-dbab-4d54-82c1-3ebc3e1f838f
+		sourceLineageTag: e9721ca3-2d20-493a-8a59-9cd2ebed92d1
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Total Capex RI
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Capex RI (Current Year)'
+		dataType: double
+		lineageTag: 9bd768b6-2b45-410d-ae7a-62a1a36cef42
+		sourceLineageTag: 966f3660-b838-4142-a9cd-57e6e5911e00
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Capex RI (Current Year)
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Capex RI (Year +2)'
+		dataType: double
+		lineageTag: 9ba8de77-cab4-4b43-b376-ac6d25579f08
+		sourceLineageTag: 610dadd8-5983-4728-910b-21bf49f9268a
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Capex RI (Year +2)
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Capex RI (Year +1)'
+		dataType: double
+		lineageTag: 64dc592b-d1e9-4908-8dad-95a9c6119afa
+		sourceLineageTag: ea623108-35bd-41f8-b22a-b2084c3a748d
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Capex RI (Year +1)
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Total Capex RE'
+		dataType: double
+		lineageTag: b7b95e24-9036-451f-87ac-cf13351e56fe
+		sourceLineageTag: 6021cd4d-3984-44a2-a9ae-69b3305c81f1
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Total Capex RE
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Capex RE (Current Year)'
+		dataType: double
+		lineageTag: 11825510-a48a-4cda-b0c8-5ca8455e475a
+		sourceLineageTag: 30e4976b-c6c9-4f06-baee-e3cbd74f9480
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Capex RE (Current Year)
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Capex RE (Year +1)'
+		dataType: double
+		lineageTag: cfbbab1b-0892-400f-a66a-3cd1f9df3e96
+		sourceLineageTag: cb1546eb-9808-4d84-8566-02419e1f46bc
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Capex RE (Year +1)
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Capex RE (Year +2)'
+		dataType: double
+		lineageTag: 18cc6a12-3d1a-40aa-bd2d-dffa7e205e56
+		sourceLineageTag: 65acf507-ada6-41dc-911c-6365d0daf11c
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Capex RE (Year +2)
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Total Capex Licenses'
+		dataType: double
+		lineageTag: d24f3d6a-6a67-4faa-8bfb-a49b923b6f35
+		sourceLineageTag: dff45d3b-c2ce-4e47-973a-686d62f4dc9f
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Total Capex Licenses
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Capex Licenses (Current Year)'
+		dataType: double
+		lineageTag: eafe5131-a33f-458c-a964-05936ffb34e7
+		sourceLineageTag: 15365d8e-e886-44ea-81d1-871fe4112b5b
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Capex Licenses (Current Year)
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Capex Licenses (Year +1)'
+		dataType: double
+		lineageTag: f7fb5def-048d-4e5a-b03a-54aae1944064
+		sourceLineageTag: 29b19be2-6bde-4a2b-bf54-4ce7e4fda109
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Capex Licenses (Year +1)
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Capex Licenses (Year +2)'
+		dataType: double
+		lineageTag: 0f5424ea-302a-43a3-81ae-13ec9aa59c0b
+		sourceLineageTag: 28babc05-22c3-4903-8727-b6fd575fbe0b
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Capex Licenses (Year +2)
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Total Opex RI'
+		dataType: double
+		lineageTag: 64627ea6-e28b-4003-85f9-87a051f1a8da
+		sourceLineageTag: c7878647-0be8-4677-9dc6-d7971c29fd81
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Total Opex RI
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Opex RI (Current Year)'
+		dataType: double
+		lineageTag: 51a61131-dea1-4c72-bdbc-43f09b70e955
+		sourceLineageTag: b5f000db-63b4-48b5-b49f-c1144e608207
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Opex RI (Current Year)
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Opex RI (Year +1)'
+		dataType: double
+		lineageTag: 8f3cec62-12ee-467c-a32b-a9ac90653b1f
+		sourceLineageTag: c5330e6a-be6b-41c6-b85c-2d7cd89360bb
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Opex RI (Year +1)
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Opex RI (Year +2)'
+		dataType: double
+		lineageTag: 2cf749a4-bd34-45c6-9887-7c184ded1d41
+		sourceLineageTag: c732ee7d-5864-4158-b4a8-bf935bd0c16b
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Opex RI (Year +2)
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Total Opex RE'
+		dataType: double
+		lineageTag: 92bc50bf-4b17-4ff6-ab32-1fbf4372edd5
+		sourceLineageTag: 050328d5-d784-403d-b85f-40d4eb83d9f6
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Total Opex RE
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Opex RE (Current Year)'
+		dataType: double
+		lineageTag: 23b48649-ad3d-475c-8bb2-62f65c7064b5
+		sourceLineageTag: bd6bbf47-233d-49e7-82af-e664b2e0a61c
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Opex RE (Current Year)
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Opex RE (Year +1)'
+		dataType: double
+		lineageTag: 860f7782-6153-4668-ad57-e795dfeb58ce
+		sourceLineageTag: 87177387-0af2-4f73-97a1-9971f160512c
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Opex RE (Year +1)
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Opex RE (Year +2)'
+		dataType: double
+		lineageTag: b61411cd-9213-44af-9132-d14028931e57
+		sourceLineageTag: 8f773b5b-2c99-4be9-aa85-8b536de353d2
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Opex RE (Year +2)
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Total Opex Licenses'
+		dataType: double
+		lineageTag: badd9fb3-dcf4-4f4d-a36b-c572b28de7e1
+		sourceLineageTag: be789ed2-9fe8-426f-a837-152532cead24
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Total Opex Licenses
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Opex Licenses (Current Year)'
+		dataType: double
+		lineageTag: 118829d4-2379-4a60-8b5f-35163c301854
+		sourceLineageTag: b784e617-ccf9-4d22-990c-52f73cee9e2d
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Opex Licenses (Current Year)
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Opex Licenses (Year +1)'
+		dataType: double
+		lineageTag: 660138ca-fdd9-4654-a6e1-5871a563858d
+		sourceLineageTag: 38960281-fcdf-457d-b81d-365028d59342
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Opex Licenses (Year +1)
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Opex Licenses (Year +2)'
+		dataType: double
+		lineageTag: d1fba6c9-fa08-41f5-9aee-ad595c3d4735
+		sourceLineageTag: c1f11a71-6bb5-4084-a538-2913cfa6157b
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Opex Licenses (Year +2)
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue K Index for Capex'
+		dataType: double
+		lineageTag: c226ab3d-a9c1-4887-b49a-5c83884aecf9
+		sourceLineageTag: 694a0924-fbaa-4714-b93a-92f73df6c5d3
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue K Index for Capex
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue K Index for Opex'
+		dataType: double
+		lineageTag: aa1460c8-4e50-48e4-819b-b1a82afc8fbf
+		sourceLineageTag: ffde7090-0e83-497c-a11b-b3700eec6586
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue K Index for Opex
+
+		annotation SummarizationSetBy = User
+
+	column 'K index License'
+		dataType: double
+		lineageTag: c9f37495-99c5-4e03-af7c-36e876757f02
+		sourceLineageTag: 6ff4406a-7f97-497c-9508-d86eedbfbdc3
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: K index License
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue ICT Line Level 1'
+		dataType: string
+		lineageTag: 8d0e9e30-a7a3-49c8-b2ca-46904eb4754b
+		sourceLineageTag: c6795bc0-604e-40c4-a8e6-cd3a48950310
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue ICT Line Level 1
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue ICT Line Level 2'
+		dataType: string
+		lineageTag: bd79dd65-1607-43ed-b29b-9f114c81c2f9
+		sourceLineageTag: 33d97791-2b79-427a-9c22-10adf27e337a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue ICT Line Level 2
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Start date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 43fd4f8a-f14c-4d2f-9245-e35e856e49c0
+		sourceLineageTag: 1a0034f6-66e1-4dec-a9fb-893bf068d494
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Start date
+
+		variation Variazione
+			isDefault
+			relationship: fde18b3f-c679-44a3-b564-31e4029a1b7c
+			defaultHierarchy: LocalDateTable_05743166-a1c5-4fad-9eca-00de4b956403.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue End date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 05a619b9-ec41-4c71-a5cb-7d305a193850
+		sourceLineageTag: 864ad6be-6c97-4577-9cf8-1385afa989ac
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue End date
+
+		variation Variazione
+			isDefault
+			relationship: 27733c39-1a21-4fa1-8d04-bdced50fbd1c
+			defaultHierarchy: LocalDateTable_7284efee-8543-4fc7-92e6-975948d999aa.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Cost for Analysis RE'
+		dataType: double
+		lineageTag: ea0d3c7a-54e2-4bcd-9afb-a1e659875958
+		sourceLineageTag: cd1fe066-91e5-441c-9063-314bc5c83280
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Cost for Analysis RE
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Cost for Analysis RI'
+		dataType: double
+		lineageTag: 3d4da804-edcb-4bc3-a989-63617a0e6f61
+		sourceLineageTag: 215059d8-7d1d-4857-a07b-cf80a6f21721
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue Cost for Analysis RI
+
+		annotation SummarizationSetBy = User
+
+	column capexRI_Revenue_CurrentYear
+		dataType: string
+		lineageTag: d49a6411-b316-44f6-83be-01af01e5d433
+		sourceLineageTag: 4cf54818-9cdf-43f3-a195-f78d1576c887
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: capexRI_Revenue_CurrentYear
+
+		annotation SummarizationSetBy = User
+
+	column capexRE_Revenue_CurrentYear
+		dataType: string
+		lineageTag: 165ceaf9-e940-4afe-913c-249136544e0e
+		sourceLineageTag: 8ef0d7b1-4c32-46f0-8c33-988834c5425d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: capexRE_Revenue_CurrentYear
+
+		annotation SummarizationSetBy = User
+
+	column capexLicenses_Revenue_CurrentYear
+		dataType: string
+		lineageTag: f740a430-ed56-4c3b-a2a1-3c2d4339ba6e
+		sourceLineageTag: 6aa06e5e-dcd8-40da-85d4-bf52299ff771
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: capexLicenses_Revenue_CurrentYear
+
+		annotation SummarizationSetBy = User
+
+	column opexRI_Revenue_CurrentYear
+		dataType: string
+		lineageTag: d3f1a678-29f5-45e6-90bd-127a07d15cf8
+		sourceLineageTag: 4898e6f2-8ede-459e-8917-6712d112d985
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: opexRI_Revenue_CurrentYear
+
+		annotation SummarizationSetBy = User
+
+	column opexRE_Revenue_CurrentYear
+		dataType: string
+		lineageTag: 602940f6-7638-4848-86c9-3c4252d60a3f
+		sourceLineageTag: aa3513ab-c110-40f8-8dad-e035500ea8ae
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: opexRE_Revenue_CurrentYear
+
+		annotation SummarizationSetBy = User
+
+	column opexLicenses_Revenue_CurrentYear
+		dataType: string
+		lineageTag: 1628d7ca-1231-452b-bec6-b3019b8fff76
+		sourceLineageTag: cce8d63f-80d5-42f0-b597-6b2ef386f878
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: opexLicenses_Revenue_CurrentYear
+
+		annotation SummarizationSetBy = User
+
+	column capexRI_Revenue_YearPlusOne
+		dataType: string
+		lineageTag: 516cd7f0-2491-4792-b10a-37ec4a502815
+		sourceLineageTag: ac00387f-1809-43b3-a00f-f85103bee7a5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: capexRI_Revenue_YearPlusOne
+
+		annotation SummarizationSetBy = User
+
+	column capexRE_Revenue_YearPlusOne
+		dataType: string
+		lineageTag: 29e15c7b-bc64-4e9d-bc1a-eb9fbb64d52f
+		sourceLineageTag: 95b6341d-f175-4e95-b7f3-165a9e597a14
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: capexRE_Revenue_YearPlusOne
+
+		annotation SummarizationSetBy = User
+
+	column capexLicenses_Revenue_YearPlusOne
+		dataType: string
+		lineageTag: 8a46ab1b-2066-4d0a-8ead-704b66247d22
+		sourceLineageTag: d86e9f76-0f0d-4dec-b0d6-d0eb55e237ea
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: capexLicenses_Revenue_YearPlusOne
+
+		annotation SummarizationSetBy = User
+
+	column opexRI_Revenue_YearPlusOne
+		dataType: string
+		lineageTag: 5cb9e1d9-eed9-499a-99d0-0a6ef9cfb99f
+		sourceLineageTag: 46441231-cb46-4d9a-97f1-1ba40426ba2f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: opexRI_Revenue_YearPlusOne
+
+		annotation SummarizationSetBy = User
+
+	column opexRE_Revenue_YearPlusOne
+		dataType: string
+		lineageTag: a852c86d-5a8e-45db-8b0b-a19949c3950d
+		sourceLineageTag: 8f090212-e14a-4648-aa8d-eb951f406e72
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: opexRE_Revenue_YearPlusOne
+
+		annotation SummarizationSetBy = User
+
+	column opexLicenses_Revenue_YearPlusOne
+		dataType: string
+		lineageTag: 2200ec5c-d999-488a-9739-669e2bedeb97
+		sourceLineageTag: 022ded53-0c45-4cb7-bcc9-b580e0192024
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: opexLicenses_Revenue_YearPlusOne
+
+		annotation SummarizationSetBy = User
+
+	column capexRI_Revenue_YearPlusTwo
+		dataType: string
+		lineageTag: 3be02018-4bad-4313-8365-1575314a179a
+		sourceLineageTag: 49d017ac-691f-45ef-aa3b-4064cb99d6a2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: capexRI_Revenue_YearPlusTwo
+
+		annotation SummarizationSetBy = User
+
+	column capexRE_Revenue_YearPlusTwo
+		dataType: string
+		lineageTag: 4dd22ca2-100e-4c04-adf0-8c72e8af7211
+		sourceLineageTag: c6a180e1-d065-4726-ab43-03ef67c4cf52
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: capexRE_Revenue_YearPlusTwo
+
+		annotation SummarizationSetBy = User
+
+	column capexLicenses_Revenue_YearPlusTwo
+		dataType: string
+		lineageTag: 0bbe00f9-c4c0-452b-a0be-4783c6f92864
+		sourceLineageTag: 4b1820b5-d2a0-4a6b-b42b-12aeba110cd0
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: capexLicenses_Revenue_YearPlusTwo
+
+		annotation SummarizationSetBy = User
+
+	column opexRI_Revenue_YearPlusTwo
+		dataType: string
+		lineageTag: 1e9861f7-d843-456c-ac90-1d6b0d93c505
+		sourceLineageTag: 9422539a-c159-4680-bee2-27f610261b09
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: opexRI_Revenue_YearPlusTwo
+
+		annotation SummarizationSetBy = User
+
+	column opexRE_Revenue_YearPlusTwo
+		dataType: string
+		lineageTag: 8a8b6594-b4f5-47c8-a144-b22a369c90bf
+		sourceLineageTag: 62606f0b-04d8-4cdc-8f61-72af57de029b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: opexRE_Revenue_YearPlusTwo
+
+		annotation SummarizationSetBy = User
+
+	column opexLicenses_Revenue_YearPlusTwo
+		dataType: string
+		lineageTag: 6e64317c-7c2d-4cd1-bdfd-c107f1fc425b
+		sourceLineageTag: 2f0c0696-3cc1-4cc3-a563-67bfaa98990c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: opexLicenses_Revenue_YearPlusTwo
+
+		annotation SummarizationSetBy = User
+
+	column Revenue_Total_Capex_RI
+		dataType: string
+		lineageTag: 8b4a0cae-f66e-4f7f-9d31-0bb1f859b3c3
+		sourceLineageTag: f9d45493-a7af-4a35-9e38-f0ab329ff74f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Revenue_Total_Capex_RI
+
+		annotation SummarizationSetBy = User
+
+	column Revenue_Total_Capex_RE
+		dataType: string
+		lineageTag: 5e32fcb1-66ba-4195-af49-8235e558ab29
+		sourceLineageTag: 362496bd-f6be-4482-b2d6-a46419cd89ac
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Revenue_Total_Capex_RE
+
+		annotation SummarizationSetBy = User
+
+	column Revenue_Total_Capex_Licenses
+		dataType: string
+		lineageTag: 12913fed-8cfd-41e0-b789-507718e8da75
+		sourceLineageTag: 5af20c7a-35da-4ddb-8919-366a0a0e80a4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Revenue_Total_Capex_Licenses
+
+		annotation SummarizationSetBy = User
+
+	column Revenue_Total_Opex_RI
+		dataType: string
+		lineageTag: ecb30aaa-3886-4223-ac00-32f258143bd4
+		sourceLineageTag: 29f28faf-1bbd-493a-b3f6-e6a4d4f56234
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Revenue_Total_Opex_RI
+
+		annotation SummarizationSetBy = User
+
+	column Revenue_Total_Opex_RE
+		dataType: string
+		lineageTag: 0eb74838-a4e1-47cc-81b2-e784f8840652
+		sourceLineageTag: 4655eca0-51eb-48fb-9f58-3ec8c52538b4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Revenue_Total_Opex_RE
+
+		annotation SummarizationSetBy = User
+
+	column Revenue_Total_Opex_Licenses
+		dataType: string
+		lineageTag: a07762f6-839e-44bf-87d7-11cc9ec0c482
+		sourceLineageTag: a9174b3e-9046-4627-ac88-829ecf38fccc
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Revenue_Total_Opex_Licenses
+
+		annotation SummarizationSetBy = User
+
+	column Revenue_TotalCapex
+		dataType: string
+		lineageTag: 87495a07-758c-47e5-a9d4-0cc85d826018
+		sourceLineageTag: 961508eb-44d8-4c3d-9565-8c1938e4c288
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Revenue_TotalCapex
+
+		annotation SummarizationSetBy = User
+
+	column Revenue_TotalOpex
+		dataType: string
+		lineageTag: c9255831-49c2-493d-92e2-ed6e8904b6f1
+		sourceLineageTag: 16be3c9b-ac18-4ec8-9830-8ba8462df40f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Revenue_TotalOpex
+
+		annotation SummarizationSetBy = User
+
+	column TotalCostForAnalysisRI_Revenue
+		dataType: string
+		lineageTag: 35b1dc29-1f34-43be-b265-1589ece891ba
+		sourceLineageTag: 53899c8c-ea11-4aae-9760-9ac649834fc6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TotalCostForAnalysisRI_Revenue
+
+		annotation SummarizationSetBy = User
+
+	column TotalCostForAnalysisRE_Revenue
+		dataType: string
+		lineageTag: 581136c3-c80a-41d3-a5b6-8772971a57cf
+		sourceLineageTag: 889b0b02-d49b-4c4c-9dc5-032b1230747d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: TotalCostForAnalysisRE_Revenue
+
+		annotation SummarizationSetBy = User
+
+	column 'IM Num formatted' = ```
+			
+			RELATED('Jira Investment Memo'[Issue_Number]) 
+			& " – " & 
+			RELATED('Jira Investment Memo'[Issue_Project_Name])
+			```
+		lineageTag: a7af60ab-f668-42e7-84c0-580985d27fe8
+		summarizeBy: none
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Issue Name'
+		dataType: string
+		lineageTag: a0005727-967e-4849-a03f-a9165bc98dd1
+		sourceLineageTag: 316a9b4d-593f-4e54-96f9-50f523bb1c34
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Name
+
+		annotation SummarizationSetBy = User
+
+	column 'Project Name'
+		dataType: string
+		lineageTag: 9f459861-c6b5-4653-9691-d3928b7ed391
+		sourceLineageTag: 88229d62-7ec5-4a56-8702-93ab3e225f89
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Project Name
+
+		annotation SummarizationSetBy = User
+
+	column 'Status Category'
+		dataType: string
+		lineageTag: fbe8995a-c563-4470-b5cc-687555d1bce0
+		sourceLineageTag: 514e656a-d918-4f1c-b663-9c48555ef7ed
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Status Category
+
+		annotation SummarizationSetBy = User
+
+	column 'Project Key'
+		dataType: string
+		lineageTag: 1ccd1efb-3028-4fbb-8a65-c4183fe3145c
+		sourceLineageTag: 0f8181dc-4034-4d16-b13d-d8808aa652c8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Project Key
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue created date'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 388566c6-196e-4169-9419-dd2e2d965e1c
+		sourceLineageTag: e110cbbd-d1ca-4ebb-8477-c8b0e020e6b1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue created date
+
+		variation Variazione
+			isDefault
+			relationship: 4787b6eb-0724-4071-8f9c-a5098aed2c6f
+			defaultHierarchy: LocalDateTable_a6085e72-29ba-4536-b8ac-5fa443fe245d.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Projectrak GDS Line'
+		dataType: string
+		lineageTag: 8722249e-ac61-45a4-8070-c133bacbd275
+		sourceLineageTag: 4802c1b2-47e9-435a-aa85-9805962603bf
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Projectrak GDS Line
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue assignee'
+		dataType: string
+		lineageTag: 2ecd1dd3-5265-4caa-a100-46d4a6ad19cd
+		sourceLineageTag: 9ce39318-fb1d-4f35-a4a4-bf4acf6e90b8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue assignee
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Epic Key'
+		dataType: string
+		lineageTag: f8c82462-7dca-499d-8a23-b3b43e606e74
+		sourceLineageTag: fc92a997-9f84-43cb-ad98-4eb4d376a22d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Epic Key
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue priority'
+		dataType: string
+		lineageTag: 47c7c769-eea7-4920-bfe1-ea03f99dc318
+		sourceLineageTag: b899bfdc-5d9c-45d8-a19d-1c4542a8c589
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue priority
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue resolution date'
+		dataType: string
+		lineageTag: 1844fa83-ad10-443b-a29f-ca7ab21c4ccf
+		sourceLineageTag: 3fcdbe54-e08f-4ee2-98e2-3c7da5f36c3b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue resolution date
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Baseline start date'
+		dataType: string
+		lineageTag: 0f926fb4-307d-4396-87a2-5ab4af31bd1e
+		sourceLineageTag: 6822b135-b7b2-4d2c-bd97-63a7d6eca541
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Baseline start date
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Baseline end date'
+		dataType: string
+		lineageTag: 61bc9df8-3ec2-4ca4-b714-69ab051b14b9
+		sourceLineageTag: 71d17bf6-833a-4122-8e88-428ba9eee0f1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Baseline end date
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Progress'
+		dataType: string
+		lineageTag: 38647937-1cd6-4988-899e-14c878997cd5
+		sourceLineageTag: 34f2b686-815d-4e0d-a869-27bc7d4b6b4c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Progress
+
+		annotation SummarizationSetBy = User
+
+	column 'Projectrak Factory - Chapter'
+		dataType: string
+		lineageTag: d9fe02ce-1a28-4b43-a8c0-8c5e93214b4d
+		sourceLineageTag: 7b3ce4e0-2304-4b91-84f4-5852adf1ef95
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Projectrak Factory - Chapter
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Epic Link'
+		dataType: string
+		lineageTag: 65a8ae06-ed4c-49ef-9a1d-2cea47159d91
+		sourceLineageTag: d90c509d-f78e-46ff-a8b7-71ea79e10008
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Epic Link
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Epic Name'
+		dataType: string
+		lineageTag: 19a14da2-836b-4c64-ade9-0a0e72ba7ffc
+		sourceLineageTag: 72af1102-76ed-4e82-a46b-0ff7e0e47c02
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Epic Name
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Epic Status'
+		dataType: string
+		lineageTag: 4dccc0bb-9f9d-4212-8fa1-e12669a4612f
+		sourceLineageTag: f2c2d1b7-2901-47f9-9ef5-dd6898c1e1ba
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Epic Status
+
+		annotation SummarizationSetBy = User
+
+	column 'Projectrak Project Status'
+		dataType: string
+		lineageTag: a74003f7-1483-4ec0-b337-88173895981f
+		sourceLineageTag: 9624df42-a0aa-42cd-a645-9faf9a932831
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Projectrak Project Status
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Created Date Formatted' =
+			
+			DATEVALUE(LEFT('Jira Macro Business Initiative'[Issue created date], 10))
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2fd274ad-5265-4829-9bd2-a899284a80ec
+		summarizeBy: none
+
+		changedProperty = Name
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Issue PC&CM'
+		dataType: string
+		lineageTag: 0322b2e8-3ba3-449e-bbf1-7a73d02c6fd3
+		sourceLineageTag: 770bc1a2-c30b-4cfe-88e7-66d25b931602
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue PC&CM
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue PM'
+		dataType: string
+		lineageTag: e0b15bdd-abe0-4762-b424-0b376bfbcbe3
+		sourceLineageTag: 5f53bb4b-eb9a-478b-bd4b-d55dac44398b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue PM
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue components'
+		dataType: string
+		lineageTag: 5c4ced38-05ba-447d-998b-40a9c9f98406
+		sourceLineageTag: 388a63e9-74a4-4882-b34c-17c71e1acda8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue components
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue Main Project'
+		dataType: string
+		lineageTag: a2897a33-e9aa-4638-8367-1f84aed3c1f7
+		sourceLineageTag: ccd23a1c-d567-4c11-bbb7-e16be477e0a3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue Main Project
+
+		annotation SummarizationSetBy = User
+
+	column 'MBI formatted' = 'Jira Macro Business Initiative'[Issue key] & "-" & 'Jira Macro Business Initiative'[Issue Name]
+		lineageTag: dbc91b50-ee9f-477e-bfb1-0bd4cbd49350
+		summarizeBy: none
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	hierarchy 'Issue key Gerarchia'
+		lineageTag: f5ef5e2a-5674-409b-82bf-0593d20181b6
+		sourceLineageTag: 057107b9-737c-4399-a56f-01ad2e5b8357
+
+		level 'Issue key'
+			lineageTag: 67e2ead3-84b5-4494-b480-b951d061b8bb
+			sourceLineageTag: 2c107ead-1af8-49af-91ac-2d8b1495365a
+			column: 'Issue key'
+
+	partition 'Jira Macro Business Initiative' = entity
+		mode: directQuery
+		source
+			entityName: Jira Macro Business Initiative
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

@@ -1,0 +1,47 @@
+table 'Jira User Last Login'
+	lineageTag: e1a4b37e-0b9f-4c51-be68-c88918f06b0b
+	sourceLineageTag: ec86639c-98e4-42ee-99b8-6a50f0c0afe7
+
+	column tool
+		dataType: string
+		lineageTag: 5e890144-6888-41f6-8634-8e5fa630e7c7
+		sourceLineageTag: 736a8776-7839-48c5-ba9c-76c118059a3b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: tool
+
+		annotation SummarizationSetBy = User
+
+	column lower_user_name
+		dataType: string
+		isNullable: false
+		lineageTag: 8a75df10-3ee9-439b-b5a0-803474d6bfba
+		sourceLineageTag: 40dd2c24-e9d4-44cf-b85a-c12a49b2be3c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: lower_user_name
+
+		annotation SummarizationSetBy = User
+
+	column last_login
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 304f1e79-5255-4a74-bd13-42338d0d290d
+		sourceLineageTag: 062e6c41-2991-4e3e-9f41-a505e143a8ad
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: last_login
+
+		variation Variazione
+			isDefault
+			relationship: 633dc1c2-72d3-4650-8a78-2ad9092f36bf
+			defaultHierarchy: LocalDateTable_6e594ab5-0f39-44c4-be21-e0cb847dce20.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira User Last Login' = entity
+		mode: directQuery
+		source
+			entityName: Jira User Last Login
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

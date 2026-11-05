@@ -1,0 +1,111 @@
+table LocalDateTable_47ea5b06-a213-4b15-bfb6-b2d6d56ee741
+	isHidden
+	showAsVariationsOnly
+	lineageTag: 675dbad8-18c9-460f-8488-2a89d64006ec
+
+	column Date
+		dataType: dateTime
+		isHidden
+		lineageTag: 07ba58e2-fd61-4011-a301-036840a447d4
+		dataCategory: PaddedDateTableDates
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = User
+
+	column Anno = YEAR([Date])
+		dataType: int64
+		isHidden
+		lineageTag: 3da8dcbd-5dae-4a5e-bfcf-9e16910d640c
+		dataCategory: Years
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+		annotation TemplateId = Year
+
+	column NumMese = MONTH([Date])
+		dataType: int64
+		isHidden
+		lineageTag: 911d10a2-bcd7-4f9f-9038-44239f0972f6
+		dataCategory: MonthOfYear
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+		annotation TemplateId = MonthNumber
+
+	column Mese = FORMAT([Date], "MMMM")
+		dataType: string
+		isHidden
+		lineageTag: 066c50cd-f0bb-4f27-a372-77ff9377dce7
+		dataCategory: Months
+		summarizeBy: none
+		sortByColumn: NumMese
+
+		annotation SummarizationSetBy = User
+
+		annotation TemplateId = Month
+
+	column NumTrimestre = INT(([NumMese] + 2) / 3)
+		dataType: int64
+		isHidden
+		lineageTag: 3058e7bc-f906-4a15-91fc-465a81f71e22
+		dataCategory: QuarterOfYear
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+		annotation TemplateId = QuarterNumber
+
+	column Trimestre = "Qtr " & [NumTrimestre]
+		dataType: string
+		isHidden
+		lineageTag: a4a80c3f-2657-40ed-b4d0-1436c953079c
+		dataCategory: Quarters
+		summarizeBy: none
+		sortByColumn: NumTrimestre
+
+		annotation SummarizationSetBy = User
+
+		annotation TemplateId = Quarter
+
+	column Giorno = DAY([Date])
+		dataType: int64
+		isHidden
+		lineageTag: 4dfb210b-ce12-424a-ab3a-d8315010ebb3
+		dataCategory: DayOfMonth
+		summarizeBy: none
+
+		annotation SummarizationSetBy = User
+
+		annotation TemplateId = Day
+
+	hierarchy 'Gerarchia data'
+		lineageTag: 2c15f6a8-417f-40c4-b108-20fc34780cd1
+
+		level Anno
+			lineageTag: 74c45f26-9344-4a92-9203-a74d180757af
+			column: Anno
+
+		level Trimestre
+			lineageTag: 34126f14-855b-4e23-83b6-ba4792273bc3
+			column: Trimestre
+
+		level Mese
+			lineageTag: 8edbbba9-2442-4760-b622-8d4e81f1b2b4
+			column: Mese
+
+		level Giorno
+			lineageTag: 94999ad9-6fa7-4755-8847-a43eb4927fdd
+			column: Giorno
+
+		annotation TemplateId = DateHierarchy
+
+	partition LocalDateTable_47ea5b06-a213-4b15-bfb6-b2d6d56ee741 = calculated
+		mode: import
+		source = Calendar(Date(Year(MIN('FD Transition Status Confluence'[transition_date])), 1, 1), Date(Year(MAX('FD Transition Status Confluence'[transition_date])), 12, 31))
+
+	annotation __PBI_LocalDateTable = true
+

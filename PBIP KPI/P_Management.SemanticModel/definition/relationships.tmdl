@@ -1,0 +1,2970 @@
+relationship cddc916c-994e-403b-a9ab-dcd41d1ece06
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'APM Attribute'.'APM Code'
+	toColumn: APM.'APM Code'
+
+relationship cfb1251d-ad08-457e-bd72-09cf997cbdaa
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Project List'.Owner_Country
+	toColumn: Tassi_Cambio.Owner_Country
+
+relationship da5536de-31be-432f-86c3-b53afe091e44
+	isActive: false
+	fromColumn: 'Jira Project List'.projectJira_Lead_Username
+	toColumn: 'AD Objects'.userId
+
+relationship 03193cd1-13c8-4234-bc36-33b65e229969
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Project APM'.Project_Key
+	toColumn: 'Jira Project List'.Project_Key
+
+relationship c74f019e-34a1-4f0b-a226-867b8a9aec26
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Project APM'.APM
+	toColumn: APM.'APM Code'
+
+relationship e65db664-f56a-4fea-a209-ebf90b201845
+	fromColumn: 'Jira user role'.project_key
+	toColumn: 'Jira Project List'.Project_Key
+
+relationship d58ef883-39e8-4ed2-9673-3d8dabee6de0
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira user role'.username
+	toColumn: 'AD Objects'.userId
+
+relationship 7a1dd27d-e1b1-4b4b-ba21-298be2df0ebd
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'AD Objects'.userId
+	toColumn: 'Bitbucket User Last Login'.user_name
+
+relationship f1cf961e-50c2-4d5a-8a46-030ff1d8ca92
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'AD Objects'.userId
+	toColumn: 'SD User Last Login'.lower_user_name
+
+relationship 22566c69-ae6b-4050-bca0-e80133f8adaf
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'AD Objects'.userId
+	toColumn: 'Confluence User Last Login'.lower_user_name
+
+relationship 949bf99c-7144-4303-942e-da88d9492fca
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'AD Objects'.userId
+	toColumn: 'Jira User Last Login'.lower_user_name
+
+relationship 07e9dfbf-d026-419e-8c23-ea38fb5c579e
+	fromColumn: 'Bitbucket Push Request'.project_key
+	toColumn: 'Bitbucket Project List'.project_key
+
+relationship 0155f5f3-430e-4818-ba63-5fa990aa62b8
+	fromColumn: 'Bitbucket Push Request'.project_key
+	toColumn: 'Jira Project List'.Project_Key
+
+relationship 16a63d36-fa3a-44fc-9c58-107f28447adb
+	fromColumn: 'Bitbucket Push Request'.userid
+	toColumn: 'AD Objects'.userId
+
+relationship 684fcbd3-e1f6-4e4a-9cf9-b83648caef0e
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Issue Detail'.project_key
+	toColumn: 'Jira Project List'.Project_Key
+
+relationship 42a252ec-cef5-4acb-bbb1-515a59ae7b82
+	isActive: false
+	fromColumn: 'Jira Issue Detail'.apm_list
+	toColumn: APM.'APM Code'
+
+relationship bf6e0593-9dcb-4fee-82dc-9cebbc350dee
+	isActive: false
+	fromColumn: 'Jira Issue Detail'.closed_by
+	toColumn: 'AD Objects'.userId
+
+relationship 8e966ea8-2956-4efd-85ea-690650edcf32
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Jira Issue Detail'.issue_key
+	toColumn: 'Jira Min Info Set'.issue_key
+
+relationship 654f225e-0a5d-4c8e-b9c5-85ebf7e11830
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Jira Issue Detail'.issue_key
+	toColumn: 'Jira Investment Memo'.Issue_key
+
+relationship c627793c-4b43-40a1-870c-c456e16d286d
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Jira Issue Detail'.issue_key
+	toColumn: 'Jira Business Initiative'.'Issue key'
+
+relationship 1468be02-3edc-41ee-8793-e362303a457a
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'SD Issue Detail'.ssd_project_key
+	toColumn: 'Jira Project List'.Project_Key
+
+relationship 39da85d3-fbe3-4c46-a0b0-6bb342669cd6
+	isActive: false
+	fromColumn: 'SD Issue Detail'.assignee
+	toColumn: 'AD Objects'.userId
+
+relationship d26a8c4c-15df-45d8-8094-8efe3b9d87aa
+	fromColumn: 'Bitbucket Project APM'.project_key
+	toColumn: 'Bitbucket Project List'.project_key
+
+relationship 7e98bb07-1901-4a9e-b8cd-07bb915097e1
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Bitbucket Project APM'.apm_code
+	toColumn: APM.'APM Code'
+
+relationship 6a6c962f-a7d1-40ec-811d-a5077d28d438
+	fromColumn: 'Bitbucket Repo APM'.apm_code
+	toColumn: APM.'APM Code'
+
+relationship efa84a68-c60d-4825-b077-3b619eeff829
+	fromColumn: 'Bitbucket Repo List'.project_key
+	toColumn: 'Bitbucket Project List'.project_key
+
+relationship 71f70ca5-348b-4300-84d6-c063839416b1
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Bitbucket Repo List'.repo_key
+	toColumn: 'Bitbucket Repo APM'.repo_key
+
+relationship 37e76c89-26ba-4f1b-86c1-8b97f9dcf371
+	fromColumn: 'Bamboo Plan APM'.apm_code
+	toColumn: APM.'APM Code'
+
+relationship 50f6732d-9d03-4338-a7b2-9405a36ed0ed
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Bamboo Plan APM'.plan_key
+	toColumn: 'Bamboo Plan List'.full_key
+
+relationship 9c3d273f-aa64-4905-837b-7dcb5a03a010
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Bamboo Plan List'.project_id
+	toColumn: 'Bamboo Project List'.project_id
+
+relationship 72bd35e4-7758-4f0c-8d1f-437fdd841247
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Bamboo Project APM'.apm_code
+	toColumn: APM.'APM Code'
+
+relationship 4ee1dc10-cfba-49b3-b751-61fb973b9ca8
+	fromColumn: 'Bamboo Project APM'.project_key
+	toColumn: 'Bamboo Project List'.project_key
+
+relationship 19c4a411-1882-4484-95ee-2febbd3b00a1
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Crowd Groups'.user_name
+	toColumn: 'AD Objects'.userId
+
+relationship 9df044eb-7ac5-4f31-a4f6-68fa240f80ac
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Efficiency'.'Project Key [Issue]'
+	toColumn: 'Jira Project List'.Project_Key
+
+relationship d119cafd-67b5-48d4-b31c-249d22b08753
+	fromColumn: 'Bamboo Failed Software Plan'.'Project key'
+	toColumn: 'Bamboo Project List'.project_key
+
+relationship 9f7e4d28-74d1-44e4-b357-e7702c38f17e
+	fromColumn: 'Confluence Statistics'.matricola
+	toColumn: 'AD Objects'.userId
+
+relationship a6e62fcc-2e9a-487b-ad55-5af012984b42
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'HR Masterdata'.'U Org'
+	toColumn: 'HR OU Relations'.'Org Unit ID'
+
+relationship 1b3806eb-39f3-415f-a73b-165cfae00402
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'HR Masterdata'.'Userid 1'
+	toColumn: 'AD Objects'.userId
+
+relationship db23e1ee-c774-483f-8797-1ecb3367d7a2
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Workload'.logged_by
+	toColumn: 'AD Objects'.userId
+
+relationship 39185c60-7782-4a04-95e1-a09789e9a228
+	fromColumn: 'Jira Workload'.issue
+	toColumn: 'Jira Issue Detail'.issue_key
+
+relationship 15dfe201-8486-4615-8fad-937aed186efe
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Business Feature'.'Project Key'
+	toColumn: 'Jira Project List'.Project_Key
+
+relationship 7f300ce2-0e42-45a2-b1ed-5c38716190ab
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Business Feature for APM'.'Issue parent key'
+	toColumn: 'Jira Business Feature'.'Issue Key [Issue]'
+
+relationship 3dd8f771-4f0d-492b-91c6-34eaeef774bf
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Feature Delivery'.'Issue Feature for APM link'
+	toColumn: 'Jira Business Feature for APM'.'Issue Key [Issue]'
+
+relationship d1c321f3-0380-48c8-9278-cbc95566634d
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Feature Delivery'.'Full Status'
+	toColumn: 'Jira Feature Delivery Progress'.'Full Status'
+
+relationship 35bef88e-8585-483a-a601-342b3a8c0168
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira RFC'.rfc_project_key
+	toColumn: 'Jira Project List'.Project_Key
+
+relationship 15adb49b-6cf9-4a52-84a4-dafa71836f6a
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Component'.issue_key
+	toColumn: 'Jira Issue Detail'.issue_key
+
+relationship c4aea980-6497-4b11-9bcc-77ce1cdd8e13
+	fromColumn: 'Jira Xray Test Step Execution'.test_run_id
+	toColumn: 'Jira Xray Test Run'.test_run_id
+
+relationship 56e6e55d-4c9c-45e9-afff-5336fae4a404
+	fromColumn: 'Jira Xray Test Step Execution'.test_step_id
+	toColumn: 'Jira Xray Test Step'.test_step_id
+
+relationship c512da42-dba1-4478-b039-f582f3366f02
+	fromColumn: 'Jira Initiative for APM'.issue_parent_key
+	toColumn: 'Jira Macro Business Initiative'.'Issue key'
+
+relationship 1d67c646-992f-47fb-b1a8-ed729571abd8
+	fromColumn: 'Jira Business Initiative'.'Issue Macro Business Initiative'
+	toColumn: 'Jira Macro Business Initiative'.'Issue key'
+
+relationship 28213124-a2d4-4b24-a7cd-617911da8b3f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Filtri.Date
+	toColumn: LocalDateTable_dd1b29df-11c1-4ebc-91d9-781367348ca8.Date
+
+relationship b5570b30-f518-4532-bc04-ec5febc16765
+	fromColumn: 'Jira Business Feature for APM'.'APM Code'
+	toColumn: 'APM (2)'.'APM Code'
+
+relationship bb49cb7e-cc78-4df9-aeab-a7d85787ef69
+	fromColumn: 'Jira Initiative for APM'.apm_code
+	toColumn: 'APM (2)'.'APM Code'
+
+relationship 4b76bfed-4d58-4085-850e-976efdf04728
+	fromColumn: 'Bitbucket Push Request'.created_timestamp
+	toColumn: LocalDateTable_ff2ae514-73cb-4356-8cfd-b41f11019eb6.Date
+
+relationship cada1105-c02c-4b4e-b8d3-ced02ecdc4dd
+	fromColumn: 'Bamboo Build Error'.Created
+	toColumn: LocalDateTable_839a5965-0dd4-465b-9543-0e0dce9e6dde.Date
+
+relationship e518d742-2de3-44a1-b5bd-fb43cda8be9d
+	fromColumn: 'Bamboo Build Error'.Updated
+	toColumn: LocalDateTable_badc388b-94eb-470c-aa1d-1842f8654d70.Date
+
+relationship 8dbda532-264a-4231-ab8e-1dead66c8af2
+	fromColumn: 'Bamboo Build Error'.'Error Date Time'
+	toColumn: LocalDateTable_517cc8a7-e109-46a4-a824-2064806d84b9.Date
+
+relationship a9828c8a-f268-4c45-a4b0-ecaf98229bdd
+	fromColumn: 'Jira Issue Detail'.created_date
+	toColumn: LocalDateTable_d87b82b6-f5b7-4495-88af-9f4a7955f527.Date
+
+relationship 940ea516-57ca-4c9d-9023-7da62f025e88
+	fromColumn: 'Jira Issue Detail'.updated
+	toColumn: LocalDateTable_9b51729a-e7ff-4e69-bc6d-28cf25a0ac6f.Date
+
+relationship de2322aa-91b4-4b0b-afb7-23706a9a6abe
+	fromColumn: 'Jira Issue Detail'.resolutiondate
+	toColumn: LocalDateTable_8e057d4f-dea9-40b7-91b3-3b95fa5fbd3f.Date
+
+relationship de1d9f59-8b83-433e-aab0-f0d6ac66d54b
+	fromColumn: 'Jira Issue Detail'.start_date
+	toColumn: LocalDateTable_f70a0bc4-f6c5-4105-a91e-092f1d810dbf.Date
+
+relationship 7dfac3c6-ab09-4c56-8242-67782d2e9202
+	fromColumn: 'Jira Issue Detail'.end_date
+	toColumn: LocalDateTable_9e4c02de-2ce0-4799-8c56-7057d4abf970.Date
+
+relationship ebb7642e-7728-4f0d-8d46-8e5087fac54f
+	fromColumn: 'Jira Issue Detail'.baseline_start_date
+	toColumn: LocalDateTable_59271f88-f253-4cd9-869f-afcc84340603.Date
+
+relationship 21c3e71b-c350-48d1-9cca-ed33849bc81c
+	fromColumn: 'Jira Issue Detail'.baseline_end_date
+	toColumn: LocalDateTable_2e3daf26-530b-4b5a-9989-bfca93d1478f.Date
+
+relationship a57e435c-da16-495c-bf4b-dcd8471e06d3
+	fromColumn: 'Bitbucket User Last Login'.last_login
+	toColumn: LocalDateTable_35c6d343-aaa3-45d3-b8fc-37293af1b53f.Date
+
+relationship 942968ce-bb96-4714-afe9-d389e0b46a2b
+	fromColumn: 'Confluence User Last Login'.last_login
+	toColumn: LocalDateTable_3f3c9c4c-ca1b-4404-bff3-41b2b20d9baf.Date
+
+relationship 633dc1c2-72d3-4650-8a78-2ad9092f36bf
+	fromColumn: 'Jira User Last Login'.last_login
+	toColumn: LocalDateTable_6e594ab5-0f39-44c4-be21-e0cb847dce20.Date
+
+relationship 26083168-786f-4ba4-ae43-43da6c13780d
+	fromColumn: 'SD User Last Login'.last_login
+	toColumn: LocalDateTable_5d25d181-5aed-4c36-a65f-4ce18867d4fb.Date
+
+relationship 9b50e07e-0ecc-4e83-9ea3-9063e90ce47a
+	fromColumn: 'SD Issue Detail'.created
+	toColumn: LocalDateTable_fd8401da-2ee0-4f18-928d-dc517c2cac60.Date
+
+relationship 7f3203e7-868b-476d-9ca1-d9d33d2b5a9b
+	fromColumn: 'SD Issue Detail'.updated
+	toColumn: LocalDateTable_4a131257-6ff5-41ec-b93e-f1f8b5554c49.Date
+
+relationship ebe43434-6004-4bd6-b412-1c0b8c4d824d
+	fromColumn: 'SD Issue Detail'.resolutiondate
+	toColumn: LocalDateTable_2e1afdbc-0b7f-4f8b-aca1-be6ad2bffe1a.Date
+
+relationship da0aee7d-d0f5-43a8-b083-fb6632e4a995
+	fromColumn: 'Bitbucket Project List'.last_update
+	toColumn: LocalDateTable_f7d8b005-0675-4802-b036-1b14f90bc42d.Date
+
+relationship 04bed809-39f8-475f-9d1f-054c31cc802a
+	fromColumn: 'Bitbucket Repo List'.last_update
+	toColumn: LocalDateTable_ea32bd5c-1bd5-4e02-b9c3-e60b8e856bcf.Date
+
+relationship 43902ea3-3a42-4db0-a701-37120da73c4a
+	fromColumn: 'Bamboo Plan List'.created_date
+	toColumn: LocalDateTable_b858a703-d8f5-46c0-95d7-cbb036718ae4.Date
+
+relationship b980635b-b72c-472c-906c-f57a63f95e56
+	fromColumn: 'Bamboo Plan List'.updated_date
+	toColumn: LocalDateTable_1c550cc4-2176-46aa-9ff8-c7876908bbf1.Date
+
+relationship 6eda7ca2-dcfd-427e-a727-9e5efc2a8ab8
+	fromColumn: 'Bamboo Plan List'.LAST_UPDATE
+	toColumn: LocalDateTable_39b9e131-0835-408a-badc-447657819f11.Date
+
+relationship 3e9e9aa5-8432-4461-87b0-863381cc7c60
+	fromColumn: 'Bamboo Plan List'.LAST_USER_UPDATE
+	toColumn: LocalDateTable_0b63390a-387f-4b76-abd2-d6ef9a362b80.Date
+
+relationship 131bec69-51d3-4b13-b589-73ae267834fe
+	fromColumn: 'Bamboo Project List'.created_date
+	toColumn: LocalDateTable_e1b79ae2-cd5f-4b81-87b3-25dffc01e255.Date
+
+relationship 5067ce72-4a34-4781-904f-bc4e8d824e0a
+	fromColumn: 'Bamboo Project List'.updated_date
+	toColumn: LocalDateTable_c540403a-8c5d-4e45-9c85-7166a38c6454.Date
+
+relationship 446a1fb7-0331-4982-b8fd-c0c87728ff3e
+	fromColumn: 'Bamboo Project List'.last_update
+	toColumn: LocalDateTable_16270837-a5e8-4aef-89f2-0fca94afbd57.Date
+
+relationship 79b819a4-9120-49ca-97f4-f454b36bf5f6
+	fromColumn: 'Bamboo Failed Software Plan'.'Build finish date'
+	toColumn: LocalDateTable_2955e911-2ec2-4c7e-86cd-c8bb2f7814f2.Date
+
+relationship 2ed3081e-ed68-43b6-a28e-356ab86b1255
+	fromColumn: 'Confluence Statistics'.order_month
+	toColumn: LocalDateTable_c6b67bce-b8a2-46a1-a48e-ca1d9fcd6f25.Date
+
+relationship d1575ee0-55c8-4447-9724-fe31f296e6a1
+	fromColumn: 'HR Masterdata'.Created
+	toColumn: LocalDateTable_bb72121e-df42-4aa2-8a01-b7359de0be97.Date
+
+relationship 42f5f958-af2a-4ed6-b9b6-12628bfb3793
+	fromColumn: 'HR Masterdata'.Updated
+	toColumn: LocalDateTable_237b42eb-893c-423b-bd05-6cee84303569.Date
+
+relationship bb97d249-3ffe-4e2c-b3e0-c359cbc17227
+	fromColumn: 'HR Masterdata'.'Updated by Script'
+	toColumn: LocalDateTable_677721c7-f4cc-4afa-b4f1-772300d36676.Date
+
+relationship 0f392fdd-9ce2-4daa-b8fe-e1bbd47bc876
+	fromColumn: 'Jira Workload'.time
+	toColumn: LocalDateTable_e295453c-6519-4168-8adc-4544d7e78760.Date
+
+relationship e111f184-94dc-4eca-8b78-21a84d35ceac
+	fromColumn: 'Jira Feature Delivery Progress'.Created
+	toColumn: LocalDateTable_b84bed92-d8f0-4d96-b0b3-c9384443aaa6.Date
+
+relationship 6756769f-b29a-4de9-a9dc-0bbcbaa86cfb
+	fromColumn: 'Jira Feature Delivery Progress'.Updated
+	toColumn: LocalDateTable_6fcbbb8e-ece8-48d2-ad9a-bb37e29cf573.Date
+
+relationship b1cf8120-7e64-4d47-8890-256592b9e9b5
+	fromColumn: 'Jira Business Feature Progress'.Created
+	toColumn: LocalDateTable_0ac5c064-e23b-4441-9591-357dab2c4a9b.Date
+
+relationship c2dd13b2-6486-429f-b431-0f8cc6e93366
+	fromColumn: 'Jira Business Feature Progress'.Updated
+	toColumn: LocalDateTable_999466e9-5c89-4d1a-99c8-4b89f6c49d00.Date
+
+relationship cbf32ce4-d1e4-463c-8a53-f638e425d958
+	fromColumn: 'Jira RFC'.authorization_date
+	toColumn: LocalDateTable_e73b0cf3-5e1b-4fe1-89a0-8cbaa0972c15.Date
+
+relationship b1209c33-94f1-46a8-ad91-1488e2cfc9dd
+	fromColumn: 'Jira RFC'.created_date
+	toColumn: LocalDateTable_6ddd4564-6f1e-499a-b46d-60a9007669da.Date
+
+relationship 554cf423-af33-40c5-8919-c3d33e68d0ba
+	fromColumn: 'Jira RFC'.updated
+	toColumn: LocalDateTable_a26b7197-01e3-4d1b-907a-2e9ee364e0a9.Date
+
+relationship 908b4661-b302-428c-8c28-0070965a1fea
+	fromColumn: 'Jira RFC'.resolutiondate
+	toColumn: LocalDateTable_8559bbdd-0e24-409b-9d0d-45ebfd618359.Date
+
+relationship b6c887ad-ca77-4a31-963d-9da2a6283304
+	fromColumn: 'Bamboo Build Details'.created_date
+	toColumn: LocalDateTable_25b62229-a77a-4a28-9950-00771096f3ad.Date
+
+relationship c946a21b-80ab-4107-9c2a-48bff753a86c
+	fromColumn: 'Bamboo Build Details'.updated_date
+	toColumn: LocalDateTable_2c2464de-0073-4d93-8619-957124c3143e.Date
+
+relationship d833de16-8640-426e-b85b-01077c41326d
+	fromColumn: 'Bamboo Build Details'.build_date
+	toColumn: LocalDateTable_01f5cdf4-9586-45ed-abc0-eadd41a9830e.Date
+
+relationship 1688db84-4085-48ed-81cd-2718b4cf4083
+	fromColumn: 'Bamboo Build Details'.build_cancelled_date
+	toColumn: LocalDateTable_653b6166-783a-472b-a25e-c2d1151b9f59.Date
+
+relationship 543a30d9-edb6-4052-8b67-f2aa76569977
+	fromColumn: 'Bamboo Build Details'.build_completed_date
+	toColumn: LocalDateTable_4cdc6d9d-04bc-48d1-91da-bc4c1c0e95cd.Date
+
+relationship df5751cf-be6e-4a3c-a4a3-d47aaa404981
+	fromColumn: 'Bamboo Build Details'.queue_time
+	toColumn: LocalDateTable_0de680ba-1de1-4657-9f70-a086d58ca53f.Date
+
+relationship 680bd40a-9db6-452d-adf5-2fe73e3d5cf3
+	fromColumn: 'Bamboo Build Details'.vcs_update_time
+	toColumn: LocalDateTable_2dbddc82-f10f-4f8c-8f89-36d770530657.Date
+
+relationship 6749f24a-1305-46eb-9a38-6ac51bc5f4ba
+	fromColumn: 'Jira Xray Test Execution'.test_execution_created
+	toColumn: LocalDateTable_c30d781f-0c57-48c1-b6de-3ded1fbb1e21.Date
+
+relationship b9690fda-a0dd-4ccf-82c6-ffd723368611
+	fromColumn: 'Jira Xray Test Run'.created_date
+	toColumn: LocalDateTable_ab5859fb-9601-4b45-b69a-a64ffc72ba73.Date
+
+relationship 63450b30-5a80-47de-a1b2-5cddeec4450e
+	fromColumn: 'Jira Xray Test Run'.start_date
+	toColumn: LocalDateTable_0e9c0176-bada-4904-893c-83692b490b34.Date
+
+relationship 4ceabec4-c493-4879-bae1-ed44f5221bc6
+	fromColumn: 'Jira Xray Test Run'.finish_date
+	toColumn: LocalDateTable_258ec1fe-8518-43da-97fd-54152c5c601e.Date
+
+relationship 5dad0233-3c36-479d-b447-a15ba36ef24c
+	fromColumn: 'Jira Issue Detail 2'.created_date
+	toColumn: 'LocalDateTable_d87b82b6-f5b7-4495-88af-9f4a7955f527 2'.Date
+
+relationship 618d6a24-b516-420d-a22b-74273a2010e1
+	fromColumn: 'Jira Issue Detail 2'.updated
+	toColumn: 'LocalDateTable_9b51729a-e7ff-4e69-bc6d-28cf25a0ac6f 2'.Date
+
+relationship f560b446-2a85-4fce-b76c-9c61291eeef8
+	fromColumn: 'Jira Issue Detail 2'.resolutiondate
+	toColumn: 'LocalDateTable_8e057d4f-dea9-40b7-91b3-3b95fa5fbd3f 2'.Date
+
+relationship 08c49ebe-6230-4382-b0cd-8a2e3b195e7f
+	fromColumn: 'Jira Issue Detail 2'.start_date
+	toColumn: 'LocalDateTable_f70a0bc4-f6c5-4105-a91e-092f1d810dbf 2'.Date
+
+relationship f01e0a92-9de7-4eb7-8f17-9acdd9494566
+	fromColumn: 'Jira Issue Detail 2'.end_date
+	toColumn: 'LocalDateTable_9e4c02de-2ce0-4799-8c56-7057d4abf970 2'.Date
+
+relationship 1c2a7fb2-c142-4c6d-9295-872ffef30ffa
+	fromColumn: 'Jira Issue Detail 2'.baseline_start_date
+	toColumn: 'LocalDateTable_59271f88-f253-4cd9-869f-afcc84340603 2'.Date
+
+relationship 8fa379fa-78f5-45c8-95fd-8b64e27df6cf
+	fromColumn: 'Jira Issue Detail 2'.baseline_end_date
+	toColumn: 'LocalDateTable_2e3daf26-530b-4b5a-9989-bfca93d1478f 2'.Date
+
+relationship f73afdc9-ba4d-430f-aab4-0927e088e43c
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Jira Issue Detail'.issue_key
+	toColumn: 'Jira Initiative Estimation'.issue_key
+
+relationship 1173cc63-aa21-4740-99ee-ac441fbd3ae0
+	fromColumn: 'Jira Xray Test Step Execution'.test_execution_id
+	toColumn: 'Jira Xray Test Execution'.test_execution_id
+
+relationship 848d4c2d-cbc1-48d4-946f-befcf8eb39f2
+	fromColumn: 'Jira Initiative Estimation'.issue_business_initiative_for_apm
+	toColumn: 'Jira Initiative for APM'.issue_key
+
+relationship f3103777-55df-4933-a428-c59c0276002e
+	fromColumn: 'Jira Xray Execution Release'.test_execution_id
+	toColumn: 'Jira Xray Test Execution'.test_execution_id
+
+relationship d9449f30-694a-4c4c-a300-6f65116797dd
+	isActive: false
+	fromColumn: 'Jira Business Feature'.'Issue Investment Memo Link'
+	toColumn: 'Jira Investment Memo'.Issue_key
+
+relationship 6a7ad62a-32cd-4beb-8f34-32c8c3c339f2
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Macro Business Initiative'.'Issue Investment Memo'
+	toColumn: 'Jira Investment Memo'.Issue_key
+
+relationship 88457e5e-6856-403a-9bf4-a21097e1b449
+	fromColumn: 'Jira Sprint Story Points - Last 12 Month'.'Sprint actual end date'
+	toColumn: LocalDateTable_97f988a4-b7b1-46ee-9e1c-5e20b13bf855.Date
+
+relationship 60c46de8-40e6-4288-9261-888df977ea37
+	fromColumn: 'Jira Sprint Story Points - Last 12 Month 2'.'Sprint actual end date'
+	toColumn: 'LocalDateTable_97f988a4-b7b1-46ee-9e1c-5e20b13bf855 2'.Date
+
+relationship 460c32e9-12b9-425d-ae02-e5f050fe040b
+	fromColumn: 'Jira Sprint Story Points - Last 12 Month 3'.'Sprint actual end date'
+	toColumn: 'LocalDateTable_97f988a4-b7b1-46ee-9e1c-5e20b13bf855 3'.Date
+
+relationship fb13b828-c92c-4dea-b923-6cad6ade2704
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Relation Investment Memo Business Need'.'Issue Investment Memo'
+	toColumn: 'Jira Investment Memo'.Issue_key
+
+relationship ce775048-a018-4713-8109-d867d1feee67
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Issue Detail 3'.project_key
+	toColumn: 'Jira Project List 2'.Project_Key
+
+relationship e4b0f832-774e-442c-ba9e-e1ca499b27bf
+	fromColumn: 'Jira Issue Detail 3'.created_date
+	toColumn: 'LocalDateTable_d87b82b6-f5b7-4495-88af-9f4a7955f527 3'.Date
+
+relationship 2bd95c95-4b21-440e-a574-9871730d9f20
+	fromColumn: 'Jira Issue Detail 3'.updated
+	toColumn: 'LocalDateTable_9b51729a-e7ff-4e69-bc6d-28cf25a0ac6f 3'.Date
+
+relationship b9e07fa6-0c94-4698-8647-e6dbdc1fd5cc
+	fromColumn: 'Jira Issue Detail 3'.resolutiondate
+	toColumn: 'LocalDateTable_8e057d4f-dea9-40b7-91b3-3b95fa5fbd3f 3'.Date
+
+relationship 86f6a425-e9fd-4692-bf30-25cec7cc8f75
+	fromColumn: 'Jira Issue Detail 3'.start_date
+	toColumn: 'LocalDateTable_f70a0bc4-f6c5-4105-a91e-092f1d810dbf 3'.Date
+
+relationship a2e684ce-5a89-4034-be65-d0b74003d269
+	fromColumn: 'Jira Issue Detail 3'.end_date
+	toColumn: 'LocalDateTable_9e4c02de-2ce0-4799-8c56-7057d4abf970 3'.Date
+
+relationship a352f591-39a3-4150-af6b-5434b51ae5ef
+	fromColumn: 'Jira Issue Detail 3'.baseline_start_date
+	toColumn: 'LocalDateTable_59271f88-f253-4cd9-869f-afcc84340603 3'.Date
+
+relationship 21759514-e10d-4c44-89e3-8c56d0cddd01
+	fromColumn: 'Jira Issue Detail 3'.baseline_end_date
+	toColumn: 'LocalDateTable_2e3daf26-530b-4b5a-9989-bfca93d1478f 3'.Date
+
+relationship b976f3e6-feff-4f32-8d78-968fde97604f
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Business Feature 2'.'Project Key'
+	toColumn: 'Jira Project List 2'.Project_Key
+
+relationship da7eb344-3aa7-49d1-9ed6-32af22b360df
+	fromColumn: 'Jira Business Feature 2'.'Issue created date'
+	toColumn: LocalDateTable_d8e9216a-cdf6-4b4f-96b8-dd476b129770.Date
+
+relationship 1b7d3a2c-ac50-400b-8182-e57499b793a6
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Business Feature for APM 2'.'Issue parent key'
+	toColumn: 'Jira Business Feature 2'.'Issue Key [Issue]'
+
+relationship 7312be56-5698-42ba-9de1-16862063f0c1
+	fromColumn: 'Jira Business Feature for APM 2'.'Issue created date'
+	toColumn: LocalDateTable_b6907f52-cbc1-476d-b8ef-62503bf4f5cf.Date
+
+relationship b7c5e347-c96d-408a-b702-8d1f437231df
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Feature Delivery 2'.'Issue Feature for APM link'
+	toColumn: 'Jira Business Feature for APM 2'.'Issue Key [Issue]'
+
+relationship 048fbc5a-fceb-4bc8-98ab-b3b02ab65bf8
+	fromColumn: 'Jira Feature Delivery 2'.'Issue created date'
+	toColumn: LocalDateTable_b50391b8-dc41-4ca9-9790-177c0dd474e7.Date
+
+relationship 1daf01ed-41f7-4fda-ab4e-50c28d9aa713
+	fromColumn: 'Jira Efficiency'.Time
+	toColumn: LocalDateTable_1341cd8a-23a3-40db-9a43-9c9e743f64a2.Date
+
+relationship 37b677fd-f9bc-4223-a826-e73870ac26bc
+	fromColumn: 'Jira Business Need'.'Issue created date'
+	toColumn: LocalDateTable_e44aaab4-97d3-464f-b061-bd8871f6656f.Date
+
+relationship 8c83857c-19dc-437b-9fef-b2fd7ff817d4
+	fromColumn: 'Jira Business Need'.'Issue Project End Date'
+	toColumn: LocalDateTable_95856358-19d9-455e-9688-9093c6765635.Date
+
+relationship ba8c2887-11a4-4bcf-a367-7ef9bdf037da
+	fromColumn: 'Jira Business Need'.'Issue sys_updated_on'
+	toColumn: LocalDateTable_37b3f42a-0342-464c-86c9-a2eecd361c10.Date
+
+relationship c433c5c5-8f92-4e0e-83fc-7b5f67d52cb1
+	fromColumn: 'Jira Business Need'.'Issue sys_created_on'
+	toColumn: LocalDateTable_dfa796c3-f09a-4378-99cc-674313347acf.Date
+
+relationship 2c438dc0-d256-414c-9806-a4bc1bdb8ed9
+	fromColumn: 'Jira Business Need'.'Issue Project Start Date'
+	toColumn: LocalDateTable_706d211a-97e3-4242-b09e-b76887ff60b6.Date
+
+relationship aa698b1b-dc7d-4f78-a4e1-16c1cc7e3aab
+	fromColumn: 'Jira Investment Memo'.Issue_created_date
+	toColumn: LocalDateTable_46111e18-14bf-4329-830a-090322e550a7.Date
+
+relationship 92019da0-b864-44e3-b0de-033d2358a3e3
+	fromColumn: 'Jira Investment Memo'.Issue_sys_created_on
+	toColumn: LocalDateTable_4812fe57-5d72-404a-a109-44200526e8f6.Date
+
+relationship 0c1fc320-eb76-41ec-a66f-56f23d3e39e4
+	fromColumn: 'Jira Investment Memo'.Issue_sys_updated_on
+	toColumn: LocalDateTable_513c4398-fec3-49b7-b2f0-09114c9e343f.Date
+
+relationship 17806ebd-3c31-42ba-97f7-476c60ad8f7e
+	fromColumn: 'Jira Investment Memo'.Issue_Approval_Date
+	toColumn: LocalDateTable_25c8d051-557b-4c5f-8de6-c51d11a0b8e5.Date
+
+relationship e7c7e367-610d-4c51-9778-2191a54b4b99
+	fromColumn: 'Jira Investment Memo'.Issue_End_date
+	toColumn: LocalDateTable_96a9eef9-3be4-4e1f-a51d-21ec6ea1ad6f.Date
+
+relationship 66a39bbb-5f2c-4895-b680-d679dfe2014e
+	fromColumn: 'Jira Investment Memo'.Issue_Start_date
+	toColumn: LocalDateTable_36cf59c5-5344-4c35-9cf9-c4598657e970.Date
+
+relationship c96dcf35-0589-4803-8b4d-37b2d511ad52
+	fromColumn: 'Jira Demand Cost Year'.'Issue created date'
+	toColumn: LocalDateTable_0b8f0ade-f9f7-410c-a372-fcd293e56c04.Date
+
+relationship b2080439-5190-416f-b4d4-afc198e7b79a
+	fromColumn: 'Jira Demand Cost Year'.'Issue sys_created_on'
+	toColumn: LocalDateTable_538a0ebd-dba2-4612-aba0-196cf6ca8bdd.Date
+
+relationship 97bd6d1f-b49d-434b-a324-a6acbba883dc
+	fromColumn: 'Jira Demand Cost Year'.'Issue sys_updated_on'
+	toColumn: LocalDateTable_5a5fd50c-1cdc-4e45-afc2-91f26bbbc9ac.Date
+
+relationship 4808dc7f-7502-4832-bff7-1977d3bf49ab
+	fromColumn: 'Jira Demand Cost Year'.'Issue Start_Fiscal_Period'
+	toColumn: LocalDateTable_58d23ccc-ccf7-49ab-a1b0-7dca07542207.Date
+
+relationship 280bddc2-4229-4c15-9c23-a8d7d4077260
+	fromColumn: 'Jira Demand Cost Year'.'Issue End_Fiscal_Period'
+	toColumn: LocalDateTable_917f9925-f483-4092-9140-06e7f5d85a41.Date
+
+relationship 2051c486-1098-4c30-bcd8-30f3beaada31
+	fromColumn: 'Jira Business Feature'.'Issue created date'
+	toColumn: 'LocalDateTable_d8e9216a-cdf6-4b4f-96b8-dd476b129770 2'.Date
+
+relationship ee293d41-ace6-48c2-ab21-2fad5a83cc83
+	fromColumn: 'Jira Business Feature for APM'.'Issue created date'
+	toColumn: 'LocalDateTable_b6907f52-cbc1-476d-b8ef-62503bf4f5cf 2'.Date
+
+relationship 410d2be4-e6ec-45ac-84e6-d05df67c5df2
+	fromColumn: 'Jira Feature Delivery'.'Issue created date'
+	toColumn: 'LocalDateTable_b50391b8-dc41-4ca9-9790-177c0dd474e7 2'.Date
+
+relationship 01cec6f3-51f8-408c-b06f-db196dd7d28d
+	fromColumn: 'Jira Change Status IE FD MBI BF'.transition_date
+	toColumn: LocalDateTable_2fa499d7-3c9d-42b8-a2f0-29161f2306f8.Date
+
+relationship 86de767a-094b-4a55-afc2-ef54d402b034
+	fromColumn: 'Jira Change Status IE FD MBI BF 2'.transition_date
+	toColumn: 'LocalDateTable_2fa499d7-3c9d-42b8-a2f0-29161f2306f8 2'.Date
+
+relationship 188e97fb-addd-420b-8400-3362110fc193
+	fromColumn: 'Jira Change Status IE FD MBI BF 3'.transition_date
+	toColumn: 'LocalDateTable_2fa499d7-3c9d-42b8-a2f0-29161f2306f8 3'.Date
+
+relationship 403cd396-5bc9-4d61-94c1-136f88c088e2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'FD Change Status'.transition_date
+	toColumn: LocalDateTable_81ae3dad-70df-4db9-ac0a-fa97bbd54aa0.Date
+
+relationship 512a61b6-4204-4448-98dd-3f8f6f7f2aa4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'BF Change Status'.transition_date
+	toColumn: LocalDateTable_cf107f66-bee2-48d6-b171-a0cb78dd2f82.Date
+
+relationship 871d259e-747e-4014-b347-eccd0579e450
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'IE Transition Status'.transition_date
+	toColumn: LocalDateTable_c7694065-792d-428f-8358-8041d00288b9.Date
+
+relationship ebb41905-57cf-48c4-89e1-ccc56695c8d2
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'MBI Transition Status'.transition_date
+	toColumn: LocalDateTable_88048d5a-5b82-4c90-9877-df10709653b9.Date
+
+relationship 50e27bd5-4c10-10ba-f6d6-bda91ec5fc61
+	securityFilteringBehavior: none
+	fromColumn: 'MBI Transition Status'.issue_key
+	toColumn: 'Jira Macro Business Initiative'.'Issue key'
+
+relationship 11efe4db-8a67-441b-9c75-5b509b2e27d8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Data_cr_IE.created_date
+	toColumn: LocalDateTable_d3176ff9-b2c2-4277-b567-686d89ead6d9.Date
+
+relationship bd9b0625-337d-054e-bf97-a8c6df28187e
+	securityFilteringBehavior: none
+	fromColumn: 'IE Transition Status'.issue_key
+	toColumn: 'Jira Initiative Estimation'.issue_key
+
+relationship bc78f89a-6aad-75e1-c6ae-aaa579a792ff
+	crossFilteringBehavior: bothDirections
+	securityFilteringBehavior: none
+	fromCardinality: one
+	fromColumn: Data_cr_IE.issue_key
+	toColumn: 'Jira Initiative Estimation'.issue_key
+
+relationship aa17bf4e-36de-4fab-9953-8bd6272653ea
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Data_cr_IE.'Data creazione'
+	toColumn: LocalDateTable_ceaecc8f-5213-4403-8781-2c7395a19b28.Date
+
+relationship d80ef10c-c97f-43ee-8b42-314f8b48c20a
+	fromColumn: 'Jira Business Feature'.'Issue Authorization Date'
+	toColumn: LocalDateTable_c49258e8-f34f-45b2-9e22-c2db5285e24b.Date
+
+relationship aad4c04a-4292-4fe2-842c-82165d5728f8
+	fromColumn: 'Jira Business Feature'.'Issue Planned UAT end date'
+	toColumn: LocalDateTable_648c548b-f8c3-40ea-a9a5-bf4e4bd3f672.Date
+
+relationship 6c7cfac8-9d5b-4b1b-adb4-381c9c22f23d
+	fromColumn: 'Jira Business Feature'.'Issue Planned Release Date'
+	toColumn: LocalDateTable_dbeeb177-38e3-4255-9b99-876a3c7eb817.Date
+
+relationship 0df6068f-a66a-4797-a80c-9cd2ae9f18cf
+	fromColumn: 'Jira Business Feature'.'Issue Deadline'
+	toColumn: LocalDateTable_194ef549-acbd-47f1-8cc1-f1b38295c284.Date
+
+relationship b152fd53-e355-4e1e-8beb-1d588886d632
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Relation Investment Memo Business Need'.'Issue Business Need'
+	toColumn: 'Jira Business Need'.'Issue key'
+
+relationship 17d28560-1ac6-410a-aa95-aad9bdf415cc
+	fromColumn: 'Jira Business Feature 2'.'Issue Authorization Date'
+	toColumn: 'LocalDateTable_c49258e8-f34f-45b2-9e22-c2db5285e24b 2'.Date
+
+relationship f661aa93-742f-41cd-be03-252f32b156c6
+	fromColumn: 'Jira Business Feature 2'.'Issue Planned UAT end date'
+	toColumn: 'LocalDateTable_648c548b-f8c3-40ea-a9a5-bf4e4bd3f672 2'.Date
+
+relationship 47f3b703-3d93-41a9-abb4-0f7eeabf1624
+	fromColumn: 'Jira Business Feature 2'.'Issue Planned Release Date'
+	toColumn: 'LocalDateTable_dbeeb177-38e3-4255-9b99-876a3c7eb817 2'.Date
+
+relationship b1459d5c-3b7d-46a5-a641-7613b5a1d10c
+	fromColumn: 'Jira Business Feature 2'.'Issue Deadline'
+	toColumn: 'LocalDateTable_194ef549-acbd-47f1-8cc1-f1b38295c284 2'.Date
+
+relationship 49c39054-b570-b258-ca82-b674e6e1aad6
+	crossFilteringBehavior: bothDirections
+	securityFilteringBehavior: none
+	fromColumn: 'Jira Business Feature 2'.'Issue status'
+	toColumn: 'Workflow Fasi BF'.Status
+
+relationship 2d8a983b-ad75-47a5-01fa-c32ba3d0e349
+	crossFilteringBehavior: bothDirections
+	securityFilteringBehavior: none
+	fromColumn: 'Jira Feature Delivery 2'.'Issue status'
+	toColumn: 'Workflow Fasi FD'.Status
+
+relationship d11b8d64-7a64-4266-a223-51beb5581413
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'TESTMBI Transition Status'.transition_date
+	toColumn: LocalDateTable_37c3a860-b52e-419a-bddb-8f1f4336094e.Date
+
+relationship d221c44a-8312-4ead-9a8c-0562b86420e5
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Jira Issue Detail'.issue_key
+	toColumn: 'Jira ICT Estimation'.issue_key
+
+relationship 5063f218-0cec-4686-b2d2-e458c16e31d7
+	fromColumn: 'Jira Business Feature for APM'.'Issue Planned Release Date'
+	toColumn: LocalDateTable_ef8f6428-78b6-4b19-a397-96f83c20a347.Date
+
+relationship ec00fd5b-2fe3-4c07-a7a3-f578874becc9
+	fromColumn: 'Jira Business Feature for APM'.'Issue Planned UAT end date'
+	toColumn: LocalDateTable_a5300cb5-7c0c-453e-877e-016ecfb62fcc.Date
+
+relationship 95e10102-c69a-4c69-b27e-30fb7217332d
+	fromColumn: 'Jira Business Feature for APM'.'Issue Planned End Date'
+	toColumn: LocalDateTable_91c10202-021e-4531-95f1-1af9b65c8ce1.Date
+
+relationship 4c57af3a-7fd9-4902-8807-6297982bc15e
+	fromColumn: 'Jira Business Feature for APM'.'Issue Start date'
+	toColumn: LocalDateTable_a7bc82ad-8b06-459b-9513-8211034d4970.Date
+
+relationship 6b436c55-8d98-4118-aa54-ec5996c7d231
+	fromColumn: 'Jira Business Feature for APM'.'Issue End date'
+	toColumn: LocalDateTable_bb977e70-176d-4d4a-9a2a-af931ae11f92.Date
+
+relationship c8fce364-6c42-430b-a6e4-e901b8f47312
+	fromColumn: 'Jira Feature Delivery'.'Issue Planned Release Date'
+	toColumn: LocalDateTable_358704e0-a699-47ca-acd9-350e3c18afbb.Date
+
+relationship f073e200-2a54-425f-86fc-e7f5f0291731
+	fromColumn: 'Jira Feature Delivery'.'Issues with Planned UAT end date'
+	toColumn: LocalDateTable_e60e5bb5-6468-495f-a406-c805761555ef.Date
+
+relationship 0b1d7ae6-5f6e-4948-93ab-50c22f0a5a1a
+	fromColumn: 'Jira Feature Delivery'.'Issue Estimation Due date'
+	toColumn: LocalDateTable_04889144-9978-4fb9-8180-70e057cb2c88.Date
+
+relationship 8c599c74-6b8f-4e5c-af4b-cee875feed2a
+	fromColumn: 'Jira Feature Delivery'.'Issue Deadline'
+	toColumn: LocalDateTable_c232a322-bbd7-4ce5-af0b-1efab60d15fa.Date
+
+relationship 9fe565d8-aa7d-4266-bc83-f343f96e102c
+	fromColumn: 'Jira Macro Business Initiative'.'MBI Created Date'
+	toColumn: LocalDateTable_21e22022-cad8-47a6-ad37-a4f1679b387a.Date
+
+relationship 54de1a5d-33bb-474b-bb57-36756702d7e8
+	fromColumn: 'Jira Macro Business Initiative'.'Issue status'
+	toColumn: 'WF MBI Order Status'.'Issue status Order'
+
+relationship 9555aa01-168d-4a40-bf97-01bf1db4a834
+	fromColumn: 'Jira Macro Business Initiative'.'Data Approvazione'
+	toColumn: LocalDateTable_e1f594ba-a167-4b70-9b6b-d4a33b97b7e7.Date
+
+relationship 15a228f0-f77e-45c2-bf2a-f618b62a37fd
+	fromColumn: 'Jira Business Feature for APM 2'.'Issue Planned Release Date'
+	toColumn: 'LocalDateTable_ef8f6428-78b6-4b19-a397-96f83c20a347 2'.Date
+
+relationship 4a0217a4-f961-4ab7-83fe-81ff28c602a7
+	fromColumn: 'Jira Business Feature for APM 2'.'Issue Planned UAT end date'
+	toColumn: 'LocalDateTable_a5300cb5-7c0c-453e-877e-016ecfb62fcc 2'.Date
+
+relationship 08702008-1688-40d2-bdcc-8b404695268f
+	fromColumn: 'Jira Business Feature for APM 2'.'Issue Planned End Date'
+	toColumn: 'LocalDateTable_91c10202-021e-4531-95f1-1af9b65c8ce1 2'.Date
+
+relationship f6d0b1e5-960c-4e4f-84c8-860f2b0bb6d1
+	fromColumn: 'Jira Business Feature for APM 2'.'Issue Start date'
+	toColumn: 'LocalDateTable_a7bc82ad-8b06-459b-9513-8211034d4970 2'.Date
+
+relationship ea241a94-b258-42af-88d9-c724528fda02
+	fromColumn: 'Jira Business Feature for APM 2'.'Issue End date'
+	toColumn: 'LocalDateTable_bb977e70-176d-4d4a-9a2a-af931ae11f92 2'.Date
+
+relationship af874364-0a83-4b21-9261-3f5503ff5cd8
+	fromColumn: 'Jira Feature Delivery 2'.'Issue Planned Release Date'
+	toColumn: 'LocalDateTable_358704e0-a699-47ca-acd9-350e3c18afbb 2'.Date
+
+relationship 814f554e-e422-4e41-aa3a-c209bbea1f4e
+	fromColumn: 'Jira Feature Delivery 2'.'Issues with Planned UAT end date'
+	toColumn: 'LocalDateTable_e60e5bb5-6468-495f-a406-c805761555ef 2'.Date
+
+relationship ff11d56f-acc4-4fad-aacf-68a6f328f8ca
+	fromColumn: 'Jira Feature Delivery 2'.'Issue Estimation Due date'
+	toColumn: 'LocalDateTable_04889144-9978-4fb9-8180-70e057cb2c88 2'.Date
+
+relationship 3fd27da7-57e5-46a8-97fe-0d89244cbbe7
+	fromColumn: 'Jira Feature Delivery 2'.'Issue Deadline'
+	toColumn: 'LocalDateTable_c232a322-bbd7-4ce5-af0b-1efab60d15fa 2'.Date
+
+relationship d421f2de-8317-4531-baf5-2c307fa4f226
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'FD Transition Status'.transition_date
+	toColumn: LocalDateTable_653a78f9-66bc-4170-956f-dc8a6f898992.Date
+
+relationship 2b228a85-ef89-7016-bc07-79c12a9d0109
+	securityFilteringBehavior: none
+	fromColumn: 'FD Transition Status'.issue_key
+	toColumn: 'Jira Feature Delivery 2'.'Issue Key [Issue]'
+
+relationship fe54a778-6c36-473d-8766-c9327b52eb10
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'FD Transition Status'.'Lead Time - Authorized_ReadyForUAT'
+	toColumn: LocalDateTable_4377c693-0c4c-4cee-95fd-780fdcf2db7f.Date
+
+relationship df9772dd-3afb-48e7-ae4a-7d7fcb6da0a7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'FD Transition Status'.'Lead Time - InProgress_ReadyForUAT'
+	toColumn: LocalDateTable_cdf7269c-a544-4c15-a876-02a55651daa6.Date
+
+relationship 5fb488e3-5a02-44e6-a9cf-65bb2bc1217f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'FD Transition Status'.'Lead Time - Completed_ReadyForUAT'
+	toColumn: LocalDateTable_d309828d-f699-417a-85ad-24e12d764b7d.Date
+
+relationship 855d947d-7003-4a8f-804e-ddd2c3e29f3c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'FD Transition Status'.'Lead Time - Progress_Completed'
+	toColumn: LocalDateTable_dd419685-9bfe-4795-a0d2-ced29c5294ee.Date
+
+relationship 4825c2eb-a55a-41d0-9f2c-afc2d0822801
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'FD Transition Status'.'Lead Time - Authorized_Progress'
+	toColumn: LocalDateTable_0514b22c-2cab-44b3-8953-42ca305f2e50.Date
+
+relationship e223e147-d1e7-4b82-abdb-16187b868747
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'BF Transition Status'.transition_date
+	toColumn: LocalDateTable_9341f536-f90f-4cd0-8109-141472774dc3.Date
+
+relationship e076242c-1e43-7ce3-870a-c3ccc88f6eee
+	crossFilteringBehavior: bothDirections
+	securityFilteringBehavior: none
+	fromColumn: 'BF Transition Status'.issue_key
+	toColumn: 'Jira Business Feature 2'.'Issue Key [Issue]'
+
+relationship b5e43130-ca35-4e11-9271-2a060ac94eed
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'BF Transition Status'.'Lead Time - InProgress_ConfirmReleased'
+	toColumn: LocalDateTable_741377a1-55e1-4bc1-aa3b-4d1634e9005e.Date
+
+relationship bdcebf42-a029-4fcc-ae68-4f315206ab20
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'BF Transition Status'.'Lead Time - Completed_ConfirmReleased'
+	toColumn: LocalDateTable_f235e664-50da-4f66-81ad-316274165b92.Date
+
+relationship 6b904f2d-8110-4fa0-b529-99df07c17e15
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'BF Transition Status'.'Lead Time - UATPassed_Completed'
+	toColumn: LocalDateTable_3ee864d7-c150-4907-9ffb-dde6f1f8be1d.Date
+
+relationship 7f1b471b-1c5a-4ba2-8823-910d86fdc829
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'BF Transition Status'.'Lead Time - RfUAT_UATPassed'
+	toColumn: LocalDateTable_a81772d5-7161-4048-85c9-86561412cf8f.Date
+
+relationship 10f7192f-610a-49c7-b681-ef992d8547c0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'BF Transition Status'.'Lead Time - Approved_ConfirmReleased'
+	toColumn: LocalDateTable_c11aeb17-a773-4cee-aa7f-adb9d9156e39.Date
+
+relationship 7e4f9ef1-abbd-4f98-bef6-0036aea82246
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'BF Transition Status'.'Lead Time - Approved_InProgress'
+	toColumn: LocalDateTable_70d85e5d-f83c-4086-ad87-b82b5f1e3e22.Date
+
+relationship 4e228d5c-6efd-4ed0-b72b-273d99c219fe
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'BF Transition Status'.'Lead Time - InProgress_RfUAT'
+	toColumn: LocalDateTable_68027f3e-0126-423f-9df3-30e2501c1aca.Date
+
+relationship 24204d6d-bb33-3232-bc38-dd66768450e7
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Filtri_grafici_MBI_IE.Ordinamento
+	toColumn: Assex_MBI_IE.'Assex_MBI_IE Order'
+
+relationship 3fe07b05-ba19-8b31-a4ea-5497f5078427
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Filtri_grafici_MBI_IE.Ordinamento
+	toColumn: Trend_MBI_IE.'Trend_MBI_IE Order'
+
+relationship 27d2be93-64d6-c5b6-6b91-23b3f83f2d53
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Filtri_grafici_MBI_IE.Ordinamento
+	toColumn: Quantità_MBI_IE.'Quantità_MBI_IE Order'
+
+relationship 9a1ac721-cadc-8767-7932-1a86ccab23a3
+	fromColumn: Tabella_MBI_IE.'Tabella_MBI_IE Order'
+	toColumn: Filtri_grafici_MBI_IE.Ordinamento
+
+relationship a65cd8a5-769f-4e30-b876-b96930c2d14c
+	fromColumn: 'AD Objects'.etl_last_sync
+	toColumn: LocalDateTable_67781bb5-d818-4b3d-86de-c08d3a940c94.Date
+
+relationship 15dff5d7-5bc8-434b-b83c-3699c1859e4f
+	fromColumn: 'Bamboo Build Error'.'APM Code'
+	toColumn: 'APM (2)'.'APM Code'
+
+relationship f0f6952d-7f70-45a0-8939-f0c8af48f64c
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Xray Relation Business Feature Test'.businessfeature_key
+	toColumn: 'Jira Business Feature'.'Issue Key [Issue]'
+
+relationship 1e6d1926-7dc3-457d-9630-e66b0a67aa45
+	isActive: false
+	fromColumn: 'Jira Xray Demand Test Multi APM'.apm_key
+	toColumn: 'APM (2)'.'APM Code'
+
+relationship 0f5a0a1a-595a-484f-a876-d4b809c914cb
+	fromColumn: Country.Created
+	toColumn: LocalDateTable_7220c40e-021b-403a-85df-ab9e801cc625.Date
+
+relationship 76649246-cd98-42a5-b069-1f32f2d93fe6
+	fromColumn: Country.Updated
+	toColumn: LocalDateTable_748fa7ae-9c4c-48df-aea5-4b1e80e88ac5.Date
+
+relationship 0942c976-bf35-4176-a5be-ed6bbef8cb1d
+	fromColumn: 'Business Legal Entity'.Created
+	toColumn: LocalDateTable_353dc340-2a19-4d32-ba3f-0a6e39e69401.Date
+
+relationship cdd90627-74af-4c94-9d9b-77c890a90a07
+	fromColumn: 'Business Legal Entity'.Updated
+	toColumn: LocalDateTable_a039fd8b-8c1e-4a0b-a633-7c579a6a5248.Date
+
+relationship e0b80cb7-9341-4a80-9fb3-a7d7076621fd
+	fromColumn: 'Business Legal Entity'.Sys_updated_on
+	toColumn: LocalDateTable_e7c2e7ea-598c-49e0-b6ee-ba368df0e030.Date
+
+relationship a5de1053-06d1-411b-85a0-0cc36c9b267f
+	fromColumn: 'Business Legal Entity'.Sys_created_on
+	toColumn: LocalDateTable_bd9c5ee2-d38b-4acd-ab0f-422b536a2cf9.Date
+
+relationship 8bdfee6d-b99c-4363-aae8-d3ff6194ee83
+	fromColumn: 'Jira Defect Tempi di Collaudo'.'Data Apertura'
+	toColumn: LocalDateTable_2a8b4d79-cd4a-4785-8478-7755834bc9ff.Date
+
+relationship 1e8841fe-9f5c-4d0c-a684-445db0263de7
+	fromColumn: 'Jira Defect Tempi di Collaudo'.'Data Chiusura'
+	toColumn: LocalDateTable_1b5eb833-9e13-4a04-880c-4ee2c74cbf3c.Date
+
+relationship 94f92ee7-9acd-4820-8f12-f8fd8e94e681
+	isActive: false
+	fromColumn: 'Jira Xray Demand Test Multi APM 2'.apm_key
+	toColumn: 'APM (2) 2'.'APM Code'
+
+relationship 3a970026-1ff3-4a4e-87e5-6b46472f877a
+	fromColumn: 'Country 2'.Created
+	toColumn: 'LocalDateTable_7220c40e-021b-403a-85df-ab9e801cc625 2'.Date
+
+relationship dacda4ea-cb8a-49ad-a57e-846f00780b30
+	fromColumn: 'Country 2'.Updated
+	toColumn: 'LocalDateTable_748fa7ae-9c4c-48df-aea5-4b1e80e88ac5 2'.Date
+
+relationship e475ab97-31b0-454f-af98-a2ef28092d1e
+	fromColumn: 'Business Legal Entity 2'.Created
+	toColumn: 'LocalDateTable_353dc340-2a19-4d32-ba3f-0a6e39e69401 2'.Date
+
+relationship c210f713-a516-43f7-8b1e-b421baa09fe3
+	fromColumn: 'Business Legal Entity 2'.Updated
+	toColumn: 'LocalDateTable_a039fd8b-8c1e-4a0b-a633-7c579a6a5248 2'.Date
+
+relationship 5406e7d5-2f29-40a1-99d3-bb3e68aa25d8
+	fromColumn: 'Business Legal Entity 2'.Sys_updated_on
+	toColumn: 'LocalDateTable_e7c2e7ea-598c-49e0-b6ee-ba368df0e030 2'.Date
+
+relationship 2eacd2f6-7b92-4a48-beec-6bc896a398cf
+	fromColumn: 'Business Legal Entity 2'.Sys_created_on
+	toColumn: 'LocalDateTable_bd9c5ee2-d38b-4acd-ab0f-422b536a2cf9 2'.Date
+
+relationship ab1461a6-ba55-42a6-acf6-dda6366ca75b
+	fromColumn: 'Jira Defect Tempi di Collaudo 2'.'Data Apertura'
+	toColumn: 'LocalDateTable_2a8b4d79-cd4a-4785-8478-7755834bc9ff 2'.Date
+
+relationship adcc7207-7139-48aa-90db-3239e2818287
+	fromColumn: 'Jira Defect Tempi di Collaudo 2'.'Data Chiusura'
+	toColumn: 'LocalDateTable_1b5eb833-9e13-4a04-880c-4ee2c74cbf3c 2'.Date
+
+relationship 96b416b0-7899-41fe-981f-f94f60879d2b
+	fromColumn: 'Country 3'.Created
+	toColumn: 'LocalDateTable_7220c40e-021b-403a-85df-ab9e801cc625 3'.Date
+
+relationship c7e71f66-9aa1-42bc-8a79-a2c546877b79
+	fromColumn: 'Country 3'.Updated
+	toColumn: 'LocalDateTable_748fa7ae-9c4c-48df-aea5-4b1e80e88ac5 3'.Date
+
+relationship e77d0966-7324-4d89-9821-44d3ebaec56a
+	fromColumn: 'Business Legal Entity 3'.Created
+	toColumn: 'LocalDateTable_353dc340-2a19-4d32-ba3f-0a6e39e69401 3'.Date
+
+relationship b8a6431d-b72c-40a0-b419-579d8c4d0ce6
+	fromColumn: 'Business Legal Entity 3'.Updated
+	toColumn: 'LocalDateTable_a039fd8b-8c1e-4a0b-a633-7c579a6a5248 3'.Date
+
+relationship b521d3b9-8b29-41a0-803a-fe7c0032488f
+	fromColumn: 'Business Legal Entity 3'.Sys_updated_on
+	toColumn: 'LocalDateTable_e7c2e7ea-598c-49e0-b6ee-ba368df0e030 3'.Date
+
+relationship a2cdb2c2-922e-4041-b9d0-94327272899a
+	fromColumn: 'Business Legal Entity 3'.Sys_created_on
+	toColumn: 'LocalDateTable_bd9c5ee2-d38b-4acd-ab0f-422b536a2cf9 3'.Date
+
+relationship e496f3a4-09cb-4a9a-87c7-39e731c51beb
+	fromColumn: 'Jira Defect Tempi di Collaudo 3'.'Data Apertura'
+	toColumn: 'LocalDateTable_2a8b4d79-cd4a-4785-8478-7755834bc9ff 3'.Date
+
+relationship 17c34200-52d7-4c2b-98b0-eed832283766
+	fromColumn: 'Jira Defect Tempi di Collaudo 3'.'Data Chiusura'
+	toColumn: 'LocalDateTable_1b5eb833-9e13-4a04-880c-4ee2c74cbf3c 3'.Date
+
+relationship 11a019ad-15a0-434f-b50d-79e95b26ea04
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Xray Relation Business Feature Test 4'.businessfeature_key
+	toColumn: 'Jira Business Feature 2'.'Issue Key [Issue]'
+
+relationship 7561b022-aaf9-40f8-92a5-3c4cac6147a4
+	fromColumn: 'Country 4'.Created
+	toColumn: 'LocalDateTable_7220c40e-021b-403a-85df-ab9e801cc625 4'.Date
+
+relationship c988a203-4422-4132-bb3b-0454941636d6
+	fromColumn: 'Country 4'.Updated
+	toColumn: 'LocalDateTable_748fa7ae-9c4c-48df-aea5-4b1e80e88ac5 4'.Date
+
+relationship 35666375-5dfc-4b29-9c5a-2b6134fa78b9
+	fromColumn: 'Business Legal Entity 4'.Created
+	toColumn: 'LocalDateTable_353dc340-2a19-4d32-ba3f-0a6e39e69401 4'.Date
+
+relationship adf1867c-c146-4c14-8972-0567349d18d0
+	fromColumn: 'Business Legal Entity 4'.Updated
+	toColumn: 'LocalDateTable_a039fd8b-8c1e-4a0b-a633-7c579a6a5248 4'.Date
+
+relationship bf5ec5e7-e4d5-48a9-b2ea-48e964fddc01
+	fromColumn: 'Business Legal Entity 4'.Sys_updated_on
+	toColumn: 'LocalDateTable_e7c2e7ea-598c-49e0-b6ee-ba368df0e030 4'.Date
+
+relationship f3f7af5d-b0e1-481b-9c05-fa15bd7cd4b3
+	fromColumn: 'Business Legal Entity 4'.Sys_created_on
+	toColumn: 'LocalDateTable_bd9c5ee2-d38b-4acd-ab0f-422b536a2cf9 4'.Date
+
+relationship e8707fdc-612c-4aed-83a1-8ede36bbbaca
+	fromColumn: 'Jira Defect Tempi di Collaudo 4'.'Data Apertura'
+	toColumn: 'LocalDateTable_2a8b4d79-cd4a-4785-8478-7755834bc9ff 4'.Date
+
+relationship 7162f2b0-633c-4033-ade5-1d65dec73152
+	fromColumn: 'Jira Defect Tempi di Collaudo 4'.'Data Chiusura'
+	toColumn: 'LocalDateTable_1b5eb833-9e13-4a04-880c-4ee2c74cbf3c 4'.Date
+
+relationship edf09646-da4d-4430-a0dc-58d1383747fe
+	fromColumn: 'Jira MBI Document State Transition'.real_date
+	toColumn: LocalDateTable_74bf8db7-c0c4-4703-a5e9-07febd1c7452.Date
+
+relationship 3b495675-a514-4679-8a7b-1605fb3d9316
+	fromColumn: 'Jira MBI Document State Transition'.issue_key
+	toColumn: 'Jira Macro Business Initiative'.'Issue key'
+
+relationship 94981ca6-7a18-4aae-a637-cdebbee3bbbe
+	fromColumn: 'Jira Planning by Cost'.jira_created
+	toColumn: LocalDateTable_38082ea5-3e42-45c2-83fe-3237ca18f430.Date
+
+relationship c56c2be2-45c8-4689-a66b-fb403a25f8fb
+	fromColumn: 'Jira Planning by Cost'.jira_updated
+	toColumn: LocalDateTable_319ff1ee-ec0c-4dd9-ae02-a4900447077a.Date
+
+relationship 94ea3bea-26b0-49eb-8c4a-43b9a602ea94
+	fromColumn: 'Jira Planning by Cost'.sys_created_on
+	toColumn: LocalDateTable_f4056c4b-e640-45d8-8d1c-a32cc2f287a4.Date
+
+relationship 67237c4d-edf6-4254-a4e7-7cadcc8c0acd
+	fromColumn: 'Jira Planning by Cost'.sys_updated_on
+	toColumn: LocalDateTable_b7095d4a-df8b-4a9b-afeb-0e41903d8e53.Date
+
+relationship ca04d2b4-c6da-4262-90d4-d8caf0ab2272
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Planning by Cost'.business_need
+	toColumn: 'Jira Business Need'.'Issue key'
+
+relationship f9841c62-b013-4585-a752-ce36a9d2a55b
+	fromColumn: 'Jira MBI Document State Transition 2'.real_date
+	toColumn: 'LocalDateTable_74bf8db7-c0c4-4703-a5e9-07febd1c7452 2'.Date
+
+relationship 343a8fb4-c587-48b0-9c85-2502f4ca71d7
+	fromColumn: 'Jira Planning by Cost 2'.jira_created
+	toColumn: 'LocalDateTable_38082ea5-3e42-45c2-83fe-3237ca18f430 2'.Date
+
+relationship 1712f9d5-d72e-4af0-ab7c-ff378af5c21a
+	fromColumn: 'Jira Planning by Cost 2'.jira_updated
+	toColumn: 'LocalDateTable_319ff1ee-ec0c-4dd9-ae02-a4900447077a 2'.Date
+
+relationship 1b8ee9be-5e68-4afa-8e9d-14d279816d0b
+	fromColumn: 'Jira Planning by Cost 2'.sys_created_on
+	toColumn: 'LocalDateTable_f4056c4b-e640-45d8-8d1c-a32cc2f287a4 2'.Date
+
+relationship 51f6c54f-0529-4d6b-91ba-da1eaeb67824
+	fromColumn: 'Jira Planning by Cost 2'.sys_updated_on
+	toColumn: 'LocalDateTable_b7095d4a-df8b-4a9b-afeb-0e41903d8e53 2'.Date
+
+relationship 30995a0c-9aa0-4885-91ee-b1864d3b04f6
+	fromColumn: 'Jira MBI Document State Transition 3'.real_date
+	toColumn: 'LocalDateTable_74bf8db7-c0c4-4703-a5e9-07febd1c7452 3'.Date
+
+relationship 5752561f-48ff-4e4a-b416-6aeee5c6acae
+	fromColumn: 'Jira Planning by Cost 3'.jira_created
+	toColumn: 'LocalDateTable_38082ea5-3e42-45c2-83fe-3237ca18f430 3'.Date
+
+relationship 4117373d-02dc-4d3a-b9d8-b47a0ba418e6
+	fromColumn: 'Jira Planning by Cost 3'.jira_updated
+	toColumn: 'LocalDateTable_319ff1ee-ec0c-4dd9-ae02-a4900447077a 3'.Date
+
+relationship 0cd8b55f-c721-4352-8b80-5c65c518ca35
+	fromColumn: 'Jira Planning by Cost 3'.sys_created_on
+	toColumn: 'LocalDateTable_f4056c4b-e640-45d8-8d1c-a32cc2f287a4 3'.Date
+
+relationship 702894e0-146c-4013-ae8d-4283febff998
+	fromColumn: 'Jira Planning by Cost 3'.sys_updated_on
+	toColumn: 'LocalDateTable_b7095d4a-df8b-4a9b-afeb-0e41903d8e53 3'.Date
+
+relationship a08fe9a8-c548-4367-aaf4-babe687af30a
+	fromColumn: 'Jira MBI Document State Transition 4'.real_date
+	toColumn: 'LocalDateTable_74bf8db7-c0c4-4703-a5e9-07febd1c7452 4'.Date
+
+relationship 685a9907-b10a-40dc-93bb-245ee1fe1866
+	fromColumn: 'Jira Planning by Cost 4'.jira_created
+	toColumn: 'LocalDateTable_38082ea5-3e42-45c2-83fe-3237ca18f430 4'.Date
+
+relationship 4da9a431-4b27-4eee-8e78-6698d5b3ec59
+	fromColumn: 'Jira Planning by Cost 4'.jira_updated
+	toColumn: 'LocalDateTable_319ff1ee-ec0c-4dd9-ae02-a4900447077a 4'.Date
+
+relationship 7dd63f7b-d4ce-40ea-b96b-834642b37f25
+	fromColumn: 'Jira Planning by Cost 4'.sys_created_on
+	toColumn: 'LocalDateTable_f4056c4b-e640-45d8-8d1c-a32cc2f287a4 4'.Date
+
+relationship 446b0a6e-0488-4805-ab93-cdba2db90db2
+	fromColumn: 'Jira Planning by Cost 4'.sys_updated_on
+	toColumn: 'LocalDateTable_b7095d4a-df8b-4a9b-afeb-0e41903d8e53 4'.Date
+
+relationship 61110890-16f9-30d4-d09a-f3e872a0209c
+	securityFilteringBehavior: none
+	toCardinality: many
+	fromColumn: 'Jira Macro Business Initiative'.'Issue status'
+	toColumn: 'Workflow Fasi MBI'.Status
+
+relationship 1a0b71bd-97d0-43ef-a874-5e3d29417a03
+	isActive: false
+	fromColumn: 'Jira Issue Detail'.assignee
+	toColumn: 'AD Objects'.userId
+
+relationship e2a23e6c-44c7-4cf2-9a32-1278d8f92fbd
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Jira Issue Detail'.issue_key
+	toColumn: 'Jira Xray Defect'.issue
+
+relationship 630a7b64-fa05-4c9a-b860-091d3d2054b2
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Jira Issue Detail'.issue_key
+	toColumn: 'Jira Xray Bug Delivery'.issue
+
+relationship fde18b3f-c679-44a3-b564-31e4029a1b7c
+	fromColumn: 'Jira Macro Business Initiative'.'Issue Start date'
+	toColumn: LocalDateTable_05743166-a1c5-4fad-9eca-00de4b956403.Date
+
+relationship 336f60aa-9676-4c83-b2f3-c06d837fe1ed
+	fromColumn: 'Jira ICR'.'Issue resolution date'
+	toColumn: LocalDateTable_3698b417-5ac5-4684-bd0b-e0f3c94836bf.Date
+
+relationship fa9e5c40-bcbe-4541-9c11-2ed3552f22b4
+	fromColumn: 'Jira Xray Defect'.issue_created_date
+	toColumn: LocalDateTable_7522cab3-cb66-4b84-aae1-fbf6a7f1635d.Date
+
+relationship 91d7e4c1-fa73-4eef-8494-ffb736bc3ca0
+	fromColumn: 'Jira Xray Defect'.issue_resolution_date
+	toColumn: LocalDateTable_84a33511-ffdc-4fb5-aa05-135eecda9d96.Date
+
+relationship ab0ef91f-498d-4e22-b016-a3853f6801d3
+	fromColumn: 'Jira Xray Bug Delivery'.issue_created_date
+	toColumn: LocalDateTable_07882c7e-44ad-4e60-94f7-2d6d2587cf75.Date
+
+relationship 204cb19f-7160-4f8d-aff8-61dddb2fa56f
+	fromColumn: 'Jira Xray Bug Delivery'.issue_resolution_date
+	toColumn: LocalDateTable_941784f5-7f71-4027-bf60-a880d4fc9a67.Date
+
+relationship 91f2fc66-8b72-47a2-9162-7d81d2d6c3b0
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Jira Issue Detail 2'.issue_key
+	toColumn: 'Jira Xray Defect 2'.issue
+
+relationship d9cd543b-faa3-4236-ae1a-062c7c73ca68
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Jira Issue Detail 2'.issue_key
+	toColumn: 'Jira Xray Bug Delivery 2'.issue
+
+relationship 9ed3f684-0052-4963-8312-c49554a7cf25
+	fromColumn: 'Jira ICR 2'.'Issue resolution date'
+	toColumn: 'LocalDateTable_3698b417-5ac5-4684-bd0b-e0f3c94836bf 2'.Date
+
+relationship 0964f851-5a80-4be9-ad0d-b43d93feed42
+	fromColumn: 'Jira Xray Defect 2'.issue_created_date
+	toColumn: 'LocalDateTable_7522cab3-cb66-4b84-aae1-fbf6a7f1635d 2'.Date
+
+relationship bddb9eb8-039a-46e2-a484-9fd0abb3b71b
+	fromColumn: 'Jira Xray Defect 2'.issue_resolution_date
+	toColumn: 'LocalDateTable_84a33511-ffdc-4fb5-aa05-135eecda9d96 2'.Date
+
+relationship 94099ff1-c0e1-4f67-827e-3ab9d408e051
+	fromColumn: 'Jira Xray Bug Delivery 2'.issue_created_date
+	toColumn: 'LocalDateTable_07882c7e-44ad-4e60-94f7-2d6d2587cf75 2'.Date
+
+relationship 42091f7a-b6fb-4c58-9ed2-af2e735cd471
+	fromColumn: 'Jira Xray Bug Delivery 2'.issue_resolution_date
+	toColumn: 'LocalDateTable_941784f5-7f71-4027-bf60-a880d4fc9a67 2'.Date
+
+relationship fb0f5c16-019c-4315-abb2-32ed065659cb
+	fromColumn: 'Jira ICR 3'.'Issue resolution date'
+	toColumn: 'LocalDateTable_3698b417-5ac5-4684-bd0b-e0f3c94836bf 3'.Date
+
+relationship 11527571-69a7-4066-91ba-5d0602109b29
+	fromColumn: 'Jira Xray Defect 3'.issue_created_date
+	toColumn: 'LocalDateTable_7522cab3-cb66-4b84-aae1-fbf6a7f1635d 3'.Date
+
+relationship d7575a4c-30b0-4f0c-86c6-fd85e06633cc
+	fromColumn: 'Jira Xray Defect 3'.issue_resolution_date
+	toColumn: 'LocalDateTable_84a33511-ffdc-4fb5-aa05-135eecda9d96 3'.Date
+
+relationship d68859b7-c027-4527-a1e0-a18df9d15761
+	fromColumn: 'Jira Xray Bug Delivery 3'.issue_created_date
+	toColumn: 'LocalDateTable_07882c7e-44ad-4e60-94f7-2d6d2587cf75 3'.Date
+
+relationship dd4e445d-297d-4122-88c2-1f732590b08c
+	fromColumn: 'Jira Xray Bug Delivery 3'.issue_resolution_date
+	toColumn: 'LocalDateTable_941784f5-7f71-4027-bf60-a880d4fc9a67 3'.Date
+
+relationship 2a7cb142-4a10-48bc-9c40-cfc948f1a52c
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Jira Issue Detail 3'.issue_key
+	toColumn: 'Jira Xray Defect 4'.issue
+
+relationship ed1b149e-0271-444b-aabb-c7ee4d53130b
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Jira Issue Detail 3'.issue_key
+	toColumn: 'Jira Xray Bug Delivery 4'.issue
+
+relationship 2566a09c-f27b-46e9-8940-e1fea9fd0040
+	fromColumn: 'Jira Xray Defect 4'.issue_created_date
+	toColumn: 'LocalDateTable_7522cab3-cb66-4b84-aae1-fbf6a7f1635d 4'.Date
+
+relationship d9fdda28-d8bc-4fc4-8e9e-3ee1f76bfeda
+	fromColumn: 'Jira Xray Defect 4'.issue_resolution_date
+	toColumn: 'LocalDateTable_84a33511-ffdc-4fb5-aa05-135eecda9d96 4'.Date
+
+relationship bb042c61-7930-4c8c-96cd-505e30575e50
+	fromColumn: 'Jira Xray Bug Delivery 4'.issue_created_date
+	toColumn: 'LocalDateTable_07882c7e-44ad-4e60-94f7-2d6d2587cf75 4'.Date
+
+relationship 8b4e5d00-0541-4aef-8498-2359bc899aa5
+	fromColumn: 'Jira Xray Bug Delivery 4'.issue_resolution_date
+	toColumn: 'LocalDateTable_941784f5-7f71-4027-bf60-a880d4fc9a67 4'.Date
+
+relationship 3d38e822-074c-44ad-b73b-f2944704254d
+	fromColumn: 'Jira Project List'.projectJira_Creation_Date
+	toColumn: LocalDateTable_51168826-4623-4808-bf41-626e29c2df47.Date
+
+relationship b2ed1eae-2faf-419f-9058-48f5f7f5bbda
+	fromColumn: 'Jira Project List'.projectJira_start_date
+	toColumn: LocalDateTable_188609cc-187b-4a88-8ce6-0374c82d6370.Date
+
+relationship 0141b08b-1a14-46db-ac2d-3677a98e9c16
+	fromColumn: 'Jira Project List'.projectJira_end_date
+	toColumn: LocalDateTable_7fffbb98-cd35-4419-a6a2-8e720df2d650.Date
+
+relationship 7457a420-07f8-4902-a7f0-a36c579b33c7
+	fromColumn: 'Jira Project List'.projectJira_expected_end_date
+	toColumn: LocalDateTable_3e7ba5b4-bb37-43bf-907c-3acf1ab06098.Date
+
+relationship b1c2524c-290e-41d1-915d-45ce59b574e6
+	fromColumn: 'Jira Project List'.projectJira_Last_Update
+	toColumn: LocalDateTable_88477167-8a78-4914-bc88-251f08d642e8.Date
+
+relationship 05cf61d5-4f60-4927-866e-ee886849e671
+	fromColumn: 'Jira Business Feature'.'Issue updated date'
+	toColumn: LocalDateTable_0fbf1e6b-83ac-4daf-9dea-42ae1cc2f421.Date
+
+relationship 7dd49fe4-968e-4c4f-9201-2b1e3896f912
+	fromColumn: 'Jira Business Feature'.'Issue resolution date'
+	toColumn: LocalDateTable_a0474e68-5f7b-412e-976d-548d17bd65cb.Date
+
+relationship 7bf50158-6d30-43f5-a221-cad87d8e992b
+	fromColumn: 'Jira Business Feature for APM'.'Issue updated date'
+	toColumn: LocalDateTable_c170ef42-a55c-453a-a92e-d387fd1eb95a.Date
+
+relationship 716e0e7d-3370-48d4-88d3-65b88c7fad74
+	fromColumn: 'Jira Business Feature for APM'.'Issue resolution date'
+	toColumn: LocalDateTable_47ef6a94-a8d4-450c-bd1d-64dda0a06572.Date
+
+relationship f6a2c352-f989-4c85-b8e7-75bdd1a16b37
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Xray Relation Business Feature Test'.test_key
+	toColumn: 'Jira Xray Test UAT'.test_key
+
+relationship 24351695-7865-44f1-80cc-0a2ec8c9e182
+	fromColumn: 'Jira Xray Internal Test'.created
+	toColumn: LocalDateTable_05c59a21-5f6e-40f0-bce2-449d4d39eb4f.Date
+
+relationship fe8718e3-cbc8-43f7-80a2-650466f7e59d
+	fromColumn: 'Jira Xray Internal Test'.updated
+	toColumn: LocalDateTable_d8ed95f5-9929-4b29-816c-86ec5cb51528.Date
+
+relationship ba61da6d-1c87-4b09-90b6-dc80bcf3b311
+	fromColumn: 'Jira Xray Bug UAT'.issue_created_date
+	toColumn: LocalDateTable_71da992a-b0da-4168-affd-7d61e9e057f2.Date
+
+relationship ca0d478c-142c-46d5-8128-9ee131f0d0a5
+	fromColumn: 'Jira Xray Bug UAT'.issue_resolution_date
+	toColumn: LocalDateTable_21745949-8425-461c-9b4c-e1aa978bd41d.Date
+
+relationship ca52c800-491f-4a0b-b646-a942c9ac1b8c
+	fromColumn: 'Jira Xray Bug Internal Test'.issue_created_date
+	toColumn: LocalDateTable_2b80e1d4-1d51-46a9-a209-6378348c82eb.Date
+
+relationship aa6713ef-9f60-414f-92c8-e612c91f59eb
+	fromColumn: 'Jira Xray Bug Internal Test'.issue_resolution_date
+	toColumn: LocalDateTable_080b534e-9258-4654-a949-82cd2ea83062.Date
+
+relationship df83b169-49a9-4359-a7d4-8c675da96197
+	fromColumn: 'Jira Xray Test UAT'.created
+	toColumn: LocalDateTable_026c9358-3b0e-4165-a917-caf0c0c57bba.Date
+
+relationship 9f12aba8-c000-4c1e-bb10-f955f880ecc0
+	fromColumn: 'Jira Xray Test UAT'.updated
+	toColumn: LocalDateTable_505e0f60-bd2a-4220-88b2-659c06f8519b.Date
+
+relationship 9710a348-f9f8-4f79-865a-90ff62b24dbc
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Xray Relation Business Feature Test 2'.test_key
+	toColumn: 'Jira Xray Test UAT 2'.test_key
+
+relationship 5bb3d230-87c1-4a48-98d7-2759fc807f5b
+	fromColumn: 'Jira Xray Internal Test 2'.created
+	toColumn: 'LocalDateTable_05c59a21-5f6e-40f0-bce2-449d4d39eb4f 2'.Date
+
+relationship dbcb9d4d-a6ef-4e54-9db3-7d2e10df87ce
+	fromColumn: 'Jira Xray Internal Test 2'.updated
+	toColumn: 'LocalDateTable_d8ed95f5-9929-4b29-816c-86ec5cb51528 2'.Date
+
+relationship 91476dc8-ff6e-4cce-b3ae-2abb2f05d301
+	fromColumn: 'Jira Xray Bug UAT 2'.issue_created_date
+	toColumn: 'LocalDateTable_71da992a-b0da-4168-affd-7d61e9e057f2 2'.Date
+
+relationship 32f76208-cce6-47da-9ff3-7ef3d6477a24
+	fromColumn: 'Jira Xray Bug UAT 2'.issue_resolution_date
+	toColumn: 'LocalDateTable_21745949-8425-461c-9b4c-e1aa978bd41d 2'.Date
+
+relationship a46d7573-4bea-48f2-9977-9da3e38b399f
+	fromColumn: 'Jira Xray Bug Internal Test 2'.issue_created_date
+	toColumn: 'LocalDateTable_2b80e1d4-1d51-46a9-a209-6378348c82eb 2'.Date
+
+relationship bb14c601-4f73-4fdc-8cba-6919b4f38e09
+	fromColumn: 'Jira Xray Bug Internal Test 2'.issue_resolution_date
+	toColumn: 'LocalDateTable_080b534e-9258-4654-a949-82cd2ea83062 2'.Date
+
+relationship 6549cfd9-81a6-4454-9c01-e202859bcd29
+	fromColumn: 'Jira Xray Test UAT 2'.created
+	toColumn: 'LocalDateTable_026c9358-3b0e-4165-a917-caf0c0c57bba 2'.Date
+
+relationship f0f896e4-bb35-413a-b0e9-8f4aa039f77a
+	fromColumn: 'Jira Xray Test UAT 2'.updated
+	toColumn: 'LocalDateTable_505e0f60-bd2a-4220-88b2-659c06f8519b 2'.Date
+
+relationship 75a5ac8d-9d05-4dd0-ae51-da2ec89b2305
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Xray Relation Business Feature Test 3'.test_key
+	toColumn: 'Jira Xray Test UAT 3'.test_key
+
+relationship da112521-8e48-42b2-8c34-bcca4f645c05
+	fromColumn: 'Jira Xray Internal Test 3'.created
+	toColumn: 'LocalDateTable_05c59a21-5f6e-40f0-bce2-449d4d39eb4f 3'.Date
+
+relationship 1ffa8b3e-9296-4225-bfd9-20b53a081388
+	fromColumn: 'Jira Xray Internal Test 3'.updated
+	toColumn: 'LocalDateTable_d8ed95f5-9929-4b29-816c-86ec5cb51528 3'.Date
+
+relationship d1c87076-193a-4760-ad1b-81c4d9d28fd4
+	fromColumn: 'Jira Xray Bug UAT 3'.issue_created_date
+	toColumn: 'LocalDateTable_71da992a-b0da-4168-affd-7d61e9e057f2 3'.Date
+
+relationship ef4bb069-0718-4d1b-9581-f4a17dbc0d6e
+	fromColumn: 'Jira Xray Bug UAT 3'.issue_resolution_date
+	toColumn: 'LocalDateTable_21745949-8425-461c-9b4c-e1aa978bd41d 3'.Date
+
+relationship 8f334e13-d636-41cc-a312-53e1acb7a880
+	fromColumn: 'Jira Xray Bug Internal Test 3'.issue_created_date
+	toColumn: 'LocalDateTable_2b80e1d4-1d51-46a9-a209-6378348c82eb 3'.Date
+
+relationship 7782b9c2-d359-4f38-b746-6d2f7c5f2d2a
+	fromColumn: 'Jira Xray Bug Internal Test 3'.issue_resolution_date
+	toColumn: 'LocalDateTable_080b534e-9258-4654-a949-82cd2ea83062 3'.Date
+
+relationship 01bde460-3245-47a2-a7ea-ffb97af71df8
+	fromColumn: 'Jira Xray Test UAT 3'.created
+	toColumn: 'LocalDateTable_026c9358-3b0e-4165-a917-caf0c0c57bba 3'.Date
+
+relationship 636c0eef-d3e8-413f-bc48-4939afd4251b
+	fromColumn: 'Jira Xray Test UAT 3'.updated
+	toColumn: 'LocalDateTable_505e0f60-bd2a-4220-88b2-659c06f8519b 3'.Date
+
+relationship 0506eb19-d4ff-4b4b-af41-986db5272fb1
+	fromColumn: 'Jira Project List 2'.projectJira_Creation_Date
+	toColumn: 'LocalDateTable_51168826-4623-4808-bf41-626e29c2df47 2'.Date
+
+relationship 7486acde-69f4-45f2-b2c1-c34fb43da807
+	fromColumn: 'Jira Project List 2'.projectJira_start_date
+	toColumn: 'LocalDateTable_188609cc-187b-4a88-8ce6-0374c82d6370 2'.Date
+
+relationship c13a4d52-53f0-4781-b63d-9eb6b20e2c64
+	fromColumn: 'Jira Project List 2'.projectJira_end_date
+	toColumn: 'LocalDateTable_7fffbb98-cd35-4419-a6a2-8e720df2d650 2'.Date
+
+relationship 4036d9a6-64f9-422b-8d7a-bd70def25851
+	fromColumn: 'Jira Project List 2'.projectJira_expected_end_date
+	toColumn: 'LocalDateTable_3e7ba5b4-bb37-43bf-907c-3acf1ab06098 2'.Date
+
+relationship 2d5b722f-0a6a-43cf-94dd-16c0f32cded6
+	fromColumn: 'Jira Project List 2'.projectJira_Last_Update
+	toColumn: 'LocalDateTable_88477167-8a78-4914-bc88-251f08d642e8 2'.Date
+
+relationship 2acf3494-5957-40b8-bbf5-db7a7e7d6882
+	fromColumn: 'Jira Business Feature 2'.'Issue updated date'
+	toColumn: 'LocalDateTable_0fbf1e6b-83ac-4daf-9dea-42ae1cc2f421 2'.Date
+
+relationship d585c186-c826-4957-9eec-81d0716bdd8d
+	fromColumn: 'Jira Business Feature 2'.'Issue resolution date'
+	toColumn: 'LocalDateTable_a0474e68-5f7b-412e-976d-548d17bd65cb 2'.Date
+
+relationship 3f65ed18-f674-4506-be88-4031ba92ff46
+	fromColumn: 'Jira Business Feature for APM 2'.'Issue updated date'
+	toColumn: 'LocalDateTable_c170ef42-a55c-453a-a92e-d387fd1eb95a 2'.Date
+
+relationship 45df4cbb-5a11-4ef8-97c1-413a60edc4ae
+	fromColumn: 'Jira Business Feature for APM 2'.'Issue resolution date'
+	toColumn: 'LocalDateTable_47ef6a94-a8d4-450c-bd1d-64dda0a06572 2'.Date
+
+relationship cb28a623-0f2e-4335-a3ca-cca9b5e94f5b
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Xray Relation Business Feature Test 4'.test_key
+	toColumn: 'Jira Xray Test UAT 4'.test_key
+
+relationship d3a4d14a-0257-4e10-9ea5-78cc991c1595
+	fromColumn: 'Jira Xray Internal Test 4'.created
+	toColumn: 'LocalDateTable_05c59a21-5f6e-40f0-bce2-449d4d39eb4f 4'.Date
+
+relationship 1a616b8b-873e-4179-98f0-402d3704d22b
+	fromColumn: 'Jira Xray Internal Test 4'.updated
+	toColumn: 'LocalDateTable_d8ed95f5-9929-4b29-816c-86ec5cb51528 4'.Date
+
+relationship e622bf60-943e-48d6-b282-b5764a79938b
+	fromColumn: 'Jira Xray Bug UAT 4'.issue_created_date
+	toColumn: 'LocalDateTable_71da992a-b0da-4168-affd-7d61e9e057f2 4'.Date
+
+relationship 5b276341-5b0f-4165-aad2-d1eb34894a85
+	fromColumn: 'Jira Xray Bug UAT 4'.issue_resolution_date
+	toColumn: 'LocalDateTable_21745949-8425-461c-9b4c-e1aa978bd41d 4'.Date
+
+relationship 7fb43309-4e1b-42a6-9fa6-355f20b887d3
+	fromColumn: 'Jira Xray Bug Internal Test 4'.issue_created_date
+	toColumn: 'LocalDateTable_2b80e1d4-1d51-46a9-a209-6378348c82eb 4'.Date
+
+relationship 60f2a83b-3597-4ead-bab1-6e576928cac2
+	fromColumn: 'Jira Xray Bug Internal Test 4'.issue_resolution_date
+	toColumn: 'LocalDateTable_080b534e-9258-4654-a949-82cd2ea83062 4'.Date
+
+relationship 3ce363f1-5e28-4a9a-9a07-1d4540dfcae0
+	fromColumn: 'Jira Xray Test UAT 4'.created
+	toColumn: 'LocalDateTable_026c9358-3b0e-4165-a917-caf0c0c57bba 4'.Date
+
+relationship 1cf57cb7-37bc-4d42-8311-46788413b7b1
+	fromColumn: 'Jira Xray Test UAT 4'.updated
+	toColumn: 'LocalDateTable_505e0f60-bd2a-4220-88b2-659c06f8519b 4'.Date
+
+relationship 50186a28-b293-405f-9a21-470ff146950a
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Jira Issue Detail'.issue_key
+	toColumn: 'Jira Macro Business Initiative'.'Issue key'
+
+relationship 8c861e95-4898-41af-b160-c100fb3ffe1a
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Jira Issue Detail'.issue_key
+	toColumn: 'Jira Business Feature'.'Issue key'
+
+relationship bca57b54-bd1b-4df7-8d77-053638363e01
+	fromColumn: 'Jira Demand'.'Issue created date'
+	toColumn: LocalDateTable_a686cc91-02ab-4d7c-8f94-77f876fe29cf.Date
+
+relationship 01137317-8939-4992-9a49-ba4452e21b6d
+	fromColumn: 'Jira Demand'.'Issue sys_created_on'
+	toColumn: LocalDateTable_071499f2-2548-4eb7-83b2-8159bdd5bbe7.Date
+
+relationship a51c777c-bbfc-4a12-9146-1dddfedbdd91
+	fromColumn: 'Jira Demand'.'Issue sys_updated_on'
+	toColumn: LocalDateTable_799a860b-4a3f-4f40-9940-e50c0c375e81.Date
+
+relationship dd59b529-1768-4cf2-bb14-aadeb09f056d
+	fromColumn: 'Jira Demand'.'Issue Approval Date DSP'
+	toColumn: LocalDateTable_656f7b45-e5ef-4ef0-a6d9-a2be46ea48d1.Date
+
+relationship 67511a5a-73c5-4410-9dbc-4c77318c35c1
+	fromColumn: 'Jira Demand'.'Issue closed date'
+	toColumn: LocalDateTable_d605c5e6-499d-4459-bf2d-ce358137394c.Date
+
+relationship 58a1436b-393d-47e7-a797-336756a19e1b
+	fromColumn: 'Jira Demand'.'Issue Approved Start Date'
+	toColumn: LocalDateTable_afde5906-b17a-4dc8-9e07-e1e4b344209b.Date
+
+relationship 80ee663b-d307-493f-9a5b-3ab81e3536ae
+	fromColumn: 'Jira Demand for APM'.'Issue created date'
+	toColumn: LocalDateTable_54251152-b6d8-499c-b8ea-023bbc9af7a9.Date
+
+relationship 42fb2a29-d208-424f-a343-1a28f807d140
+	fromColumn: 'Jira Demand for APM'.'Issue sys_created_on'
+	toColumn: LocalDateTable_c51aaf8e-5b56-48c6-be3f-091317827fc3.Date
+
+relationship 75210437-b27f-4719-ab87-765bfbc5fd59
+	fromColumn: 'Jira Demand for APM'.'Issue sys_updated_on'
+	toColumn: LocalDateTable_ad5e9ae8-1f11-4aad-a093-c5204b56c687.Date
+
+relationship 9d53513f-5385-426b-8b4c-cd4e71649c47
+	fromColumn: 'Jira Business Feature'.'Issue Macro Business Initiative'
+	toColumn: 'Jira Macro Business Initiative'.'Issue key'
+
+relationship ffaf5244-42aa-45ef-bd7d-8b853bed4dbe
+	fromColumn: 'Jira Feature Delivery'.'Issue Baseline start date'
+	toColumn: LocalDateTable_c1b37b66-bd9e-4a80-896d-f63134c59009.Date
+
+relationship d6d71297-e402-4524-93b9-e1240f622a60
+	fromColumn: 'Jira Feature Delivery'.'Issue Baseline end date'
+	toColumn: LocalDateTable_086782c6-21ce-4681-ac54-1067d5013f25.Date
+
+relationship 2d7b75e3-4695-4d78-85e0-bce734ac3ae3
+	fromColumn: 'Jira Feature Delivery'.'Issue Planned End Date'
+	toColumn: LocalDateTable_408c973b-3403-4377-82a9-5898c8850b2c.Date
+
+relationship 9ca2d258-1fef-49ce-a756-b896a0eceaee
+	fromColumn: 'Jira ICT Estimation'.issue_resolution_date
+	toColumn: LocalDateTable_81a019db-9901-4f5b-9bea-26ea00dbc535.Date
+
+relationship f600b96c-9b49-473f-8fc8-3114bc465b49
+	fromColumn: 'Jira ICT Estimation'.issue_baseline_start_date
+	toColumn: LocalDateTable_f22a5f9c-4b6a-44b7-872c-3fd3e8105ff6.Date
+
+relationship f6180b09-2bae-4d35-94a2-f2590c5a8332
+	fromColumn: 'Jira ICT Estimation'.issue_baseline_end_date
+	toColumn: LocalDateTable_57ced55d-1cf4-4484-aa2f-a96244cde5e8.Date
+
+relationship 066ba0e1-3564-42cf-92fe-f1d8bb89db1b
+	fromColumn: 'Jira ICT Estimation'.issue_start_date
+	toColumn: LocalDateTable_63d5e009-0467-47fd-8703-9c43850bd89c.Date
+
+relationship 213a45f9-449e-4115-836a-87b060405a89
+	fromColumn: 'Jira ICT Estimation'.issue_end_date
+	toColumn: LocalDateTable_156475ee-b7de-451e-a8d5-9f521a92fcf7.Date
+
+relationship ea534ea9-79a0-455e-8bd8-b17af6f312e5
+	fromColumn: 'Jira Initiative Estimation'.issue_start_date
+	toColumn: LocalDateTable_27d8ed4a-857d-406c-9593-9771512ade83.Date
+
+relationship e884dc96-db75-4c97-974d-14d640e8b778
+	fromColumn: 'Jira Initiative Estimation'.issue_end_date
+	toColumn: LocalDateTable_9b5bf1a7-ba3f-4d90-b66b-d6e16b846689.Date
+
+relationship 3382e514-19cd-4024-9314-bd9e52e213e1
+	isActive: false
+	fromColumn: 'Jira Macro Business Initiative'.'Project Key'
+	toColumn: 'Jira Project List'.Project_Key
+
+relationship b70d503d-c570-483b-8d01-ca09e10b3c57
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Xray Demand Test Multi APM'.test_key
+	toColumn: 'Jira Xray Test UAT'.test_key
+
+relationship c3a85c86-9408-487f-9551-fe7da3d78baa
+	fromColumn: 'Jira Xray Demand Test Multi APM'.test_key
+	toColumn: 'Jira Xray Internal Test'.test_key
+
+relationship c55a39d0-96c4-40cd-9cee-750a8466e378
+	fromColumn: 'Jira Macro Business Request'.issue_resolution_date
+	toColumn: LocalDateTable_4317723d-fdd5-413d-9e30-0f56b9279285.Date
+
+relationship e8585329-2a9e-4a40-ad43-8636bee520c2
+	fromColumn: 'Jira Macro Business Request'.issue_baseline_start_date
+	toColumn: LocalDateTable_a16be343-c5d8-4e28-bb00-f63bab3fd8dc.Date
+
+relationship 1cc0de4b-b80f-4448-a0ba-4c670f0c06cc
+	fromColumn: 'Jira Macro Business Request'.issue_baseline_end_date
+	toColumn: LocalDateTable_52bde889-4a80-46fd-a248-920b75f1d232.Date
+
+relationship 36f158e0-e6ae-48ba-8ce1-aa4c556d45ad
+	fromColumn: 'Jira Macro Business Request'.issue_start_date
+	toColumn: LocalDateTable_8b52b111-da2e-4331-8f58-9cc734e02762.Date
+
+relationship c27b1be4-b58c-404b-9dff-c592e3577276
+	fromColumn: 'Jira Macro Business Request'.issue_end_date
+	toColumn: LocalDateTable_da2f115b-8254-4640-9307-b6d929b47816.Date
+
+relationship 91c06845-a28e-4021-8b8e-28c08e5782f5
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Xray Defect'.bug_link
+	toColumn: 'Jira Xray Bug UAT'.issue
+
+relationship 23bd6bcf-9232-440e-ac4b-0aea5db1631b
+	fromColumn: 'Jira Business Request'.issue_created_date
+	toColumn: LocalDateTable_e96ba5eb-b265-4dcd-9c2c-c096907809d7.Date
+
+relationship cbef0355-0468-420b-8280-ca20c9fc9e7c
+	fromColumn: 'Jira Business Request'.issue_resolution_date
+	toColumn: LocalDateTable_c1f5e5d7-714b-4d9d-9ec8-0b601a2a9d08.Date
+
+relationship 915a5c1f-e914-4917-ab2c-32ef146b610d
+	fromColumn: 'Jira Business Request'.issue_baseline_start_date
+	toColumn: LocalDateTable_eb43f3f5-66e9-4459-b3b5-e9bbc8c8a215.Date
+
+relationship 0bed8543-7e96-47f2-bcbb-ad12be88f100
+	fromColumn: 'Jira Business Request'.issue_baseline_end_date
+	toColumn: LocalDateTable_bd2e82e2-01b9-48aa-9ff4-0b2f1dd9741b.Date
+
+relationship 0a7aacd9-5cf4-41a1-bf43-cc7e6163e064
+	fromColumn: 'Jira Business Request'.issue_start_date
+	toColumn: LocalDateTable_047f57d5-a49a-4c6b-ba7f-9c927a2e33c2.Date
+
+relationship 4b0271c9-30ca-4200-9183-b3e821951c32
+	fromColumn: 'Jira Business Request'.issue_end_date
+	toColumn: LocalDateTable_038fbf63-465c-4661-b127-b687976c46b7.Date
+
+relationship e5888e98-b769-4178-a68a-a06d786eb238
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Xray Demand Test Multi APM 2'.test_key
+	toColumn: 'Jira Xray Test UAT 2'.test_key
+
+relationship 4c96c6c9-7e43-4578-8282-3fc56a42491c
+	fromColumn: 'Jira Xray Demand Test Multi APM 2'.test_key
+	toColumn: 'Jira Xray Internal Test 2'.test_key
+
+relationship 8c121800-47b0-4743-ae44-45450f058239
+	fromColumn: 'Jira Macro Business Request 2'.issue_resolution_date
+	toColumn: 'LocalDateTable_4317723d-fdd5-413d-9e30-0f56b9279285 2'.Date
+
+relationship 8c84a4a8-5d3d-4e8c-a3fc-b6379229604f
+	fromColumn: 'Jira Macro Business Request 2'.issue_baseline_start_date
+	toColumn: 'LocalDateTable_a16be343-c5d8-4e28-bb00-f63bab3fd8dc 2'.Date
+
+relationship 3b3dafd4-ffe5-456f-887f-53962533f19a
+	fromColumn: 'Jira Macro Business Request 2'.issue_baseline_end_date
+	toColumn: 'LocalDateTable_52bde889-4a80-46fd-a248-920b75f1d232 2'.Date
+
+relationship 99d2f2f0-fe31-490b-aed0-ad3d3aae424c
+	fromColumn: 'Jira Macro Business Request 2'.issue_start_date
+	toColumn: 'LocalDateTable_8b52b111-da2e-4331-8f58-9cc734e02762 2'.Date
+
+relationship 94b3bd55-146b-48f4-b36c-ae6373ab227c
+	fromColumn: 'Jira Macro Business Request 2'.issue_end_date
+	toColumn: 'LocalDateTable_da2f115b-8254-4640-9307-b6d929b47816 2'.Date
+
+relationship 165effec-25f9-4ed5-a519-0f601d084896
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Xray Defect 2'.bug_link
+	toColumn: 'Jira Xray Bug UAT 2'.issue
+
+relationship cbd82158-e932-4bf4-9ec8-71139b5b5b0c
+	fromColumn: 'Jira Business Request 2'.issue_created_date
+	toColumn: 'LocalDateTable_e96ba5eb-b265-4dcd-9c2c-c096907809d7 2'.Date
+
+relationship 4f2905b1-1dc3-4bf5-9d9a-308454276b96
+	fromColumn: 'Jira Business Request 2'.issue_resolution_date
+	toColumn: 'LocalDateTable_c1f5e5d7-714b-4d9d-9ec8-0b601a2a9d08 2'.Date
+
+relationship ce14e9c8-12c6-42e6-a0b0-87a28c753e97
+	fromColumn: 'Jira Business Request 2'.issue_baseline_start_date
+	toColumn: 'LocalDateTable_eb43f3f5-66e9-4459-b3b5-e9bbc8c8a215 2'.Date
+
+relationship 97d4fb7a-4a6b-4c19-8d3e-afb31778e402
+	fromColumn: 'Jira Business Request 2'.issue_baseline_end_date
+	toColumn: 'LocalDateTable_bd2e82e2-01b9-48aa-9ff4-0b2f1dd9741b 2'.Date
+
+relationship 90bc5c05-6f6e-47df-8f6d-a07912dbd77a
+	fromColumn: 'Jira Business Request 2'.issue_start_date
+	toColumn: 'LocalDateTable_047f57d5-a49a-4c6b-ba7f-9c927a2e33c2 2'.Date
+
+relationship 7af2b54a-18cd-4a5d-a09a-3cbd9606348c
+	fromColumn: 'Jira Business Request 2'.issue_end_date
+	toColumn: 'LocalDateTable_038fbf63-465c-4661-b127-b687976c46b7 2'.Date
+
+relationship 2f812858-14a4-4599-80dd-af1b1a087088
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Xray Demand Test Multi APM 3'.test_key
+	toColumn: 'Jira Xray Test UAT 3'.test_key
+
+relationship c9cbd0f3-c7ed-44f2-8cdd-bb2d677951e0
+	fromColumn: 'Jira Xray Demand Test Multi APM 3'.test_key
+	toColumn: 'Jira Xray Internal Test 3'.test_key
+
+relationship 0b086403-a2b6-454c-8108-372a31a0b484
+	fromColumn: 'Jira Macro Business Request 3'.issue_resolution_date
+	toColumn: 'LocalDateTable_4317723d-fdd5-413d-9e30-0f56b9279285 3'.Date
+
+relationship fb27d314-316f-4f24-b23e-9e303bd0e326
+	fromColumn: 'Jira Macro Business Request 3'.issue_baseline_start_date
+	toColumn: 'LocalDateTable_a16be343-c5d8-4e28-bb00-f63bab3fd8dc 3'.Date
+
+relationship 70de73dc-5d8c-4c99-9147-1c864a4e74ce
+	fromColumn: 'Jira Macro Business Request 3'.issue_baseline_end_date
+	toColumn: 'LocalDateTable_52bde889-4a80-46fd-a248-920b75f1d232 3'.Date
+
+relationship c98ec22c-01e4-4dce-92d2-c892ac5acaf2
+	fromColumn: 'Jira Macro Business Request 3'.issue_start_date
+	toColumn: 'LocalDateTable_8b52b111-da2e-4331-8f58-9cc734e02762 3'.Date
+
+relationship b516196c-a000-4750-9327-45c09f0b75d4
+	fromColumn: 'Jira Macro Business Request 3'.issue_end_date
+	toColumn: 'LocalDateTable_da2f115b-8254-4640-9307-b6d929b47816 3'.Date
+
+relationship f4bc2c47-a508-4369-8aeb-da5287a31e24
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Xray Defect 3'.bug_link
+	toColumn: 'Jira Xray Bug UAT 3'.issue
+
+relationship 60891c60-ca33-4ef6-9022-7b14458b951e
+	fromColumn: 'Jira Business Request 3'.issue_created_date
+	toColumn: 'LocalDateTable_e96ba5eb-b265-4dcd-9c2c-c096907809d7 3'.Date
+
+relationship e8c9e8ee-10fa-4fde-9e32-44c64897abf5
+	fromColumn: 'Jira Business Request 3'.issue_resolution_date
+	toColumn: 'LocalDateTable_c1f5e5d7-714b-4d9d-9ec8-0b601a2a9d08 3'.Date
+
+relationship f6228787-fa40-4754-9a0e-d71e486f4839
+	fromColumn: 'Jira Business Request 3'.issue_baseline_start_date
+	toColumn: 'LocalDateTable_eb43f3f5-66e9-4459-b3b5-e9bbc8c8a215 3'.Date
+
+relationship 1c11b229-0aa5-49b8-ab62-fda664ab6848
+	fromColumn: 'Jira Business Request 3'.issue_baseline_end_date
+	toColumn: 'LocalDateTable_bd2e82e2-01b9-48aa-9ff4-0b2f1dd9741b 3'.Date
+
+relationship 3f0cc723-6e01-407b-92f0-8759761343f7
+	fromColumn: 'Jira Business Request 3'.issue_start_date
+	toColumn: 'LocalDateTable_047f57d5-a49a-4c6b-ba7f-9c927a2e33c2 3'.Date
+
+relationship 0669a7b5-da62-487e-9815-069dce715720
+	fromColumn: 'Jira Business Request 3'.issue_end_date
+	toColumn: 'LocalDateTable_038fbf63-465c-4661-b127-b687976c46b7 3'.Date
+
+relationship 399331bf-a882-4c99-9c61-0276b7025ad2
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Jira Issue Detail 3'.issue_key
+	toColumn: 'Jira Business Feature 2'.'Issue key'
+
+relationship d99fc55f-4018-4898-9d41-fb7084d89c8c
+	fromColumn: 'Jira Feature Delivery 2'.'Issue Baseline start date'
+	toColumn: 'LocalDateTable_c1b37b66-bd9e-4a80-896d-f63134c59009 2'.Date
+
+relationship 39b30fed-ae86-4fca-987e-ef01d1d33f83
+	fromColumn: 'Jira Feature Delivery 2'.'Issue Baseline end date'
+	toColumn: 'LocalDateTable_086782c6-21ce-4681-ac54-1067d5013f25 2'.Date
+
+relationship 47c80231-2588-4112-ae78-68f1d399aea8
+	fromColumn: 'Jira Feature Delivery 2'.'Issue Planned End Date'
+	toColumn: 'LocalDateTable_408c973b-3403-4377-82a9-5898c8850b2c 2'.Date
+
+relationship 2c557315-9fb1-4ba7-8f99-9536dfbf2c5b
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Xray Demand Test Multi APM 4'.test_key
+	toColumn: 'Jira Xray Test UAT 4'.test_key
+
+relationship a97fb95f-5b7c-48df-ae2a-248795a59cac
+	fromColumn: 'Jira Xray Demand Test Multi APM 4'.test_key
+	toColumn: 'Jira Xray Internal Test 4'.test_key
+
+relationship 37e449c2-79c7-4586-bad8-1891b5803fd2
+	fromColumn: 'Jira Macro Business Request 4'.issue_resolution_date
+	toColumn: 'LocalDateTable_4317723d-fdd5-413d-9e30-0f56b9279285 4'.Date
+
+relationship 4f42e191-aa96-4b83-8d70-34fdd65fafb3
+	fromColumn: 'Jira Macro Business Request 4'.issue_baseline_start_date
+	toColumn: 'LocalDateTable_a16be343-c5d8-4e28-bb00-f63bab3fd8dc 4'.Date
+
+relationship ab0851dc-8ed6-4128-8f59-0de777f5e876
+	fromColumn: 'Jira Macro Business Request 4'.issue_baseline_end_date
+	toColumn: 'LocalDateTable_52bde889-4a80-46fd-a248-920b75f1d232 4'.Date
+
+relationship 02292c1b-f1ae-49ac-9ecc-eeba338be95d
+	fromColumn: 'Jira Macro Business Request 4'.issue_start_date
+	toColumn: 'LocalDateTable_8b52b111-da2e-4331-8f58-9cc734e02762 4'.Date
+
+relationship b0a9a984-c939-44f8-9e9e-191ee0c2234d
+	fromColumn: 'Jira Macro Business Request 4'.issue_end_date
+	toColumn: 'LocalDateTable_da2f115b-8254-4640-9307-b6d929b47816 4'.Date
+
+relationship 990c3b47-998a-42d1-8075-79f7275b2c5a
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Xray Defect 4'.bug_link
+	toColumn: 'Jira Xray Bug UAT 4'.issue
+
+relationship bfd8ab1d-466a-4b5b-812a-f55f21b30d28
+	fromColumn: 'Jira Business Request 4'.issue_created_date
+	toColumn: 'LocalDateTable_e96ba5eb-b265-4dcd-9c2c-c096907809d7 4'.Date
+
+relationship 96bf3f3e-38fe-4aa4-beb7-7698ea139eaf
+	fromColumn: 'Jira Business Request 4'.issue_resolution_date
+	toColumn: 'LocalDateTable_c1f5e5d7-714b-4d9d-9ec8-0b601a2a9d08 4'.Date
+
+relationship 531b36ba-7bb5-4014-9f77-37fc82dc4f0b
+	fromColumn: 'Jira Business Request 4'.issue_baseline_start_date
+	toColumn: 'LocalDateTable_eb43f3f5-66e9-4459-b3b5-e9bbc8c8a215 4'.Date
+
+relationship f04ed67d-0ab2-4a65-b4ad-b0882da72341
+	fromColumn: 'Jira Business Request 4'.issue_baseline_end_date
+	toColumn: 'LocalDateTable_bd2e82e2-01b9-48aa-9ff4-0b2f1dd9741b 4'.Date
+
+relationship a750fc9b-da01-42fa-9043-190b9cb0093d
+	fromColumn: 'Jira Business Request 4'.issue_start_date
+	toColumn: 'LocalDateTable_047f57d5-a49a-4c6b-ba7f-9c927a2e33c2 4'.Date
+
+relationship 53ba6d09-6f4f-4213-a870-81745ab7b9af
+	fromColumn: 'Jira Business Request 4'.issue_end_date
+	toColumn: 'LocalDateTable_038fbf63-465c-4661-b127-b687976c46b7 4'.Date
+
+relationship 4787b6eb-0724-4071-8f9c-a5098aed2c6f
+	fromColumn: 'Jira Macro Business Initiative'.'Issue created date'
+	toColumn: LocalDateTable_a6085e72-29ba-4536-b8ac-5fa443fe245d.Date
+
+relationship 27733c39-1a21-4fa1-8d04-bdced50fbd1c
+	fromColumn: 'Jira Macro Business Initiative'.'Issue End date'
+	toColumn: LocalDateTable_7284efee-8543-4fc7-92e6-975948d999aa.Date
+
+relationship ec7094a0-a607-4832-87bb-4b2ec8c96c61
+	fromColumn: 'Jira Story Task'.created_date
+	toColumn: LocalDateTable_a70f2671-c171-4255-9776-3e660f0fc545.Date
+
+relationship 8d3e906d-0a86-4f04-acd3-24bfc0ea087b
+	fromColumn: 'Jira Story Task'.updated
+	toColumn: LocalDateTable_0ab3ba1a-faa8-416f-a713-1f6e921238ce.Date
+
+relationship 57fd9026-33b2-4708-9849-861b45968264
+	fromColumn: 'Jira Story Task'.resolutiondate
+	toColumn: LocalDateTable_6a950f9d-2d04-440d-86f9-2db7f456f126.Date
+
+relationship 38eb09d9-2b60-4ff9-b563-707da935833a
+	fromColumn: 'Jira Story Task'.start_date
+	toColumn: LocalDateTable_e5c3a9c9-75fa-42f3-acd2-0b57c3290240.Date
+
+relationship 9bfd1a18-088c-4412-9b3f-242505ffd463
+	fromColumn: 'Jira Story Task'.end_date
+	toColumn: LocalDateTable_cfa1cd90-5ec1-45ae-90a8-8e0338465f39.Date
+
+relationship fb0108eb-2e9c-429e-a1d6-e16804f1dca1
+	fromColumn: 'Jira Story Task'.baseline_start_date
+	toColumn: LocalDateTable_58a43364-bcce-43c3-874f-0ab016fe777b.Date
+
+relationship 568ced50-4ebe-4f08-9a38-0692e0191bc7
+	fromColumn: 'Jira Story Task'.baseline_end_date
+	toColumn: LocalDateTable_3e82ade7-74e4-4826-bf57-0771082c5779.Date
+
+relationship 29401cd5-61d2-4aa2-9d40-bf120f8d5602
+	fromColumn: 'Jira Story Task 2'.created_date
+	toColumn: 'LocalDateTable_a70f2671-c171-4255-9776-3e660f0fc545 2'.Date
+
+relationship c7d97ebf-bf61-400d-88d4-0f6a9129cb0b
+	fromColumn: 'Jira Story Task 2'.updated
+	toColumn: 'LocalDateTable_0ab3ba1a-faa8-416f-a713-1f6e921238ce 2'.Date
+
+relationship 35eabe4c-c3ce-4f41-9c73-93819f603184
+	fromColumn: 'Jira Story Task 2'.resolutiondate
+	toColumn: 'LocalDateTable_6a950f9d-2d04-440d-86f9-2db7f456f126 2'.Date
+
+relationship b469956b-0cbb-4374-8f87-930e1794877f
+	fromColumn: 'Jira Story Task 2'.start_date
+	toColumn: 'LocalDateTable_e5c3a9c9-75fa-42f3-acd2-0b57c3290240 2'.Date
+
+relationship 07e87836-8126-42be-b9e2-ac5e3e98c295
+	fromColumn: 'Jira Story Task 2'.end_date
+	toColumn: 'LocalDateTable_cfa1cd90-5ec1-45ae-90a8-8e0338465f39 2'.Date
+
+relationship ea705694-6be4-4bf3-888e-c2b9c797b0fa
+	fromColumn: 'Jira Story Task 2'.baseline_start_date
+	toColumn: 'LocalDateTable_58a43364-bcce-43c3-874f-0ab016fe777b 2'.Date
+
+relationship f3dd4447-e566-4314-babb-bc180706a574
+	fromColumn: 'Jira Story Task 2'.baseline_end_date
+	toColumn: 'LocalDateTable_3e82ade7-74e4-4826-bf57-0771082c5779 2'.Date
+
+relationship 247e15f8-8447-437f-876a-ba5b0b71d99b
+	fromColumn: 'Jira Story Task 3'.created_date
+	toColumn: 'LocalDateTable_a70f2671-c171-4255-9776-3e660f0fc545 3'.Date
+
+relationship ddb470b3-5497-4efc-b514-e50110f14f3e
+	fromColumn: 'Jira Story Task 3'.updated
+	toColumn: 'LocalDateTable_0ab3ba1a-faa8-416f-a713-1f6e921238ce 3'.Date
+
+relationship ebd47b4d-36e9-44c9-bf12-eae06e96a6bb
+	fromColumn: 'Jira Story Task 3'.resolutiondate
+	toColumn: 'LocalDateTable_6a950f9d-2d04-440d-86f9-2db7f456f126 3'.Date
+
+relationship c13758c6-dc5f-4e0a-8f7a-82e0fc358723
+	fromColumn: 'Jira Story Task 3'.start_date
+	toColumn: 'LocalDateTable_e5c3a9c9-75fa-42f3-acd2-0b57c3290240 3'.Date
+
+relationship 0fb47c6a-ee2d-456d-b32d-6088f67ae578
+	fromColumn: 'Jira Story Task 3'.end_date
+	toColumn: 'LocalDateTable_cfa1cd90-5ec1-45ae-90a8-8e0338465f39 3'.Date
+
+relationship 2ad7b187-0162-4201-8430-625fcc59776b
+	fromColumn: 'Jira Story Task 3'.baseline_start_date
+	toColumn: 'LocalDateTable_58a43364-bcce-43c3-874f-0ab016fe777b 3'.Date
+
+relationship 05d9ce9b-9ec4-46b3-bfbb-14a74add3934
+	fromColumn: 'Jira Story Task 3'.baseline_end_date
+	toColumn: 'LocalDateTable_3e82ade7-74e4-4826-bf57-0771082c5779 3'.Date
+
+relationship ae2869e8-7815-4c58-8111-6074d40407ff
+	fromColumn: 'Jira Story Task 4'.created_date
+	toColumn: 'LocalDateTable_a70f2671-c171-4255-9776-3e660f0fc545 4'.Date
+
+relationship 72e68416-bc16-4c1a-bc49-6832528d7afa
+	fromColumn: 'Jira Story Task 4'.updated
+	toColumn: 'LocalDateTable_0ab3ba1a-faa8-416f-a713-1f6e921238ce 4'.Date
+
+relationship 800bdbee-9046-4172-a540-a21829844cfb
+	fromColumn: 'Jira Story Task 4'.resolutiondate
+	toColumn: 'LocalDateTable_6a950f9d-2d04-440d-86f9-2db7f456f126 4'.Date
+
+relationship 87719b91-0daa-4326-9341-f3ed5ed4950b
+	fromColumn: 'Jira Story Task 4'.start_date
+	toColumn: 'LocalDateTable_e5c3a9c9-75fa-42f3-acd2-0b57c3290240 4'.Date
+
+relationship 74211ca5-851f-49e0-b4f0-12d7c61ceedd
+	fromColumn: 'Jira Story Task 4'.end_date
+	toColumn: 'LocalDateTable_cfa1cd90-5ec1-45ae-90a8-8e0338465f39 4'.Date
+
+relationship 8023a84c-9a2d-4dd5-9361-5a46e4eb2e76
+	fromColumn: 'Jira Story Task 4'.baseline_start_date
+	toColumn: 'LocalDateTable_58a43364-bcce-43c3-874f-0ab016fe777b 4'.Date
+
+relationship 43113aa2-063d-4042-8ebe-107b7951b2be
+	fromColumn: 'Jira Story Task 4'.baseline_end_date
+	toColumn: 'LocalDateTable_3e82ade7-74e4-4826-bf57-0771082c5779 4'.Date
+
+relationship 5b37ef5d-d9cf-4c59-8871-a49b5851d78d
+	fromColumn: 'Jira Release'.created_date
+	toColumn: LocalDateTable_c0c8e703-af2f-404b-8315-72066200071c.Date
+
+relationship 18502c91-fe05-4db9-8923-99b74f9c1dc9
+	fromColumn: 'Jira Release'.updated
+	toColumn: LocalDateTable_715caeb9-63d6-4273-bb92-2a350c7330fe.Date
+
+relationship a34c3a47-4646-4259-8952-76a84984b5bb
+	fromColumn: 'Jira Release'.resolutiondate
+	toColumn: LocalDateTable_f43693cb-3ecf-4c4a-a170-a399b8615f3d.Date
+
+relationship bebfdaac-2531-4754-b5ec-284c30faa5b0
+	fromColumn: 'Jira Release'.start_date
+	toColumn: LocalDateTable_27519f20-6093-4704-9f91-cde9e56c0abe.Date
+
+relationship 5d87b7bb-451f-4895-99ff-0493f6f130f4
+	fromColumn: 'Jira Release'.end_date
+	toColumn: LocalDateTable_f2fe12a6-cc61-4c73-9b98-1bd5931f7439.Date
+
+relationship 5d984949-d2f4-440f-9e29-2a69a6967e1f
+	fromColumn: 'Jira Release'.baseline_start_date
+	toColumn: LocalDateTable_9a55fbb6-be09-4a42-a109-021f8e3405d6.Date
+
+relationship adafae55-c826-4a73-a9fb-8cf184ca481d
+	fromColumn: 'Jira Release'.baseline_end_date
+	toColumn: LocalDateTable_1c2057f0-b5e8-45fd-b7f1-96e4867733f1.Date
+
+relationship 8c466f75-1e4c-4fc4-acfd-49de6755b1a1
+	fromColumn: 'Jira Epic'.created_date
+	toColumn: LocalDateTable_cd1990fc-554d-482e-93ee-f5f9a04cf2e8.Date
+
+relationship 65d41f6f-ac01-4bf1-b46e-bac0ada440a4
+	fromColumn: 'Jira Epic'.updated
+	toColumn: LocalDateTable_bea6c0b1-7f3e-421f-83f8-a7b760461ba9.Date
+
+relationship 5ca427f2-8a92-47e2-9309-09539f3f782b
+	fromColumn: 'Jira Epic'.resolutiondate
+	toColumn: LocalDateTable_1c25362b-6bda-48b7-ae05-4dc8fdc0d665.Date
+
+relationship dfce8b7c-230f-4766-9bf0-8c8ff40e1b84
+	fromColumn: 'Jira Epic'.start_date
+	toColumn: LocalDateTable_1b075f5a-8ff5-4288-b4e0-9412717911f7.Date
+
+relationship 4f5e6818-5abd-4101-903c-6d92b3139649
+	fromColumn: 'Jira Epic'.end_date
+	toColumn: LocalDateTable_061d91b7-93b3-48a5-ba36-839fdd693e68.Date
+
+relationship 1adbc0e1-223e-433b-bde6-52cf716132f1
+	fromColumn: 'Jira Epic'.baseline_start_date
+	toColumn: LocalDateTable_6d81de72-ebd1-4641-a609-3ac56a20e693.Date
+
+relationship e7642e26-06e2-490b-88ea-e9f7e1e70f71
+	fromColumn: 'Jira Epic'.baseline_end_date
+	toColumn: LocalDateTable_d99cbf0b-64b9-4e0a-ab8a-5d6f7605362e.Date
+
+relationship b3b5f014-b517-495d-9952-a479b5c1da12
+	fromColumn: 'Jira Release 2'.created_date
+	toColumn: 'LocalDateTable_c0c8e703-af2f-404b-8315-72066200071c 2'.Date
+
+relationship 38a7a75c-a8a0-4f00-baab-dfd7aa2fb866
+	fromColumn: 'Jira Release 2'.updated
+	toColumn: 'LocalDateTable_715caeb9-63d6-4273-bb92-2a350c7330fe 2'.Date
+
+relationship 899ee256-dfa1-421b-941e-9e1a8e862755
+	fromColumn: 'Jira Release 2'.resolutiondate
+	toColumn: 'LocalDateTable_f43693cb-3ecf-4c4a-a170-a399b8615f3d 2'.Date
+
+relationship 09f7188b-86d8-4ebf-9d94-d1f0bf580a86
+	fromColumn: 'Jira Release 2'.start_date
+	toColumn: 'LocalDateTable_27519f20-6093-4704-9f91-cde9e56c0abe 2'.Date
+
+relationship ed09ca72-bfe8-42b0-81cc-3b0452b1855e
+	fromColumn: 'Jira Release 2'.end_date
+	toColumn: 'LocalDateTable_f2fe12a6-cc61-4c73-9b98-1bd5931f7439 2'.Date
+
+relationship 7e4eb0cf-e19c-4e8d-bab9-0bbfc39d1189
+	fromColumn: 'Jira Release 2'.baseline_start_date
+	toColumn: 'LocalDateTable_9a55fbb6-be09-4a42-a109-021f8e3405d6 2'.Date
+
+relationship af80966a-9c4d-4e2c-8785-047351ced865
+	fromColumn: 'Jira Release 2'.baseline_end_date
+	toColumn: 'LocalDateTable_1c2057f0-b5e8-45fd-b7f1-96e4867733f1 2'.Date
+
+relationship f5b08f4e-2a3c-48e7-b2fe-af492a8aeb61
+	fromColumn: 'Jira Epic 2'.created_date
+	toColumn: 'LocalDateTable_cd1990fc-554d-482e-93ee-f5f9a04cf2e8 2'.Date
+
+relationship b2985e66-92b6-4d5f-aba2-9450f134e794
+	fromColumn: 'Jira Epic 2'.updated
+	toColumn: 'LocalDateTable_bea6c0b1-7f3e-421f-83f8-a7b760461ba9 2'.Date
+
+relationship f59b4b50-37bd-4e14-921b-94e6e2b56456
+	fromColumn: 'Jira Epic 2'.resolutiondate
+	toColumn: 'LocalDateTable_1c25362b-6bda-48b7-ae05-4dc8fdc0d665 2'.Date
+
+relationship ee3d5f27-3305-4db5-9f11-85f4ee740211
+	fromColumn: 'Jira Epic 2'.start_date
+	toColumn: 'LocalDateTable_1b075f5a-8ff5-4288-b4e0-9412717911f7 2'.Date
+
+relationship 7f3d627f-b94e-40ca-a943-158744854bba
+	fromColumn: 'Jira Epic 2'.end_date
+	toColumn: 'LocalDateTable_061d91b7-93b3-48a5-ba36-839fdd693e68 2'.Date
+
+relationship e39b370c-ce0d-4c21-bde8-56f71c8abf2a
+	fromColumn: 'Jira Epic 2'.baseline_start_date
+	toColumn: 'LocalDateTable_6d81de72-ebd1-4641-a609-3ac56a20e693 2'.Date
+
+relationship 1789b8c9-1e0f-4aa0-8487-224d923d5a0a
+	fromColumn: 'Jira Epic 2'.baseline_end_date
+	toColumn: 'LocalDateTable_d99cbf0b-64b9-4e0a-ab8a-5d6f7605362e 2'.Date
+
+relationship d1792d03-5ebd-45a8-817e-e3aa7d655c95
+	fromColumn: 'Jira Release 3'.created_date
+	toColumn: 'LocalDateTable_c0c8e703-af2f-404b-8315-72066200071c 3'.Date
+
+relationship 8626240c-433a-4cbc-95e8-d13ca7bca633
+	fromColumn: 'Jira Release 3'.updated
+	toColumn: 'LocalDateTable_715caeb9-63d6-4273-bb92-2a350c7330fe 3'.Date
+
+relationship 44f8cf44-0e65-48fc-bd63-ca1b09528015
+	fromColumn: 'Jira Release 3'.resolutiondate
+	toColumn: 'LocalDateTable_f43693cb-3ecf-4c4a-a170-a399b8615f3d 3'.Date
+
+relationship bbae3925-cb83-4dd5-8320-88657fe10eb0
+	fromColumn: 'Jira Release 3'.start_date
+	toColumn: 'LocalDateTable_27519f20-6093-4704-9f91-cde9e56c0abe 3'.Date
+
+relationship 7a530a92-c8f4-45ab-98e3-b989f160eef4
+	fromColumn: 'Jira Release 3'.end_date
+	toColumn: 'LocalDateTable_f2fe12a6-cc61-4c73-9b98-1bd5931f7439 3'.Date
+
+relationship 67ab0024-f6b0-414c-96ca-f30055b549ae
+	fromColumn: 'Jira Release 3'.baseline_start_date
+	toColumn: 'LocalDateTable_9a55fbb6-be09-4a42-a109-021f8e3405d6 3'.Date
+
+relationship 7f8dde8e-3c05-4df7-9a57-3f87db362de4
+	fromColumn: 'Jira Release 3'.baseline_end_date
+	toColumn: 'LocalDateTable_1c2057f0-b5e8-45fd-b7f1-96e4867733f1 3'.Date
+
+relationship 18f37478-4e46-4d30-abac-240b6816c6c8
+	fromColumn: 'Jira Epic 3'.created_date
+	toColumn: 'LocalDateTable_cd1990fc-554d-482e-93ee-f5f9a04cf2e8 3'.Date
+
+relationship 858201b5-6152-4c4b-acde-b9af57c1e983
+	fromColumn: 'Jira Epic 3'.updated
+	toColumn: 'LocalDateTable_bea6c0b1-7f3e-421f-83f8-a7b760461ba9 3'.Date
+
+relationship 5612d7e8-8a17-4aea-a676-227f865cb2be
+	fromColumn: 'Jira Epic 3'.resolutiondate
+	toColumn: 'LocalDateTable_1c25362b-6bda-48b7-ae05-4dc8fdc0d665 3'.Date
+
+relationship 88a62c97-da68-493c-9031-a4d585dcac68
+	fromColumn: 'Jira Epic 3'.start_date
+	toColumn: 'LocalDateTable_1b075f5a-8ff5-4288-b4e0-9412717911f7 3'.Date
+
+relationship 24289874-0992-42b8-9236-1985f1aafd96
+	fromColumn: 'Jira Epic 3'.end_date
+	toColumn: 'LocalDateTable_061d91b7-93b3-48a5-ba36-839fdd693e68 3'.Date
+
+relationship a67fab5f-8389-480a-9aff-63de39aebbf1
+	fromColumn: 'Jira Epic 3'.baseline_start_date
+	toColumn: 'LocalDateTable_6d81de72-ebd1-4641-a609-3ac56a20e693 3'.Date
+
+relationship 3cde6aa1-f2f5-4c80-90e9-70cdf87ad6a8
+	fromColumn: 'Jira Epic 3'.baseline_end_date
+	toColumn: 'LocalDateTable_d99cbf0b-64b9-4e0a-ab8a-5d6f7605362e 3'.Date
+
+relationship d6998eb7-64cd-4a18-bdc9-0626372a6a92
+	fromColumn: 'Jira Epic 4'.created_date
+	toColumn: 'LocalDateTable_cd1990fc-554d-482e-93ee-f5f9a04cf2e8 4'.Date
+
+relationship fab3230c-7f92-423d-96a5-d8ea808160bf
+	fromColumn: 'Jira Epic 4'.updated
+	toColumn: 'LocalDateTable_bea6c0b1-7f3e-421f-83f8-a7b760461ba9 4'.Date
+
+relationship d7d53fb8-7a3e-4a8b-8a7f-f8ce88599fa2
+	fromColumn: 'Jira Epic 4'.resolutiondate
+	toColumn: 'LocalDateTable_1c25362b-6bda-48b7-ae05-4dc8fdc0d665 4'.Date
+
+relationship e82a2289-5eef-40d5-9a76-5d67bf1cd318
+	fromColumn: 'Jira Epic 4'.start_date
+	toColumn: 'LocalDateTable_1b075f5a-8ff5-4288-b4e0-9412717911f7 4'.Date
+
+relationship 01454ae5-eb44-42b6-8f0a-685a12f9d6f8
+	fromColumn: 'Jira Epic 4'.end_date
+	toColumn: 'LocalDateTable_061d91b7-93b3-48a5-ba36-839fdd693e68 4'.Date
+
+relationship 2e3e39c7-86a2-4c3f-9a28-397318ed4c88
+	fromColumn: 'Jira Epic 4'.baseline_start_date
+	toColumn: 'LocalDateTable_6d81de72-ebd1-4641-a609-3ac56a20e693 4'.Date
+
+relationship 2098ec6e-1002-4846-844b-4c1fe22d3e56
+	fromColumn: 'Jira Epic 4'.baseline_end_date
+	toColumn: 'LocalDateTable_d99cbf0b-64b9-4e0a-ab8a-5d6f7605362e 4'.Date
+
+relationship 5222a4b6-9610-4c2b-3a48-b79848d7fff5
+	fromColumn: 'MBI Transition Status'.from_status
+	toColumn: 'Workflow Fasi MBI 2'.Status
+
+relationship 9be1790e-00ab-4675-a146-37729dfcdf54
+	isActive: false
+	fromColumn: 'Jira Issue Detail'.epiclink
+	toColumn: 'Jira Epic'.issue_key
+
+relationship c2365dee-49aa-4679-9bc8-2cb0d0d7cd44
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Epic'.feature_delivery
+	toColumn: 'Jira Feature Delivery'.'Issue Key [Issue]'
+
+relationship 663155f7-60e2-4de0-96ca-bb47f1de6385
+	isActive: false
+	fromColumn: 'Jira Issue Detail 2'.epiclink
+	toColumn: 'Jira Epic 2'.issue_key
+
+relationship 59429a5e-6cb3-4641-a106-a1a4406c1e97
+	isActive: false
+	fromColumn: 'Jira Issue Detail 3'.epiclink
+	toColumn: 'Jira Epic 4'.issue_key
+
+relationship 341917b5-e2a2-41ec-b5c5-29793b9e4a33
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Epic 4'.feature_delivery
+	toColumn: 'Jira Feature Delivery 2'.'Issue Key [Issue]'
+
+relationship 75fc7304-3365-a0a3-9df4-8ec8be276bf8
+	securityFilteringBehavior: none
+	fromColumn: 'Jira Initiative Estimation'.issue_status
+	toColumn: 'Workflow Fasi IE 3'.Status
+
+relationship f1e7a4c2-6416-4941-b7a1-ce126dfa0c64
+	fromColumn: 'Jira Initiative Estimation'.issue_created_date
+	toColumn: LocalDateTable_930c31e7-3e31-447a-a9de-fc9851e5db88.Date
+
+relationship 462d45a4-c21a-430d-bdac-d9716d895227
+	fromColumn: 'Jira Initiative Estimation'.issue_resolution_date
+	toColumn: LocalDateTable_84c9d01a-7cc4-49f1-b922-ce01cb3beb04.Date
+
+relationship b409a74d-ecd9-4385-9316-261bf8b66a93
+	fromColumn: 'Jira Initiative Estimation'.issue_baseline_start_date
+	toColumn: LocalDateTable_5506efa8-e422-49b3-ad0a-6f9b65e810f3.Date
+
+relationship 981b6498-51fb-42c1-a765-e34e427a87b4
+	fromColumn: 'Jira Initiative Estimation'.issue_baseline_end_date
+	toColumn: LocalDateTable_e690ca00-ae2c-42ab-bdff-f10d3d7eb499.Date
+
+relationship 048ffaae-98c3-4c3c-bb4a-c7f2c8f74ada
+	fromColumn: 'Jira Initiative Estimation'.project_key
+	toColumn: 'Jira Project List'.Project_Key
+
+relationship aac1ba18-d4ac-4a4c-bdce-daf925707678
+	fromColumn: 'Jira Xray Internal Test'.start_date
+	toColumn: LocalDateTable_abfbeff5-253c-42e1-8c40-d8c23ce2fa2c.Date
+
+relationship 0614cbed-0ce6-4546-b557-8c5fa704b764
+	fromColumn: 'Jira Xray Internal Test'.end_date
+	toColumn: LocalDateTable_e26bd9b7-df9f-4868-8fd7-7cbfcc359ed6.Date
+
+relationship 0ec9c250-9da7-4310-999f-574d1a5835da
+	fromColumn: 'Jira Xray Internal Test'.baseline_start_date
+	toColumn: LocalDateTable_00b73f72-d65b-475c-a114-aee11c4940b1.Date
+
+relationship b4e9f53e-a543-4ac9-b524-4dcb205d72a3
+	fromColumn: 'Jira Xray Internal Test'.baseline_end_date
+	toColumn: LocalDateTable_59f94ef1-cbe3-4dc4-9aa8-70f7f9681cc9.Date
+
+relationship e320da4e-bfc8-4901-a709-16e38e6ebf4b
+	fromColumn: 'Jira Xray Test UAT'.start_date
+	toColumn: LocalDateTable_50ae0311-eea1-4f2b-aa3e-fa2193471a30.Date
+
+relationship bdbc4069-71e1-47ec-b72c-166c793ac9d9
+	fromColumn: 'Jira Xray Test UAT'.end_date
+	toColumn: LocalDateTable_22e55bc8-bcb4-43ad-86f1-508aa9936b85.Date
+
+relationship 4669eded-1dc7-45d9-8b18-e87d3dec210c
+	fromColumn: 'Jira Xray Test UAT'.baseline_start_date
+	toColumn: LocalDateTable_61ba3f99-9521-4e25-999f-72593eafc999.Date
+
+relationship 33ce22b4-39b7-4651-9557-27446380b851
+	fromColumn: 'Jira Xray Test UAT'.baseline_end_date
+	toColumn: LocalDateTable_169b54b8-41b7-4b75-b839-cee3f90c3459.Date
+
+relationship f45c00d4-ad80-4e8e-80c3-b811ddf123bd
+	fromColumn: 'Jira Xray Internal Test 2'.start_date
+	toColumn: 'LocalDateTable_abfbeff5-253c-42e1-8c40-d8c23ce2fa2c 2'.Date
+
+relationship 3fad2f9c-63dc-4ed3-929a-ebf030a845f7
+	fromColumn: 'Jira Xray Internal Test 2'.end_date
+	toColumn: 'LocalDateTable_e26bd9b7-df9f-4868-8fd7-7cbfcc359ed6 2'.Date
+
+relationship 51c7964d-6fba-4a8f-8dd4-bd04b9b4d0df
+	fromColumn: 'Jira Xray Internal Test 2'.baseline_start_date
+	toColumn: 'LocalDateTable_00b73f72-d65b-475c-a114-aee11c4940b1 2'.Date
+
+relationship e69f0221-7b18-4e00-a65d-68de8422bbfb
+	fromColumn: 'Jira Xray Internal Test 2'.baseline_end_date
+	toColumn: 'LocalDateTable_59f94ef1-cbe3-4dc4-9aa8-70f7f9681cc9 2'.Date
+
+relationship 6fd2573f-510c-4503-a6b0-b6cfcbc172ac
+	fromColumn: 'Jira Xray Test UAT 2'.start_date
+	toColumn: 'LocalDateTable_50ae0311-eea1-4f2b-aa3e-fa2193471a30 2'.Date
+
+relationship b98ac1dc-b894-4333-9621-8ce33a00f963
+	fromColumn: 'Jira Xray Test UAT 2'.end_date
+	toColumn: 'LocalDateTable_22e55bc8-bcb4-43ad-86f1-508aa9936b85 2'.Date
+
+relationship a3248d3e-68f2-42f7-8a6b-2e8bd541850a
+	fromColumn: 'Jira Xray Test UAT 2'.baseline_start_date
+	toColumn: 'LocalDateTable_61ba3f99-9521-4e25-999f-72593eafc999 2'.Date
+
+relationship 71009908-f1e9-4b87-b868-a95698159007
+	fromColumn: 'Jira Xray Test UAT 2'.baseline_end_date
+	toColumn: 'LocalDateTable_169b54b8-41b7-4b75-b839-cee3f90c3459 2'.Date
+
+relationship de5030c3-ce16-4f69-8643-24b1637373d8
+	fromColumn: 'Jira Xray Internal Test 3'.start_date
+	toColumn: 'LocalDateTable_abfbeff5-253c-42e1-8c40-d8c23ce2fa2c 3'.Date
+
+relationship 97ca8778-5bf1-4f12-bb9f-575d2ebed7fd
+	fromColumn: 'Jira Xray Internal Test 3'.end_date
+	toColumn: 'LocalDateTable_e26bd9b7-df9f-4868-8fd7-7cbfcc359ed6 3'.Date
+
+relationship 690e01e5-f9f7-4fca-9c2b-f085454b0190
+	fromColumn: 'Jira Xray Internal Test 3'.baseline_start_date
+	toColumn: 'LocalDateTable_00b73f72-d65b-475c-a114-aee11c4940b1 3'.Date
+
+relationship d30452f2-c729-4af7-b7ce-77fe6da32d49
+	fromColumn: 'Jira Xray Internal Test 3'.baseline_end_date
+	toColumn: 'LocalDateTable_59f94ef1-cbe3-4dc4-9aa8-70f7f9681cc9 3'.Date
+
+relationship dea5d4ac-e996-4e01-9465-fa846ebdb095
+	fromColumn: 'Jira Xray Test UAT 3'.start_date
+	toColumn: 'LocalDateTable_50ae0311-eea1-4f2b-aa3e-fa2193471a30 3'.Date
+
+relationship 565e280d-8fe4-4e8d-a0da-65842af97b8d
+	fromColumn: 'Jira Xray Test UAT 3'.end_date
+	toColumn: 'LocalDateTable_22e55bc8-bcb4-43ad-86f1-508aa9936b85 3'.Date
+
+relationship bbefaf10-551a-4e42-8697-8324204b2dc5
+	fromColumn: 'Jira Xray Test UAT 3'.baseline_start_date
+	toColumn: 'LocalDateTable_61ba3f99-9521-4e25-999f-72593eafc999 3'.Date
+
+relationship af753f58-8664-4b1c-ba8f-22adb135a693
+	fromColumn: 'Jira Xray Test UAT 3'.baseline_end_date
+	toColumn: 'LocalDateTable_169b54b8-41b7-4b75-b839-cee3f90c3459 3'.Date
+
+relationship f4069d35-2cea-4f4b-a240-fc48634a29af
+	fromColumn: 'Jira Xray Internal Test 4'.start_date
+	toColumn: 'LocalDateTable_abfbeff5-253c-42e1-8c40-d8c23ce2fa2c 4'.Date
+
+relationship 30a60e08-7afc-4903-929b-092d9cc9db32
+	fromColumn: 'Jira Xray Internal Test 4'.end_date
+	toColumn: 'LocalDateTable_e26bd9b7-df9f-4868-8fd7-7cbfcc359ed6 4'.Date
+
+relationship e64bee9a-7763-44d9-9c92-621625c9b6d4
+	fromColumn: 'Jira Xray Internal Test 4'.baseline_start_date
+	toColumn: 'LocalDateTable_00b73f72-d65b-475c-a114-aee11c4940b1 4'.Date
+
+relationship 2a76ad0d-e83a-4e8e-a254-012a41f5072d
+	fromColumn: 'Jira Xray Internal Test 4'.baseline_end_date
+	toColumn: 'LocalDateTable_59f94ef1-cbe3-4dc4-9aa8-70f7f9681cc9 4'.Date
+
+relationship ac4424e5-2000-422a-afee-d9087b3c93e6
+	fromColumn: 'Jira Xray Test UAT 4'.start_date
+	toColumn: 'LocalDateTable_50ae0311-eea1-4f2b-aa3e-fa2193471a30 4'.Date
+
+relationship 286e1efe-0184-4b7c-90be-14c3e4bb6096
+	fromColumn: 'Jira Xray Test UAT 4'.end_date
+	toColumn: 'LocalDateTable_22e55bc8-bcb4-43ad-86f1-508aa9936b85 4'.Date
+
+relationship c1f43a30-42ba-4f61-8e29-6bba767340e6
+	fromColumn: 'Jira Xray Test UAT 4'.baseline_start_date
+	toColumn: 'LocalDateTable_61ba3f99-9521-4e25-999f-72593eafc999 4'.Date
+
+relationship 1a218398-af49-4e9c-a874-2b654e5dc270
+	fromColumn: 'Jira Xray Test UAT 4'.baseline_end_date
+	toColumn: 'LocalDateTable_169b54b8-41b7-4b75-b839-cee3f90c3459 4'.Date
+
+relationship bc5a1783-134e-43d9-9785-b2ab5caeb885
+	fromColumn: 'Jira Business Need'.'Issue resolution date'
+	toColumn: LocalDateTable_fd743789-b238-4569-b1ff-5a81a285d479.Date
+
+relationship 5199538d-25a1-48df-9fec-0acc4397909f
+	fromColumn: 'Jira Business Need'.'Issue Baseline start date'
+	toColumn: LocalDateTable_12998bb6-5704-4e8f-ba6b-b1584b9b2d03.Date
+
+relationship 455f9d74-1791-49e5-9645-549e048402fb
+	fromColumn: 'Jira Business Need'.'Issue Baseline end date'
+	toColumn: LocalDateTable_ef09b6cd-4fad-4cbc-856e-5129a040fa19.Date
+
+relationship f640e049-f939-46cc-b4a2-c21e9054458c
+	fromColumn: 'Jira Business Need'.'Issue Start date'
+	toColumn: LocalDateTable_1dab56a6-9134-4bed-b792-a6dc50ba07f9.Date
+
+relationship ad4b289b-6aa7-4efa-b194-939f86c38d8c
+	fromColumn: 'Jira Business Need'.'Issue End date'
+	toColumn: LocalDateTable_598ac48d-42b2-4918-9a97-edddb2529c92.Date
+
+relationship bc60c05f-8db3-4320-afcc-8e0a30f20ac9
+	isActive: false
+	fromColumn: 'Jira Business Need'.'Project Key'
+	toColumn: 'Jira Project List'.Project_Key
+
+relationship d5787dc6-4017-4209-82bf-bb000f974246
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira ICR FD relation'.ICR
+	toColumn: 'Jira ICR'.Issue
+
+relationship 982b2f64-8417-4f7f-a4bf-fd69ce9cbb75
+	fromColumn: 'Confluence Comala Activity'.loaded_at
+	toColumn: LocalDateTable_647975a0-05be-449a-9570-ce093d0ca43a.Date
+
+relationship 105177b4-be63-44a4-8e9c-ecdb28690ab3
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Confluence Comala Activity'.page_id
+	toColumn: 'Confluence Comala Issue Link'.pageid
+
+relationship c167fda8-83b3-4e83-9764-070291703f17
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira ICR FD relation 2'.ICR
+	toColumn: 'Jira ICR 2'.Issue
+
+relationship eacb1270-39e6-4e80-b150-bb1d4f7a26e5
+	fromColumn: 'Confluence Comala Activity 2'.loaded_at
+	toColumn: 'LocalDateTable_647975a0-05be-449a-9570-ce093d0ca43a 2'.Date
+
+relationship 83f2df5e-3a3d-4d9d-a233-2b3e14eacf05
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Confluence Comala Activity 2'.page_id
+	toColumn: 'Confluence Comala Issue Link 2'.pageid
+
+relationship fa5df089-758c-46f9-8d6b-b76d7b3aeefd
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira ICR FD relation 3'.ICR
+	toColumn: 'Jira ICR 3'.Issue
+
+relationship fa304368-b73d-4417-96b7-89649d804f00
+	fromColumn: 'Confluence Comala Activity 3'.loaded_at
+	toColumn: 'LocalDateTable_647975a0-05be-449a-9570-ce093d0ca43a 3'.Date
+
+relationship bab426f3-4cbb-40c5-a660-4a527fbf3751
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Confluence Comala Activity 3'.page_id
+	toColumn: 'Confluence Comala Issue Link 3'.pageid
+
+relationship 55eb3aac-0570-4205-9da8-71631b3728fe
+	fromColumn: 'Confluence Comala Activity 4'.loaded_at
+	toColumn: 'LocalDateTable_647975a0-05be-449a-9570-ce093d0ca43a 4'.Date
+
+relationship efcfd850-194d-48db-8cde-9c097fbdf28f
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Confluence Comala Activity 4'.page_id
+	toColumn: 'Confluence Comala Issue Link 4'.pageid
+
+relationship c657d1b3-5556-b306-3140-709b020ff123
+	crossFilteringBehavior: bothDirections
+	securityFilteringBehavior: none
+	fromColumn: 'Link MBI'.issue_key
+	toColumn: 'Jira Macro Business Initiative'.'Issue key'
+
+relationship 4d0947ee-8ed1-4a0b-add0-297ba347c0f8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Comala Activity MBI'.loaded_at
+	toColumn: LocalDateTable_d44c5a46-62bf-4a4b-b1d7-5eafa8335493.Date
+
+relationship 8016e22f-38d7-4924-ac1b-b4a46b27f305
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Comala Activity MBI'.'Date Convertita'
+	toColumn: LocalDateTable_67b16a1f-4472-4160-a5b3-c1f7161933cd.Date
+
+relationship 4351bf57-782d-ed3b-f5dc-8b7891337c6e
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Comala Activity MBI'.page_id
+	toColumn: 'Link MBI'.pageid
+
+relationship a9b228c5-de86-49ea-a142-30a074c6e219
+	fromColumn: 'Jira Business Need'.'BSN Legal Entity Code'
+	toColumn: 'Business Legal Entity'.Code
+
+relationship bb4e1268-2497-4148-9479-bc69cb2312da
+	fromColumn: Country.Code
+	toColumn: 'Business Legal Entity'.Code
+
+relationship 8a73e601-d82f-4f2d-8db1-d05c67a282a6
+	fromColumn: 'Country 2'.Code
+	toColumn: 'Business Legal Entity 2'.Code
+
+relationship 1bc8dc6b-8e4e-4ba4-8f53-892bee790a6c
+	fromColumn: 'Country 3'.Code
+	toColumn: 'Business Legal Entity 3'.Code
+
+relationship 67629037-a5b4-4b36-a80b-fcda5a073431
+	fromColumn: 'Country 4'.Code
+	toColumn: 'Business Legal Entity 4'.Code
+
+relationship b04220f6-fcab-341b-c1f6-56261d4c45b7
+	securityFilteringBehavior: none
+	fromColumn: 'Jira Feature Delivery 2'.'Issue status'
+	toColumn: 'Workflow Fasi FD Journey'.Status
+
+relationship b464db9e-e57e-47bb-8799-bda748cfc246
+	fromColumn: 'Last Data Sync'.started_at
+	toColumn: LocalDateTable_9bf91a9f-b7a4-4bb6-8e77-f47597ff8348.Date
+
+relationship 8b85a639-1072-419d-8843-5f5ee1ced6f8
+	fromColumn: 'Last Data Sync'.finished_at
+	toColumn: LocalDateTable_9a4ce45a-a444-4a01-ae2a-6ed26f6e2dc6.Date
+
+relationship 24c682b3-e5b1-2f83-9599-60559ed58708
+	securityFilteringBehavior: none
+	fromColumn: 'Jira Business Feature 2'.'Issue status'
+	toColumn: 'Workflow Fasi BF Journey'.Status
+
+relationship 9266df3b-717b-5048-f8cb-7afc257d66f6
+	fromColumn: 'BF Transition Status'.from_status
+	toColumn: 'Workflow Fasi BF Journey 2'.Status
+
+relationship 434a6474-4671-f712-cd43-7d442b494ef1
+	securityFilteringBehavior: none
+	fromColumn: 'Jira Epic'.epic_status
+	toColumn: 'Workflow Fasi Epic Journey'.Status
+
+relationship 1332cfa3-53dc-494e-b76c-8aab0d9cf46e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'BF Transition Status Confluence'.transition_date
+	toColumn: LocalDateTable_fa85684d-ae3b-4e56-9d37-13afb1ff6301.Date
+
+relationship df3563a4-8875-829f-c95e-90fe734550cb
+	crossFilteringBehavior: bothDirections
+	securityFilteringBehavior: none
+	fromColumn: 'BF Transition Status Confluence'.issue_key
+	toColumn: 'Jira Business Feature'.'Issue key'
+
+relationship b8386d92-87be-46f1-8fcb-d77c037538bf
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'FD Transition Status Confluence'.transition_date
+	toColumn: LocalDateTable_47ea5b06-a213-4b15-bfb6-b2d6d56ee741.Date
+
+relationship a39e7974-20e5-58cf-5eb8-7c6930a846ed
+	crossFilteringBehavior: bothDirections
+	securityFilteringBehavior: none
+	fromColumn: 'FD Transition Status Confluence'.issue_key
+	toColumn: 'Jira Feature Delivery'.'Issue Key [Issue]'
+
+relationship 48b48211-b73e-405c-9fb4-d4453b67763f
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira ICR FD relation'.'Feature Delivery'
+	toColumn: 'Jira Feature Delivery'.'Issue Key [Issue]'
+
+relationship 748d77d1-dea3-49a4-8d10-d2a00d5418dc
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira ICR FD relation 4'.'Feature Delivery'
+	toColumn: 'Jira Feature Delivery 2'.'Issue Key [Issue]'
+
+relationship 9b165c95-c7ac-8e52-188a-2f717e9caf16
+	securityFilteringBehavior: none
+	fromColumn: 'Jira Business Feature'.'Issue status'
+	toColumn: 'Workflow Fasi BF Journey Confluence'.Status
+
+relationship 0f370818-dbbf-ece7-ddc1-21062fc060a4
+	fromColumn: 'BF Transition Status Confluence'.from_status
+	toColumn: 'Workflow Fasi BF Journey Confluence 2'.Status
+
+relationship b3ba21d0-ce34-4caa-83e4-cea7719dee83
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Comala Activity FD'.loaded_at
+	toColumn: LocalDateTable_18c39cb2-4099-4f8c-9f88-a67a543b2ebe.Date
+
+relationship 4518c9a5-f021-454b-a331-25fb2724af48
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Comala Activity FD'.'Date Convertita'
+	toColumn: LocalDateTable_0716b164-ad0d-4bc7-bb07-344e18c49409.Date
+
+relationship 4d64f8fd-1d5f-4a3a-b2d4-9f52259fefd4
+	crossFilteringBehavior: bothDirections
+	toCardinality: many
+	fromColumn: 'Comala Activity FD'.page_id
+	toColumn: 'Link FD'.pageid
+
+relationship 1205697a-d2f6-57bc-eaf0-d302a2f4580c
+	crossFilteringBehavior: bothDirections
+	securityFilteringBehavior: none
+	fromColumn: 'Link FD'.issue_key
+	toColumn: 'Jira Feature Delivery'.'Issue Key [Issue]'
+
+relationship 874b59ec-011f-c2db-0d3b-d9ef0557b31b
+	securityFilteringBehavior: none
+	fromColumn: 'Jira Feature Delivery'.'Issue status'
+	toColumn: 'Workflow Fasi FD Journey Confluence'.Status
+
+relationship 2e8f6ce2-fc23-48eb-a460-48e39a5771a4
+	fromColumn: 'Confluence Comala Activity'.page_id
+	toColumn: 'Confluence Comala Pages'.pageid
+
+relationship d0391914-156f-41b5-aff4-da544949d8a6
+	fromColumn: 'Confluence BF Pages'.pageid
+	toColumn: 'Confluence Comala Pages'.pageid
+
+relationship 55905acb-7755-4a7f-909b-cc5dd886ced2
+	fromColumn: 'Confluence BF Pages'.issue_key
+	toColumn: 'Jira Business Feature'.'Issue Key [Issue]'
+
+relationship ab5e4b98-4d8c-4d94-9f6d-59041fe0a572
+	isActive: false
+	fromColumn: 'Confluence FD Pages'.issue_key
+	toColumn: 'Jira Issue Detail'.issue_key
+
+relationship c1997a36-b36b-4e4e-979a-19494df83f3d
+	fromColumn: 'Confluence FD Pages'.pageid
+	toColumn: 'Confluence Comala Pages'.pageid
+
+relationship 000db196-5edd-427b-9343-bc51920d017e
+	fromColumn: 'Confluence FD Pages'.issue_key
+	toColumn: 'Jira Feature Delivery'.'Issue Key [Issue]'
+
+relationship c276b44f-636b-4807-858e-c61a4b6db0d9
+	fromColumn: 'Confluence MBI Pages'.pageid
+	toColumn: 'Confluence Comala Pages'.pageid
+
+relationship a607b619-22d3-433b-b59b-6c47d4c706c5
+	fromColumn: 'Confluence MBI Pages'.issue_key
+	toColumn: 'Jira Macro Business Initiative'.'Issue key'
+
+relationship 55cc5f9a-5c57-4fd4-94d0-3bac69f07d92
+	fromColumn: 'Confluence IE Pages'.pageid
+	toColumn: 'Confluence Comala Pages'.pageid
+
+relationship 0d6a4a5a-0231-48a9-9482-03f1c5848e71
+	fromColumn: 'Confluence IE Pages'.issue_key
+	toColumn: 'Jira Initiative Estimation'.issue_key
+
+relationship 0cac1051-8818-4d67-8a84-c97e9cfe6602
+	fromColumn: 'Confluence Comala Activity 2'.page_id
+	toColumn: 'Confluence Comala Pages 2'.pageid
+
+relationship 3d8fb43e-ee71-4213-a8ac-04168235388e
+	fromColumn: 'Confluence BF Pages 2'.pageid
+	toColumn: 'Confluence Comala Pages 2'.pageid
+
+relationship aa98a8e0-495f-4c31-b37f-420aa4671343
+	isActive: false
+	fromColumn: 'Confluence FD Pages 2'.issue_key
+	toColumn: 'Jira Issue Detail 2'.issue_key
+
+relationship d661e1c8-bb47-482b-9402-62129603be5c
+	fromColumn: 'Confluence FD Pages 2'.pageid
+	toColumn: 'Confluence Comala Pages 2'.pageid
+
+relationship 2c04b0ec-4af0-423f-843c-9990678dcdb8
+	fromColumn: 'Confluence MBI Pages 2'.pageid
+	toColumn: 'Confluence Comala Pages 2'.pageid
+
+relationship 355a280e-8ee8-4267-82db-d0924c95c0fa
+	fromColumn: 'Confluence IE Pages 2'.pageid
+	toColumn: 'Confluence Comala Pages 2'.pageid
+
+relationship edd133c4-50fd-45be-9f84-9c49d160aba9
+	fromColumn: 'Confluence Comala Activity 3'.page_id
+	toColumn: 'Confluence Comala Pages 3'.pageid
+
+relationship d6eae012-64e4-4945-8033-4a9a1adea9a6
+	fromColumn: 'Confluence BF Pages 3'.pageid
+	toColumn: 'Confluence Comala Pages 3'.pageid
+
+relationship 2928d73a-1a63-40b4-a1f5-729c066d0b80
+	fromColumn: 'Confluence FD Pages 3'.pageid
+	toColumn: 'Confluence Comala Pages 3'.pageid
+
+relationship 2fad7eb7-5f13-413c-adbb-afa61600f8bc
+	fromColumn: 'Confluence MBI Pages 3'.pageid
+	toColumn: 'Confluence Comala Pages 3'.pageid
+
+relationship 28922ddc-f3a3-4994-bee7-805044fd4d89
+	fromColumn: 'Confluence IE Pages 3'.pageid
+	toColumn: 'Confluence Comala Pages 3'.pageid
+
+relationship ebe86748-3562-4353-8ef0-b2fa92955a6d
+	fromColumn: 'Confluence Comala Activity 4'.page_id
+	toColumn: 'Confluence Comala Pages 4'.pageid
+
+relationship be0ebfce-e7dd-49d8-a11e-9beb6b5fe10f
+	fromColumn: 'Confluence BF Pages 4'.pageid
+	toColumn: 'Confluence Comala Pages 4'.pageid
+
+relationship cebc46b6-d3b6-45e3-b6c2-1da45207502a
+	fromColumn: 'Confluence BF Pages 4'.issue_key
+	toColumn: 'Jira Business Feature 2'.'Issue Key [Issue]'
+
+relationship 993712ac-41e1-404e-bf78-2e780128a6a6
+	isActive: false
+	fromColumn: 'Confluence FD Pages 4'.issue_key
+	toColumn: 'Jira Issue Detail 3'.issue_key
+
+relationship c8584959-382c-4f35-89f0-1c02c9039044
+	fromColumn: 'Confluence FD Pages 4'.pageid
+	toColumn: 'Confluence Comala Pages 4'.pageid
+
+relationship 653c813d-8e71-4f29-9f1d-796b604e4479
+	fromColumn: 'Confluence FD Pages 4'.issue_key
+	toColumn: 'Jira Feature Delivery 2'.'Issue Key [Issue]'
+
+relationship b3db4772-5c02-4ec5-9d94-aa65eeb1375d
+	fromColumn: 'Confluence MBI Pages 4'.pageid
+	toColumn: 'Confluence Comala Pages 4'.pageid
+
+relationship 1fddcac8-bea8-4e3d-8b15-900c3cca03c7
+	fromColumn: 'Confluence IE Pages 4'.pageid
+	toColumn: 'Confluence Comala Pages 4'.pageid
+
+relationship 54566035-360f-471a-8185-a40e7bb775f2
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Demand'.'Issue Business Need'
+	toColumn: 'Jira Business Need'.'Issue key'
+
+relationship f87f2a5e-dffd-4d29-8143-8951dbe4a863
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Change Status IE FD MBI BF'.issue_key
+	toColumn: 'Jira Defect Tempi di Collaudo'.issue_key
+
+relationship 54517f84-37f9-4cd0-9aae-cdd2631eac65
+	fromColumn: 'Jira Xray Test UAT'.reporter
+	toColumn: 'AD Objects'.userId
+
+relationship 50383656-c899-450a-aa20-5ca65cb3690c
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Change Status IE FD MBI BF 2'.issue_key
+	toColumn: 'Jira Defect Tempi di Collaudo 2'.issue_key
+
+relationship 1de28fd7-e23d-41d6-bd64-f7625888745e
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Change Status IE FD MBI BF 3'.issue_key
+	toColumn: 'Jira Defect Tempi di Collaudo 3'.issue_key
+
+relationship d7a11fbb-8084-de2b-a742-9cb4033db922
+	fromColumn: 'FD Transition Status'.from_status
+	toColumn: 'Workflow Fasi FD Semplificate'.Status
+
+relationship 72f93f45-f920-7572-c4b8-0569710c6753
+	securityFilteringBehavior: none
+	fromColumn: 'FD Transition Status'.issue_key
+	toColumn: 'Jira Feature Delivery'.'Issue Key [Issue]'
+
+relationship 3ca35e63-2ffb-ac26-ca08-c5fdee8b620f
+	securityFilteringBehavior: none
+	fromColumn: 'Jira Initiative Estimation'.issue_status
+	toColumn: 'Workflow Fasi IE 2'.Status
+
+relationship df6d0288-40ec-f44e-acd1-cb1e1c5b8d64
+	fromColumn: 'MBI Transition Status'.to_status
+	toColumn: 'Workflow Fasi MBI Semplificate 3'.Status
+
+relationship 4fe022f4-7634-9591-e646-09f435a872a8
+	securityFilteringBehavior: none
+	fromColumn: 'Jira Macro Business Initiative'.'Issue status'
+	toColumn: 'Workflow Fasi MBI Semplificate 2'.Status
+
+relationship 9d73ecb9-4c90-41c5-8623-11c53d03030c
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Demand Cost Year'.'Issue parent key'
+	toColumn: 'Jira Demand'.'Issue key'
+
+relationship 8c349ce9-a078-4cb4-b660-ecdefceeffdc
+	isActive: false
+	fromColumn: 'Jira Demand Cost Year'.'Issue Scenario Name'
+	toColumn: Scenario.scenario
+
+relationship 5a342f46-367a-4d93-a3ac-dbd7e4542b3d
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Demand'.'Issue Investment Memo'
+	toColumn: 'Jira Investment Memo'.Issue_key
+
+relationship fac9cca8-ee1d-41bc-a0b8-bab7cbd7ca2e
+	isActive: false
+	fromColumn: 'Jira Planning by Cost'.scenario
+	toColumn: Scenario.scenario
+
+relationship b9a97bd9-c071-45bb-a80e-d07eec3cc3b6
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Planning by Cost Month'.'Planning By Cost'
+	toColumn: 'Jira Planning by Cost'.issue_key
+
+relationship 35dbf3a8-d686-40b9-9cbd-82b3cb1f40a3
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira MBI Split'.'Issue Investment Memo'
+	toColumn: 'Jira Investment Memo'.Issue_key
+
+relationship 7dc8d2c8-4a0f-400a-8700-af0113d1cd43
+	isActive: false
+	fromColumn: 'Jira Planning by Cost 2'.scenario
+	toColumn: 'Scenario 2'.scenario
+
+relationship 959e8175-0b0f-4949-96f6-f2febb5039d1
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Planning by Cost Month 2'.'Planning By Cost'
+	toColumn: 'Jira Planning by Cost 2'.issue_key
+
+relationship fc3d5655-54e5-49d4-81f0-a6e42f57cb86
+	isActive: false
+	fromColumn: 'Jira Planning by Cost 3'.scenario
+	toColumn: 'Scenario 3'.scenario
+
+relationship a152b5fd-7def-4444-8f2b-a4e66fec1744
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Planning by Cost Month 3'.'Planning By Cost'
+	toColumn: 'Jira Planning by Cost 3'.issue_key
+
+relationship 19cdfc21-9820-4977-9fd1-f1819b835774
+	isActive: false
+	fromColumn: 'Jira Planning by Cost 4'.scenario
+	toColumn: 'Scenario 4'.scenario
+
+relationship c64a9596-0861-4c5c-9895-d68075611bee
+	crossFilteringBehavior: bothDirections
+	fromColumn: 'Jira Planning by Cost Month 4'.'Planning By Cost'
+	toColumn: 'Jira Planning by Cost 4'.issue_key
+
+relationship f85be8f8-0961-ccbe-9948-65931f909f41
+	fromColumn: 'MBI Transition Status'.from_status
+	toColumn: 'Workflow Fasi MBI Semplificate'.Status
+
+relationship 48b80908-4934-f163-27a3-515292a60092
+	fromColumn: 'IE Transition Status'.from_status
+	toColumn: 'Workflow Fasi IE Semplificate'.Status
+
+relationship a1421cc1-01d3-be1e-88c3-f44b52d50ca8
+	securityFilteringBehavior: none
+	fromColumn: 'Jira Initiative Estimation'.issue_status
+	toColumn: 'Workflow Fasi IE'.Status
+
+relationship f2409a3a-122d-48ce-8d20-afa8faff8d11
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'TEST Issue MBI'.data_entrata
+	toColumn: LocalDateTable_c9051086-e1c6-4662-acb6-57735b4137b8.Date
+
+relationship 65a5ae4b-cda6-4476-8466-592383a470c1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'TEST Issue MBI'.data_prima_uscita
+	toColumn: LocalDateTable_83e1fee1-769d-4acb-9bef-d854802b53fb.Date
+
+relationship 23002dca-63d2-4a7c-a351-19acf0ee677b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'TEST Issue IE'.data_entrata
+	toColumn: LocalDateTable_e0da2244-6847-44fd-9598-4e2c2cef520d.Date
+
+relationship 6b58c334-7414-49f8-829c-447b64e195b6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'TEST Issue IE'.data_prima_uscita
+	toColumn: LocalDateTable_6de0b87d-180c-4121-8aff-c4ff57e4c60a.Date
+
+relationship cd6664e7-db78-0040-d2df-a5a3e34cc2d9
+	crossFilteringBehavior: bothDirections
+	securityFilteringBehavior: none
+	fromColumn: 'Jira Initiative Estimation'.issue_status
+	toColumn: 'Workflow Fasi IE Semplificate 2'.Status
+
+relationship bfd25f42-7690-79c9-2630-28be86d32ba6
+	crossFilteringBehavior: bothDirections
+	securityFilteringBehavior: none
+	fromColumn: 'Tabella Tempi Unpivot'.issue_key
+	toColumn: 'Jira Initiative Estimation'.issue_key
+
+relationship fb3be625-3e4d-4faf-b384-88e99a9f5629
+	fromColumn: 'Jira Business Initiative'.'Issue created date'
+	toColumn: LocalDateTable_d44898f1-9c8d-47d7-8d45-f02dc74d6b7e.Date
+
+relationship 158b55ee-e625-4599-b10e-634f23f6ca60
+	fromColumn: 'Jira Business Initiative'.'Issue resolution date'
+	toColumn: LocalDateTable_4a1c7a41-8f26-46f6-8fd5-33f0f9dd6148.Date
+
+relationship 1c00b693-5cb4-4376-91ff-8a2e2d3f68c3
+	fromColumn: 'Jira Business Initiative'.'Issue Baseline start date'
+	toColumn: LocalDateTable_fb46ce27-e87f-4b41-b112-e091fbedde8c.Date
+
+relationship c18a7043-080e-453e-aa07-7d1fae7baaa5
+	fromColumn: 'Jira Business Initiative'.'Issue Baseline end date'
+	toColumn: LocalDateTable_0e4b768d-548d-4d2c-8b07-366c998b1322.Date
+
+relationship 674797d1-4973-4c92-b81b-3717359602c2
+	fromColumn: 'Jira Business Initiative'.'Issue Start date'
+	toColumn: LocalDateTable_5028c737-587c-4244-9bd7-1a353bcb139d.Date
+
+relationship 303e15c1-1680-41ac-871b-940f7dca1e27
+	fromColumn: 'Jira Business Initiative'.'Issue End date'
+	toColumn: LocalDateTable_9730504e-adbb-4f6d-8f2a-031bda9951db.Date
+
+relationship bec8fd73-b7a9-4ff9-a687-b06fd2438871
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Jira Defect Tempi di Collaudo'.issue_key
+	toColumn: 'Jira Xray Defect'.issue
+
+relationship 6c08bcdb-f4c6-47a8-8dee-9fc2cebbecb5
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Jira Defect Tempi di Collaudo 2'.issue_key
+	toColumn: 'Jira Xray Defect 2'.issue
+
+relationship 217abfff-f5bd-4a51-b18c-6e23699114eb
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Jira Defect Tempi di Collaudo 3'.issue_key
+	toColumn: 'Jira Xray Defect 3'.issue
+
+relationship 43a75b7f-c87e-4300-ad50-8fafbefd4301
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Jira Defect Tempi di Collaudo 4'.issue_key
+	toColumn: 'Jira Xray Defect 4'.issue
+

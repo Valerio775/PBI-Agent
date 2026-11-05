@@ -1,0 +1,546 @@
+table 'Jira Investment Memo'
+	lineageTag: f5df90a6-facd-4a87-83fb-3c00697b388b
+	sourceLineageTag: b0f54774-1955-47ba-991e-692218b99f10
+
+	measure 'IM Approved' = EXTERNALMEASURE("IM Approved", INTEGER, "DirectQuery in Analysis Services - SpringLab")
+		formatString: 0
+		isHidden
+		lineageTag: e1d196ac-2a5b-4878-a466-711e292efd41
+		sourceLineageTag: 7b3299be-2e19-4411-bfd5-b3873c317b28
+		dataCategory: Uncategorized
+
+	measure 'IM linked to MBI' = EXTERNALMEASURE("IM linked to MBI", INTEGER, "DirectQuery in Analysis Services - SpringLab")
+		formatString: 0
+		isHidden
+		lineageTag: 24a95ee1-97b2-4333-8b09-28178043ee78
+		sourceLineageTag: f41c5a86-1b62-4013-b2af-33e93f281094
+		dataCategory: Uncategorized
+
+	measure 'IM linked to BF' = EXTERNALMEASURE("IM linked to BF", INTEGER, "DirectQuery in Analysis Services - SpringLab")
+		formatString: 0
+		isHidden
+		lineageTag: fe06f6fd-f075-4e39-b6ac-d25acb6d22bc
+		sourceLineageTag: 1e655fff-ee4e-4448-b8e8-e60706df618e
+		dataCategory: Uncategorized
+
+	measure 'Capex IM' = EXTERNALMEASURE("Capex IM", DOUBLE, "DirectQuery in Analysis Services - SpringLab")
+		lineageTag: 8c76cc96-b068-4c5a-82cb-61162c42141e
+		sourceLineageTag: 10150d9a-e1ef-4528-9e4b-2ba6d715a24c
+		dataCategory: Uncategorized
+
+	measure 'Capex Scenario' = EXTERNALMEASURE("Capex Scenario", DOUBLE, "DirectQuery in Analysis Services - SpringLab")
+		lineageTag: 79bf6baf-5e62-4e3d-a197-15195135b261
+		sourceLineageTag: fe47cc9d-d174-470e-8f9a-2b7fb5a957fc
+		dataCategory: Uncategorized
+
+	measure 'Delta IM-Scenario' = EXTERNALMEASURE("Delta IM-Scenario", DOUBLE, "DirectQuery in Analysis Services - SpringLab")
+		lineageTag: 13eb4756-402d-4334-bdd2-96e913e9b084
+		sourceLineageTag: 72fc0ea3-6135-4e9f-8806-bc76bc2d1f86
+		dataCategory: Uncategorized
+
+	column Issue
+		dataType: string
+		lineageTag: 14d2b7e6-d027-4663-9601-eb5571b50acf
+		sourceLineageTag: 219eb9f2-2593-4444-b90f-5fd15d79dec3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue
+
+		annotation SummarizationSetBy = User
+
+	column Issue_created_date
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: d67c3911-5e09-4332-84a9-1ca253e0e196
+		sourceLineageTag: 882c39af-326e-426d-88f3-2af516fb11fa
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue_created_date
+
+		variation Variazione
+			isDefault
+			relationship: aa698b1b-dc7d-4f78-a4e1-16c1cc7e3aab
+			defaultHierarchy: LocalDateTable_46111e18-14bf-4329-830a-090322e550a7.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Issue_summary
+		dataType: string
+		lineageTag: 3323294e-b039-4001-91f0-f7046d99bf59
+		sourceLineageTag: be1d95f2-bce0-4760-b635-a483b4086b15
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue_summary
+
+		annotation SummarizationSetBy = User
+
+	column Issue_Number
+		dataType: string
+		lineageTag: 4da1b72a-29cf-4d1a-a2ad-313ac2ae343e
+		sourceLineageTag: 6a79dfe7-418f-4fbf-a531-e2fd05aafe28
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue_Number
+
+		annotation SummarizationSetBy = User
+
+	column Issue_sys_created_on
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: c03cdf9d-7e07-4849-9a31-5e7ff5312ea2
+		sourceLineageTag: 5d609b20-3587-4791-967c-54a5a67a4b0a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue_sys_created_on
+
+		variation Variazione
+			isDefault
+			relationship: 92019da0-b864-44e3-b0de-033d2358a3e3
+			defaultHierarchy: LocalDateTable_4812fe57-5d72-404a-a109-44200526e8f6.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Issue_Sys_ID
+		dataType: string
+		lineageTag: f8f6d99f-cef0-4e97-8616-ca74e856cb72
+		sourceLineageTag: c91757d8-d2f4-4988-964f-994b8be0c6d4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue_Sys_ID
+
+		annotation SummarizationSetBy = User
+
+	column Issue_sys_updated_by
+		dataType: string
+		lineageTag: 0f90e2da-7e8f-45ff-81d9-497aa232b042
+		sourceLineageTag: 22a91289-4836-4301-8b13-cf6256f8587c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue_sys_updated_by
+
+		annotation SummarizationSetBy = User
+
+	column Issue_sys_updated_on
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: a5401382-cdfa-4a18-83ef-2e984b4192cd
+		sourceLineageTag: 60551457-d47f-440f-8eb5-bf76530890bd
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue_sys_updated_on
+
+		variation Variazione
+			isDefault
+			relationship: 0c1fc320-eb76-41ec-a66f-56f23d3e39e4
+			defaultHierarchy: LocalDateTable_513c4398-fec3-49b7-b2f0-09114c9e343f.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Issue_GDS_Applicant_Unit
+		dataType: string
+		lineageTag: 202840c9-6a1c-4bd1-a39a-668be0c622b0
+		sourceLineageTag: 3c2d817e-67d4-421c-aaf1-377105190c39
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue_GDS_Applicant_Unit
+
+		annotation SummarizationSetBy = User
+
+	column Issue_status
+		dataType: string
+		lineageTag: 0f60c797-62c0-4f50-be1e-66f6dc5660b7
+		sourceLineageTag: 8c13a65a-dda9-41a2-aa5a-6bd87451299e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue_status
+
+		annotation SummarizationSetBy = User
+
+	column Issue_Project_Name
+		dataType: string
+		lineageTag: eb93c674-81be-4fb4-a719-128eb4ffce99
+		sourceLineageTag: e0d3d23d-6aab-4c43-928c-484137011135
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue_Project_Name
+
+		annotation SummarizationSetBy = User
+
+	column Issue_Main_Milestone
+		dataType: string
+		lineageTag: f3b5b4a1-8129-4e57-8497-63f9edd498de
+		sourceLineageTag: 0caaa67f-2706-4136-9eac-27a5d87fe342
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue_Main_Milestone
+
+		annotation SummarizationSetBy = User
+
+	column Issue_Approval_Date
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 74f2edb5-5b67-4668-bb88-0a781aec656b
+		sourceLineageTag: e1d0c8f8-f53f-4be8-849b-f386a07e96c0
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue_Approval_Date
+
+		variation Variazione
+			isDefault
+			relationship: 17806ebd-3c31-42ba-97f7-476c60ad8f7e
+			defaultHierarchy: LocalDateTable_25c8d051-557b-4c5f-8de6-c51d11a0b8e5.'Gerarchia data'
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+	column Issue_Investment_Category
+		dataType: string
+		lineageTag: 9c2ca9ac-c832-44bc-9181-7734051d3c88
+		sourceLineageTag: 7cd69921-171d-4332-bd48-694868552880
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue_Investment_Category
+
+		annotation SummarizationSetBy = User
+
+	column Issue_Main_Expected_Benefits
+		dataType: string
+		lineageTag: db20181e-7635-4553-b910-f0d3b1bec7fb
+		sourceLineageTag: 8524a686-19be-494b-b97f-8ac8d898ccab
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue_Main_Expected_Benefits
+
+		annotation SummarizationSetBy = User
+
+	column Issue_Function_Impacted
+		dataType: string
+		lineageTag: 7666e3ee-0960-4da5-b0f5-3a41b88e8a3e
+		sourceLineageTag: 621aeb1f-7016-4cdb-903a-f17cc05d87e4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue_Function_Impacted
+
+		annotation SummarizationSetBy = User
+
+	column Issue_Area_Country
+		dataType: string
+		lineageTag: 865095e2-bbe7-41ae-ba73-f73a7a9faadf
+		sourceLineageTag: 015de47e-daab-419b-9ca4-e4fe8eda3a15
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue_Area_Country
+
+		annotation SummarizationSetBy = User
+
+	column Issue_Start_Benefit
+		dataType: string
+		lineageTag: 71fca6dc-aa5f-4c91-9955-c1be94eece21
+		sourceLineageTag: f9a28de0-a12c-4417-af2f-87840b3a7405
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue_Start_Benefit
+
+		annotation SummarizationSetBy = User
+
+	column Issue_End_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 7c4d7a8e-4935-411d-8ae2-e72be3eac130
+		sourceLineageTag: 8b2d50e7-fa89-4b6f-b5be-f5ddc5adb655
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue_End_date
+
+		variation Variazione
+			isDefault
+			relationship: e7c7e367-610d-4c51-9778-2191a54b4b99
+			defaultHierarchy: LocalDateTable_96a9eef9-3be4-4e1f-a51d-21ec6ea1ad6f.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Issue_Business_Need_Number
+		dataType: string
+		lineageTag: d49eb617-9cdf-40ce-bdf5-658cd78b0515
+		sourceLineageTag: df6b9bcb-2fe4-4423-8879-fa5b87e51a7e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue_Business_Need_Number
+
+		annotation SummarizationSetBy = User
+
+	column Issue_Business_Need_Sys_ID
+		dataType: string
+		lineageTag: 25c8e248-8203-4364-affa-808f02737a51
+		sourceLineageTag: 215fc934-3e4f-49f1-a845-f06bc5bdc643
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue_Business_Need_Sys_ID
+
+		annotation SummarizationSetBy = User
+
+	column Issue_Useful_Life_Years
+		dataType: double
+		lineageTag: bd825dc4-5292-429e-9b4e-05693d949cf1
+		sourceLineageTag: 176534a2-9adc-45c1-8152-ba654ac9ff7e
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Issue_Useful_Life_Years
+
+		annotation SummarizationSetBy = User
+
+	column Issue_Scope
+		dataType: string
+		lineageTag: a3764aad-c306-429e-ab50-4ce150a85a2c
+		sourceLineageTag: 0f510f0a-f243-443a-92fc-0fe8ffa7218a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue_Scope
+
+		annotation SummarizationSetBy = User
+
+	column Issue_Company
+		dataType: string
+		lineageTag: 870307d2-7595-4e2b-84b7-6a83f6970f21
+		sourceLineageTag: 330a9a36-129a-4c29-8289-78e246e3f88f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue_Company
+
+		annotation SummarizationSetBy = User
+
+	column Issue_Start_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 570a3ae8-7f50-4642-84be-bc59f2922528
+		sourceLineageTag: 3830d5f4-5c66-4d67-8155-ba5bf11b8649
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue_Start_date
+
+		variation Variazione
+			isDefault
+			relationship: 66a39bbb-5f2c-4895-b680-d679dfe2014e
+			defaultHierarchy: LocalDateTable_36cf59c5-5344-4c35-9cf9-c4598657e970.'Gerarchia data'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Issue_Included_in_Budget
+		dataType: string
+		lineageTag: 6820cfc8-f027-45d2-ba69-8790f5a077cf
+		sourceLineageTag: a92484fd-9f7a-4a38-b78a-8a5671fbaf22
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue_Included_in_Budget
+
+		annotation SummarizationSetBy = User
+
+	column Issue_Methodology
+		dataType: string
+		lineageTag: d1b29df2-17de-4f1d-a125-8937df2e63df
+		sourceLineageTag: 899abe4f-e7cd-42e2-9e24-34430613288e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue_Methodology
+
+		annotation SummarizationSetBy = User
+
+	column Issue_key
+		dataType: string
+		isNullable: false
+		lineageTag: 0e931bfa-4c1d-4ac4-b057-6cf1541876fc
+		sourceLineageTag: d1f04457-c02b-48f5-8ffb-d54c6da1b0d2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue_key
+
+		annotation SummarizationSetBy = User
+
+	column Created_date_NoOra = CONVERT(LEFT('Jira Investment Memo'[Issue_created_date], 10), DATETIME)
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 6d121912-1f1d-46a5-83b7-0e094296bc1b
+		summarizeBy: none
+
+		changedProperty = Name
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Anno_cr = YEAR('Jira Investment Memo'[Created_date_NoOra])
+		formatString: 0
+		lineageTag: a7f005c5-43a3-4c31-93f0-92ec5f66db9a
+		summarizeBy: sum
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column IM_norm =
+			
+			VAR _clean = TRIM(SUBSTITUTE(SUBSTITUTE('Jira Investment Memo'[Issue]," - "," "),"  "," "))
+			RETURN LEFT(_clean, FIND(" ", _clean & " ") - 1)
+		lineageTag: 63b19a79-4415-4cc6-bc6e-457096b3b93f
+		summarizeBy: none
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data approvazione' = ```
+			
+			COALESCE(
+			    'Jira Investment Memo'[Issue_Approval_Date],
+			    DATE(2024, 1, 1)
+			)
+			
+			```
+		formatString: General Date
+		lineageTag: 8bf2ef45-b2e1-4375-829b-2abda91500e0
+		summarizeBy: none
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Anno_approval = YEAR('Jira Investment Memo'[Data approvazione])
+		formatString: 0
+		lineageTag: 8e5066fe-4c73-4825-876f-79244f52fc99
+		summarizeBy: sum
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month_cr = MONTH('Jira Investment Memo'[Created_date_NoOra])
+		formatString: 0
+		lineageTag: 8ddd4d7b-1b48-4800-85b2-a17b15ae997c
+		summarizeBy: sum
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mese_approval = MONTH('Jira Investment Memo'[Data approvazione])
+		formatString: 0
+		lineageTag: 8e4352f2-4f77-4f77-8842-f177979f34e1
+		summarizeBy: sum
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Jira_IM_URL
+		dataType: string
+		lineageTag: eb9c7e44-4f58-40e0-bd18-b16601ae855c
+		sourceLineageTag: b77b4a98-c89f-4d0b-85c3-75920bce6142
+		dataCategory: WebUrl
+		summarizeBy: none
+		sourceColumn: Jira_IM_URL
+
+		annotation SummarizationSetBy = User
+
+	column Issue_Business_Need
+		dataType: string
+		lineageTag: 0b406c29-9991-48ea-b21a-126d62014167
+		sourceLineageTag: 99e1bc26-12dc-42ec-9969-eb1aea668b55
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue_Business_Need
+
+		annotation SummarizationSetBy = User
+
+	column URL = "https://jira.springlab.enel.com/projects/" & [Issue_key] & "/"
+		lineageTag: 4edef9f1-8a4c-4914-ab18-151b0cda1e19
+		summarizeBy: none
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column '1st Richiedente' =
+			
+			LOOKUPVALUE('Jira Demand'[1st Richiedente],
+			'Jira Demand'[Issue Investment Memo],
+			'Jira Investment Memo'[Issue_key])
+		lineageTag: ff70ad3f-3091-48fc-a497-57ca2ed75b82
+		summarizeBy: none
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mese_approval_formatted = FORMAT('Jira Investment Memo'[Data approvazione], "MMMM")
+		lineageTag: 64763e6d-f339-4de9-98ea-947fc8b78cfc
+		summarizeBy: none
+		sortByColumn: Mese_approval
+
+		changedProperty = Name
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MBI Present'
+		dataType: string
+		lineageTag: d415cfde-f559-4130-904c-63a491bceb5f
+		sourceLineageTag: 50bac36d-a2e7-4a53-a719-fc85bf474f4e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: MBI Present
+
+		annotation SummarizationSetBy = User
+
+	column IM = 'Jira Investment Memo'[Issue_Number] + " - " + 'Jira Investment Memo'[Issue_Project_Name]
+		lineageTag: 623dff84-d73f-4dd7-8ab8-89fbf48a4bb0
+		summarizeBy: sum
+
+		changedProperty = Name
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'BSN Country Legal Entity'
+		dataType: string
+		lineageTag: 9653431f-37d5-41b6-bdda-c11090351b4c
+		sourceLineageTag: 070e1869-a0d2-406e-a93e-8031eb3ac9a1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: BSN Country Legal Entity
+
+		annotation SummarizationSetBy = User
+
+	column 'Business Country Legal Entity'
+		dataType: string
+		lineageTag: 701bb50c-4e26-4a40-b50f-dde92d29878c
+		sourceLineageTag: b4868a30-c7fb-458a-bfe0-13d81cc6f040
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Business Country Legal Entity
+
+		annotation SummarizationSetBy = User
+
+	column 'Capex FY Calculated'
+		dataType: int64
+		formatString: 0
+		lineageTag: 125b6463-c2dd-4a3f-a050-9af4a75914a4
+		sourceLineageTag: f2067067-7f5a-46a3-82c0-304413152b58
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Capex FY Calculated
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira Investment Memo' = entity
+		mode: directQuery
+		source
+			entityName: Jira Investment Memo
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

@@ -1,0 +1,47 @@
+table 'Workflow Fasi FD'
+	lineageTag: 909ed745-f91e-49ef-9ea2-db33e2c34907
+
+	column Status
+		lineageTag: aafa22cd-f08d-4739-8933-daa31d7d1903
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status]
+		sortByColumn: OrdineFase
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrdineFase
+		formatString: 0
+		lineageTag: 41caa4d1-6d26-4b2d-bdff-419bd6e1d5af
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [OrdineFase]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Workflow Fasi FD' = calculated
+		mode: import
+		source = ```
+				
+				DATATABLE (
+				    "Status", STRING,
+				    "OrdineFase", INTEGER,
+				    {
+				        { "Rejected", 0 },
+				        { "Open", 1 },
+				        { "Waiting for Estimate", 2 },
+				        { "Estimation Approval", 3 },
+				        { "Estimation Done", 4 },
+				        { "Authorized", 5 },
+				        { "In Progress", 6 },
+				        { "Completed", 7 },
+				        { "Ready for UAT", 8 },
+				        { "UAT Passed", 9 },
+				        { "Release Completed", 10 }
+				    }
+				)
+				
+				```
+
+	annotation PBI_Id = b45f98d3000146cc83077deeadf6953b
+

@@ -1,0 +1,159 @@
+table 'Bamboo Failed Software Plan'
+	lineageTag: 3362e521-cbce-4570-81db-a5e4a86d57bc
+	sourceLineageTag: 985412ef-e70f-4464-8819-eaa141c0af71
+
+	column Plan
+		dataType: string
+		lineageTag: a79d303d-e0e2-46ff-8fa9-882ea343841c
+		sourceLineageTag: 1a010995-9b98-434b-8932-ebdaa3724ce3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Plan
+
+		annotation SummarizationSetBy = User
+
+	column 'Project key'
+		dataType: string
+		lineageTag: b23669a3-4362-4a86-99d7-de457e95c022
+		sourceLineageTag: d8202284-b362-45d2-8c1e-1ce4ec57d0b8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Project key
+
+		annotation SummarizationSetBy = User
+
+	column 'GDS Line'
+		dataType: string
+		lineageTag: 920a20db-b789-4192-83f3-cf2ee854b797
+		sourceLineageTag: 557b7cd1-eeca-4051-b527-a5c21572dd65
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: GDS Line
+
+		annotation SummarizationSetBy = User
+
+	column Status
+		dataType: string
+		lineageTag: 0fdd6b20-1fc3-46f5-9221-c6cf81bd598b
+		sourceLineageTag: 4e15a890-2fe1-4889-87a1-d0531452f329
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = User
+
+	column 'Trigger Author'
+		dataType: string
+		lineageTag: 151b471c-014f-481c-8f46-97e831bc2059
+		sourceLineageTag: df23056a-7c95-41a2-80ae-532bfc1772b8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Trigger Author
+
+		annotation SummarizationSetBy = User
+
+	column 'Build finish date'
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: e7b6bd86-5a65-4f64-a470-5222dcf1d9ce
+		sourceLineageTag: faa24ca2-f5e3-426f-8193-f65855790740
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Build finish date
+
+		variation Variazione
+			isDefault
+			relationship: 79b819a4-9120-49ca-97f4-f454b36bf5f6
+			defaultHierarchy: LocalDateTable_2955e911-2ec2-4c7e-86cd-c8bb2f7814f2.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column 'Build count'
+		dataType: int64
+		formatString: 0
+		lineageTag: fe17248e-fd0d-431a-890e-1eb2c9d388fb
+		sourceLineageTag: 460e4a53-87f5-4ea5-85cb-01c21e020117
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Build count
+
+		annotation SummarizationSetBy = User
+
+	column 'Associated commit flag'
+		dataType: string
+		lineageTag: f63e2f95-4589-49f6-9db8-8a389e03a27b
+		sourceLineageTag: 168cf5eb-8062-4df9-bcf9-b422983b996e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Associated commit flag
+
+		annotation SummarizationSetBy = User
+
+	column 'Repository changeset id'
+		dataType: string
+		lineageTag: 1be7f4b4-57bf-4033-8ff8-094f15ee5e9d
+		sourceLineageTag: 857de559-4943-449b-bb2c-822d436a5030
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Repository changeset id
+
+		annotation SummarizationSetBy = User
+
+	column 'Processing duration (s)'
+		dataType: int64
+		formatString: 0
+		lineageTag: df43309a-7e7a-4bdb-93ca-7d1fc9732d9d
+		sourceLineageTag: 0e789f7e-aa2b-41fa-a187-f03719f3aa6e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Processing duration (s)
+
+		annotation SummarizationSetBy = User
+
+	column lite
+		dataType: string
+		lineageTag: 3b61061d-4470-4703-af7b-c1f74046227a
+		sourceLineageTag: c38d657a-2264-4c01-a03e-cd5478b6397b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: lite
+
+		annotation SummarizationSetBy = User
+
+	column approve_release
+		dataType: string
+		lineageTag: b9269240-d3f7-4e55-8481-cb5456b9ad62
+		sourceLineageTag: a53ca938-fbda-4810-b8d7-46885c7f6416
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: approve_release
+
+		annotation SummarizationSetBy = User
+
+	column row_number
+		dataType: int64
+		formatString: 0
+		lineageTag: bca4765c-faa3-4bde-b8b1-50bfde7ce96f
+		sourceLineageTag: 3aa0a162-3141-4a61-82bb-c672f7eaa0c6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: row_number
+
+		annotation SummarizationSetBy = User
+
+	column 'APM CODE'
+		dataType: string
+		lineageTag: b256a4ab-d1cc-41e8-8512-a34b90b1e48a
+		sourceLineageTag: c81ad2f0-56cf-44d5-a3e5-37e1e4a5d158
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: APM CODE
+
+		annotation SummarizationSetBy = User
+
+	partition 'Bamboo Failed Software Plan' = entity
+		mode: directQuery
+		source
+			entityName: Bamboo Failed Software Plan
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

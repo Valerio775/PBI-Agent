@@ -1,0 +1,30 @@
+table 'Jira Xray Relation Business Feature Test 3'
+	lineageTag: e72e6480-973a-473d-a4c7-ae2300d29178
+	sourceLineageTag: 342a1ccd-8ed1-4375-b5a5-50e69313ca2b
+
+	column businessfeature_key
+		dataType: string
+		lineageTag: 4b3bb855-7996-4e8c-ba0c-fa4f2dc1d5af
+		sourceLineageTag: ba607757-0998-4e15-8fa0-057fad831def
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: businessfeature_key
+
+		annotation SummarizationSetBy = User
+
+	column test_key
+		dataType: string
+		lineageTag: 25fcbf6a-79e1-452c-8fd0-4fa93d7d8b58
+		sourceLineageTag: 973b7a03-aa6b-448d-88a9-0aa9b7050070
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: test_key
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira Xray Relation Business Feature Test 3' = entity
+		mode: directQuery
+		source
+			entityName: Jira Xray Relation Business Feature Test
+			expressionSource: 'DirectQuery to AS - SpringLab'
+

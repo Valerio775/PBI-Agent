@@ -1,0 +1,74 @@
+table 'Workflow Fasi MBI Semplificate 2'
+	lineageTag: adcc7e88-b527-4881-bee0-9db634f4902e
+
+	column Status
+		lineageTag: 02b46a93-c5c8-42d4-8898-79b3e21803ba
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status]
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrdineFase
+		formatString: 0
+		lineageTag: fb45b510-8514-4bb5-8401-b7dbad01f0d4
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [OrdineFase]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status Tradotto'
+		lineageTag: 601c8f15-2f02-440c-8833-f8228d4a5352
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status Tradotto]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status Numerato'
+		lineageTag: 51489fba-b58b-49d6-8fa4-906b0696de20
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Status Numerato]
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrdineBarra
+		formatString: 0
+		lineageTag: 5c89f8ef-dce2-424b-ba5f-595d771dbef1
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [OrdineBarra]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Workflow Fasi MBI Semplificate 2' = calculated
+		mode: import
+		source =
+				
+				DATATABLE (
+				    "Status", STRING,
+				    "Status Numerato", STRING,
+				    "OrdineFase", INTEGER,
+				    "Status Tradotto", STRING,
+				    "OrdineBarra", INTEGER,
+				    {
+				        { "Open", "1. Conferma Perimetro", 1, "1. Valutazione iniziative e preparazione requisiti (DE)", 1 },
+				        { "High-Level Functional Requirement", "2. Preparazione BR", 1, "1. Valutazione iniziative e preparazione requisiti (DE)", 2 },
+				
+				        { "Tech Evaluation", "3. HLD e Stime", 2, "2. High-level Design, cost estimation and project plan (DF)", 3 },
+				        { "Estimation Done", "4. Plan e Costi DE", 2, "2. High-level Design, cost estimation and project plan (DF)", 4 },
+				
+				        { "Financial Evaluation", "5. IC DE Check e Markup", 3, "3. Predisposizione offerta e IM (DE)", 5 },
+				
+				        { "IM Management", "6. IM Approval", 4, "4. Approvazione e firma IM (BSN + DE)", 6 },
+				        { "Waiting for Approval", "6. IM Approval", 4, "4. Approvazione e firma IM (BSN + DE)", 6 },
+				
+				        { "WBE Management", "7. Approvazione P&C Applicant Unit", 5, "5. Creazione wbe (IC DF)", 7 },
+				        { "Approved", "8. IC DE Approvazione e creazione Demand", 6, "6. Approved", 8 }
+				    }
+				)
+
+	annotation PBI_Id = 44ecb5c442964de282d7f094a815948c
+

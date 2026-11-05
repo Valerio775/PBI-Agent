@@ -1,0 +1,508 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "ca23b270dc9056986374",
+  "position": {
+    "x": 88.75,
+    "y": 1011.25,
+    "z": 3,
+    "height": 432,
+    "width": 1640,
+    "tabOrder": 3
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Jira Feature Delivery"
+                    }
+                  },
+                  "Property": "Issue Key [Issue]"
+                }
+              },
+              "queryRef": "Jira Feature Delivery.Issue Key [Issue]",
+              "nativeQueryRef": "Issue Key [Issue]"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Jira Feature Delivery"
+                    }
+                  },
+                  "Property": "Issue"
+                }
+              },
+              "queryRef": "Jira Feature Delivery.Issue",
+              "nativeQueryRef": "Issue"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Jira Feature Delivery"
+                    }
+                  },
+                  "Property": "Issue Baseline end date"
+                }
+              },
+              "queryRef": "Jira Feature Delivery.Issue Baseline end date",
+              "nativeQueryRef": "Issue Baseline end date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Jira Feature Delivery"
+                    }
+                  },
+                  "Property": "Issue Baseline start date"
+                }
+              },
+              "queryRef": "Jira Feature Delivery.Issue Baseline start date",
+              "nativeQueryRef": "Issue Baseline start date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Jira Feature Delivery"
+                    }
+                  },
+                  "Property": "Issue created date"
+                }
+              },
+              "queryRef": "Jira Feature Delivery.Issue created date",
+              "nativeQueryRef": "Issue created date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Jira Feature Delivery"
+                    }
+                  },
+                  "Property": "Issue Deadline"
+                }
+              },
+              "queryRef": "Jira Feature Delivery.Issue Deadline",
+              "nativeQueryRef": "Issue Deadline"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Jira Feature Delivery"
+                    }
+                  },
+                  "Property": "Issue Estimation Due date"
+                }
+              },
+              "queryRef": "Jira Feature Delivery.Issue Estimation Due date",
+              "nativeQueryRef": "Issue Estimation Due date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Jira Feature Delivery"
+                    }
+                  },
+                  "Property": "Issue Planned End Date"
+                }
+              },
+              "queryRef": "Jira Feature Delivery.Issue Planned End Date",
+              "nativeQueryRef": "Issue Planned End Date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Jira Feature Delivery"
+                    }
+                  },
+                  "Property": "Issue Planned Release Date"
+                }
+              },
+              "queryRef": "Jira Feature Delivery.Issue Planned Release Date",
+              "nativeQueryRef": "Issue Planned Release Date"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Jira Feature Delivery"
+                    }
+                  },
+                  "Property": "Issues with Planned UAT end date"
+                }
+              },
+              "queryRef": "Jira Feature Delivery.Issues with Planned UAT end date",
+              "nativeQueryRef": "Issues with Planned UAT end date"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Jira Feature Delivery'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "87cb2ff8ab16b0ed6e00",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Macro Business Initiative"
+              }
+            },
+            "Property": "Data Approvazione"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "c46ecfd608400a28eb0c",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "APM (2)"
+              }
+            },
+            "Property": "APM Code"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "a",
+              "Entity": "APM (2)",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "a"
+                          }
+                        },
+                        "Property": "APM Code"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'SO00105'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "62f6bea4bb4c0733e2a6",
+        "ordinal": 2,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Investment Memo"
+              }
+            },
+            "Property": "Issue"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "6c31c8a48175e71d28a4",
+        "ordinal": 3,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Macro Business Initiative"
+              }
+            },
+            "Property": "Issue created date"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "f24982c23a3866a4a79a",
+        "ordinal": 4,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Macro Business Initiative"
+              }
+            },
+            "Property": "Issue End date"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "15ebbe5cba97bd95a2d3",
+        "ordinal": 5,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Macro Business Initiative"
+              }
+            },
+            "Property": "Issue key"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "664384344c6b2e51825c",
+        "ordinal": 6,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Macro Business Initiative"
+              }
+            },
+            "Property": "Issue Name"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "e4f4e64c98adb8eb0881",
+        "ordinal": 7,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Macro Business Initiative"
+              }
+            },
+            "Property": "Issue Start date"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "68394ed7952513034306",
+        "ordinal": 8,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Feature Delivery"
+              }
+            },
+            "Property": "Issue Key [Issue]"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e467df61101e39cb3c75",
+        "ordinal": 9,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Feature Delivery"
+              }
+            },
+            "Property": "Issue"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "07a25e39c417ba80b17d",
+        "ordinal": 10,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Feature Delivery"
+              }
+            },
+            "Property": "Issue Baseline end date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "424ebe2d9668aba3b2e5",
+        "ordinal": 11,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Feature Delivery"
+              }
+            },
+            "Property": "Issue Baseline start date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "811180c03ab04956b3a0",
+        "ordinal": 12,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Feature Delivery"
+              }
+            },
+            "Property": "Issue created date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "509edd52ba9e01db944e",
+        "ordinal": 13,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Feature Delivery"
+              }
+            },
+            "Property": "Issue Deadline"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "01c0e99d2155380262e6",
+        "ordinal": 14,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Feature Delivery"
+              }
+            },
+            "Property": "Issue Estimation Due date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "9e2458c03a552120b0c5",
+        "ordinal": 15,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Feature Delivery"
+              }
+            },
+            "Property": "Issue Planned End Date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "7102d0ac46044b0c820b",
+        "ordinal": 16,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Feature Delivery"
+              }
+            },
+            "Property": "Issue Planned Release Date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f711222c6e2cd9c764cd",
+        "ordinal": 17,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Feature Delivery"
+              }
+            },
+            "Property": "Issues with Planned UAT end date"
+          }
+        },
+        "type": "Categorical"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

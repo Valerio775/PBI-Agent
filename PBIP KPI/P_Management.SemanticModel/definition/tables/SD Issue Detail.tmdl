@@ -1,0 +1,274 @@
+table 'SD Issue Detail'
+	lineageTag: b8747373-b117-47d6-a272-18a8e2cee9a9
+	sourceLineageTag: c5634574-2e23-48b1-9de9-f2af7f85006d
+
+	measure Methodology_smartflow_SSD = EXTERNALMEASURE("Methodology_smartflow_SSD", STRING, "DirectQuery in Analysis Services - SpringLab")
+		lineageTag: 8af00d9b-8d28-4c71-b954-5881ea0b001a
+		sourceLineageTag: 7e69e0dd-9cff-486b-b2d9-0394c20dc01d
+		dataCategory: Uncategorized
+
+	column issue_key
+		dataType: string
+		lineageTag: 01d636ac-509c-404e-bd90-ea4204a30d83
+		sourceLineageTag: c19bcd66-d724-4db9-b887-974445d9f70d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_key
+
+		annotation SummarizationSetBy = User
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 8027c392-330c-4c54-aa6a-043b50c47949
+		sourceLineageTag: 3ce89e75-0eb0-42d5-a0e7-d0356a3a79be
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = User
+
+	column customer_request_type
+		dataType: string
+		lineageTag: 0bd0cd7a-fee1-4d58-89c5-285c341e5df5
+		sourceLineageTag: 5b1ee042-e924-4b98-9ef1-d8baa433734a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: customer_request_type
+
+		annotation SummarizationSetBy = User
+
+	column summary
+		dataType: string
+		lineageTag: 1af66c8e-407a-4d9a-bc48-53863b3cc086
+		sourceLineageTag: 482ab741-fc10-487a-9bae-98a5e9b69c82
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: summary
+
+		annotation SummarizationSetBy = User
+
+	column description
+		dataType: string
+		lineageTag: 7b458827-81d6-44f6-b453-b0f7b87dcfc4
+		sourceLineageTag: f5d361e0-1179-4f82-93b4-b3911f302541
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = User
+
+	column assignee
+		dataType: string
+		lineageTag: edca028d-f0ee-48cc-aae0-bd2674b9b3e5
+		sourceLineageTag: e7717df2-d922-4a33-a4bc-670cfaf945f6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: assignee
+
+		annotation SummarizationSetBy = User
+
+	column creator
+		dataType: string
+		lineageTag: 1c26225c-08c4-4d15-b8bc-a77cc85c2918
+		sourceLineageTag: c51b3b7c-34d3-4ae0-9b7d-6fd3e4d743a1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: creator
+
+		annotation SummarizationSetBy = User
+
+	column created
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 9f669b86-c412-4334-93b2-80b93c4a4a51
+		sourceLineageTag: 617b31c0-bd9b-4ae4-8bb5-6adca3b00871
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: created
+
+		variation Variazione
+			isDefault
+			relationship: 9b50e07e-0ecc-4e83-9ea3-9063e90ce47a
+			defaultHierarchy: LocalDateTable_fd8401da-2ee0-4f18-928d-dc517c2cac60.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column updated
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 64539ead-05eb-4ebc-b095-90dc4ca1bd21
+		sourceLineageTag: 465f640d-2f44-4b93-a31c-a14b36e31b9f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: updated
+
+		variation Variazione
+			isDefault
+			relationship: 7f3203e7-868b-476d-9ca1-d9d33d2b5a9b
+			defaultHierarchy: LocalDateTable_4a131257-6ff5-41ec-b93e-f1f8b5554c49.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column resolutiondate
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 46db047c-54ac-49fa-abc0-dfff2aa27ff7
+		sourceLineageTag: e4ea8a88-06ff-43c0-8cf8-bb6c5b8235a3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: resolutiondate
+
+		variation Variazione
+			isDefault
+			relationship: ebe43434-6004-4bd6-b412-1c0b8c4d824d
+			defaultHierarchy: LocalDateTable_2e1afdbc-0b7f-4f8b-aca1-be6ad2bffe1a.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column methodology_ssd
+		dataType: string
+		lineageTag: 8d712c68-f2a2-40e0-801b-f1560dc713c9
+		sourceLineageTag: 881794a2-d550-4b3c-a067-9e3f144a3116
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: methodology_ssd
+
+		annotation SummarizationSetBy = User
+
+	column ict_development_ssd
+		dataType: string
+		lineageTag: e5ce5175-8c75-4aba-b82f-acc8dbdee13a
+		sourceLineageTag: 4c250b8d-6cc8-443c-a62d-8ab6bf2538c7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ict_development_ssd
+
+		annotation SummarizationSetBy = User
+
+	column gds_line_ssd
+		dataType: string
+		lineageTag: be63549c-0dbe-4f8a-94e6-f3238b11d01c
+		sourceLineageTag: 8ddeef6b-8f1f-4976-83b8-b010bb2916b0
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: gds_line_ssd
+
+		annotation SummarizationSetBy = User
+
+	column factory_chapter_ssd
+		dataType: string
+		lineageTag: f2c1d546-c589-41d1-9f88-c6cd2b83b368
+		sourceLineageTag: a722b7c9-aa07-4936-8db3-a996725405d7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: factory_chapter_ssd
+
+		annotation SummarizationSetBy = User
+
+	column ssd_project_key
+		dataType: string
+		lineageTag: 70decbc3-8c02-4a29-811b-ea9b38cec1b4
+		sourceLineageTag: 87870778-2d2b-4df9-b5e2-15ba69402a8a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ssd_project_key
+
+		annotation SummarizationSetBy = User
+
+	column ssd_project_name
+		dataType: string
+		lineageTag: 1c1d88dc-e952-4498-be33-7f3813853bcd
+		sourceLineageTag: 1317e744-5066-4c1f-b143-e0a40a85647e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ssd_project_name
+
+		annotation SummarizationSetBy = User
+
+	column ssd_project_lead
+		dataType: string
+		lineageTag: 05fdb707-e7ea-4774-a16f-42db81888001
+		sourceLineageTag: a375b253-59bf-4594-bbf7-dad141fb995a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ssd_project_lead
+
+		annotation SummarizationSetBy = User
+
+	column ssd_project_initiative_delegate
+		dataType: string
+		lineageTag: 7246b0fa-dfa9-476e-aaf6-66b6e5af31b3
+		sourceLineageTag: 2929f409-4e28-45c8-ab33-561b13c25f86
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ssd_project_initiative_delegate
+
+		annotation SummarizationSetBy = User
+
+	column ssd_project_product_owner
+		dataType: string
+		lineageTag: f69055e4-8683-447a-ade7-128399e9ff3f
+		sourceLineageTag: 96de3020-45df-4ed2-ae0f-cc5b281ffcf4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ssd_project_product_owner
+
+		annotation SummarizationSetBy = User
+
+	column ssd_project_sponsor_delegate
+		dataType: string
+		lineageTag: f050d118-1bd1-4fa9-9212-fbf12602470f
+		sourceLineageTag: c24683f8-f52c-4148-b49d-a4ebb3c7d3f1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ssd_project_sponsor_delegate
+
+		annotation SummarizationSetBy = User
+
+	column ssd_motivation
+		dataType: string
+		lineageTag: 76d9836a-fd94-442e-8c03-861a22744314
+		sourceLineageTag: f163020c-b9d7-4fa8-a999-ff5b91cf176d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ssd_motivation
+
+		annotation SummarizationSetBy = User
+
+	column ssd_notes
+		dataType: string
+		lineageTag: b9b0ff78-b2a6-40fa-a055-f91936c22af7
+		sourceLineageTag: c376cc51-b186-4cd2-8860-602e059eda65
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ssd_notes
+
+		annotation SummarizationSetBy = User
+
+	column SSD_Issue_URL
+		dataType: string
+		lineageTag: 337b03f3-78f1-4559-ba9c-3775bda58fc1
+		sourceLineageTag: 2800c478-556f-4be0-835e-8b335bb01e04
+		dataCategory: WebUrl
+		summarizeBy: none
+		sourceColumn: SSD_Issue_URL
+
+		annotation SummarizationSetBy = User
+
+	column ssd_platform_project
+		dataType: string
+		lineageTag: 2d5d8497-14c7-4e6d-b9a4-b8ef9c62d1ba
+		sourceLineageTag: 1cf1edc7-c604-45e5-9dba-a327a919702b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ssd_platform_project
+
+		annotation SummarizationSetBy = User
+
+	partition 'SD Issue Detail' = entity
+		mode: directQuery
+		source
+			entityName: SD Issue Detail
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

@@ -1,0 +1,97 @@
+table Tabella_MBI_IE
+	lineageTag: 9b0a747a-cff1-46a8-b138-f6961f002f7d
+
+	column Tabella_MBI_IE
+		lineageTag: 8a41b0e6-9314-4184-ae8c-0f06615ee53c
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Tabella_MBI_IE Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Tabella_MBI_IE Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tabella_MBI_IE Fields'
+		isHidden
+		lineageTag: 54221d0f-b85b-4ac5-ae04-ab4501cb275e
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Tabella_MBI_IE Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tabella_MBI_IE Order'
+		isHidden
+		formatString: 0
+		lineageTag: a7384a8b-447a-4791-9243-b6fd6b7a7a36
+		summarizeBy: none
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Tabella_MBI_IE = calculated
+		mode: import
+		source =
+				{
+				    ("Approved", NAMEOF('Misure'[ToStatus_MBI]), 0),
+				    ("Open", NAMEOF('Misure'[From_MBI]), 0),
+				    ("Approved", NAMEOF('Misure'[ToStatus_MBI]), 1),
+				    ("High-Level Functional Requirement", NAMEOF('Misure'[From_MBI]), 1),
+				    ("Estimation Done", NAMEOF('Misure'[ToStatus_MBI]), 2),
+				    ("Tech Evaluation", NAMEOF('Misure'[From_MBI]), 2),
+				    ("High-Level Functional Requirement", NAMEOF('Misure'[ToStatus_MBI]), 3),
+				    ("Open", NAMEOF('Misure'[From_MBI]), 3),
+				    ("Tech Evaluation", NAMEOF('Misure'[ToStatus_MBI]), 4),
+				    ("High-Level Functional Requirement", NAMEOF('Misure'[From_MBI]), 4),
+				    ("Financial Evaluation", NAMEOF('Misure'[ToStatus_MBI]), 5),
+				    ("Estimation Done", NAMEOF('Misure'[From_MBI]), 5),
+				    ("Im Management", NAMEOF('Misure'[ToStatus_MBI]), 6),
+				    ("Financial Evaluation", NAMEOF('Misure'[From_MBI]), 6),
+				    ("Waiting for approval", NAMEOF('Misure'[ToStatus_MBI]), 7),
+				    ("Im Management", NAMEOF('Misure'[From_MBI]), 7),
+				    ("WBE Management", NAMEOF('Misure'[ToStatus_MBI]), 8),
+				    ("Waiting for approval", NAMEOF('Misure'[From_MBI]), 8),
+				    ("Approved", NAMEOF('Misure'[ToStatus_MBI]), 9),
+				    ("WBE Management", NAMEOF('Misure'[From_MBI]), 9),
+				    ("Done", NAMEOF('Misure'[ToStatus_IE]), 10),
+				    ("Waiting for Estimate", NAMEOF('Misure'[From_IE]), 10),
+				    ("Waiting for Estimate", NAMEOF('Misure'[ToStatus_IE]), 11),
+				    ("Open", NAMEOF('Misure'[From_IE]), 11),
+				    ("Estimation Approval", NAMEOF('Misure'[ToStatus_IE]), 12),
+				    ("Waiting for Estimate", NAMEOF('Misure'[From_IE]), 12),
+				    ("Done", NAMEOF('Misure'[ToStatus_IE]), 13),
+				    ("Estimation Approval", NAMEOF('Misure'[From_IE]), 13),
+				    ("In Progress", NAMEOF('Misure'[ToStatus_FD]), 14),
+				    ("Ready for UAT", NAMEOF('Misure'[From_FD]), 14),
+				    ("Completed", NAMEOF('Misure'[ToStatus_FD]), 15),
+				    ("Ready for UAT", NAMEOF('Misure'[From_FD]), 15),
+				    ("In Progress", NAMEOF('Misure'[ToStatus_FD]), 16),
+				    ("Completed", NAMEOF('Misure'[From_FD]), 16),
+				    ("Authorized", NAMEOF('Misure'[ToStatus_FD]), 17),
+				    ("In Progress", NAMEOF('Misure'[From_FD]), 17),
+				
+				    ("Approved", NAMEOF('Misure'[ToStatus_BF]), 18),
+				    ("Confirm Released", NAMEOF('Misure'[From_BF]), 18),
+				    ("Approved", NAMEOF('Misure'[ToStatus_BF]), 19),
+				    ("In Progress", NAMEOF('Misure'[From_BF]), 19),
+				    ("Completed", NAMEOF('Misure'[ToStatus_BF]), 20),
+				    ("Confirm Released", NAMEOF('Misure'[From_BF]), 20),
+				    ("In Progress", NAMEOF('Misure'[ToStatus_BF]), 21),
+				    ("Confirm Released", NAMEOF('Misure'[From_BF]), 21),
+				    ("Ready for UAT", NAMEOF('Misure'[ToStatus_BF]), 22),
+				    ("UAT Passed", NAMEOF('Misure'[From_BF]), 22),
+				    ("UAT Passed", NAMEOF('Misure'[ToStatus_BF]), 23),
+				    ("Completed", NAMEOF('Misure'[From_BF]), 23),
+				    ("In Progress", NAMEOF('Misure'[From_BF]), 24),
+				    ("Ready for UAT ", NAMEOF('Misure'[ToStatus_BF]), 24)
+				}
+
+	annotation PBI_Id = 8b3a5039d9ba4b80984c8566bbe58b6d
+

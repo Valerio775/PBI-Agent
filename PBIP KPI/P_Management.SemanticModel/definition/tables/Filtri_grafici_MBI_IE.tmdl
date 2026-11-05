@@ -1,0 +1,68 @@
+table Filtri_grafici_MBI_IE
+	lineageTag: 3dc7410e-f953-40fa-b857-57d56e3ff702
+
+	column Ordinamento
+		formatString: 0
+		lineageTag: ad235079-e5f5-4df4-b0dc-545605120101
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Ordinamento]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Misure
+		lineageTag: 589abaff-98a2-40f9-ac00-48e9c8477626
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Misure]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		lineageTag: 29461a85-7980-4f4a-b5ac-fef971f19134
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Type]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Filtri_grafici_MBI_IE = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				    "Ordinamento", INTEGER,
+				    "Misure", STRING,
+				    "Type", STRING,
+				{
+				    //{ 0, "Open to Approved", "MBI" },
+				    { 1, "High-Level Functional Requirement to Approved", "MBI" },  //Cycle Time
+				    { 2, "Tech Evaluation to Estimation Done", "MBI" },
+				    { 3, "Open to High-Level Functional Requirement", "MBI" },
+				    { 4, "High-Level Functional Requirement to Tech Evaluation", "MBI" },
+				    { 5, "Estimation Done to Financial Evaluation", "MBI" },
+				    { 6, "Financial Evaluation to Im Management", "MBI" },
+				    { 7, "Im Management to Waiting for approval", "MBI" },
+				    { 8, "Waiting for approval to WBE Management", "MBI" },
+				    { 9, "WBE Management to Approved", "MBI" },
+				    { 10, "Waiting for Estimate to Done", "IE" },
+				    { 11, "Open to Waiting for Estimate", "IE" },
+				    { 12, "Waiting for Estimate to Estimation Approval", "IE" },
+				    { 13, "Estimation Approval to Done", "IE" },
+				    { 14, "In Progress to Ready for UAT", "FD" },
+				    { 15, "Completed to Ready for UAT", "FD" },
+				    { 16, "In Progress to Completed", "FD" },
+				    { 17, "Authorized to In Progress", "FD" },
+				
+				    { 18, "Approved to Confirm Released", "BF" },
+				    { 19, "Approved to In Progress", "BF" },
+				    { 20, "Completed to Confirm Released", "BF" },
+				    { 21, "In Progress to Confirm Released", "BF" },
+				    { 22, "Ready for UAT to UAT Passed", "BF" },
+				    { 23, "UAT Passed to Completed", "BF" },
+				    { 24, "In Progress to Ready for UAT ", "BF" }
+				}
+				)
+
+	annotation PBI_Id = 40dd8f2158484ce2aed9bc5a08af9b60
+

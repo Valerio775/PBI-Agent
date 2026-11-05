@@ -1,0 +1,146 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "7665d667e09709baadad",
+  "position": {
+    "x": 1121.25,
+    "y": 561.25,
+    "z": 3000,
+    "height": 167.5,
+    "width": 698.75,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Confluence Comala Activity"
+                    }
+                  },
+                  "Property": "activity"
+                }
+              },
+              "queryRef": "Confluence Comala Activity.activity",
+              "nativeQueryRef": "activity"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Confluence Comala Activity"
+                    }
+                  },
+                  "Property": "page_id"
+                }
+              },
+              "queryRef": "Confluence Comala Activity.page_id",
+              "nativeQueryRef": "page_id"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Confluence Comala Activity"
+                    }
+                  },
+                  "Property": "Comala Stato Documento"
+                }
+              },
+              "queryRef": "Confluence Comala Activity.Comala Stato Documento",
+              "nativeQueryRef": "Comala Stato Documento"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Confluence Comala Activity"
+                    }
+                  },
+                  "Property": "Date Convertita"
+                }
+              },
+              "queryRef": "Confluence Comala Activity.Date Convertita",
+              "nativeQueryRef": "Date Convertita"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Confluence Comala Issue Link"
+                    }
+                  },
+                  "Property": "issue_key"
+                }
+              },
+              "queryRef": "Confluence Comala Issue Link.issue_key",
+              "nativeQueryRef": "issue_key"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "00d5a3d62b7593830284",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Confluence Comala Activity"
+              }
+            },
+            "Property": "page_id"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "c",
+              "Entity": "Confluence Comala Activity",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 0,
+                  "Left": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "c"
+                        }
+                      },
+                      "Property": "page_id"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "933372588L"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

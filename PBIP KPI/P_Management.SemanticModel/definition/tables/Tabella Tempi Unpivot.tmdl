@@ -1,0 +1,82 @@
+table 'Tabella Tempi Unpivot'
+	lineageTag: 90a2e163-04ea-49ea-86e9-a368be2bcdbb
+
+	column TipoTempo
+		lineageTag: f19dc9c1-605f-4ee7-bd5f-82201912805b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [TipoTempo]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Valore
+		formatString: 0
+		lineageTag: 4d364874-0cb0-476d-ae16-df1579775875
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Valore]
+
+		annotation SummarizationSetBy = Automatic
+
+	column issue_key
+		lineageTag: 036c996e-be82-4a8c-a681-e872f7302fd6
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [issue_key]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Tabella Tempi Unpivot' = calculated
+		mode: import
+		source =
+				
+				VAR Issues =
+				    SELECTCOLUMNS (
+				        'Jira Initiative Estimation',
+				        "issue_key", 'Jira Initiative Estimation'[issue_key]
+				    )
+				
+				VAR ConTempoDU =
+				    ADDCOLUMNS (
+				        Issues,
+				        "TipoTempo", "Tempo della DU per HLD",
+				        "Valore",
+				            VAR CurrentIssueKey = [issue_key]
+				            RETURN
+				                CALCULATE (
+				                    [Tempo della DU per HLD IE],
+				                    'Jira Initiative Estimation'[issue_key] = CurrentIssueKey
+				                )
+				    )
+				
+				VAR ConTempoApprovazioneBusiness =
+				    ADDCOLUMNS (
+				        Issues,
+				        "TipoTempo", "Tempo per approvazione HLD da Business",
+				        "Valore",
+				            VAR CurrentIssueKey = [issue_key]
+				            RETURN
+				                CALCULATE (
+				                    [Tempo per approvazione HLD da Business IE],
+				                    'Jira Initiative Estimation'[issue_key] = CurrentIssueKey
+				                )
+				    )
+				
+				VAR ConTempoApprovazioneDE =
+				    ADDCOLUMNS (
+				        Issues,
+				        "TipoTempo", "Tempo per approvazione HLD da DE",
+				        "Valore",
+				            VAR CurrentIssueKey = [issue_key]
+				            RETURN
+				                CALCULATE (
+				                    [Tempo per approvazione HLD da DE IE],
+				                    'Jira Initiative Estimation'[issue_key] = CurrentIssueKey
+				                )
+				    )
+				
+				RETURN
+				UNION ( ConTempoDU, ConTempoApprovazioneBusiness, ConTempoApprovazioneDE )
+
+	annotation PBI_Id = 89ab54188aac421c83b2c655d8be1f69
+

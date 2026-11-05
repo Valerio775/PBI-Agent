@@ -1,0 +1,61 @@
+table 'Jira Component'
+	lineageTag: 910080ad-519b-44e0-990d-51e31ded57d0
+	sourceLineageTag: e4f75d3c-3ba5-45b3-b004-6564402d0c01
+
+	column issue_key
+		dataType: string
+		lineageTag: d4fa133b-420b-4a15-b8f7-f74f8977c38b
+		sourceLineageTag: 9c1ff3e0-144b-44d2-a1d9-28a1fe37ebf1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_key
+
+		annotation SummarizationSetBy = User
+
+	column issue_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 3b719074-6d59-4ac7-bd86-e7be42940bf6
+		sourceLineageTag: 84712fd8-ba77-4073-abb6-a7f3886a224b
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: issue_id
+
+		annotation SummarizationSetBy = User
+
+	column summary
+		dataType: string
+		lineageTag: 752e81ec-fda4-45f8-938c-aac47d00b333
+		sourceLineageTag: 13b8d1be-9898-428a-af3c-dcf8aede33fd
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: summary
+
+		annotation SummarizationSetBy = User
+
+	column component_name
+		dataType: string
+		lineageTag: 2f68c022-845b-426c-9464-b8fe7f8664d8
+		sourceLineageTag: bc625a32-6a04-4201-af32-d81e8341b87a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: component_name
+
+		annotation SummarizationSetBy = User
+
+	column component_description
+		dataType: string
+		lineageTag: adfdcf12-375f-4fbb-a103-d3f3e3febae0
+		sourceLineageTag: 53ef5d24-d5a4-4f1e-8cad-bc2c88b4ce41
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: component_description
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira Component' = entity
+		mode: directQuery
+		source
+			entityName: Jira Component
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

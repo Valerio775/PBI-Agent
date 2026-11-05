@@ -1,0 +1,42 @@
+table 'TabellaTestMarco 4'
+	lineageTag: eef9edc2-6ebb-48ce-92fb-b23ed61fd890
+	sourceLineageTag: da599838-3ee2-4aea-80fc-cdf91b6d4ce7
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 717e1f97-f812-4cfa-88c6-6731e631f79b
+		sourceLineageTag: a21d4f74-3cca-49be-a1a6-65ee2c9379eb
+		dataCategory: Uncategorized
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = User
+
+	column Nome
+		dataType: string
+		lineageTag: 2c5bccd8-63be-48b3-a25d-5480e2947406
+		sourceLineageTag: e9bde022-8c3e-4fb0-a9dc-e4b911376fdc
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Nome
+
+		annotation SummarizationSetBy = User
+
+	column Valore
+		dataType: int64
+		formatString: 0
+		lineageTag: 7ed9b853-ac00-4c50-94bc-a10265f57532
+		sourceLineageTag: 6332de46-8160-4d67-9371-d086a76166f7
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: Valore
+
+		annotation SummarizationSetBy = User
+
+	partition 'TabellaTestMarco 4' = entity
+		mode: directQuery
+		source
+			entityName: TabellaTestMarco
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab 3'
+

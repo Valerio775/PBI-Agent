@@ -1,0 +1,129 @@
+table 'Bitbucket Project List'
+	lineageTag: 5a398c4c-411f-4331-9679-98d1dea9d52a
+	sourceLineageTag: 839846d5-10c0-4ab3-be21-34f863187183
+
+	column project_id
+		dataType: int64
+		formatString: 0
+		lineageTag: 11e930cf-7ac4-4cfa-92cb-f2ce34a87cef
+		sourceLineageTag: a881aa2a-1da7-4622-8d24-08360d024e5c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: project_id
+
+		annotation SummarizationSetBy = User
+
+	column project_name
+		dataType: string
+		lineageTag: 5c079880-0369-4e15-a040-543c3c6115af
+		sourceLineageTag: 44f2ac68-544f-41e7-9a83-460dd763c9c2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: project_name
+
+		annotation SummarizationSetBy = User
+
+	column project_key
+		dataType: string
+		isNullable: false
+		lineageTag: b3b5660e-a25c-4c93-9601-830783c114d9
+		sourceLineageTag: 5e29f02a-6999-43f3-b0b7-555f21567300
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: project_key
+
+		annotation SummarizationSetBy = User
+
+	column description
+		dataType: string
+		lineageTag: 5d67761d-09b0-41ce-bf68-59674160775c
+		sourceLineageTag: e410d3ae-c585-47dc-874a-eacc5be78095
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = User
+
+	column gds_line
+		dataType: string
+		lineageTag: 1e9cb5a0-6574-4aee-9edc-4564d3d5de10
+		sourceLineageTag: dc6f1d35-58aa-4eef-be8f-7eeecd023b1e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: gds_line
+
+		annotation SummarizationSetBy = User
+
+	column factory_chapter
+		dataType: string
+		lineageTag: 0af97191-304d-4ed9-97d3-e0e0ec5705bf
+		sourceLineageTag: f574df45-dc6a-4a71-8661-5ca1e0f28c3f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: factory_chapter
+
+		annotation SummarizationSetBy = User
+
+	column last_update
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: a4bcac06-e8ad-4d2c-9a0a-5b95f13f3886
+		sourceLineageTag: c2ad45c1-dcea-4d5d-bc95-0cc3687615dc
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: last_update
+
+		variation Variazione
+			isDefault
+			relationship: da0aee7d-d0f5-43a8-b083-fb6632e4a995
+			defaultHierarchy: LocalDateTable_f7d8b005-0675-4802-b036-1b14f90bc42d.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column last_user_update
+		dataType: string
+		lineageTag: 643d07c4-e072-4ab8-9c08-df345ddf7869
+		sourceLineageTag: fff36c5c-0711-452e-bf61-64541e9b2608
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: last_user_update
+
+		annotation SummarizationSetBy = User
+
+	column repository_count
+		dataType: int64
+		formatString: 0
+		lineageTag: f2b59421-f150-401b-895c-b8e1331e1c6a
+		sourceLineageTag: 19f46070-9697-4247-a693-006cfcb15d06
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: repository_count
+
+		annotation SummarizationSetBy = User
+
+	column Platform
+		dataType: string
+		lineageTag: 08c1e799-64a2-4b73-b1f2-0aff4c601ada
+		sourceLineageTag: 5aa630a2-c95d-4fb9-8a54-13bce24d9631
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Platform
+
+		annotation SummarizationSetBy = User
+
+	column Bitbucket_Project_URL
+		dataType: string
+		lineageTag: 00ed181b-baec-492e-bcff-c4285833fb44
+		sourceLineageTag: b9a6dd07-5fac-48a9-9610-f636da92bbdc
+		dataCategory: WebUrl
+		summarizeBy: none
+		sourceColumn: Bitbucket_Project_URL
+
+		annotation SummarizationSetBy = User
+
+	partition 'Bitbucket Project List' = entity
+		mode: directQuery
+		source
+			entityName: Bitbucket Project List
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

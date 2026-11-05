@@ -1,0 +1,30 @@
+table 'Jira ICR FD relation 2'
+	lineageTag: 6336e9b0-23e2-4992-86fa-5b3d6d7198d2
+	sourceLineageTag: fa70d568-5f01-4004-85af-282359edcbd9
+
+	column ICR
+		dataType: string
+		lineageTag: 9a52945c-ff4f-4e2d-a647-e271bc74535c
+		sourceLineageTag: 397bd211-508a-4af6-973c-f8fa81f44c6e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ICR
+
+		annotation SummarizationSetBy = User
+
+	column 'Feature Delivery'
+		dataType: string
+		lineageTag: 81bf1c3e-14fd-4e7f-9beb-ec964352ff1d
+		sourceLineageTag: dc52c540-d178-4426-bcb9-ca9a5557a9d2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Feature Delivery
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira ICR FD relation 2' = entity
+		mode: directQuery
+		source
+			entityName: Jira ICR FD relation
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab 2'
+

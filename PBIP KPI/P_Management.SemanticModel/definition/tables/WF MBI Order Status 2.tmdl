@@ -1,0 +1,32 @@
+table 'WF MBI Order Status 2'
+	lineageTag: 887c9ba3-a431-4393-a473-865407fe35d1
+	sourceLineageTag: 6b5fa508-3dea-4615-ba8b-b40d8ab9aed0
+
+	column Order
+		dataType: int64
+		formatString: 0
+		lineageTag: fe424dff-b34c-4312-adfa-3466b2de0ebe
+		sourceLineageTag: 34433866-5402-499f-a347-01be4fb65071
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Order
+
+		annotation SummarizationSetBy = User
+
+	column 'Issue status Order'
+		dataType: string
+		isNullable: false
+		lineageTag: 2dfc0020-5617-44f7-8e42-e63185efeb50
+		sourceLineageTag: 3e381256-e36a-45e8-9d08-5c02757fc1d7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Issue status Order
+
+		annotation SummarizationSetBy = User
+
+	partition 'WF MBI Order Status 2' = entity
+		mode: directQuery
+		source
+			entityName: WF MBI Order Status
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab 2'
+

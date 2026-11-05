@@ -1,0 +1,56 @@
+table Filtri_grafici_KPI3
+	lineageTag: 5981c218-c311-4428-8b24-f774f8e9e8fd
+
+	column Ordinamento
+		formatString: 0
+		lineageTag: 62d8ad5e-7d81-40a3-a46a-877e84e8ad79
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Ordinamento]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Misure
+		lineageTag: 4e48b8a1-1165-46e2-9cce-e1e869e7dfdb
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Misure]
+		sortByColumn: Ordinamento
+
+		annotation SummarizationSetBy = Automatic
+
+	column Type
+		lineageTag: 8033d161-41e3-4757-96d1-2e942939a77a
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Type]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Filtri_grafici_KPI3 = calculated
+		mode: import
+		source = ```
+				
+				DATATABLE(
+				    "Ordinamento", INTEGER,
+				    "Misure", STRING,
+				    "Type", STRING,
+				{
+				    { 0, "Authorized to In Progress", "FD" },
+				    { 1, "In progress to Completed", "FD" }, 
+				    { 3, "Approved to Confirm Released", "BF" },
+				    { 2, "Approved to In progress", "BF" },
+				    { 4, "Completed to Ready for UAT", "FD" }, 
+				    { 5, "In Progress to Ready for UAT", "BF" },
+				    { 6, "Ready for UAT to UAT Passed", "BF" },
+				    { 8, "Completed to Confirm Released", "BF" },
+				    { 7, "UAT Passed to Completed", "BF" },
+				    { 9, "In Progress to Ready for UAT ", "FD" },  // Cycle Time
+				    { 10, "In Progress to Confirm Released", "BF" } 
+				}
+				)
+				
+				```
+
+	annotation PBI_Id = ad7cb2c3a8d84d68a8a98e01c7580bb7
+

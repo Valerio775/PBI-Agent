@@ -1,0 +1,47 @@
+table 'Confluence User Last Login'
+	lineageTag: f94d5e1e-a15e-4b54-b6cc-510d07321b89
+	sourceLineageTag: 8cc56553-258f-4057-aa83-7147d4fe28dd
+
+	column tool
+		dataType: string
+		lineageTag: f706c27f-2cce-4092-a5bf-8650d9607c15
+		sourceLineageTag: 85dd0f7e-4d3c-47be-8e6c-cc273fe3abc5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: tool
+
+		annotation SummarizationSetBy = User
+
+	column lower_user_name
+		dataType: string
+		isNullable: false
+		lineageTag: 91aeebe0-9549-4208-96fe-a6243b72dc2c
+		sourceLineageTag: f1beb7e0-2b30-4b3a-ab70-4c2c5af84dc4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: lower_user_name
+
+		annotation SummarizationSetBy = User
+
+	column last_login
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: b06dd56c-bcb0-43c1-bf5f-ab60051c2abf
+		sourceLineageTag: 73a78246-93a3-4396-b732-8ff4464b874d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: last_login
+
+		variation Variazione
+			isDefault
+			relationship: 942968ce-bb96-4714-afe9-d389e0b46a2b
+			defaultHierarchy: LocalDateTable_3f3c9c4c-ca1b-4404-bff3-41b2b20d9baf.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	partition 'Confluence User Last Login' = entity
+		mode: directQuery
+		source
+			entityName: Confluence User Last Login
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

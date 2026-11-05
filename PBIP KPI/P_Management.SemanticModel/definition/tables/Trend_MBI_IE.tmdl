@@ -1,0 +1,72 @@
+table Trend_MBI_IE
+	lineageTag: 65dbae0a-2f1d-43cf-aefa-3cf3220f37cf
+
+	column Trend_MBI_IE
+		lineageTag: ac65616a-2ea7-4075-b669-57ba0662e3b5
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Trend_MBI_IE Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Trend_MBI_IE Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Trend_MBI_IE Fields'
+		isHidden
+		lineageTag: a9354bca-17e1-43e6-8e4d-3567553e03d6
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Trend_MBI_IE Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Trend_MBI_IE Order'
+		isHidden
+		formatString: 0
+		lineageTag: 97d7e6c9-5fd3-4edf-add7-3ca637a29266
+		summarizeBy: none
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Trend_MBI_IE = calculated
+		mode: import
+		source =
+				{
+				    ("Avg. Time (dd)", NAMEOF('Misure'[AVG OpenApproved]), 0),
+				    ("Avg. Time (dd)", NAMEOF('Misure'[AVG HighlevelFunctionalApproved]), 1),
+				    ("Avg. Time (dd)", NAMEOF('Misure'[AVG TechEvaluationEstimationDone]), 2),
+				    ("Avg. Time (dd)", NAMEOF('Misure'[AVG Open-HighlevelFunctional]), 3),
+				    ("Avg. Time (dd)", NAMEOF('Misure'[AVG HighLevelFunctionalRequirement-TechEvaluation]), 4),
+				    ("Avg. Time (dd)", NAMEOF('Misure'[AVG EstimationDoneFinancialEvaluation]), 5),
+				    ("Avg. Time (dd)", NAMEOF('Misure'[AVG FinancialEvaluationImManagement]), 6),
+				    ("Avg. Time (dd)", NAMEOF('Misure'[AVG ImManagementWaitingForApproval]), 7),
+				    ("Avg. Time (dd)", NAMEOF('Misure'[AVG WaitingForApprovalWBEManagement]), 8),
+				    ("Avg. Time (dd)", NAMEOF('Misure'[AVG WBEManagementApproved]), 9),
+				    ("Avg. Time (dd)", NAMEOF('Misure'[AVG WaitingForEstimateDone]), 10),
+				    ("Avg. Time (dd)", NAMEOF('Misure'[AVG OpenWaitingForEstimate]), 11),
+				    ("Avg. Time (dd)", NAMEOF('Misure'[AVG WaitingForEstimateEstimationApproval]), 12),
+				    ("Avg. Time (dd)", NAMEOF('Misure'[AVG EstimationApprovalDone]), 13),
+				    ("Avg. Time (dd)", NAMEOF('Misure'[AVG InProgress_ReadyForUAT]), 14),
+				    ("Avg. Time (dd)", NAMEOF('Misure'[AVG Completed_ReadyForUAT]), 15),
+				    ("Avg. Time (dd)", NAMEOF('Misure'[AVG Progress_Completed]), 16),
+				    ("Avg. Time (dd)", NAMEOF('Misure'[AVG Authorized_Progress]), 17),
+				
+				    ("Avg. Time (dd)", NAMEOF('Misure'[AVG Approved_ConfirmReleased]), 18),
+				    ("Avg. Time (dd)", NAMEOF('Misure'[AVG Approved_InProgress]), 19),
+				    ("Avg. Time (dd)", NAMEOF('Misure'[AVG Completed_ConfirmReleased]), 20),
+				    ("Avg. Time (dd)", NAMEOF('Misure'[AVG InProgress_ConfirmReleased]), 21),
+				    ("Avg. Time (dd)", NAMEOF('Misure'[AVG RfUAT_UATPassed]), 22),
+				    ("Avg. Time (dd)", NAMEOF('Misure'[AVG UATPassed_Completed]), 23),
+				    ("Avg. Time (dd)", NAMEOF('Misure'[AVG InProgress_RfUAT]), 24)
+				}
+
+	annotation PBI_Id = a83c0e23fc8548d8bf4828d9b1fcd724
+

@@ -1,0 +1,92 @@
+table 'Country 4'
+	lineageTag: 6ca3a524-c41e-4017-b180-09b68e8b42fa
+	sourceLineageTag: f855d42a-cbc5-4294-938c-5557b0d8070c
+
+	column id
+		dataType: string
+		lineageTag: 0cec9b75-8750-4794-a544-654d547906cb
+		sourceLineageTag: 1e7612a4-006e-4f0c-8a76-2e687b87112a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = User
+
+	column Key
+		dataType: string
+		lineageTag: 66887d63-9b7c-45ba-8fc2-6feaf13a5a16
+		sourceLineageTag: e77cb9ab-6db0-4f7d-8bec-6d1ab417f594
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Key
+
+		annotation SummarizationSetBy = User
+
+	column Name
+		dataType: string
+		lineageTag: 3cbab948-97a3-419a-b857-5024b856501b
+		sourceLineageTag: dc3f5940-d90a-4594-baaa-bc44c93707e7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Name
+
+		annotation SummarizationSetBy = User
+
+	column Created
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 6617e08d-6e9f-47f9-a4bd-5a96c5f75a07
+		sourceLineageTag: be55cf83-b587-47b3-82ca-3c734e298cdb
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Created
+
+		variation Variazione
+			isDefault
+			relationship: 7561b022-aaf9-40f8-92a5-3c4cac6147a4
+			defaultHierarchy: 'LocalDateTable_7220c40e-021b-403a-85df-ab9e801cc625 4'.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column Updated
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 4931a680-e545-43a0-87c2-f707164f6455
+		sourceLineageTag: 842054be-401e-4bec-8af1-0a53f75c234e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Updated
+
+		variation Variazione
+			isDefault
+			relationship: c988a203-4422-4132-bb3b-0454941636d6
+			defaultHierarchy: 'LocalDateTable_748fa7ae-9c4c-48df-aea5-4b1e80e88ac5 4'.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column Description
+		dataType: string
+		lineageTag: e2146494-a7f8-42d1-831c-d1d35a49d3a1
+		sourceLineageTag: 1a69b904-83ec-42f3-bd29-3137aa1b54b9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Description
+
+		annotation SummarizationSetBy = User
+
+	column Code
+		dataType: string
+		lineageTag: 15150eca-1a72-4a49-8bf0-df2fbe2b58af
+		sourceLineageTag: 293cf130-765d-4739-b3d5-750b95b1d11f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Code
+
+		annotation SummarizationSetBy = User
+
+	partition 'Country 4' = entity
+		mode: directQuery
+		source
+			entityName: Country
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab 3'
+

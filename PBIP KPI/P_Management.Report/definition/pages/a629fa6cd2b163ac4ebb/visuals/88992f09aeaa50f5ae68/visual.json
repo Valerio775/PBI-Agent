@@ -1,0 +1,468 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "88992f09aeaa50f5ae68",
+  "position": {
+    "x": 1184.6645701239945,
+    "y": 28.653001461958581,
+    "z": 3000,
+    "height": 446.13627905734165,
+    "width": 641.53705244292155,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "BF Transition Status Confluence"
+                    }
+                  },
+                  "Property": "Issue name"
+                }
+              },
+              "queryRef": "BF Transition Status Confluence.Issue name",
+              "nativeQueryRef": "Issue name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "BF Transition Status Confluence"
+                    }
+                  },
+                  "Property": "issue_key"
+                }
+              },
+              "queryRef": "BF Transition Status Confluence.issue_key",
+              "nativeQueryRef": "BF Key",
+              "displayName": "BF Key"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "BF Transition Status Confluence"
+                    }
+                  },
+                  "Property": "transition_date"
+                }
+              },
+              "queryRef": "BF Transition Status Confluence.transition_date",
+              "nativeQueryRef": "Data Inizio Rework",
+              "displayName": "Data Inizio Rework"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "BF Transition Status Confluence"
+                    }
+                  },
+                  "Property": "Data Uscita Rework BF Journey"
+                }
+              },
+              "queryRef": "BF Transition Status Confluence.Data Uscita Rework BF Journey",
+              "nativeQueryRef": "Data Uscita Rework",
+              "displayName": "Data Uscita Rework"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "BF Transition Status Confluence"
+                    }
+                  },
+                  "Property": "Giorni Rework Journey"
+                }
+              },
+              "queryRef": "Sum(BF Transition Status Confluence.Giorni Rework Journey)",
+              "nativeQueryRef": "Giorni Rework ",
+              "displayName": "Giorni Rework "
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Workflow Fasi BF Journey Confluence 2"
+                    }
+                  },
+                  "Property": "Status Tradotto"
+                }
+              },
+              "queryRef": "Workflow Fasi BF Journey Confluence 2.Status Tradotto",
+              "nativeQueryRef": "Current Status Jira ",
+              "displayName": "Current Status Jira "
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "12D"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Arial'"
+                }
+              }
+            },
+            "backColorSecondary": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F3F9FF'"
+                    }
+                  }
+                }
+              }
+            },
+            "urlIcon": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Arial Black'''"
+                }
+              }
+            },
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#EBEBEB'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "ThemeDataColor": {
+                      "ColorId": 0,
+                      "Percent": -0.6
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "grid": [
+        {
+          "properties": {
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            },
+            "rowPadding": {
+              "expr": {
+                "Literal": {
+                  "Value": "6D"
+                }
+              }
+            },
+            "outlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#C4C4C4'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnWidth": [
+        {
+          "properties": {
+            "value": {
+              "expr": {
+                "Literal": {
+                  "Value": "389.57143451497416D"
+                }
+              }
+            }
+          },
+          "selector": {
+            "metadata": "BF Transition Status Confluence.Issue name"
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "parentGroupName": "bc0beca5ab6a34857c93",
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "ea133aebe2b5cf45b127",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "BF Transition Status Confluence"
+              }
+            },
+            "Property": "Issue name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "f4a153bd61d76b631b59",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Business Feature"
+              }
+            },
+            "Property": "Issue Initiative Type"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User"
+      },
+      {
+        "name": "706a8a0e00d8099547d4",
+        "ordinal": 2,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "BF Transition Status Confluence"
+              }
+            },
+            "Property": "Filtro Rework BF Journey"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "d19d134b54bcf6bdb3b6",
+        "ordinal": 3,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "BF Transition Status Confluence"
+              }
+            },
+            "Property": "Filtro Rework BF Journey"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "1ace82e902810cac1345",
+        "ordinal": 4,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "BF Transition Status Confluence"
+              }
+            },
+            "Property": "Filtro Rework BF Journey"
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "fe14de128cb095f7b378",
+        "ordinal": 5,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "BF Transition Status Confluence"
+              }
+            },
+            "Property": "issue_key"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "12c05b3176eabecc582b",
+        "ordinal": 6,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "BF Transition Status Confluence"
+              }
+            },
+            "Property": "transition_date"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "cca32a8993685c587e3e",
+        "ordinal": 7,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Jira Business Feature"
+              }
+            },
+            "Property": "Projectrak Project Status"
+          }
+        },
+        "type": "Categorical",
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "00942743b0afa96d8eb9",
+        "ordinal": 8,
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "BF Transition Status Confluence"
+              }
+            },
+            "Property": "Data Uscita Rework BF Journey"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "866eb2f9cfd6317b924c",
+        "ordinal": 9,
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "BF Transition Status Confluence"
+                  }
+                },
+                "Property": "Giorni Rework Journey"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced",
+        "howCreated": "User"
+      },
+      {
+        "name": "78aa9ce631a4a9f7e69b",
+        "ordinal": 10,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Workflow Fasi BF Journey Confluence 2"
+              }
+            },
+            "Property": "Status Tradotto"
+          }
+        },
+        "type": "Categorical",
+        "objects": {
+          "general": [
+            {
+              "properties": {}
+            }
+          ]
+        }
+      },
+      {
+        "name": "57d9cc174046e510ca6d",
+        "ordinal": 11,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "BF Transition Status Confluence"
+              }
+            },
+            "Property": "Giorni Rework Journey"
+          }
+        },
+        "type": "Advanced"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

@@ -1,0 +1,72 @@
+table Quantità_MBI_IE
+	lineageTag: 710150ed-6703-4f8c-a706-f4e5c53aec44
+
+	column Quantità_MBI_IE
+		lineageTag: cac31790-e8d7-4c0e-bad8-58dbf0df1aef
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Quantità_MBI_IE Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Quantità_MBI_IE Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quantità_MBI_IE Fields'
+		isHidden
+		lineageTag: 18a4a20d-4c39-45f8-afca-a45dedd9b3fa
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Quantità_MBI_IE Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Quantità_MBI_IE Order'
+		isHidden
+		formatString: 0
+		lineageTag: 3ddacb42-c04c-42d0-bad5-2c92067ffcb2
+		summarizeBy: none
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Quantità_MBI_IE = calculated
+		mode: import
+		source =
+				{
+				    ("Volume", NAMEOF('Misure'[COUNT OpenApproved]), 0),
+				    ("Volume", NAMEOF('Misure'[COUNT HighlevelFunctional]), 1),
+				    ("Volume", NAMEOF('Misure'[COUNT TechEvaluationEstimationDone]), 2),
+				    ("Volume", NAMEOF('Misure'[COUNT Open-HighlevelFunctionalLead]), 3),
+				    ("Volume", NAMEOF('Misure'[COUNT HighLevelFunctionalRequirement-TechEvaluation]), 4),
+				    ("Volume", NAMEOF('Misure'[COUNT EstimationDoneFinancialEvaluation]), 5),
+				    ("Volume", NAMEOF('Misure'[COUNT FinancialEvaluationImManagement]), 6),
+				    ("Volume", NAMEOF('Misure'[COUNT ImManagementWaitingForApproval]), 7),
+				    ("Volume", NAMEOF('Misure'[COUNT WaitingForApprovalWBEManagement]), 8),
+				    ("Volume", NAMEOF('Misure'[COUNT WBEManagementApproved]), 9),
+				    ("Volume", NAMEOF('Misure'[COUNT WaitingForEstimateDone]), 10),
+				    ("Volume", NAMEOF('Misure'[COUNT OpenWaitingForEstimate]), 11),
+				    ("Volume", NAMEOF('Misure'[COUNT WaitingForEstimateEstimationApproval]), 12),
+				    ("Volume", NAMEOF('Misure'[COUNT EstimationApprovalDone]), 13),
+				    ("Volume", NAMEOF('Misure'[COUNT InProgress_ReadyForUAT]), 14),
+				    ("Volume", NAMEOF('Misure'[COUNT Completed_ReadyForUAT]), 15),
+				    ("Volume", NAMEOF('Misure'[COUNT Progress_Completed]), 16),
+				    ("Volume", NAMEOF('Misure'[COUNT Authorized_Progress]), 17),
+				
+				    ("Volume", NAMEOF('Misure'[COUNT Approved_ConfirmReleased]), 18),
+				    ("Volume", NAMEOF('Misure'[COUNT Approved_InProgress]), 19),
+				    ("Volume", NAMEOF('Misure'[COUNT Completed_ConfirmReleased]), 20),
+				    ("Volume", NAMEOF('Misure'[COUNT InProgress_ConfirmReleased]), 21),
+				    ("Volume", NAMEOF('Misure'[COUNT RfUAT_UATPassed]), 22),
+				    ("Volume", NAMEOF('Misure'[COUNT UATPassed_Completed]), 23),
+				    ("Volume", NAMEOF('Misure'[COUNT InProgress_RfUAT]), 24)
+				}
+
+	annotation PBI_Id = 5c04c6a5cda043beb9c66f672bb0ff27
+

@@ -1,0 +1,103 @@
+table 'Jira Feature Delivery Progress'
+	lineageTag: f5064276-4b26-4013-bd4f-7f074dec67f8
+	sourceLineageTag: 1673be0d-5a35-4901-8d46-e02672b25085
+
+	column id
+		dataType: string
+		lineageTag: 5b16c945-5535-4713-980e-cad7e7c606ee
+		sourceLineageTag: 316d60a0-9dcc-46b5-ac4c-ad1b446fcf53
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = User
+
+	column Key
+		dataType: string
+		lineageTag: f2cd05bb-8f49-4288-9ed8-ec85ab8549a2
+		sourceLineageTag: e9f0905c-6ef7-4b24-a42b-664321ab7a67
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Key
+
+		annotation SummarizationSetBy = User
+
+	column Status
+		dataType: string
+		lineageTag: 79c4bbf9-783b-4ba1-822c-d073698d1e36
+		sourceLineageTag: 67e2cdd3-22c0-47ed-9931-c7ec6bf91723
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = User
+
+	column 'Activity Type'
+		dataType: string
+		lineageTag: a46a7d3a-9330-4482-9e98-073e7187b2d4
+		sourceLineageTag: 963148c1-9d3a-4dce-8063-9311c1070b85
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Activity Type
+
+		annotation SummarizationSetBy = User
+
+	column Progress
+		dataType: double
+		lineageTag: ef01c512-2f4f-4db8-be49-264aa1f9c4bd
+		sourceLineageTag: dc2ebb9e-1ab2-44e6-8eb4-d5e5d03a5785
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Progress
+
+		annotation SummarizationSetBy = User
+
+	column Created
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 9cf83f01-6ca3-4c33-894b-f0dcf13f024a
+		sourceLineageTag: efca06e6-4917-4941-a61c-7d7b904eb83c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Created
+
+		variation Variazione
+			isDefault
+			relationship: e111f184-94dc-4eca-8b78-21a84d35ceac
+			defaultHierarchy: LocalDateTable_b84bed92-d8f0-4d96-b0b3-c9384443aaa6.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column Updated
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 8911e17b-e414-4900-a8ef-5142308b5794
+		sourceLineageTag: 9eb8c494-18c6-4297-bb80-77cc4d0d36f4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Updated
+
+		variation Variazione
+			isDefault
+			relationship: 6756769f-b29a-4de9-a9dc-0bbcbaa86cfb
+			defaultHierarchy: LocalDateTable_6fcbbb8e-ece8-48d2-ad9a-bb37e29cf573.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column 'Full Status'
+		dataType: string
+		isNullable: false
+		lineageTag: fa01208e-0638-451f-a53c-2d7dca4cf316
+		sourceLineageTag: eb478236-061b-4f5b-8682-87f0dcb8eb65
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Full Status
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira Feature Delivery Progress' = entity
+		mode: directQuery
+		source
+			entityName: Jira Feature Delivery Progress
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

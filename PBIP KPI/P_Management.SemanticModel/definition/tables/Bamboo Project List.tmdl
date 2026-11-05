@@ -1,0 +1,181 @@
+table 'Bamboo Project List'
+	lineageTag: c098b258-d269-47fd-83d5-0ee77a127115
+	sourceLineageTag: 81a1f53b-05b6-4ffa-a894-6832903f4d9a
+
+	column project_id
+		dataType: int64
+		isNullable: false
+		formatString: 0
+		lineageTag: 0b03003d-f434-4c07-9dd4-d02d11246708
+		sourceLineageTag: 8fa1c7be-b125-4d2f-97fa-f030c3d9f93d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: project_id
+
+		annotation SummarizationSetBy = User
+
+	column created_date
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: e46de8b3-4fb7-4565-b096-95a406be75df
+		sourceLineageTag: 856be364-8845-4d40-8400-6a6fe1d94e7f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: created_date
+
+		variation Variazione
+			isDefault
+			relationship: 131bec69-51d3-4b13-b589-73ae267834fe
+			defaultHierarchy: LocalDateTable_e1b79ae2-cd5f-4b81-87b3-25dffc01e255.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column updated_date
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 5ca68d01-470c-4fcc-aa2b-201030a4c527
+		sourceLineageTag: 552d2034-4a5b-43d2-b481-99ba482bd1bc
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: updated_date
+
+		variation Variazione
+			isDefault
+			relationship: 5067ce72-4a34-4781-904f-bc4e8d824e0a
+			defaultHierarchy: LocalDateTable_c540403a-8c5d-4e45-9c85-7166a38c6454.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column project_key
+		dataType: string
+		isNullable: false
+		lineageTag: 91b3651a-06c1-4163-b99e-2c1b5af656e1
+		sourceLineageTag: fd57a006-4c17-40af-bb2f-8a0e459e9ee3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: project_key
+
+		annotation SummarizationSetBy = User
+
+	column title
+		dataType: string
+		lineageTag: 18f68d4f-7199-49c0-a8bf-1ed664e3402e
+		sourceLineageTag: 84de2e19-9ee0-47bf-819a-f0608ea196ea
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: title
+
+		annotation SummarizationSetBy = User
+
+	column description
+		dataType: string
+		lineageTag: 74cf7615-0835-442a-8b54-bafc2fe2365f
+		sourceLineageTag: 2054c2ba-6758-43d0-9340-4c6c021c41eb
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = User
+
+	column marked_for_deletion
+		dataType: string
+		lineageTag: 38a422ca-83e4-415b-98f4-5bc6b29a006b
+		sourceLineageTag: 7b2f6717-5c32-46cd-b14c-fc17dc725f85
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: marked_for_deletion
+
+		annotation SummarizationSetBy = User
+
+	column oid
+		dataType: string
+		lineageTag: e2449756-6ac5-4f9d-8434-b449f3781c69
+		sourceLineageTag: 946d402b-eb64-4e48-9c4d-ae1cf424ed1c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: oid
+
+		annotation SummarizationSetBy = User
+
+	column vcs_specs_source_id
+		dataType: string
+		lineageTag: 89c45ed7-0314-47eb-aff7-81db9ea8c8eb
+		sourceLineageTag: 90cb7843-462a-4312-a7e0-3cd1abf6341d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: vcs_specs_source_id
+
+		annotation SummarizationSetBy = User
+
+	column gds_line
+		dataType: string
+		lineageTag: d104ee07-c655-48c7-ab38-d4f85f34f88e
+		sourceLineageTag: 924160c8-7531-49dd-8fe0-caf92934f43f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: gds_line
+
+		annotation SummarizationSetBy = User
+
+	column factory_chapter
+		dataType: string
+		lineageTag: 59a3270b-926d-4e7b-8260-25dd9871c45d
+		sourceLineageTag: e27b82e4-6fe7-48ce-863a-f035e90f2d93
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: factory_chapter
+
+		annotation SummarizationSetBy = User
+
+	column last_update
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 3f009d40-2043-4edf-8235-dc748aba8f42
+		sourceLineageTag: ec483fa9-b248-4160-a15d-03378b79c041
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: last_update
+
+		variation Variazione
+			isDefault
+			relationship: 446a1fb7-0331-4982-b8fd-c0c87728ff3e
+			defaultHierarchy: LocalDateTable_16270837-a5e8-4aef-89f2-0fca94afbd57.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column last_user_update
+		dataType: string
+		lineageTag: 7b261ce4-96d5-4dac-9531-930ddf8b018f
+		sourceLineageTag: 230cd7df-2342-4e8a-8e54-25f4fa764855
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: last_user_update
+
+		annotation SummarizationSetBy = User
+
+	column Bamboo_Project_URL
+		dataType: string
+		lineageTag: ec75e51c-f988-4655-882d-2304cc3c7eb2
+		sourceLineageTag: cbf45f1d-754e-4d03-8e6e-005bee351870
+		dataCategory: WebUrl
+		summarizeBy: none
+		sourceColumn: Bamboo_Project_URL
+
+		annotation SummarizationSetBy = User
+
+	column Platform_bamboo
+		dataType: string
+		lineageTag: 9824f182-c6fe-4f0a-8f0c-71cbfa8f2eb0
+		sourceLineageTag: 20a9b781-107f-4800-8c76-18bf7e98e1d4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Platform_bamboo
+
+		annotation SummarizationSetBy = User
+
+	partition 'Bamboo Project List' = entity
+		mode: directQuery
+		source
+			entityName: Bamboo Project List
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

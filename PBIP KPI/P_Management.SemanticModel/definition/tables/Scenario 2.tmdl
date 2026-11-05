@@ -1,0 +1,42 @@
+table 'Scenario 2'
+	lineageTag: 3cd7a08d-06a4-4e05-a3d8-0b029b251894
+	sourceLineageTag: 8042b1e1-4986-4999-827b-7d910cee79f3
+
+	column scenario
+		dataType: string
+		isNullable: false
+		lineageTag: 5be1c372-df9b-4c06-b729-feb1f6ae86a2
+		sourceLineageTag: f61beb65-f1cc-4a51-b555-0f21e33aabb1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: scenario
+
+		annotation SummarizationSetBy = User
+
+	column anno
+		dataType: double
+		formatString: 0
+		lineageTag: a4f38155-504d-4d9e-a49c-b23973894996
+		sourceLineageTag: 03565d50-6029-42b6-a131-d5a4530bbf5a
+		dataCategory: Uncategorized
+		summarizeBy: sum
+		sourceColumn: anno
+
+		annotation SummarizationSetBy = User
+
+	column Scenario_tipologia
+		dataType: string
+		lineageTag: c661cd54-12d6-4839-9d62-3fb217768438
+		sourceLineageTag: 72b622e5-234e-436e-b177-3a560a456760
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Scenario_tipologia
+
+		annotation SummarizationSetBy = User
+
+	partition 'Scenario 2' = entity
+		mode: directQuery
+		source
+			entityName: Scenario
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab 2'
+

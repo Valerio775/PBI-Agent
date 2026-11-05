@@ -1,0 +1,31 @@
+table 'Confluence MBI Pages'
+	lineageTag: 18bbedc3-aa31-4529-be56-5ae42e40b04a
+	sourceLineageTag: 9f0fe2e4-2986-42f7-8e37-5c4eb81385bd
+
+	column pageid
+		dataType: int64
+		formatString: 0
+		lineageTag: 5d894f05-c810-405d-b4e3-564e20e96471
+		sourceLineageTag: 84bb37d2-66b1-4fc9-8068-722c89b07d9f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: pageid
+
+		annotation SummarizationSetBy = User
+
+	column issue_key
+		dataType: string
+		lineageTag: 8f332349-19c6-4b94-a1ec-d5521e773ebd
+		sourceLineageTag: 57a28fed-3e21-4147-8d03-ec746c91d6a3
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_key
+
+		annotation SummarizationSetBy = User
+
+	partition 'Confluence MBI Pages' = entity
+		mode: directQuery
+		source
+			entityName: Confluence MBI Pages
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

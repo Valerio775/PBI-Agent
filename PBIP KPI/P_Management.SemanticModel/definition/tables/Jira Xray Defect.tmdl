@@ -1,0 +1,403 @@
+table 'Jira Xray Defect'
+	lineageTag: 26633ef9-aa92-4bc4-a2ad-2686827a6dba
+	sourceLineageTag: f39166e0-6e30-40a6-8dc8-5ce856fc7729
+
+	column issue
+		dataType: string
+		isNullable: false
+		lineageTag: c8db3f96-7d4b-427e-a827-a5d4a8c039a3
+		sourceLineageTag: c19a04e4-19b5-4308-add1-f43008bc554b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue
+
+		annotation SummarizationSetBy = User
+
+	column issue_type
+		dataType: string
+		lineageTag: f44e4b43-dda3-48e9-b35e-ab9a3083a5e6
+		sourceLineageTag: 859f27e3-754c-47e7-8cc0-b77aba29f2a8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_type
+
+		annotation SummarizationSetBy = User
+
+	column issue_created_by
+		dataType: string
+		lineageTag: 00ff7f33-16f5-4364-b5c2-9d0c1fa5bf00
+		sourceLineageTag: a248b69f-1373-40d4-a9b2-0940a4d1e59b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_created_by
+
+		annotation SummarizationSetBy = User
+
+	column issue_created_date
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: db4bb3dd-3c77-44fb-bb3e-581aebd13634
+		sourceLineageTag: 79f9e714-dad9-4f21-8638-1adeaaa728a9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_created_date
+
+		variation Variazione
+			isDefault
+			relationship: fa9e5c40-bcbe-4541-9c11-2ed3552f22b4
+			defaultHierarchy: LocalDateTable_7522cab3-cb66-4b84-aae1-fbf6a7f1635d.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column issue_resolution_date
+		dataType: dateTime
+		formatString: General Number
+		lineageTag: 187ba4a6-3078-4b6f-9048-54d74dd75dce
+		sourceLineageTag: ebace80e-f184-4c69-a81b-528bc1e27378
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_resolution_date
+
+		variation Variazione
+			isDefault
+			relationship: 91d7e4c1-fa73-4eef-8494-ffb736bc3ca0
+			defaultHierarchy: LocalDateTable_84a33511-ffdc-4fb5-aa05-135eecda9d96.'Gerarchia data'
+
+		annotation SummarizationSetBy = User
+
+	column issue_priority
+		dataType: string
+		lineageTag: e1742c09-41ef-4540-b519-3f735889b3e9
+		sourceLineageTag: b93ff5ad-08f5-4ec5-a6a2-aa09974a758b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_priority
+
+		annotation SummarizationSetBy = User
+
+	column issue_status
+		dataType: string
+		lineageTag: 8733cba7-a360-44fe-a86e-34ddb595046a
+		sourceLineageTag: ac0e60cc-3d03-4e86-884d-3006755ccb61
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_status
+
+		annotation SummarizationSetBy = User
+
+	column issue_apm_list
+		dataType: string
+		lineageTag: 21bc85f4-29c7-4d1e-91f1-ef6c9b04cf72
+		sourceLineageTag: a098f51b-d3b8-4913-a2d7-b7d77fd21302
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_apm_list
+
+		annotation SummarizationSetBy = User
+
+	column issue_issue_provider
+		dataType: string
+		lineageTag: 0e01a83d-b2f6-4676-928f-6c1e302afef3
+		sourceLineageTag: 6b85c9dc-13b2-4f5c-bfaa-4cc0973d404a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_issue_provider
+
+		annotation SummarizationSetBy = User
+
+	column issue_fix_versions
+		dataType: string
+		lineageTag: 8b1c5dd2-0b79-446f-bfd7-766cdc009f8f
+		sourceLineageTag: 5c2c9c31-f857-4e3e-8dbf-4b3d1209b668
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_fix_versions
+
+		annotation SummarizationSetBy = User
+
+	column issue_components
+		dataType: string
+		lineageTag: f35d14b5-1eac-4565-8241-66c753ca9cee
+		sourceLineageTag: 68af7b98-a6e0-445e-8fc2-41f3e8ae99b0
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_components
+
+		annotation SummarizationSetBy = User
+
+	column issue_labels
+		dataType: string
+		lineageTag: 8baaba98-bc9d-4c94-9346-6e535b4399e7
+		sourceLineageTag: 4c0ead4e-0389-4bca-aa83-3bffe69d5618
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_labels
+
+		annotation SummarizationSetBy = User
+
+	column issue_ciclo
+		dataType: string
+		lineageTag: 88fda7b5-4386-4bd6-9ba3-be7aa111cac1
+		sourceLineageTag: f90560c9-4dca-4b43-8fcf-467864f42834
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_ciclo
+
+		annotation SummarizationSetBy = User
+
+	column issue_id_esigenza
+		dataType: string
+		lineageTag: f3e9772e-6313-43d2-bcaa-5c3d946dcd55
+		sourceLineageTag: fe986fb2-7c4e-4f79-bbc2-dc91c5b405a4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_id_esigenza
+
+		annotation SummarizationSetBy = User
+
+	column issue_piattaforma_defect
+		dataType: string
+		lineageTag: 3821fb62-d453-483b-b1a4-5d8a8b0ae1d6
+		sourceLineageTag: 0fd472c1-5f4a-4e12-8ff1-92f6c0aa8e9b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_piattaforma_defect
+
+		annotation SummarizationSetBy = User
+
+	column issue_qa_team
+		dataType: string
+		lineageTag: c5885799-0dc6-459b-8bb4-c9ae766204fe
+		sourceLineageTag: edfde9d9-c716-4634-8a0f-165b1d8b880e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_qa_team
+
+		annotation SummarizationSetBy = User
+
+	column issue_severity
+		dataType: string
+		lineageTag: a22e34f7-d6b2-40b0-95d7-16b7b2946387
+		sourceLineageTag: b65db54e-6da5-40a3-9aeb-78df3f2c2284
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_severity
+
+		annotation SummarizationSetBy = User
+
+	column issue_tipologia
+		dataType: string
+		lineageTag: 1192cfa5-908c-465f-a281-57374acca7fe
+		sourceLineageTag: 7ddcf813-5c62-4691-b2a8-e0186929210b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_tipologia
+
+		annotation SummarizationSetBy = User
+
+	column issue_requirement_status
+		dataType: string
+		lineageTag: 7a9c85d9-dd9f-49a2-a126-48c4e2785b4b
+		sourceLineageTag: 39ab9f24-2960-4d75-af69-8ba06d0de410
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_requirement_status
+
+		annotation SummarizationSetBy = User
+
+	column issue_business_feature
+		dataType: string
+		lineageTag: 5e0e1450-fb65-4d06-b83f-da30c011eeff
+		sourceLineageTag: 62e57c6c-b8d4-43c6-9920-a9ff8aeb5299
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_business_feature
+
+		annotation SummarizationSetBy = User
+
+	column issue_defect_type
+		dataType: string
+		lineageTag: 376725bb-b08d-4de8-b041-18cdfb73876c
+		sourceLineageTag: 777bb874-0a8d-482b-961a-65f038f24bf6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_defect_type
+
+		annotation SummarizationSetBy = User
+
+	column bug_link
+		dataType: string
+		lineageTag: a9b02249-51a9-49e1-81c5-c83182eb7283
+		sourceLineageTag: dc8b70a9-b516-49b9-b484-9223d1debad4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: bug_link
+
+		annotation SummarizationSetBy = User
+
+	column 'APM Code'
+		dataType: string
+		lineageTag: 9875030c-c66f-4a75-8870-0250111e4fd0
+		sourceLineageTag: 08e8dbbf-0191-44fb-9d9b-b013055aa265
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: APM Code
+
+		annotation SummarizationSetBy = User
+
+	column Jira_DEFECT_URL
+		dataType: string
+		lineageTag: d1b1c531-bb57-402f-88b4-1d672edf1c9b
+		sourceLineageTag: 5aa7ca60-1008-42b7-ad6e-e3058187351e
+		dataCategory: WebUrl
+		summarizeBy: none
+		sourceColumn: Jira_DEFECT_URL
+
+		annotation SummarizationSetBy = User
+
+	column status_category
+		dataType: string
+		lineageTag: 944f2046-a7d1-4910-bdfe-29fc6e86e6a6
+		sourceLineageTag: 83ea21ee-34a7-4962-b07e-34222d3717a4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: status_category
+
+		annotation SummarizationSetBy = User
+
+	column project_key
+		dataType: string
+		lineageTag: f6f81857-a2ae-4acd-8f98-aebd1402abdc
+		sourceLineageTag: 0e9db574-cdf6-4c54-baec-19cd8b533732
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: project_key
+
+		annotation SummarizationSetBy = User
+
+	column issue_epic_link
+		dataType: string
+		lineageTag: 3be08b52-7f68-4877-ba44-7d18e17ad281
+		sourceLineageTag: 020472a8-c725-4ec2-87d2-b5c162764e81
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_epic_link
+
+		annotation SummarizationSetBy = User
+
+	column issue_epic_name
+		dataType: string
+		lineageTag: 9c4c7c95-68bc-4f71-b1f8-b24fbd2604c0
+		sourceLineageTag: 82889f5e-1e9f-40c8-aea5-9bb7847e5d4a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_epic_name
+
+		annotation SummarizationSetBy = User
+
+	column issue_epic_status
+		dataType: string
+		lineageTag: 16a8fae3-673a-4105-81a7-44d73c20f660
+		sourceLineageTag: 61baa71a-6de7-4114-b2cc-d95404da28aa
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_epic_status
+
+		annotation SummarizationSetBy = User
+
+	column gds_line
+		dataType: string
+		lineageTag: 8fb62b7f-04ea-4287-984c-aaae7a21b9b0
+		sourceLineageTag: f8d70d9d-4cd7-4f93-9859-438bd6f85ed9
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: gds_line
+
+		annotation SummarizationSetBy = User
+
+	column factory___chapter
+		dataType: string
+		lineageTag: c1b11d1c-81b1-4b00-8fc9-789c4d36b35b
+		sourceLineageTag: b0a056b1-56eb-431b-8132-6978a2343fba
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: factory___chapter
+
+		annotation SummarizationSetBy = User
+
+	column project_status
+		dataType: string
+		lineageTag: 1ab43c53-fd32-43cd-ad9c-061f2f0b505a
+		sourceLineageTag: 8dc0a616-1bbe-4d77-bee7-0c9274c3170e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: project_status
+
+		annotation SummarizationSetBy = User
+
+	column issue_baseline_start_date
+		dataType: string
+		lineageTag: d4d4c3fd-d009-4708-bfd6-323a6f4e4da1
+		sourceLineageTag: a168aabc-ad8d-4aae-929e-213ec4d11aa2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_baseline_start_date
+
+		annotation SummarizationSetBy = User
+
+	column issue_baseline_end_date
+		dataType: string
+		lineageTag: 6b253925-ecce-4bbf-8168-5e4943c50ba2
+		sourceLineageTag: 9ed32f7c-4f86-45a8-82d3-be21e6446af8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_baseline_end_date
+
+		annotation SummarizationSetBy = User
+
+	column issue_start_date
+		dataType: string
+		lineageTag: 304a6d67-18f8-4db3-94f2-40ef8cc1a955
+		sourceLineageTag: 85235ecb-4c54-410f-bffc-da4cfc3cb3e6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_start_date
+
+		annotation SummarizationSetBy = User
+
+	column issue_end_date
+		dataType: string
+		lineageTag: 3720c6ff-813c-4959-93bc-189a17ba68bb
+		sourceLineageTag: 6bd28a2b-4104-4258-a071-6fb6b729d6fb
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_end_date
+
+		annotation SummarizationSetBy = User
+
+	column issue_progress
+		dataType: string
+		lineageTag: fdbd775d-b35d-4c51-95d4-ef73549bc053
+		sourceLineageTag: 73bd6e86-3ccc-4930-bfbc-ee1807da335a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_progress
+
+		annotation SummarizationSetBy = User
+
+	column issue_reporter
+		dataType: string
+		lineageTag: 7eabb53d-a1a3-4766-87fb-98a3e5e8e150
+		sourceLineageTag: efd518da-2a53-405c-8e7f-8b39e9e5c232
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_reporter
+
+		annotation SummarizationSetBy = User
+
+	partition 'Jira Xray Defect' = entity
+		mode: directQuery
+		source
+			entityName: Jira Xray Defect
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab'
+

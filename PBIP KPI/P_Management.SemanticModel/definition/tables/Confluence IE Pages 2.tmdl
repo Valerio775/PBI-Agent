@@ -1,0 +1,31 @@
+table 'Confluence IE Pages 2'
+	lineageTag: 5489e23e-c261-45bf-95b6-30299a2c0e17
+	sourceLineageTag: 19dcf005-8c77-4d7b-8b31-a6779c042f7f
+
+	column pageid
+		dataType: int64
+		formatString: 0
+		lineageTag: 4bbea57d-fabb-4589-a0de-0423f80e706f
+		sourceLineageTag: c99b97b9-c37d-4074-ad30-b00fe7d30963
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: pageid
+
+		annotation SummarizationSetBy = User
+
+	column issue_key
+		dataType: string
+		lineageTag: 96f08361-4b7b-411b-a9c3-d417c861aa81
+		sourceLineageTag: 9d6131d3-44b8-4410-86a3-a71a10cd6ecc
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: issue_key
+
+		annotation SummarizationSetBy = User
+
+	partition 'Confluence IE Pages 2' = entity
+		mode: directQuery
+		source
+			entityName: Confluence IE Pages
+			expressionSource: 'DirectQuery in Analysis Services - SpringLab 2'
+
